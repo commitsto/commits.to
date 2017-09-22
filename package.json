@@ -1,0 +1,34 @@
+{
+  "name": "promises",
+  "version": "0.0.2",
+  "description": "Commitment tracker",
+  "main": "server.js",
+  "scripts": {
+    "start": "babel-node server"
+  },
+  "dependencies": {
+    "express": "^4.15.4",
+    "sqlite3": "^3.1.11",
+    "sequelize": "^4.10.0",
+    "chrono-node": "^1.3.5",
+    "mailgun-js": "0.10.1",
+    "lodash": "^4.17.4",
+    "babel-core": "*",
+    "babel-cli": "*",
+    "babel-preset-latest": "*",
+    "babel-preset-env": "^1.6.0"
+  },
+  "babel": {
+    "presets": [
+      "latest"
+    ]
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "express",
+    "sqlite3"
+  ],
+  "license": "MIT",
+  "repository": "glitch/iwill"
+}

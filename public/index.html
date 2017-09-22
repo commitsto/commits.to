@@ -1,0 +1,76 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>The I-Will System</title>
+<meta name="description" content="A cool thing made with Glitch">
+<link id="favicon" 
+      rel="icon" 
+      href="https://glitch.com/edit/favicon-app.ico" 
+      type="image/x-icon">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<header>
+  <h1>
+    The I-Will System a.k.a. "promises.to" a.k.a. "commits.to"
+  </h1>
+</header>
+
+<main>
+
+<p>
+This is a commitment logger.
+Create a commitment by constructing a URL like 
+"<b>alice.promises.to/send_the_report</b>"
+and just by clicking on such a URL, a promise is logged here.
+We're working on the rest of the implementation, where you can mark promises
+fulfilled and everyone can see statistics on your reliability.
+</p>
+  
+<p>
+Read the 
+<a href="https://glitch.com/edit/#!/iwill?path=README.md:77:0">the spec</a>
+or the 
+<a href="http://blog.beeminder.com/will">original blog post</a>.
+</p>
+
+<br>
+<br>
+
+<!--
+<p>Add a test promise:</p>
+<form>
+<input id="p" type="text" maxlength="100" placeholder="Let Bob know re meeting">
+<button type="submit">Submit</button>
+</form>
+-->
+
+<h3>Promises so far</h3>
+<section id="promises-section"></section>
+
+<!-- <p><a href="/reset">Reset</a> | <a href="/clear">Clear</a></p> -->
+
+</main>
+
+<!-- Your web-app is https, so your scripts need to be too -->
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"
+        integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="/client.js"></script>
+
+</body>
+</html>

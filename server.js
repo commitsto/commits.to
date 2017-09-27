@@ -12,9 +12,9 @@ var moment = require('moment')
 //   what -- what's being promised
 //   whom -- to whom are you promising
 //   tini -- unixtime that the promise was made
-//   tfin -- unixtime that the promise is due
+//   tdue -- unixtime that the promise is due
 //   tmzn -- timezone assumed for parsing the deadline
-//   tdid -- unixtime that the promise was fulfilled
+//   tfin -- unixtime that the promise was fulfilled
 //   fill -- fraction fulfilled, default 0
 //   void -- true if the promise became unfulfillable or moot
 //   clix -- number of clicks a promise has gotten
@@ -24,9 +24,9 @@ var moment = require('moment')
 //   what = "foo the bar"
 //   whom = null
 //   tini = [unixtime of first GET request of the promise's URL]
-//   tfin = [what "noon tomorrow" parsed to at time tini]
+//   tdue = [what "noon tomorrow" parsed to at time tini]
 //   tmzn = "America/Los_Angeles"
-//   tdid = [unixtime that the promise was fulfilled]
+//   tfin = [unixtime that the promise was fulfilled]
 //   fill = 0
 //   void = false
 
@@ -35,6 +35,8 @@ var moment = require('moment')
 // * whether the promise was created by the actual user (if they were logged in 
 //   and were the first to click on it) or by another logged-in user or by 
 //   someone not logged in
+// * conf: maybe we create the promise whether or not anyone clicks the button to confirm
+//   it, in which case we store when it's actually been confirmed.
 
 // LATEST SPEC:
 // The "/by/..." part is an optional power-user thing, not part of the MVP.
@@ -85,21 +87,22 @@ function parseProm(urtx) {
   let domain = m ? m[2] : ''
   let path = m ? m[3] : ''
   let what = ''
-  let tfin = Date.now() + 7*24*60*60*1000
+  let tdue = Date.now() + 7*24*60*60*1000
   if (path.length > 0) {
     let parsedPath = path.match(/^(.*?)(\/by\/|$)(.*)$/)
-    what = parsedPath[1].replace(/_/g, ' ')
-    tfin = parsedPath.length > 1 ? 
-           chrono.parseDate(parsedPath[3].replace(/_/g, ' ')) * 1 : 
-           Date.now() + 7*24*60*60*1000
-    tfin = tfin ? ( ( tfin < Date.now() && Date.now() - tfin < 24*60*60*1000 ) ? 
-                    tfin + 24*60*60*1000 : tfin )
-                : Date.now() + 7*24*60*60*1000
+    what = parsedPath[1] //.replace(/_/g, ' ')
+    //tdue = parsedPath.length > 1 ? 
+    //       chrono.parseDate(parsedPath[3].replace(/_/g, ' ')) * 1 : 
+    //       Date.now() + 7*24*60*60*1000
+    //tdue = tdue ? ( ( tdue < Date.now() && Date.now() - tdue < 24*60*60*1000 ) ?
+    //                tdue + 24*60*60*1000 : tdue )
+    //            : Date.now() + 7*24*60*60*1000
+    tdue = parsedPath[3]
   }
   // TODO: path is now everything after ".promises.to" so now parse out the 
-  //       "what" (thing being promised) and the "tfin" (deadline)
-  console.log('parseProm', { user, path, domain, what, tfin, urtx })
-  return { user, path, domain, what, tfin, urtx, tini: Date.now() }
+  //       "what" (thing being promised) and the "tdue" (deadline)
+  console.log('parseProm', { user, path, domain, what, tdue, urtx })
+  return { user, path, domain, what, tdue, urtx, tini: Date.now() }
 }
 
 // Compute the credit you get for being t seconds late
@@ -113,13 +116,13 @@ let promises = [
   "alice.promises.to/File_the_TPS_report/by/noon_mon",
   "bob.promises.to/Send_vacation_photos/by/saturday",
   "carol.promises.to/Call_the_dentist/by/12am",
-  "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am", // 9-10
-  "dreev.promises.to/show_bee_open_questions/by/10:30pm", // 9-10
+  "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am", // 9-10, done
+  "dreev.promises.to/show_bee_open_questions/by/10:30pm", // 9-10, done
   "braden.promises.to/help_with_javascript/by/5pm", // 9-11
-  "dreev.promises.to/show_brennan_intro/by/10:50pm", // 9-11
-  "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm", // 9-11
-  "dreev.promises.to/order_indian/by/5:30pm", // 9-12
-  "dreev.commits.to/ask_bee_re_sunday_parkways", // 9-13
+  "dreev.promises.to/show_brennan_intro/by/10:50pm", // 9-11, done
+  "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm", // 9-11, done
+  "dreev.promises.to/order_indian/by/5:30pm", // 9-12, done
+  "dreev.commits.to/ask_bee_re_sunday_parkways", // 9-13, done
   "dreev.commits.to/follow_up_with_everyone_re_guest_blogging", // 9-13
   "josh.commits.to/get_realisies_running/by/september_30", // 9-13
   "braden.commits.to/outline_bite_counting_post/by/Sunday_11pm", // 9-13
@@ -158,6 +161,18 @@ let promises = [
   "kim.promises.to/intro_martin_marna/by/10/5", // 9-21
   "kim.promises.to/sbonomic_jitsjudgelist_doc/by/10/15", // 9-21
   "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // 9-21
+  "dreev.commits.to/dedup_the_iwills/by/nov", // 9-22
+  "byorgey.promises.to/email_cut_property_summary/by/7pm", // 9-22
+  "dreev.commits.to/copy_editing_pass_on_tao2/by/tmw_2pm", // 9-22, done
+  "chris.promises.to/open_a_smoothie_shop/by/December", // 9-25
+  "pierre.promises.to/water_the_office_plant/by/Friday", // 9-25
+  "dreev.promises.to/hanna_reply/by/tonight", // 9-26, done
+  "bee.promises.to/read-hannas-emails", // 9-26
+  "bee.promises.to/reping-one-with-heart", // 9-26
+  "bee.promises.to/fill-out-metromile-feedback", // 9-26
+  "bee.promises.to/schedule-planning-with-cantor/by/friday-night", // 9-26
+  "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1", // 9-26
+  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27
 ]
 
 let users = [ 
@@ -166,6 +181,7 @@ let users = [
   "byorgey", "nick", "josh", "dehowell", "caillu", "mbork", // daily beemail
   "samuel", "cole", "jessica", "steven", // weekly beemail
   "chris", // contributors
+  "pierre", // invitees
 ]
 
 /* 
@@ -204,9 +220,9 @@ sequelize.authenticate()
       what: { type: Sequelize.STRING  }, // what's being promised
       //whom: { type: Sequelize.STRING  }, // to whom are you promising
       tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
-      tfin: { type: Sequelize.INTEGER }, // unixtime that the promise is due
+      tdue: { type: Sequelize.STRING }, // unixtime that the promise is due
       //tmzn: { type: Sequelize.STRING  }, // timezone
-      //tdid: { type: Sequelize.INTEGER }, // unixtime that the promise was fulfilled
+      //wtdid: { type: Sequelize.INTEGER }, // unixtime that the promise was fulfilled
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
       //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
       // text:   { type: Sequelize.STRING }, // this was just for testing
@@ -223,10 +239,21 @@ function setup() {
     .then(function(){         // and creates a new one!
       // Add the default promises to the database
       for (var i = 0; i < promises.length; i++) {
-        Promise.create(parseProm(promises[i]));
+        Promise.create(parseProm(promises[i]))
       }
     })
 }
+
+app.get('/promise/:udp/:urtx', function(req, resp) {
+  let urtx = req.originalUrl.substr(9)
+  Promise.findOne({ where: {urtx}})
+    .then(function(promise) {
+      console.log('single promise', urtx, promise)
+    // resp.write(promise)
+    resp.json(promise)
+  })
+
+})
 
 app.get('/', (req, resp) => { 
   resp.sendFile(__dirname + '/public/index.html') 
@@ -237,6 +264,7 @@ app.get('/promises', function(req, resp) {
   Promise.findAll({
     order: sequelize.literal('tini DESC')
   }).then(function(promises) {
+    console.log('a;; promises', promises)
     promises.forEach(function(promise) {
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise) // adds their info to dbPromises value
@@ -245,17 +273,26 @@ app.get('/promises', function(req, resp) {
   })
 })
 
-app.get('/for/:user', function(req, resp) {
+app.get('/promises/:user', function(req, resp) {
   var dbPromises = [];
   Promise.findAll({
    where: {
      user: req.params.user
    },
-  }).then(function(promises) { 
+  }).then(function(promises) {
+    console.log('user promises', promises);
     promises.forEach(function(promise) {
       dbPromises.push(promise) // adds their info to dbPromises value
     });
     resp.send(dbPromises) // sends dbPromises back to the page
+  })
+})
+
+app.get('/promises/remove/:urtx', (req, resp) => {
+  Promise.findAll({
+   where: {
+     user: req.params.user
+   },
   })
 })
 
@@ -328,8 +365,8 @@ app.all('*', (req, resp) => {
   //           https://stackoverflow.com/questions/18796421/capture-anchor-links
   
   console.log("DEBUG urtx:", urtx)
-  // Parse the urtext into user, what, whom, tini, tfin, etc
-  // Check if a promise already exists with matching user+'|'+what+'|'+tfin
+  // Parse the urtext into user, what, whom, tini, tdue, etc
+  // Check if a promise already exists with matching user+'|'+what
   // If not, create it
   // If so, do nothing
   let p = parseProm(urtx)
@@ -342,10 +379,19 @@ app.all('*', (req, resp) => {
   } else if (!users.includes(p.user)) {
     // TODO: tell user "Sorry, no such user! Get in touch if you want to get in
     // on our beta!"
-    resp.sendFile(__dirname + '/public/index.html') 
+    resp.sendFile(__dirname + '/public/index.html')
   } else {
-    Promise.create(p);
-    mailself('PROMISE', urtx)
+    Promise.findOne({ where: {urtx} })
+      .then(promise => {
+        if (promise) {
+          console.log('duplicate', urtx);
+          resp.redirect(`/promise/${urtx}`);
+        } else {
+          Promise.create(p);
+          mailself('PROMISE', urtx);
+        }
+    })
+ 
     resp.sendFile(__dirname + '/public/index.html') 
   }
 })

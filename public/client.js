@@ -11,8 +11,9 @@ $(function() {
       let $nest = $('<ul/>', {class: 'promises'});
       
       users[user].forEach(function(promise) {
+        // moment(promise.tdue).calendar() // if tdue were unixtime
         $nest.append(
-          `<li><a>${promise.what} by ${moment(promise.tfin).calendar()}</a></li>`)
+          `<li><a>${promise.what} by ${promise.tdue}</a></li>`)
       });
       
       $list.append($item.append(`<a>${user}</a>`).append($nest));

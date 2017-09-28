@@ -174,12 +174,14 @@ let promises = [
   "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1", // 9-26
   "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27,
   "stephen.promises.to/decide_upon_late_october_trip/by/saturday", // 9-27
+  "roy.promises.to/sign_up_for_app", // 9-27
+  "jennyli.promises.to/water_the_plants/by/sunday"  // 9-27
 ]
 
 let users = [ 
   "alice", "bob", "carol", // testing
   "dreev", "sergii", "kim", "bee", "braden", // initial co-conspirators
-  "byorgey", "nick", "josh", "dehowell", "caillu", "mbork", "roy", // daily beemail
+  "byorgey", "nick", "josh", "dehowell", "caillu", "mbork", "roy", "jennyli", // daily beemail
   "samuel", "cole", "jessica", "steven", // weekly beemail
   "chris", "stephen", // contributors
   "pierre", // invitees

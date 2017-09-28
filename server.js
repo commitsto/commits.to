@@ -172,15 +172,16 @@ let promises = [
   "bee.promises.to/fill-out-metromile-feedback", // 9-26
   "bee.promises.to/schedule-planning-with-cantor/by/friday-night", // 9-26
   "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1", // 9-26
-  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27
+  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27,
+  "stephen.promises.to/decide_upon_late_october_trip/by/saturday", // 9-27
 ]
 
 let users = [ 
   "alice", "bob", "carol", // testing
   "dreev", "sergii", "kim", "bee", "braden", // initial co-conspirators
-  "byorgey", "nick", "josh", "dehowell", "caillu", "mbork", // daily beemail
+  "byorgey", "nick", "josh", "dehowell", "caillu", "mbork", "roy", // daily beemail
   "samuel", "cole", "jessica", "steven", // weekly beemail
-  "chris", // contributors
+  "chris", "stephen", // contributors
   "pierre", // invitees
 ]
 

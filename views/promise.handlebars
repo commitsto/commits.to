@@ -1,0 +1,23 @@
+{{> intro}}
+
+<section class="single-promise">
+  <ul class="user-list">
+    <li>
+      <a>
+        {{user}}
+        <span> promises to</span>
+      </a>
+      <ul class="promises-list">
+        <li>
+          <a>
+            {{promise}} by 
+            <span>{{date}}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  {{#if existing}}
+    <h5>This promise was already created by someone else...</h5>
+  {{/if}}
+</section>

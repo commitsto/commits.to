@@ -289,9 +289,9 @@ So Beeminder is not enforcing a success rate, just an absolute number of success
 
 # Changelog
 
-* 2017-09-11: Collects promises by capturing GET requests
-* 2017-09-12: Only do so for known usernames
-* 2017-09-13: Added "commits.to" as an alternate domain
+View the [project history](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0)
+
+
 
 # Next tasks
 

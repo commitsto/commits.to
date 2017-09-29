@@ -1,19 +1,19 @@
-// needs handlebars!
+// replace with handlebars!
 
 $(function() {
   $.get('/promises', function(users) {
-    //console.log('users', users)
-    let $list = $('<ul/>', {class: 'users'})
+    console.log('users', users)
+    let $list = $('<ul/>', {class: 'user-list'})
     
     for (var user in users) {
       console.log('keys', users[user]);
       let $item = $('<li/>');
-      let $nest = $('<ul/>', {class: 'promises'});
+      let $nest = $('<ul/>', {class: 'promises-list'});
       
       users[user].forEach(function(promise) {
         // moment(promise.tdue).calendar() // if tdue were unixtime
         $nest.append(
-          `<li><a>${promise.what} by ${promise.tdue}</a></li>`)
+          `<li><a href="/${promise.urtx}">${promise.what} by ${promise.tdue}</a></li>`)
       });
       
       $list.append($item.append(`<a>${user}</a>`).append($nest));

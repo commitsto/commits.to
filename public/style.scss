@@ -1,0 +1,206 @@
+$black: #252525;
+$blue: #2fa2fa;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  margin: 25px;
+  background-color: $black;
+}
+
+h1, .bold {
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, p {
+  color: white;
+}
+
+a {
+  color: $blue;
+}
+
+form {
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: cyan;
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 3px;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+  &:hover {
+    background-color: yellow;
+  }
+  &:active {
+    box-shadow: none;
+  }  
+}
+
+
+footer {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid lightgrey;
+  > a {
+    color: #BBBBBB;
+  }
+}
+
+section {
+  &.single-promise {
+    margin-top: 2rem;
+    
+    h5 {
+      text-align: right;
+      font-weight: lighter;
+      color: #999;
+    }
+  }
+}
+
+.nicejob {
+  text-decoration: line-through;
+}
+
+.user-list {
+  padding: 0;
+  
+  li {
+    position: relative;
+    list-style-type: none;
+    color: white;
+    border: 1px solid $blue;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    
+    a {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.promises-list {
+  li {
+    padding: 0;
+    margin-bottom: .5rem;
+    a {
+      color: white;
+      padding: 1rem;
+      display: block;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: none;
+      transition: all .3s ease-out;
+
+      &:hover {
+        background-color: $blue;
+      }
+    }
+  }
+}
+
+.users {
+  li {
+    position: relative;
+    list-style-type: none;
+    color: white;
+    background: #ccc;
+    padding: .5rem 1rem;
+    font-weight: bold;
+    &:hover {
+      background: #ACACAC;
+      transition: all .3s ease-out;
+    }
+  }
+  > li > a {
+    padding: .5rem .25rem;
+    display: block;
+    text-transform: uppercase;
+  }
+}
+
+ul {
+  &.promises {
+    counter-reset: users;
+    /* Initiate a counter */
+    list-style: none;
+    /* Remove default numbering */
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  ul {
+    margin: 1rem 0 0 2rem;
+    /* Add some left margin for inner lists */
+  }
+  &.promises {
+    li {
+      padding: 0;
+    }
+    a {
+      cursor: pointer;
+      position: relative;
+      display: block;
+      padding: .4em .4em .4em .8em;
+      margin: .5em 0 .5em 2.5em;
+      background: #fefefe;
+      color: #444;
+      text-decoration: none;
+      transition: all .3s ease-out;
+      /* text-transform: lowercase; */
+      &:hover {
+        background: #eee;
+      }
+    }
+    li a:before {
+      content: counter(users);
+      counter-increment: users;
+      position: absolute;
+      left: -2.5em;
+      top: 50%;
+      margin-top: -1em;
+      background: #fa8072;
+      height: 2em;
+      width: 2em;
+      line-height: 2em;
+      text-align: center;
+      font-weight: bold;
+    }
+    a {
+      &:after {
+        position: absolute;
+        content: '';
+        border: .5em solid transparent;
+        left: -1em;
+        top: 50%;
+        margin-top: -.5em;
+        transition: all .3s ease-out;
+      }
+      &:hover:after {
+        left: -.5em;
+        border-left-color: #fa8072;
+      }
+    }
+  }
+}

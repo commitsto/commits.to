@@ -4,23 +4,42 @@
   "description": "Commitment tracker",
   "main": "server.js",
   "scripts": {
-    "start": "babel-node server"
+    "start": "node babel.js"
   },
   "dependencies": {
+    "babel-plugin-syntax-async-functions": "^6.8.0",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-class-properties": "^6.9.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-plugin-transform-regenerator": "^6.9.0",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-1": "^6.5.0",
+    "babel-register": "^6.9.0",
     "express": "^4.15.5",
     "sqlite3": "^3.1.12",
     "sequelize": "^4.10.0",
     "chrono-node": "^1.3.5",
     "mailgun-js": "0.10.1",
     "lodash": "^4.17.4",
-    "babel-core": "*",
-    "babel-cli": "*",
-    "babel-preset-latest": "*",
-    "babel-preset-env": "^1.6.0"
+    "express-handlebars": "^3.0.0",
+    "node-sass-middleware": "^0.11.0"
   },
   "babel": {
     "presets": [
-      "latest"
+      "es2015",
+      "stage-1"
+    ],
+    "plugins": [
+      "transform-class-properties",
+      "transform-object-rest-spread",
+      "transform-decorators-legacy",
+      "transform-function-bind",
+      "syntax-async-functions",
+      "transform-async-to-generator",
+      "transform-regenerator"
     ]
   },
   "keywords": [

@@ -65,22 +65,21 @@ app.listen(process.env.PORT);
 
 // Routes
 
-app.get('/',            (req, resp) => { resp.render('home') })
-app.get('/*.*',  (req, resp) => { resp.render('home') })
-// app.get('/promises.to', (req, resp) => { resp.render('home') })
-// above was my hacky (?) way to make sure you don't get a 404
-// when you surf to "commits.to" or "promises.to"
+app.get([
+  '/',
+  '/promises.to/?',
+  '/commits.to/?'
+], (req, resp) => { 
+  const domain = req.originalUrl.substr(1).replace('/',''); // FIXME use domain parsing lib?
+  console.log('home', req.originalUrl, domain);
+  resp.render('home', {domain: domain});
+});
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-app.get('/:user.*.*/:promise/by/:date', handlePromiseRequest)
-app.get('/:user.*.*/:promise',          handlePromiseRequest)
-app.get('/:user.*.*',                   handlePromiseRequest)
-
-// TODO: if the url was just alice.promises.to then we want to show alice's
-// statistics and list of promises and everything
-//app.get('/:user.*.to', function(req, resp) {});
-
+// we want any actionable route to be handled by the middleware
+// but we probably don't want to let anyone just create promises with domains that don't exist
+app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', handlePromiseRequest)
 
 // Actions
 

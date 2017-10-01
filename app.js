@@ -77,8 +77,9 @@ app.get([
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-// we want any actionable route to be handled by the middleware
-// but we probably don't want to let anyone just create promises with domains that don't exist
+// we want any actionable route to be handled by the middleware and for now
+// we probably don't want to let anyone just create promises with domains that don't exist
+// FIXME: we should have a single configurable list of domains
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', handlePromiseRequest)
 
 // Actions

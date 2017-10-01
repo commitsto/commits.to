@@ -1,6 +1,10 @@
 <header>
   <h1>
-    {{header}}
+    {{#if header}}
+      {{header}}
+    {{else}}
+      promises.to
+    {{/if}}
   </h1>
   <h2>
     a.k.a. The I-Will System

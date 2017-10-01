@@ -81,17 +81,22 @@ app.get('/sign-up', (req, resp) => { resp.render('signup') })
 // FIXME: we should have a single configurable list of domains
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', handlePromiseRequest)
 
+
 // Actions
 
-// TODO implement a 'delete' route?
-// app.get('/promises/remove/:urtx', (req, resp) => {
-//   Promise.findAll({
-//    where: {
-//      user: req.params.user
-//    },
-//   })
-// })
-
+// FIXME refactor/secure this
+app.get('/promises/remove/:id', (req, resp) => {
+  console.log('remove', req.params);
+  Promise.destroy({
+   where: {
+     id: req.params.id
+   }
+  })
+  .then(function(deletedRows){
+    console.log('promise removed', deletedRows);
+    resp.redirect('/');
+  })
+})
 
 // Endpoints
 

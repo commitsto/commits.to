@@ -14,20 +14,22 @@ History
 - "commits.to" as an alternate domain
 
 
-## 09-23-17
+## 2017-09-23
 ### Changed
 - Don't create duplicate promises when the same link is clicked
 ### Added
 - 'Promise' json response when a promise already exists
 
-## 09-28-17
+
+## 2017-09-28
 ### Changed
 - Move seed data to folder
 - Use ES6 import/export (babel)
 ### Added
 - express-handlebars package
 
-## 09-29-17
+
+## 2017-09-29
 ### Changed
 - Refactor app into folders
 - Switch to SCSS

@@ -21,7 +21,7 @@ var app = express();
 app.use(sassMiddleware({
   src: __dirname + '/public',
   dest: '/tmp',
-  debug: true,
+  // debug: true,
   force: true,
   //outputStyle: 'compressed',
 }));
@@ -65,19 +65,21 @@ app.listen(process.env.PORT);
 
 // Routes
 
-app.get('/', (req, resp) => { 
-  resp.render('home');
-})
+app.get('/',            (req, resp) => { resp.render('home') })
+app.get('/*.*',  (req, resp) => { resp.render('home') })
+// app.get('/promises.to', (req, resp) => { resp.render('home') })
+// above was my hacky (?) way to make sure you don't get a 404
+// when you surf to "commits.to" or "promises.to"
 
-app.get('/sign-up', (req, resp) => {
-  resp.render('signup');
-})
+app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-app.get('/:user.promises.to/:promise/by/:date', handlePromiseRequest);
+app.get('/:user.*.*/:promise/by/:date', handlePromiseRequest)
+app.get('/:user.*.*/:promise',          handlePromiseRequest)
+app.get('/:user.*.*',                   handlePromiseRequest)
 
 // TODO: if the url was just alice.promises.to then we want to show alice's
 // statistics and list of promises and everything
-app.get('/:user.promises.to', function(req, resp) {});
+//app.get('/:user.*.to', function(req, resp) {});
 
 
 // Actions
@@ -111,7 +113,8 @@ app.get('/promises', function(req, resp) {
     order: sequelize.literal('tini DESC')
   }).then(function(promises) {
     // console.log('all promises', promises)
-    promises.forEach(function(promise) { // create nested array of promises by user
+    // create nested array of promises by user:
+    promises.forEach(function(promise) { 
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise)
     });
@@ -128,9 +131,9 @@ app.get('/promises/:user', function(req, resp) {
   }).then(function(promises) {
     // console.log('user promises', promises);
     promises.forEach(function(promise) {
-      dbPromises.push(promise);
-    });
-    resp.json(dbPromises);
+      dbPromises.push(promise)
+    })
+    resp.json(dbPromises)
   })
 })
 
@@ -158,6 +161,42 @@ function setup() {
       }
     })
 }
+
+/*
+Little picture: Why does this error handling code not run when I surf to 
+a bad URL like iwill.glitch.me/foo%bar
+
+Bigger picture: I'm making an app that needs to process any URL the user may 
+throw at it. I need the server to get the exact URL the way the user sees it in 
+the browser. That's going to be especially tricky for things like '#' characters
+but right now I'm just trying to figure out the case of arbitrary '%' characters
+that may not correspond to proper %-encodings.
+
+I'm thinking like a catchall error-handling route that no matter what weird
+encoding or whatever error is thrown I can still have the code here do something
+with the URL as the user typed it.
+
+For now we're just dropping all this and having the app give the user an error
+if there are any weird characters in the URL.
+
+app.use(function(req, resp, next) {
+  var err = null
+  try {
+    console.log("TRYING", req.path, req.url)
+    decodeURIComponent(req.path)
+  } catch(e) {
+    err = e
+  }
+  if (err) {
+    console.log("CAUGHT ERR:", err, req.url)
+    return resp.redirect('/')
+  }
+  next();
+
+  //console.log("DEBUG USE1:", req.originalUrl)
+  //resp.redirect('/')
+})
+*/
 
 /* 
 let test

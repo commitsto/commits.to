@@ -299,3 +299,5 @@ View the [project history](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:
 2. add all the fields to the database
 3. parse incoming promises so all the fields are stored
 4. anything not parseable by the simple rules yields an error message that the user sees when clicking on the URL
+5. interface to mark promises completed
+6. real-time reliability score

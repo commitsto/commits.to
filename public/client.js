@@ -1,7 +1,9 @@
-// replace with handlebars!
+// --------------------------------- 80chars ---------------------------------->
+// replace with handlebars! [what does that mean? isn't that done?]
 
 $(function() {
-  $.get('/promises', function(users) {
+  let user = $('#promises-section').data("user")
+  $.get('/promises/'+user, function(users) {
     console.log('users', users)
     let $list = $('<ul/>', {class: 'user-list'})
     

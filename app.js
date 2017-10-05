@@ -69,6 +69,7 @@ app.get([
   '/promises.to/?',
   '/commits.to/?'
 ], (req, resp) => { 
+  console.log('DEBUG HOSTNAME = ', req.hostname)
   const domain = req.originalUrl.substr(1).replace('/',''); // FIXME use domain parsing lib?
   console.log('home', req.originalUrl, domain);
   resp.render('home', {domain: domain});
@@ -76,10 +77,20 @@ app.get([
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-// we want any actionable route to be handled by the middleware and for now
-// we probably don't want to let anyone just create promises with domains that don't exist
+// if a user visits bob.promises.to (or iwill.glitch.me/bob.promises.to) 
+// render the home view, but with only that user's promises
+app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
+  console.log("just a user going home")
+  const domain = req.originalUrl.substr(1).replace('/', '');
+  resp.render('home', {domain: domain, user: 'bee'})
+})
+
+// we want any actionable route to be handled by the middleware and for now we probably
+// don't want to let anyone just create promises with domains that don't exist
 // FIXME: we should have a single configurable list of domains
-app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', handlePromiseRequest)
+app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', 
+        handlePromiseRequest)
+
 
 
 // Actions
@@ -127,7 +138,7 @@ app.get('/promises', function(req, resp) {
 })
 
 app.get('/promises/:user', function(req, resp) {
-  var dbPromises = [];
+  var dbPromises = {};
   Promise.findAll({
    where: {
      user: req.params.user
@@ -135,7 +146,8 @@ app.get('/promises/:user', function(req, resp) {
   }).then(function(promises) {
     // console.log('user promises', promises);
     promises.forEach(function(promise) {
-      dbPromises.push(promise)
+      dbPromises[promise.user] = dbPromises[promise.user] || []
+      dbPromises[promise.user].push(promise)
     })
     resp.json(dbPromises)
   })

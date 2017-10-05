@@ -62,37 +62,41 @@ app.listen(process.env.PORT);
 //   tomorrow" and figuring out the time. We could also just take the last
 //   occurrence of "by" and parse everything after it as the deadline.
 
-
 // Routes
 
-app.get('/',            (req, resp) => { resp.render('home') })
-app.get('/*.*',  (req, resp) => { resp.render('home') })
-// app.get('/promises.to', (req, resp) => { resp.render('home') })
-// above was my hacky (?) way to make sure you don't get a 404
-// when you surf to "commits.to" or "promises.to"
+app.get([
+  '/',
+  '/promises.to/?',
+  '/commits.to/?'
+], (req, resp) => { 
+  const domain = req.originalUrl.substr(1).replace('/',''); // FIXME use domain parsing lib?
+  console.log('home', req.originalUrl, domain);
+  resp.render('home', {domain: domain});
+});
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-app.get('/:user.*.*/:promise/by/:date', handlePromiseRequest)
-app.get('/:user.*.*/:promise',          handlePromiseRequest)
-app.get('/:user.*.*',                   handlePromiseRequest)
-
-// TODO: if the url was just alice.promises.to then we want to show alice's
-// statistics and list of promises and everything
-//app.get('/:user.*.to', function(req, resp) {});
+// we want any actionable route to be handled by the middleware and for now
+// we probably don't want to let anyone just create promises with domains that don't exist
+// FIXME: we should have a single configurable list of domains
+app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', handlePromiseRequest)
 
 
 // Actions
 
-// TODO implement a 'delete' route?
-// app.get('/promises/remove/:urtx', (req, resp) => {
-//   Promise.findAll({
-//    where: {
-//      user: req.params.user
-//    },
-//   })
-// })
-
+// FIXME refactor/secure this
+app.get('/promises/remove/:id', (req, resp) => {
+  console.log('remove', req.params);
+  Promise.destroy({
+   where: {
+     id: req.params.id
+   }
+  })
+  .then(function(deletedRows){
+    console.log('promise removed', deletedRows);
+    resp.redirect('/');
+  })
+})
 
 // Endpoints
 

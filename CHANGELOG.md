@@ -39,3 +39,11 @@ History
 - Handlebars templates
 ### Removed
 - Old promise form that was hidden
+
+
+## 2017-10-01
+### Changed
+- Refactor routing
+### Added
+- Page title based on domain
+- Delete promise route

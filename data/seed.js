@@ -15,6 +15,7 @@ export const users = [
 ]
 
 // dreev calls dibs on "danny", "dan", & "d" in case we implement aliases
+// usernames to disallow: "www", "admin", 
 
 // Initial promise list hardcoded so don't have to worry about blowing db away
 export const promises = [
@@ -89,5 +90,6 @@ export const promises = [
   "bee.commits.to/put-away-camping-gear-this-weekend", // 9-29
   "owen.promises.to/research_and_pseudocode_calendar_integration/by/oct_6", // 9-29
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // 9-30
-  
+  "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02
+  "bee.commits.to/prettying_road_editor", // 10-04
 ]

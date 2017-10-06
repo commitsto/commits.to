@@ -5,7 +5,7 @@ var sequelize, Promise
 
 // set up a new database using database credentials set in .env
 sequelize = new Sequelize('database', process.env.DB_USER, 
-                                          process.env.DB_PASS, {
+                                      process.env.DB_PASS, {
   host: '0.0.0.0',
   dialect: 'sqlite',
   pool: {
@@ -35,14 +35,14 @@ sequelize.authenticate()
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
       //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
       // text:   { type: Sequelize.STRING }, // this was just for testing
-    });    
+    })
     //setup()
   })
   .catch(function (err) {
     console.log('Unable to connect to the database: ', err)
   })
 
-export { Promise, sequelize };
+export { Promise, sequelize }
 
 // DATABASE FIELDS:
 //   urtx -- urtext, ie, full original text the user typed to create the promise
@@ -57,7 +57,8 @@ export { Promise, sequelize };
 //   void -- true if the promise became unfulfillable or moot
 //   clix -- number of clicks a promise has gotten
 //   conf -- true when someone clicks the button to confirm the commitment
-//   orby -- originated by
+//   audt -- audit trail of http header info for who confirmed it (or username)
+//   text -- optional additional notes or text or context for the promise
 // For example:
 //   urtx = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
 //   user = "bob"
@@ -71,6 +72,8 @@ export { Promise, sequelize };
 //   void = false
 //   clix = 0
 //   conf = false
+//   audt = "MacOS/Chrome user in Portland OR"
+//   text = "promised in slack discussion about such-and-such"
 
 // Other ideas for fields: 
 // * information about the client that originally created the promise
@@ -78,5 +81,6 @@ export { Promise, sequelize };
 //   and were the first to click on it) or by another logged-in user or by 
 //   someone not logged in
 // * conf: maybe we create the promise whether or not anyone clicks the button 
-//   to confirm it, in which case we store when it's actually been confirmed.
+//   to confirm it, in which case we store when it's actually been confirmed
+// * 
 // --------------------------------- 80chars ---------------------------------->

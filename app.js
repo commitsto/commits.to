@@ -1,22 +1,22 @@
 // --------------------------------- 80chars ---------------------------------->
 
-import express from 'express';
-import expressHandlebars from 'express-handlebars';
+import express from 'express'
+import expressHandlebars from 'express-handlebars'
 
-import chrono from 'chrono-node'; // Sugar.js parses some things better
-import moment from 'moment';
-import sassMiddleware from 'node-sass-middleware';
+import chrono from 'chrono-node' // Sugar.js parses some things better
+import moment from 'moment'
+import sassMiddleware from 'node-sass-middleware'
 
-import { Promise, sequelize } from './models/promise.js';
+import { Promise, sequelize } from './models/promise.js'
 
-import { users, promises } from './data/seed.js';
+import { users, promises } from './data/seed.js'
 
-import computeCredit from './lib/latepenalty.js';
-import parsePromise from './lib/parse.js';
+import computeCredit from './lib/latepenalty.js'
+import parsePromise from './lib/parse.js'
 
-import handlePromiseRequest from './lib/middleware.js';
+import handlePromiseRequest from './lib/middleware.js'
 
-var app = express();
+let app = express()
 
 app.use(sassMiddleware({
   src: __dirname + '/public',
@@ -24,43 +24,15 @@ app.use(sassMiddleware({
   // debug: true,
   force: true,
   //outputStyle: 'compressed',
-}));
+}))
 
-app.use(express.static('public'));
-app.use(express.static('tmp'));
+app.use(express.static('public'))
+app.use(express.static('tmp'))
 
-app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
-app.listen(process.env.PORT);
-
-
-// LATEST SPEC:
-// The "/by/..." part is an optional power-user thing, not part of the MVP.
-// Instead, the first time you go to alice.promises.to/foo it gives you the 
-// option to choose a deadline, defaulting to now+7days (or to what the "/by/" 
-// part parsed to, if that's easy, but just make it a suggestion for the user, 
-// just like now+7days is if they don't specify a "/by/"). 
-// For every subsequent GET of alice.promises.to/foo it shows the deadline, with
-// no way to change it.
-
-// IDEAS FOR LATER:
-// Simpler date parsing:
-//   Maybe the date has to be YYYY-MM-DD_HH:MM
-//   Example: bob.promises.to/foo_the_bar/by/2017-09-13_12:00
-// Magic spaces:
-//   Whichever non-alphanumeric character is most common in the urtext, that's 
-//   what's assumed to be a space and is replaced with spaces before parsing.
-// Less magical version:
-//   A non-alphanumeric character must follow "alice.promises.to/" and that
-//   character is taken as the ersatz space. Eg:
-//   alice.promises.to/_start_her_promises_with_underscores
-// Flexibility on the '/by/' part:
-//   Requiring the string '/by/' to appear in the promise URL means no ambiguity
-//   about where to start parsing the deadline. But the Chrono parsing library 
-//   actually does great taking the whole string like "foo the bar by noon 
-//   tomorrow" and figuring out the time. We could also just take the last
-//   occurrence of "by" and parse everything after it as the deadline.
+app.listen(process.env.PORT)
 
 // Routes
 
@@ -68,29 +40,27 @@ app.get([
   '/',
   '/promises.to/?',
   '/commits.to/?'
-], (req, resp) => { 
-  console.log('DEBUG HOSTNAME = ', req.hostname)
-  const domain = req.originalUrl.substr(1).replace('/',''); // FIXME use domain parsing lib?
-  console.log('home', req.originalUrl, domain);
-  resp.render('home', {domain: domain});
-});
+], (req, resp) => {
+  // no reason to care what actual domain is given in the urtext
+  resp.render('home', {domain: 'commits.to'})
+})
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
-// if a user visits bob.promises.to (or iwill.glitch.me/bob.promises.to) 
+// if a user visits bob.promises.to (or iwill.glitch.me/bob.promises.to) then
 // render the home view, but with only that user's promises
 app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
-  console.log("just a user going home")
-  const domain = req.originalUrl.substr(1).replace('/', '');
-  resp.render('home', {domain: domain, user: 'bee'})
+  resp.render('home', { domain: 'commits.to', user: req.params.user })
 })
 
-// we want any actionable route to be handled by the middleware and for now we probably
-// don't want to let anyone just create promises with domains that don't exist
+// we want any actionable route to be handled by the middleware and for now we 
+// probably don't want to let anyone just create promises with domains that 
+// don't exist
 // FIXME: we should have a single configurable list of domains
-app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date?', 
+// TODO: this breaks if there are slashes in the date, i think
+// -chris: i just added the * before the ?, which globs everything together under params[1]
+app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', 
         handlePromiseRequest)
-
 
 
 // Actions
@@ -182,7 +152,7 @@ function setup() {
 Little picture: Why does this error handling code not run when I surf to 
 a bad URL like iwill.glitch.me/foo%bar
 
-Bigger picture: I'm making an app that needs to process any URL the user may 
+Bigger picture: We're making an app that needs to process any URL the user may 
 throw at it. I need the server to get the exact URL the way the user sees it in 
 the browser. That's going to be especially tricky for things like '#' characters
 but right now I'm just trying to figure out the case of arbitrary '%' characters

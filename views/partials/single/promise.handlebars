@@ -1,19 +1,12 @@
-{{> intro}}
-
 <section class="single-promise">
   <ul class="user-list">
     <li>
-      <a>
+      <a href="/{{user}}.commits.to/">
         {{user}}
         <span> promises to</span>
       </a>
       <ul class="promises-list">
-        <li>
-          <a>
-            {{what}} by 
-            <span>{{tdue}}</span>
-          </a>
-        </li>
+        {{> promise}}
       </ul>
     </li>
   </ul>

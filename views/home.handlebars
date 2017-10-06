@@ -10,8 +10,12 @@ or the
 <br>
 
 
-<h2>Promises so far</h2>
-<section id="promises-section" data-user="{{user}}"></section>
+<h2>A few of the latest promises:</h2>
+<section id="promises-section">
+  {{#each promises}}
+    {{> single/promise}}
+  {{/each}}
+</section>
 
 <!-- <p><a href="/reset">Reset</a> | <a href="/clear">Clear</a></p> -->
 
@@ -22,4 +26,3 @@ or the
         integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="/client.js"></script>

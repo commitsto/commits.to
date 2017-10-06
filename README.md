@@ -104,35 +104,19 @@ Definitions:
 
 A promise's fulfilled fraction, `fill`, is 1 if fulfilled on time, or the specified percentage. 
 If there's a fulfilled time specified then `fill` = the specified percentage (or 1 if not specified) times `credit(tfin-tnow)` where the credit function maps a number of seconds to how much credit you get if you're that much late (see lib/latepenalty.js).
-For example, credit(0) is 1 and credit 
+For example, credit(0) is 1 (no penalty) and credit(3600) is 0.99 (most of the credit for being just an hour late).
 
-    credit(t) = 1    if t<60              # seconds late
-    credit(t) = .999 if t<3600            # minutes late
-    credit(t) = .99  if t<86400           # hours late
-    credit(t) = .9   if t<86400*7         # days late
-    credit(t) = .5   if t<86400*365.25/12 # weeks late
-    credit(t) = .1   if t<86400*365.25    # months late
-    credit(t) = .01  if t<86400*365.25*10 # years late
-    credit(t) = 0    otherwise            # more than a decade late
-
-> *Implementation note: Dreev has a version of that function ready that interpolates continuously.
-> We'll want that version because it will be super cool to see the reliability percentage tick
-> down in real time when one of Alice's deadlines passes.
-> I know React makes that kind of thing easy.*
-
-> *An alternative simple late penalty function I've used before in another context is 
-> `1-(t/(86400*7))^4` 
-> which gives you a couple days of very little penalty and then your credit plummets 
-> till you get zero credit for being more than a week late.*
+We need a continuous late penalty function because it will be super cool to see the reliability percentage tick down in real time when one of Alice's deadlines passes.
+(Dreev recommends React for that stuff.)
 
 Finally, for the statistics, iterate through the promises, `p`, like so:
 
     if p is marked "not fulfilled yet" then
-      if t<tfin then                # unfulfilled future promises don't
+      if tnow<tfin then             # unfulfilled future promises don't
         waiting++                   #  count for or against you.
       else 
-        numerator += credit(t-tfin) # optimistically assume you're just
-        denominator++               #  about to fulfill the promise.
+        numerator += credit(tnow-tfin) # optimistically assume I'm just
+        denominator++                  #  about to fulfill the promise.
       end
     else                            # p is marked fulfilled or partially
       numerator += fill             #  fulfilled, whether or not it's
@@ -172,6 +156,8 @@ non-promises or delete them and they won't count.
 If they are promises then you need to manually mark them as fulfilled or not. 
 Beeminder (plus the embarrassment of having your reliability percentage drop 
 when a deadline passes) should suffice to make sure you remember to do that.
+
+This is moot for now 
 
 ## For Later: Security and Privacy
 

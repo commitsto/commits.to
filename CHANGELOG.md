@@ -46,4 +46,15 @@ History
 - Refactor routing
 ### Added
 - Page title based on domain
-- Delete promise route
+### Removed
+- Old promise route
+
+
+## 2017-10-06
+### Changed
+- Route all the things!
+### Added
+- Set up a basic routing flow and link each view/item
+- Lots of handlebars templates
+### Removed
+- Jquery rendering

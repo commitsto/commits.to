@@ -78,7 +78,7 @@ export const promises = [
   "bee.promises.to/fill-out-metromile-feedback", // 9-26
   "bee.promises.to/schedule-planning-with-cantor/by/friday-night", // 9-26, done
   "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1", // 9-26
-  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27,
+  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday", // 9/27, done
   "stephen.promises.to/decide_upon_late_october_trip/by/saturday", // 9-27
   "roy.promises.to/sign_up_for_app", // 9-27
   "jennyli.promises.to/water_the_plants/by/sunday", // 9-27
@@ -92,4 +92,7 @@ export const promises = [
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // 9-30
   "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02
   "bee.commits.to/prettying_road_editor", // 10-04
+  "kim.promises.to/talk_finances_w_D/by/10/30/2017", // 10-05
+  "dreev.commits.to/give_marcin_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
+  "dreev.commits.to/give_james_d_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
 ]

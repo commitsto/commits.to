@@ -1,6 +1,7 @@
 # The I-Will System &mdash; a.k.a. "promises.to"
 
-NOTE: The spec here is evolving. See also the comments in server.js
+(NOTE: The spec here is evolving. We're gradually moving things to 
+<https://github.com/beeminder/iwill/issues>)
 
 Problem:
 Alice casually says to Bob 
@@ -15,39 +16,7 @@ statement like that, she types a URL like so:
 `alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm`
 
 As in, she literally types that directly to Bob, manually, when she's making the promise to him.
-When Alice or Bob click that URL a promise is created in the promises.to app and a calendar
-entry is added to Alice's calendar and a datapoint is sent to Beeminder.
-
-## What happens on the first click of a promise URL
-
-1. It should completely ignore whether the user is logged in. If you
-go to alice.promises.to/foo/by/xyz then it says "click to confirm that
-alice promises to 'foo' by [date-picker]". The datepicker uses the
-"/by/xyz" from the URL as the default but if it parsed it wrong you
-have a chance to change it.
-
-2. So the promise isn't actually saved until that button is pressed
-but the wording on the page encourages the recipient of the promise to
-click it. Or the promiser (call her Alice) can do it -- it doesn't
-matter who confirms the creation of the promise.
-
-3. All subsequent visits to the URL just say "alice has promised to
-'foo' by [date]" and maybe also a nice countdown timer to the deadline
-to give a feeling of a ticking clock. Also it should show Alice's
-reliability statistics. Maybe it shows Alice's full list of promises.
-Same as if you visit alice.promises.to with no path in the URL.
-
-4. And the other cool part: when a deadline passes without being
-marked fulfilled then the reliability score decreases in real time
-according to the late penalty function. (See "Computing Statistics" below.)
-
-5. So the only difference for the logged in user is the ability to
-mark promises fulfilled. (Post-MVP maybe there's a way for the
-promisee (ie, person the promise was made to) to be the one to mark it
-fulfilled. And for the MVP maybe everything can be wide open -- we're
-not going to have any abuse until there are, realistically, thousands
-of users or more.)
-
+When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
 
 ----
 
@@ -55,52 +24,44 @@ Everything below is in flux
 
 ----
 
-> *Nerd note: Creating an object in a database in response to a GET request is
-> pretty unkosher. 
-> We're going to do it anyway because of how elegently it reduces the friction for the user.
-> Otherwise Alice has to type the promise to Bob and then separately use some UI to add the
-> promise to the system.*
+## Creation on GET?
 
-The Beeminder datapoint gets the specified deadline as the date (even though it's in the future) 
-and a zero as the datapoint value.
+Creating an object in a database in response to a GET request is pretty unkosher. 
+We might do it anyway because of how elegantly it reduces the friction for the user.
+
+## Beeminder integration
+
+The Beeminder datapoint gets the specified deadline as the date (even though it's in the future) and a zero as the datapoint value.
 The comment should include the deadline time of day and when the promise was first created.
 
-> *For later: 
-> Bee doesn't like the idea of events getting created on her calendar whenever random URLs
-> get surfed to.
-> Probably it will be fine and is good enough for the MVP but later we'll consider an 
-> enhancement like so:
-> Leave the deadline off of the URL and the promise is created but with no calendar entry.
-> When the user is logged in, all such promises are shown and the user can explicitly add a
-> deadline.
-> Since the user created the promise with a highly greppable string in chat or email it's easy
-> for them to look up the deadline they mentioned when they created the promise.
-> At that point the calendar entry is created but it took the logged in user doing it.
-> For sufficient paranoia an account-level setting could allow or disallow deadlines specified
-> as part of the URL.
-> (Also some initial feedback suggests that URLs like
-> `alice.promises.to/do_the_thing/by/8am_tue`  
-> may be too intimidating for nontechnical folks but just
-> `alice.promises.to/do_the_thing`  
-> is ok.)*
+## Ideas for later (that I mostly dislike)
 
-After the promise is created, the app redirects to the main `alice.promises.to` page.
+1. **Magic spaces**:
+   Whichever non-alphanumeric character is most common in the urtext, that's 
+   what's assumed to be a space and is replaced with spaces before parsing.
+2. **Less magical version**:
+   A non-alphanumeric character must follow "alice.promises.to/" and that
+   character is taken as the ersatz space. Eg:
+   alice.promises.to/_start_her_promises_with_underscores
+3. **Flexibility on the '/by/' part**:
+   Requiring the string '/by/' to appear in the promise URL means no ambiguity
+   about where to start parsing the deadline. But the Chrono parsing library 
+   actually does great taking the whole string like "foo the bar by noon 
+   tomorrow" and figuring out the time. We could also just take the last
+   occurrence of "by" and parse everything after it as the deadline.
 
 ## Uniqueness of Promise Names
 
-The identifier for a promise is the name the user typed in the URL, 
-the `let_bob_know_re_meeting` part, 
-concatenated with the unixtime (in seconds) of the deadline.
-The deadline is specified in the URL by something like "10pm_tue"
-so if you make another promise of `let_bob_know_re_meeting` 
-next week that will be created as a distinct promise and everything will work fine.
-Repeat hits on that URL *this* week will resolve to the same promise identifier 
-and be idempotent.
+What should happen if alice creates `alice.commits.to/send_the_report/by/thu` one week and then creates `alice.commits.to/send_the_report/by/fri` the next week?
+I'm thinking we treat those as the same promise -- so we key on just `user`+`/`+`what`.
+In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
+Anything else involves magic that we shouldn't even think about for the MVP.
+The first time we're annoyed by a collision in promise names, we'll revisit this question.
 
 ## Account Settings
 
 1. Username, used as a subdomain for the URL
-2. Timezone (needed to parse the deadlines)
+2. Timezone (needed to parse the deadlines; but less important since you have the chance to fix the deadline when creating the promise)
 
 Later:
 
@@ -118,7 +79,6 @@ It could also show her Beeminder graph.
 
 ## UI For Marking Promises Fulfilled
 
-
 If Alice is logged in, the app lists her existing promises and lets her choose one of 
 {not fulfilled yet, fulfilled on time, fulfilled partially or late} 
 for each of them. 
@@ -133,18 +93,18 @@ implement promise-voiding until there's demand for such a feature.
 
 ## Computing Statistics
 
-The only statistics we'll care about initially are the number of promises Alice has made 
-and her reliability percentage.
+The only statistics we'll care about initially are the number of promises Alice has made and her reliability percentage.
 And pending vs past promises.
 
 Definitions:
 
 * `fill` &mdash; a promise's fulfilled fraction, between 0 to 1, default 0
-* `t` &mdash; current unixtime
-* `tfin` &mdash; promise's deadline
+* `tnow` &mdash; current unixtime
+* `tdue` &mdash; promise's deadline
 
 A promise's fulfilled fraction, `fill`, is 1 if fulfilled on time, or the specified percentage. 
-If there's a fulfilled time specified then `fill` = the specified percentage (or 1 if not specified) times `credit(tfin-t)` where the credit function maps a number of seconds to how much credit you get if you're that much late:
+If there's a fulfilled time specified then `fill` = the specified percentage (or 1 if not specified) times `credit(tfin-tnow)` where the credit function maps a number of seconds to how much credit you get if you're that much late (see lib/latepenalty.js).
+For example, credit(0) is 1 and credit 
 
     credit(t) = 1    if t<60              # seconds late
     credit(t) = .999 if t<3600            # minutes late

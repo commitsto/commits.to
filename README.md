@@ -27,33 +27,33 @@ Everything below is in flux
 ## Creation on GET?
 
 Creating an object in a database in response to a GET request is pretty unkosher. 
-We might do it anyway because of how elegantly it reduces the friction for the user.
+But it might be worth it because of how elegantly it reduces the friction for the user.
+
+At the very least I think it's important that anyone be able to click yes to create a promise, no authentication needed.
+If/when that's abused we'll revisit this but initially we should make all tradeoffs in favor of lower friction.
+
+In fact, I kind of want to try the outrageous create-on-GET version because I think it might be a feature that every yourname.promises.to URL you type gets almost automatically logged as a promise.
+And I suspect that spiders and such generating URLs you didn't type will be a non-issue.
 
 ## Beeminder integration
 
 The Beeminder datapoint gets the specified deadline as the date (even though it's in the future) and a zero as the datapoint value.
 The comment should include the deadline time of day and when the promise was first created.
 
-## Ideas for later (that I mostly dislike)
+The Beeminder goal should be a do-more goal to fulfill like 8 promises per week.
+The way I (dreev) do this currently: 
+I create a datapoint for each promise (via IFTTT from Google Calendar) 
+when I promise it, and then change the datapoint to a 1 when I fulfill it 
+(or something less than 1 if I fulfill it late).
 
-1. **Magic spaces**:
-   Whichever non-alphanumeric character is most common in the urtext, that's 
-   what's assumed to be a space and is replaced with spaces before parsing.
-2. **Less magical version**:
-   A non-alphanumeric character must follow "alice.promises.to/" and that
-   character is taken as the ersatz space. Eg:
-   alice.promises.to/_start_her_promises_with_underscores
-3. **Flexibility on the '/by/' part**:
-   Requiring the string '/by/' to appear in the promise URL means no ambiguity
-   about where to start parsing the deadline. But the Chrono parsing library 
-   actually does great taking the whole string like "foo the bar by noon 
-   tomorrow" and figuring out the time. We could also just take the last
-   occurrence of "by" and parse everything after it as the deadline.
+So Beeminder is not enforcing a success rate, just an absolute number of successes.
 
 ## Uniqueness of Promise Names
 
-What should happen if alice creates `alice.commits.to/send_the_report/by/thu` one week and then creates `alice.commits.to/send_the_report/by/fri` the next week?
+What should happen if alice says `alice.commits.to/send_the_report/by/thu` one week and then says `alice.commits.to/send_the_report/by/fri` the next week?
+
 I'm thinking we treat those as the same promise -- so we key on just `user`+`/`+`what`.
+
 In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
 Anything else involves magic that we shouldn't even think about for the MVP.
 The first time we're annoyed by a collision in promise names, we'll revisit this question.
@@ -130,6 +130,13 @@ Now you can report that the user has made
 and has a reliability of 
 {`numerator/denominator*100`}%.
 
+## Automatically Creating Calendar Entries
+
+It's pretty critical that the promises end up on your calendar.
+That could be done semi-manually by creating links like described here: <https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
+No Calendar API needed that way -- just construct the link and if the user is 
+logged in to Google it will create the calendar entry when the click it.
+
 
 # Credits
 
@@ -142,6 +149,21 @@ Chris Butler wrote some of the initial code.
 <br>
 <br>
 
+## For Later: Ideas for parsing (that I mostly dislike)
+
+1. **Magic spaces**:
+   Whichever non-alphanumeric character is most common in the urtext, that's 
+   what's assumed to be a space and is replaced with spaces before parsing.
+2. **Less magical version**:
+   A non-alphanumeric character must follow "alice.promises.to/" and that
+   character is taken as the ersatz space. Eg:
+   alice.promises.to/_start_her_promises_with_underscores
+3. **Flexibility on the '/by/' part**:
+   Requiring the string '/by/' to appear in the promise URL means no ambiguity
+   about where to start parsing the deadline. But the Chrono parsing library 
+   actually does great taking the whole string like "foo the bar by noon 
+   tomorrow" and figuring out the time. We could also just take the last
+   occurrence of "by" and parse everything after it as the deadline.
 
 ## For Later: Calendar as UI
 
@@ -157,71 +179,18 @@ If they are promises then you need to manually mark them as fulfilled or not.
 Beeminder (plus the embarrassment of having your reliability percentage drop 
 when a deadline passes) should suffice to make sure you remember to do that.
 
-This is moot for now 
+This is moot for now while we work on the URL-as-UI version.
 
 ## For Later: Security and Privacy
 
 Alice's friends can troll her by making up URLs like 
 alice.promises.to/kick_a_puppy 
 but that's not a huge concern. 
-Alice, when logged in, has to approve promises to be public. 
-So the prankster will see a page that says Alice promises to kick a puppy 
-but no one else will.
+Alice, when logged in, could have to approve promises to be public.
+So the prankster would see a page that says Alice promises to kick a puppy 
+but no one else would.
 
-In the MVP we can skip the approval UI and worry about abuse like that the first 
-time it's a problem, 
-which I predict will be after promises.to is a million dollar company.
-
-## Automatically Creating Calendar Entries
-
-It's pretty critical that the promises end up on your calendar.
-That could be done semi-manually by creating links like described here: <https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
-No Calendar API needed that way -- just construct the link and if the user is 
-logged in to Google it will create the calendar entry when the click it.
-
-## GET vs POST
-
-If create-on-GET is just too hideous then the GET on alice.promises.to/foo
-could show a page like:
-
-> Did alice just promise to foo?
->
-> [big button that says "YES"]
-
-But I think anyone should be able to click yes, no authentication required.
-
-And I really want to try the outrageous create-on-GET version first because I 
-think it might be a feature that every yourname.promises.to URL you type gets 
-almost automatically logged as a promise.
-And I suspect that spiders and such generating URLs you didn't type will be a non-issue.
-
-
-## More on Duplicates
-
-When you visit alice.promises.to/foo it shows you,
-in addition to the current promise that hitting that link created,
-all the past promises named foo and when they were due, etc.
-
-Also I think the deadline should default to 5pm the following business day.
-Maybe in the initial implementation that's all that's supported.
-No parsing the messy "/by/" stuff in the URLs and no UI for changing deadlines.
-
-## More on Beeminder Integration
-
-Mine is just a do-more goal to fulfill like 8 promises per week. 
-I create a datapoint for each promise (via IFTTT from Google Calendar) 
-when I promise it, and then change the datapoint to a 1 when I fulfill it 
-(or something less than 1 if I fulfill it late).
-
-So Beeminder is not enforcing a success rate, just an absolute number of successes.
-
-## Getting something dogfoodable as quickly as possible
-
-1. no parsing deadlines, just always assume 5pm the next business day
-2. no UI for anything, the page just lists all promises no matter what
-3. do need a way to mark promises complete (tack on a query param to do it?)
-4. no privacy or security features, everything is public
-5. no calendar API, just construct a link the user can click to create the calendar event
+In the MVP we can skip the approval UI and worry about abuse like that the first time it's a problem, which I predict will be after promises.to is a million dollar company.
 
 ## Other domain name ideas
 
@@ -231,19 +200,18 @@ So Beeminder is not enforcing a success rate, just an absolute number of success
 * alice.willdefinite.ly/ (kinda awkward)
 * alice.willveri.ly/ (too cutesy?)
 * alice.willprobab.ly/ (emphasizes the reliability percentage)
-* alice.willresolute.ly
+* alice.willresolute.ly (maybe it would grow on me?)
+
+## Getting something dogfoodable as quickly as possible
+
+1. parse incoming promises so all the fields are stored
+2. anything not parseable yields an error message that the user sees when clicking on the URL
+3. need a way to mark promises complete (tack on a query param to do it?)
+4. no privacy or security features; everything is public
+5. no calendar API, just construct a link the user can click to create the calendar event
+6. realtime reliability score!
 
 # Changelog
 
-View the [project history](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0)
-
-
-
-# Next tasks
-
-1. finish the parseProm function based on the new simple parsing rules
-2. add all the fields to the database
-3. parse incoming promises so all the fields are stored
-4. anything not parseable by the simple rules yields an error message that the user sees when clicking on the URL
-5. interface to mark promises completed
-6. real-time reliability score
+View the 
+[project history](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0)

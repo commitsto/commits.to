@@ -58,6 +58,12 @@ button {
   }  
 }
 
+header {
+  a {
+    text-decoration: none
+  }
+}
+
 
 footer {
   margin-top: 50px;
@@ -97,6 +103,8 @@ section {
     
     a {
       text-transform: uppercase;
+      text-decoration: none;
+      
     }
   }
 }

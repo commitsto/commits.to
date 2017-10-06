@@ -37,12 +37,25 @@ app.listen(process.env.PORT)
 // Routes
 
 app.get([
-  '/',
+  '/?',
   '/promises.to/?',
   '/commits.to/?'
 ], (req, resp) => {
   // no reason to care what actual domain is given in the urtext
-  resp.render('home', {domain: 'commits.to'})
+    var usersWithPromises = {}
+    Promise.findAll({
+      order: sequelize.literal('tini DESC'),
+      limit: 10
+    }).then(function(promises) {
+      console.log('all promises', promises)
+      resp.render('home', {domain: 'commits.to', promises: promises})
+      // create nested array of promises by user:
+      // proms.forEach(function(promise) { 
+      //   usersWithPromises[promise.user] = usersWithPromises[promise.user] || []
+      //   usersWithPromises.push(promise.dataValues)
+      // });
+      // console.log('home with users', usersWithPromises)
+    })
 })
 
 app.get('/sign-up', (req, resp) => { resp.render('signup') })
@@ -50,7 +63,14 @@ app.get('/sign-up', (req, resp) => { resp.render('signup') })
 // if a user visits bob.promises.to (or iwill.glitch.me/bob.promises.to) then
 // render the home view, but with only that user's promises
 app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
-  resp.render('home', { domain: 'commits.to', user: req.params.user })
+  var dbPromises = {}
+  Promise.findAll({
+   where: {
+     user: req.params.user
+   },
+  }).then(function(promises) {
+    resp.render('pages/account', { promises: promises, domain: 'commits.to', user: req.params.user })
+  })
 })
 
 // we want any actionable route to be handled by the middleware and for now we 
@@ -114,7 +134,7 @@ app.get('/promises/:user', function(req, resp) {
      user: req.params.user
    },
   }).then(function(promises) {
-    // console.log('user promises', promises);
+    console.log('user promises', promises);
     promises.forEach(function(promise) {
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise)

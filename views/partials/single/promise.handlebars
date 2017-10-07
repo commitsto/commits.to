@@ -1,16 +1,18 @@
-<section class="single-promise">
-  <ul class="user-list">
-    <li>
-      <a href="/{{user}}.commits.to/">
-        {{user}}
-        <span> promises to</span>
-      </a>
-      <ul class="promises-list">
-        {{> promise}}
-      </ul>
-    </li>
-  </ul>
+<section class="promise-card">
+  <h2 class="promise-user">
+    <a href="/{{user}}.commits.to/">
+      {{user}}
+    </a>
+  </h2>
+  <span> promises to</span>
+  <div class="promises-text">
+    <a href="/{{urtx}}">
+      {{what}}
+    </a>
+  </div>
+  <!--
   {{#if existing}}
     <h5>This promise was already created by someone else...</h5>
   {{/if}}
+  -->
 </section>

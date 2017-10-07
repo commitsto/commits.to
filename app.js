@@ -45,7 +45,7 @@ app.get([
     var usersWithPromises = {}
     Promise.findAll({
       order: sequelize.literal('tini DESC'),
-      limit: 10
+      limit: 16
     }).then(function(promises) {
       console.log('all promises', promises)
       resp.render('home', {domain: 'commits.to', promises: promises})

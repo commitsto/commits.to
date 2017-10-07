@@ -88,7 +88,7 @@ export const promises = [
   "chris.promises.to/learn-more-about-something-else/by/monday", // 9-28
   "dreev.promises.to/add_chelsea_to_commits_to/by/11am", // 9-29, done
   "bee.commits.to/put-away-camping-gear-this-weekend", // 9-29
-  "owen.promises.to/research_and_pseudocode_calendar_integration/by/oct_6", // 9-29
+  "owen.promises.to/research_and_pseudocode_calendar_integration/by/oct_6", // 9-29, done
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // 9-30
   "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02
   "bee.commits.to/prettying_road_editor", // 10-04

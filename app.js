@@ -51,7 +51,8 @@ app.get([
       resp.render('home', {domain: 'commits.to', promises: promises})
       // create nested array of promises by user:
       // proms.forEach(function(promise) { 
-      //   usersWithPromises[promise.user] = usersWithPromises[promise.user] || []
+      //   usersWithPromises[promise.user] = 
+      //     usersWithPromises[promise.user] || []
       //   usersWithPromises.push(promise.dataValues)
       // });
       // console.log('home with users', usersWithPromises)
@@ -69,7 +70,8 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
      user: req.params.user
    },
   }).then(function(promises) {
-    resp.render('pages/account', { promises: promises, domain: 'commits.to', user: req.params.user })
+    resp.render('pages/account', { 
+      promises: promises, domain: 'commits.to', user: req.params.user })
   })
 })
 
@@ -77,8 +79,6 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 // probably don't want to let anyone just create promises with domains that 
 // don't exist
 // FIXME: we should have a single configurable list of domains
-// TODO: this breaks if there are slashes in the date, i think
-// -chris: i just added the * before the ?, which globs everything together under params[1]
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', 
         handlePromiseRequest)
 
@@ -173,7 +173,7 @@ Little picture: Why does this error handling code not run when I surf to
 a bad URL like iwill.glitch.me/foo%bar
 
 Bigger picture: We're making an app that needs to process any URL the user may 
-throw at it. I need the server to get the exact URL the way the user sees it in 
+throw at it. We need the server to get the exact URL the way the user sees it in
 the browser. That's going to be especially tricky for things like '#' characters
 but right now I'm just trying to figure out the case of arbitrary '%' characters
 that may not correspond to proper %-encodings.

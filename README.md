@@ -1,8 +1,5 @@
 # The I-Will System &mdash; a.k.a. "promises.to"
 
-(NOTE: The spec here is evolving. We're gradually moving things to 
-<https://github.com/beeminder/iwill/issues>)
-
 Problem:
 Alice casually says to Bob 
 "I'll let you know if I can make it to the meeting"
@@ -18,11 +15,9 @@ statement like that, she types a URL like so:
 As in, she literally types that directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
 
-----
+(NOTE: The spec here is evolving. We're gradually moving things to 
+<https://github.com/beeminder/iwill/issues>)
 
-Everything below is in flux
-
-----
 
 ## Creation on GET?
 

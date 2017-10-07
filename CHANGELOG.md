@@ -56,5 +56,6 @@ History
 ### Added
 - Set up a basic routing flow and link each view/item
 - Lots of handlebars templates
+- Pseudocode buildAddToCalendarHTML function in parse.js 
 ### Removed
 - Jquery rendering

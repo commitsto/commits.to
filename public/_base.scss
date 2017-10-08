@@ -19,6 +19,7 @@ h1, h2, h3, h4, h5, p {
 
 a {
   color: $blue;
+  text-decoration: none;
 }
 
 form {
@@ -39,4 +40,9 @@ input {
   border: 1px solid lightgrey;
   border-radius: 3px;
   font-size: 16px;
+}
+
+.blue-border {
+  border: 1px solid $blue;
+  padding: 1rem;
 }

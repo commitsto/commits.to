@@ -1,12 +1,10 @@
-<ul class="user-list">
-  <li>
-    <a href="/{{user}}.{{__domain}}/">
-      {{user}}
-    </a>
-    <ul class="promises-list">
-      {{#each promises}}
-        <li>{{> card}}</li>
-      {{/each}}
-    </ul>
-  </li>
+<div class="user-promises-list blue-border">
+  <a href="/{{user}}.{{__domain}}/">
+    {{user}}
+  </a>
+  <ul class="promises-list">
+    {{#each promises}}
+      <li>{{> card}}</li>
+    {{/each}}
+  </ul>
 </ul>

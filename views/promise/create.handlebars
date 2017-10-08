@@ -1,2 +1,7 @@
-<h4>Create the following promise?</h4>
-{{> card promise}}
+<div class="create-promise blue-border">
+  <h1 class="promise-statement">
+    Did <span>{{promise.user}}</span> just {{verbifyDomain domain=promise.domain}}
+    <span>{{promise.what}}</span>{{#if promise.tdue}} by <span>{{promise.tdue}}</span>{{/if}}?
+  </h1>
+  <a class="promise-button" href="#">Yes</a>
+</div>

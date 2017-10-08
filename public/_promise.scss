@@ -1,3 +1,30 @@
+.create-promise {
+  text-align: center;
+  padding: 4rem;
+  
+  .promise-statement {
+    margin: 0 0 3rem;
+    line-height: 3rem;
+    font-weight: 300;
+    
+    span {
+      font-weight: bold;
+    }
+  }
+  
+  .promise-button {
+    background-color: $blue;
+    color: white;
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2rem;
+    border-radius: .5rem;
+    text-align: center;
+  }
+}
+
 .promises-preview {
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +41,7 @@
 }
 
 .promise-card {
-  background-color: #2fa2fa;
+  background-color: $blue;
   border-radius: .25rem;
   border: 1px groove $blue-border;
   padding: 1rem;
@@ -22,7 +49,6 @@
   
   &, a, span {
     color: white;
-    text-decoration: none;
   }
   
   span{
@@ -54,6 +80,7 @@
 
 .promises-list {
   padding: 0;
+  list-style-type: none;
   
   > li {
     padding: 0;
@@ -64,35 +91,5 @@
 ul {
   & {
     margin: 1rem 0 0 1.5rem;
-  }
-}
-
-
-.user-list {
-  margin: 0;
-  padding: 0;
-  
-  li {
-    list-style-type: none;
-    
-    .promise-user {
-      a {
-        display: none;
-      }
-    }
-  }
-  
-  > li {
-    position: relative;
-    color: white;
-    border: 1px solid $blue;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    
-    a {
-      text-transform: uppercase;
-      text-decoration: none;
-      
-    }
   }
 }

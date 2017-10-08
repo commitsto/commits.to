@@ -1,4 +1,4 @@
-# The I-Will System &mdash; a.k.a. "promises.to"
+# The I-Will System
 
 Problem:
 Alice casually says to Bob 
@@ -10,14 +10,18 @@ Any time Alice makes any
 "<a href="http://blog.beeminder.com/will">I will</a>" 
 statement like that, she types a URL like so:
 
-`alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm`
+```
+alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm
+```
 
 As in, she literally types that directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
 
-(NOTE: The spec here is evolving. We're gradually moving things to 
+(NOTE: The spec here is evolving. 
+We're gradually moving things to 
 <https://github.com/beeminder/iwill/issues>)
 
+[![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
 ## Creation on GET?
 

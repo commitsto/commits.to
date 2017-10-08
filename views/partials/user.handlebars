@@ -1,9 +1,11 @@
 <ul class="user-list user partial">
   <li>
-    <a href="/{{user}}.commits.to/">{{user}}</a>
+    <a href="/{{user}}.commits.to/">
+      {{user}}
+    </a>
     <ul class="promises-list">
       {{#each promises}}
-        {{> promise}}
+        <li>{{> promise}}</li>
       {{/each}}
     </ul>
   </li>

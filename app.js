@@ -18,6 +18,8 @@ import handlePromiseRequest from './lib/middleware.js'
 
 let app = express()
 
+const domain = 'commits.to' // i know we're domain agnostic, but we have to have a default
+
 app.use(sassMiddleware({
   src: __dirname + '/public',
   dest: '/tmp',
@@ -36,7 +38,7 @@ app.listen(process.env.PORT)
 
 // Routes
 
-app.get([
+app.get([ // Home
   '/?',
   '/promises.to/?',
   '/commits.to/?'
@@ -45,17 +47,13 @@ app.get([
     var usersWithPromises = {}
     Promise.findAll({
       order: sequelize.literal('tini DESC'),
-      limit: 16
+      //limit: 30 show them all for now
     }).then(function(promises) {
       console.log('all promises', promises)
-      resp.render('home', {domain: 'commits.to', promises: promises})
-      // create nested array of promises by user:
-      // proms.forEach(function(promise) { 
-      //   usersWithPromises[promise.user] = 
-      //     usersWithPromises[promise.user] || []
-      //   usersWithPromises.push(promise.dataValues)
-      // });
-      // console.log('home with users', usersWithPromises)
+      resp.render('home', {
+        domain,
+        promises: promises
+      })
     })
 })
 
@@ -71,7 +69,10 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
    },
   }).then(function(promises) {
     resp.render('pages/account', { 
-      promises: promises, domain: 'commits.to', user: req.params.user })
+      promises,
+      domain,
+      user: req.params.user
+    })
   })
 })
 

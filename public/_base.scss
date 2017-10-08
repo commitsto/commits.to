@@ -4,7 +4,8 @@
 
 body {
   font-family: helvetica, arial, sans-serif;
-  margin: 25px;
+  padding: 0;
+  margin: 0;
   background-color: $black;
 }
 
@@ -38,35 +39,4 @@ input {
   border: 1px solid lightgrey;
   border-radius: 3px;
   font-size: 16px;
-}
-
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
-  &:hover {
-    background-color: yellow;
-  }
-  &:active {
-    box-shadow: none;
-  }  
-}
-
-header {
-  a {
-    text-decoration: none
-  }
-}
-
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
-  > a {
-    color: #BBBBBB;
-  }
 }

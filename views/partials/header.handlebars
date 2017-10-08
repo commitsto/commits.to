@@ -1,14 +1,17 @@
 <header>
-  <a href="/">
-    <h1>
-      {{#if header}}
-        {{header}}
+  <h1>
+    <a href="/">
+      {{#if domain}}
+        {{domain}}
       {{else}}
         promises.to
       {{/if}}
-    </h1>
-    <h2>
-      a.k.a. The I-Will System
-    </h2>
-  <a>
+    </a>
+  </h1>
+  <!-- soon this will go in teh footer -->
+  <nav>
+    <a class="button" target="_blank" href="https://glitch.com/edit/#!/iwill?path=README.md:77:0">spec</a>
+    <a class="button" target="_blank" href="https://github.com/beeminder/iwill">github</a>
+    <a class="button" target="_blank" href="http://blog.beeminder.com/will">blog post</a>
+  </nav>
 </header>

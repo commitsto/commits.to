@@ -1,6 +1,7 @@
 .promise-card {
   background-color: #2fa2fa;
   border-radius: .25rem;
+  border: 1px groove $blue-border;
   padding: 1rem;
   
   &, a, span {
@@ -21,6 +22,8 @@
     margin-top: .5rem;
   }
 }
+
+// i think we might be able to delete everything below now
 
 .promises-list {
   li {

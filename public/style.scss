@@ -12,21 +12,6 @@ $header-border: #323232;
 @import 'base.scss';
 @import 'promise.scss';
 
-.promises-preview {
-  display: flex;
-  flex-wrap: wrap;
-  margin: .5rem -.5rem 0;
-  
-  .promise-card {
-    flex-grow: 1;
-    margin: .5rem;
-
-    &:hover {
-      background-color: $dark-blue;
-    }
-  }
-}
-
 header {
   background-color: $header-bg;
   border-bottom: 1px ridge $header-border;
@@ -95,41 +80,23 @@ section {
   text-decoration: line-through;
 }
 
-.user-list {
-  padding: 0;
-  
-  li {
-    position: relative;
-    list-style-type: none;
-    color: white;
-    border: 1px solid $blue;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    
-    a {
-      text-transform: uppercase;
-      text-decoration: none;
-      
-    }
-  }
-}
 
-.users {
-  li {
-    position: relative;
-    list-style-type: none;
-    color: white;
-    background: #ccc;
-    padding: .5rem 1rem;
-    font-weight: bold;
-    &:hover {
-      background: #ACACAC;
-      transition: all .3s ease-out;
-    }
-  }
-  > li > a {
-    padding: .5rem .25rem;
-    display: block;
-    text-transform: uppercase;
-  }
-}
+// .users {
+//   li {
+//     position: relative;
+//     list-style-type: none;
+//     color: white;
+//     background: #ccc;
+//     padding: .5rem 1rem;
+//     font-weight: bold;
+//     &:hover {
+//       background: #ACACAC;
+//       transition: all .3s ease-out;
+//     }
+//   }
+//   > li > a {
+//     padding: .5rem .25rem;
+//     display: block;
+//     text-transform: uppercase;
+//   }
+// }

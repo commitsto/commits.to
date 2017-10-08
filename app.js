@@ -2,6 +2,7 @@
 
 import express from 'express'
 import expressHandlebars from 'express-handlebars'
+import Handlebars from 'handlebars'
 
 import chrono from 'chrono-node' // Sugar.js parses some things better
 import moment from 'moment'
@@ -9,7 +10,7 @@ import sassMiddleware from 'node-sass-middleware'
 
 import { Promise, sequelize } from './models/promise.js'
 
-import { users, promises } from './data/seed.js'
+import { domain, users, promises } from './data/seed.js'
 
 import computeCredit from './lib/latepenalty.js'
 import parsePromise from './lib/parse.js'
@@ -17,6 +18,10 @@ import parsePromise from './lib/parse.js'
 import handlePromiseRequest from './lib/middleware.js'
 
 let app = express()
+
+Handlebars.registerHelper('__domain', function() {
+  return domain;
+});
 
 app.use(sassMiddleware({
   src: __dirname + '/public',
@@ -36,7 +41,7 @@ app.listen(process.env.PORT)
 
 // Routes
 
-app.get([
+app.get([ // Home
   '/?',
   '/promises.to/?',
   '/commits.to/?'
@@ -45,17 +50,13 @@ app.get([
     var usersWithPromises = {}
     Promise.findAll({
       order: sequelize.literal('tini DESC'),
-      limit: 10
+      //limit: 30 show them all for now
     }).then(function(promises) {
-      console.log('all promises', promises)
-      resp.render('home', {domain: 'commits.to', promises: promises})
-      // create nested array of promises by user:
-      // proms.forEach(function(promise) { 
-      //   usersWithPromises[promise.user] = 
-      //     usersWithPromises[promise.user] || []
-      //   usersWithPromises.push(promise.dataValues)
-      // });
-      // console.log('home with users', usersWithPromises)
+      // console.log('all promises', promises)
+      resp.render('home', {
+        domain,
+        promises
+      })
     })
 })
 
@@ -71,7 +72,10 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
    },
   }).then(function(promises) {
     resp.render('pages/account', { 
-      promises: promises, domain: 'commits.to', user: req.params.user })
+      promises,
+      domain,
+      user: req.params.user
+    })
   })
 })
 

@@ -2,7 +2,6 @@
 
 import express from 'express'
 import expressHandlebars from 'express-handlebars'
-import Handlebars from 'handlebars'
 
 import chrono from 'chrono-node' // Sugar.js parses some things better
 import moment from 'moment'
@@ -10,18 +9,16 @@ import sassMiddleware from 'node-sass-middleware'
 
 import { Promise, sequelize } from './models/promise.js'
 
-import { domain, users, promises } from './data/seed.js'
+import { users, promises } from './data/seed.js'
 
 import computeCredit from './lib/latepenalty.js'
 import parsePromise from './lib/parse.js'
 
 import handlePromiseRequest from './lib/middleware.js'
 
-let app = express()
+import './lib/handlebars.js'
 
-Handlebars.registerHelper('__domain', function() {
-  return domain;
-});
+let app = express()
 
 app.use(sassMiddleware({
   src: __dirname + '/public',
@@ -51,7 +48,6 @@ app.get([ // Home
       //limit: 30 show them all for now
     }).then(function(promises) {
       resp.render('home', {
-        domain,
         promises
       })
     })
@@ -68,9 +64,8 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
      user: req.params.user
    },
   }).then(function(promises) {
-    resp.render('pages/account', { 
+    resp.render('user', { 
       promises,
-      domain,
       user: req.params.user
     })
   })

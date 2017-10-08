@@ -100,4 +100,5 @@ export const promises = [
   "dreev.commits.to/give_marcin_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "dreev.commits.to/give_james_d_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // 10-06
+  "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7", // 10-06
 ]

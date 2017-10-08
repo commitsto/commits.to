@@ -3,6 +3,7 @@
   border-radius: .25rem;
   border: 1px groove $blue-border;
   padding: 1rem;
+  transition: background .25s ease-in-out;
   
   &, a, span {
     color: white;
@@ -26,7 +27,8 @@
   }
   
   .promise-domain {
-    // display: none;
+    display: none;
+    font-style: italic;
     font-size: 75%;
   }
   

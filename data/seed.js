@@ -1,3 +1,7 @@
+// i know we're domain agnostic, but i think it makes sense to
+// have a default, and not hardcode it everywhere
+export const domain = 'commits.to' ;
+
 export const users = [ 
   /* testing */ 
   "alice", "bob", "carol",

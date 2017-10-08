@@ -9,17 +9,29 @@
     text-decoration: none;
   }
   
-  span {
+  span{
     font-weight: 300;
-    font-size: 75%;
+    font-size: 50%;
   }
   
   .promise-user {
+    align-items: center;
+    display: flex;
     margin: 0;
+    
+    >:first-child {
+      display: block;
+      margin-right: auto;
+    }
+  }
+  
+  .promise-domain {
+    // display: none;
+    font-size: 75%;
   }
   
   .promise-text {
-    margin-top: .5rem;
+    margin-top: .25rem;
   }
 }
 

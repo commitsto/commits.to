@@ -46,13 +46,10 @@ app.get([ // Home
   '/promises.to/?',
   '/commits.to/?'
 ], (req, resp) => {
-  // no reason to care what actual domain is given in the urtext
-    var usersWithPromises = {}
     Promise.findAll({
       order: sequelize.literal('tini DESC'),
       //limit: 30 show them all for now
     }).then(function(promises) {
-      // console.log('all promises', promises)
       resp.render('home', {
         domain,
         promises

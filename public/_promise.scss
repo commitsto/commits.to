@@ -1,3 +1,30 @@
+.create-promise {
+  text-align: center;
+  padding: 4rem;
+  
+  .promise-statement {
+    margin: 0 0 3rem;
+    line-height: 3rem;
+    font-weight: 300;
+    
+    span {
+      font-weight: bold;
+    }
+  }
+  
+  .promise-button {
+    background-color: $blue;
+    color: white;
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 2rem;
+    border-radius: .5rem;
+    text-align: center;
+  }
+}
+
 .promises-preview {
   display: flex;
   flex-wrap: wrap;
@@ -6,92 +33,5 @@
   .promise-card {
     flex-grow: 1;
     margin: .5rem;
-
-    &:hover {
-      background-color: $dark-blue;
-    }
-  }
-}
-
-.promise-card {
-  background-color: #2fa2fa;
-  border-radius: .25rem;
-  border: 1px groove $blue-border;
-  padding: 1rem;
-  transition: background .25s ease-in-out;
-  
-  &, a, span {
-    color: white;
-    text-decoration: none;
-  }
-  
-  span{
-    font-weight: 300;
-    font-size: 50%;
-  }
-}
-
-.promise-user {
-  align-items: center;
-  display: flex;
-  margin: 0;
-
-  >:first-child {
-    display: block;
-    margin-right: auto;
-  }
-}
-
-.promise-domain {
-  display: none;
-  font-style: italic;
-  font-size: 75%;
-}
-
-.promise-text {
-  margin-top: .25rem;
-}
-
-.promises-list {
-  padding: 0;
-  
-  > li {
-    padding: 0;
-    margin-bottom: 1rem;
-  }
-}
-
-ul {
-  & {
-    margin: 1rem 0 0 1.5rem;
-  }
-}
-
-
-.user-list {
-  padding: 0;
-  
-  li {
-    list-style-type: none;
-    
-    .promise-user {
-      a {
-        display: none;
-      }
-    }
-  }
-  
-  > li {
-    position: relative;
-    color: white;
-    border: 1px solid $blue;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    
-    a {
-      text-transform: uppercase;
-      text-decoration: none;
-      
-    }
   }
 }

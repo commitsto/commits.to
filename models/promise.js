@@ -29,7 +29,8 @@ sequelize.authenticate()
       what: { type: Sequelize.STRING  }, // what's being promised
       //whom: { type: Sequelize.STRING  }, // to whom are you promising
       tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
-      tdue: { type: Sequelize.STRING }, // unixtime that the promise is due
+      tdue: { type: Sequelize.STRING },
+      domain: { type: Sequelize.STRING },// request made on
       //tmzn: { type: Sequelize.STRING  }, // timezone
       //wtdid: { type: Sequelize.INTEGER }, // unixtime promise was fulfilled
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled

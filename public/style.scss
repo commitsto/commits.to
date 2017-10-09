@@ -1,15 +1,18 @@
 $white: #FEFEFE;
-$black: #242424;
+$black: #313131;
 $blue: #2fa2fa;
 $blue-border: #7bc9ff;
 $dark-blue: #126bbd;
-$gray: #676767;
+
+$light-gray: #999999;
+$gray: #73706d;
 $dark-gray: #454545;
 
-$header-bg: #1A1A1A;
-$header-border: #323232;
+$header-bg: #242424;
+$header-border: #424242;
 
 @import 'base.scss';
+@import 'card.scss';
 @import 'promise.scss';
 @import 'user.scss';
 
@@ -27,12 +30,12 @@ header {
       float: right;
       color: $white;
       margin-left: .75rem;
-      padding: .45rem 1rem;
+      padding: .4rem 1rem;
       font-size: .75rem;
       border-radius: 3px;
-      background-color: $dark-blue;
-      border: 1px solid $dark-blue;
-      box-shadow: 2px 2px $dark-gray;
+      background-color: $dark-gray;
+      border: 1px solid $gray;
+      box-shadow: 2px 2px $black;
       cursor: pointer;
       &:hover {
         background-color: $blue;

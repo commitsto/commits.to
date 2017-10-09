@@ -1,0 +1,67 @@
+.promise-card {
+  background-color: $blue;
+  border-radius: .25rem;
+  border: 1px groove $blue-border;
+  padding: 1rem;
+  transition: background .25s ease-in-out;
+
+  &:hover {
+    background-color: $dark-blue;
+  }
+  
+  &, a, span {
+    color: white;
+  }
+  
+  span{
+    font-weight: 300;
+    font-size: 50%;
+  }
+}
+
+.promise-user {
+  align-items: center;
+  display: flex;
+  margin: 0;
+
+  >:first-child {
+    display: block;
+    margin-right: auto;
+  }
+}
+
+.promise-domain {
+  display: none;
+  font-style: italic;
+  font-size: 75%;
+}
+
+.promise-text {
+  margin-top: .25rem;
+}
+
+.promise-action-bar {
+  display: flex;
+  margin: 1rem calc(-1rem - 1px) -1rem;
+  
+  .action-bar-button {
+    flex-basis: 50%;
+    
+    .promise-action {
+      background-color: $white;
+      color: $blue;
+      display: block;
+      font-size: .75rem;
+      font-weight: bold;
+      margin: 1px;
+      opacity: .5;
+      padding: .5rem;
+      text-align: center;
+      text-transform: uppercase;
+
+      &:hover {
+        opacity: .75;
+      }
+    }
+  }
+}

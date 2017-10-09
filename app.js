@@ -74,7 +74,8 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 // we want any actionable route to be handled by the middleware and for now we 
 // probably don't want to let anyone just create promises with domains that 
 // don't exist
-// FIXME: we should have a single configurable list of domains
+
+// FIXME handle domain agnosticism
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', 
         handlePromiseRequest)
 
@@ -91,7 +92,16 @@ app.get('/promises/remove/:id', (req, resp) => {
   })
   .then(function(deletedRows){
     console.log('promise removed', deletedRows);
-    resp.redirect('/');
+    resp.redirect('/')
+  })
+})
+
+app.get('/promises/create/:urtx(*)', (req, resp) => {
+  console.log('create', req.params)
+  Promise.create(parsePromise(req.params.urtx))
+  .then(function(deletedRows){
+    console.log('promise removed', deletedRows);
+    resp.redirect(`/${req.params.urtx}`);
   })
 })
 

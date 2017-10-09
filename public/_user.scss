@@ -1,7 +1,39 @@
 .user-promises-list {
+  h2 {
+    background-color: $blue;
+    margin: -1rem -1rem 1rem;
+    padding: 1rem;
+    
+    a {
+      color: white;
+    }
+  }
+  
+  .promise-text {
+    margin: 0;
+    
+    a {
+      margin: -1rem;
+      padding: 1rem;
+    }
+  }
+  
   .promise-user {
     &, a {
       display: none;
     }
+  }
+}
+
+.promises-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+  > li {
+    margin: .5rem;
+    padding: 0;
   }
 }

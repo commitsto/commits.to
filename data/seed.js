@@ -1,5 +1,4 @@
-// i know we're domain agnostic, but i think it makes sense to
-// have a default, and not hardcode it everywhere
+// we're domain agnostic, but we have to have a default
 export const domain = 'commits.to' ;
 
 export const users = [ 

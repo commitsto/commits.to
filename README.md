@@ -51,7 +51,7 @@ So Beeminder is not enforcing a success rate, just an absolute number of success
 
 What should happen if alice says `alice.commits.to/send_the_report/by/thu` one week and then says `alice.commits.to/send_the_report/by/fri` the next week?
 
-I'm thinking we treat those as the same promise -- so we key on just `user`+`/`+`what`.
+I'm thinking we treat those as the same promise -- so we key on just `user`+`'/'`+`what`.
 
 In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
 Anything else involves magic that we shouldn't even think about for the MVP.

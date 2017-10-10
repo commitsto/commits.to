@@ -67,15 +67,6 @@ Later:
 1. Pronoun (default "they/them/their/theirs")
 2. Display name, e.g., "Alice" as opposed to username "alice"
 
-## What Non-Logged-In Users See
-
-Minimally "alice.promises.to" should show this:
-  
-> If you're here then alice must've promised you they'd do something.
-> They've made N such promises so far with a success rate of X%!
-
-It could also show her Beeminder graph.
-
 ## UI For Marking Promises Fulfilled
 
 If Alice is logged in, the app lists her existing promises and lets her choose one of 

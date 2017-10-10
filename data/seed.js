@@ -93,12 +93,13 @@ export const promises = [
   "bee.commits.to/put-away-camping-gear-this-weekend", // 9-29
   "owen.promises.to/research_and_pseudocode_calendar_integration/by/oct_6", // 9-29, done
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // 9-30
-  "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02
+  "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02, done
   "bee.commits.to/prettying_road_editor", // 10-04
   "kim.promises.to/talk_finances_w_D/by/10/30/2017", // 10-05
   "dreev.commits.to/give_marcin_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "dreev.commits.to/give_james_d_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // 10-06
-  "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7", // 10-06
+  "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7", // 10-06, done
   "chris.promises.to/learn-more-about-something-else/by/monday", // 10-08
+  "dreev.commits.to/curtain_edit/by/oct_20", // 10-09
 ]

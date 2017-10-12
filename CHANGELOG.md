@@ -59,3 +59,14 @@ History
 - Pseudocode buildAddToCalendarHTML function in parse.js 
 ### Removed
 - Jquery rendering
+
+
+## 2017-10-09
+### Changed
+- Refactor styles and views
+- Add a `domain` field to the data model
+### Added
+- Promise confirmation
+- Make domain configurable
+### Removed
+- Automatic promise creation

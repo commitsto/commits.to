@@ -48,7 +48,7 @@ export { Promise, sequelize }
 // DATABASE FIELDS:
 //   urtx -- urtext, ie, full original text the user typed to create the promise
 //   user -- who's making the promise
-//   what -- what's being promised
+//   slug -- https://en.wikipedia.org/wiki/Semantic_URL#Slug (previously "what")
 //   whom -- to whom are you promising
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
@@ -58,12 +58,11 @@ export { Promise, sequelize }
 //   void -- true if the promise became unfulfillable or moot
 //   clix -- number of clicks a promise has gotten
 //   conf -- true when someone clicks the button to confirm the commitment
-//   audt -- audit trail of http header info for who confirmed it (or username)
-//   text -- optional additional notes or text or context for the promise
+//   note -- optional additional notes or context for the promise
 // For example:
 //   urtx = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
 //   user = "bob"
-//   what = "foo the bar"
+//   slug = "foo_the_bar"
 //   whom = null
 //   tini = [unixtime of first GET request of the promise's URL]
 //   tdue = [what "noon tomorrow" parsed to at time tini]
@@ -73,8 +72,7 @@ export { Promise, sequelize }
 //   void = false
 //   clix = 0
 //   conf = false
-//   audt = "MacOS/Chrome user in Portland OR"
-//   text = "promised in slack discussion about such-and-such"
+//   note = "promised in slack discussion about such-and-such"
 
 // Other ideas for fields: 
 // * information about the client that originally created the promise

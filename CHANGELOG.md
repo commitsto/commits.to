@@ -59,3 +59,14 @@ History
 - Pseudocode buildAddToCalendarHTML function in parse.js 
 ### Removed
 - Jquery rendering
+
+
+## 2017-10-08
+### Changed
+- 
+### Added
+- Set up a basic routing flow and link each view/item
+- Lots of handlebars templates
+- Pseudocode buildAddToCalendarHTML function in parse.js 
+### Removed
+- Jquery rendering

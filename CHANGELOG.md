@@ -61,12 +61,12 @@ History
 - Jquery rendering
 
 
-## 2017-10-08
+## 2017-10-09
 ### Changed
-- 
+- Refactor styles and views
+- Add a `domain` field to the data model
 ### Added
-- Set up a basic routing flow and link each view/item
-- Lots of handlebars templates
-- Pseudocode buildAddToCalendarHTML function in parse.js 
+- Promise confirmation
+- Make domain configurable
 ### Removed
-- Jquery rendering
+- Automatic promise creation

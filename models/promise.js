@@ -27,12 +27,9 @@ sequelize.authenticate()
       urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
       user: { type: Sequelize.STRING  }, // who's making the promise
       what: { type: Sequelize.STRING  }, // what's being promised
-      //whom: { type: Sequelize.STRING  }, // to whom are you promising
       tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
       tdue: { type: Sequelize.STRING },
-      // TODO: i don't think we need a field for the domain. we can parse it
-      //       from the urtext whenever we may want it.
-      domain: { type: Sequelize.STRING },// request made on
+      domain: { type: Sequelize.STRING }, // request made on
       //wtdid: { type: Sequelize.INTEGER }, // unixtime promise was fulfilled
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
       //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
@@ -49,7 +46,7 @@ export { Promise, sequelize }
 // DATABASE FIELDS FOR THE PROMISES TABLE:
 //   urtext -- full original text (URL) the user typed to create the promise
 //   user -- who's making the promise, parsed as the subdomain in the urtext
-//   slug -- unique identifier for the promise
+//   slug -- unique identifier for the promise, parsed from the urtext URL
 //   note -- optional additional notes or context for the promise
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
@@ -76,19 +73,5 @@ export { Promise, sequelize }
 // * whether the promise was created by the actual user (if they were logged in 
 //   and were the first to click on it) or by another logged-in user or by 
 //   someone not logged in
-// * conf: maybe we create the promise whether or not anyone clicks the button 
-//   to confirm it, in which case we store when it's actually been confirmed
-// * 
-
-/* SCRATCH NOTES:
-
-urtext -- URL originally used to create the promise
-user/subdomain -- parsed from the urtext
-slug -- parsed from the urtext
-whom (not currently used) -- to whom you are promising
-tini -- date the promise was created
-tdue -- due date
-
-*/
 
 // --------------------------------- 80chars ---------------------------------->

@@ -13,15 +13,21 @@
   }
   
   .promise-button {
-    background-color: $blue;
-    color: white;
+    border: 1px solid $blue;
+    border-radius: .5rem;
+    color: $blue;
     display: block;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
     padding: 2rem;
-    border-radius: .5rem;
     text-align: center;
+    transition: all .75s ease-in-out;
+    
+    &:hover {
+      background-color: $blue;
+      color: white;
+    }
   }
 }
 

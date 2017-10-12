@@ -30,8 +30,9 @@ sequelize.authenticate()
       //whom: { type: Sequelize.STRING  }, // to whom are you promising
       tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
       tdue: { type: Sequelize.STRING },
+      // TODO: i don't think we need a field for the domain. we can parse it
+      //       from the urtext whenever we may want it.
       domain: { type: Sequelize.STRING },// request made on
-      //tmzn: { type: Sequelize.STRING  }, // timezone
       //wtdid: { type: Sequelize.INTEGER }, // unixtime promise was fulfilled
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
       //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
@@ -45,28 +46,24 @@ sequelize.authenticate()
 
 export { Promise, sequelize }
 
-// DATABASE FIELDS:
-//   urtx -- urtext, ie, full original text the user typed to create the promise
-//   user -- who's making the promise
+// DATABASE FIELDS FOR THE PROMISES TABLE:
+//   urtext -- full original text (URL) the user typed to create the promise
+//   user -- who's making the promise, parsed as the subdomain in the urtext
 //   slug -- https://en.wikipedia.org/wiki/Semantic_URL#Slug (previously "what")
-//   whom -- to whom are you promising
+//   note -- optional additional notes or context for the promise
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
-//   tmzn -- timezone assumed for parsing the deadline
 //   tfin -- unixtime that the promise was fulfilled
 //   fill -- fraction fulfilled, default 0
+//   firm -- true when the due date is confirmed and can't be edited again
 //   void -- true if the promise became unfulfillable or moot
 //   clix -- number of clicks a promise has gotten
-//   conf -- true when someone clicks the button to confirm the commitment
-//   note -- optional additional notes or context for the promise
 // For example:
-//   urtx = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
+//   urtext = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
 //   user = "bob"
 //   slug = "foo_the_bar"
-//   whom = null
 //   tini = [unixtime of first GET request of the promise's URL]
 //   tdue = [what "noon tomorrow" parsed to at time tini]
-//   tmzn = "America/Los_Angeles"
 //   tfin = [unixtime that the promise was fulfilled]
 //   fill = 0
 //   void = false
@@ -82,4 +79,16 @@ export { Promise, sequelize }
 // * conf: maybe we create the promise whether or not anyone clicks the button 
 //   to confirm it, in which case we store when it's actually been confirmed
 // * 
+
+/* SCRATCH NOTES
+
+urtext -- URL originally used to create the promise
+user/subdomain -- parsed from the urtext
+slug -- parsed from the urtext
+whom (not currently used) -- to whom you are promising
+tini -- date the promise was created
+tdue -- due date
+
+*/
+
 // --------------------------------- 80chars ---------------------------------->

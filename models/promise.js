@@ -49,7 +49,7 @@ export { Promise, sequelize }
 // DATABASE FIELDS FOR THE PROMISES TABLE:
 //   urtext -- full original text (URL) the user typed to create the promise
 //   user -- who's making the promise, parsed as the subdomain in the urtext
-//   slug -- https://en.wikipedia.org/wiki/Semantic_URL#Slug (previously "what")
+//   slug -- unique identifier for the promise
 //   note -- optional additional notes or context for the promise
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
@@ -62,14 +62,14 @@ export { Promise, sequelize }
 //   urtext = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
 //   user = "bob"
 //   slug = "foo_the_bar"
+//   note = "promised in slack discussion about such-and-such"
 //   tini = [unixtime of first GET request of the promise's URL]
 //   tdue = [what "noon tomorrow" parsed to at time tini]
 //   tfin = [unixtime that the promise was fulfilled]
 //   fill = 0
+//   firm = false
 //   void = false
 //   clix = 0
-//   conf = false
-//   note = "promised in slack discussion about such-and-such"
 
 // Other ideas for fields: 
 // * information about the client that originally created the promise
@@ -80,7 +80,7 @@ export { Promise, sequelize }
 //   to confirm it, in which case we store when it's actually been confirmed
 // * 
 
-/* SCRATCH NOTES
+/* SCRATCH NOTES:
 
 urtext -- URL originally used to create the promise
 user/subdomain -- parsed from the urtext

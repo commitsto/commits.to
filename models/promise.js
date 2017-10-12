@@ -27,11 +27,9 @@ sequelize.authenticate()
       urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
       user: { type: Sequelize.STRING  }, // who's making the promise
       what: { type: Sequelize.STRING  }, // what's being promised
-      //whom: { type: Sequelize.STRING  }, // to whom are you promising
       tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
       tdue: { type: Sequelize.STRING },
-      domain: { type: Sequelize.STRING },// request made on
-      //tmzn: { type: Sequelize.STRING  }, // timezone
+      domain: { type: Sequelize.STRING }, // request made on
       //wtdid: { type: Sequelize.INTEGER }, // unixtime promise was fulfilled
       //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
       //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
@@ -45,41 +43,35 @@ sequelize.authenticate()
 
 export { Promise, sequelize }
 
-// DATABASE FIELDS:
-//   urtx -- urtext, ie, full original text the user typed to create the promise
-//   user -- who's making the promise
-//   slug -- https://en.wikipedia.org/wiki/Semantic_URL#Slug (previously "what")
-//   whom -- to whom are you promising
+// DATABASE FIELDS FOR THE PROMISES TABLE:
+//   urtext -- full original text (URL) the user typed to create the promise
+//   user -- who's making the promise, parsed as the subdomain in the urtext
+//   slug -- unique identifier for the promise, parsed from the urtext URL
+//   note -- optional additional notes or context for the promise
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
-//   tmzn -- timezone assumed for parsing the deadline
 //   tfin -- unixtime that the promise was fulfilled
 //   fill -- fraction fulfilled, default 0
+//   firm -- true when the due date is confirmed and can't be edited again
 //   void -- true if the promise became unfulfillable or moot
 //   clix -- number of clicks a promise has gotten
-//   conf -- true when someone clicks the button to confirm the commitment
-//   note -- optional additional notes or context for the promise
 // For example:
-//   urtx = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
+//   urtext = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
 //   user = "bob"
 //   slug = "foo_the_bar"
-//   whom = null
+//   note = "promised in slack discussion about such-and-such"
 //   tini = [unixtime of first GET request of the promise's URL]
 //   tdue = [what "noon tomorrow" parsed to at time tini]
-//   tmzn = "America/Los_Angeles"
 //   tfin = [unixtime that the promise was fulfilled]
 //   fill = 0
+//   firm = false
 //   void = false
 //   clix = 0
-//   conf = false
-//   note = "promised in slack discussion about such-and-such"
 
 // Other ideas for fields: 
 // * information about the client that originally created the promise
 // * whether the promise was created by the actual user (if they were logged in 
 //   and were the first to click on it) or by another logged-in user or by 
 //   someone not logged in
-// * conf: maybe we create the promise whether or not anyone clicks the button 
-//   to confirm it, in which case we store when it's actually been confirmed
-// * 
+
 // --------------------------------- 80chars ---------------------------------->

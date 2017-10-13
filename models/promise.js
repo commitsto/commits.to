@@ -6,6 +6,7 @@ var sequelize, Promise
 // set up a new database using database credentials set in .env
 sequelize = new Sequelize('database', process.env.DB_USER, 
                                       process.env.DB_PASS, {
+  logging: false,
   host: '0.0.0.0',
   dialect: 'sqlite',
   pool: {
@@ -16,30 +17,31 @@ sequelize = new Sequelize('database', process.env.DB_USER,
   // Security note: db is saved to `.data/database.sqlite` in local filesystem.
   // Nothing in `.data` directory gets copied if someone remixes the project.
   storage: '.data/database.sqlite'
-});
+})
 
-// authenticate with the database
-sequelize.authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.')
-    // define a new table 'promises'
-    Promise = sequelize.define('promises', {
-      urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
-      user: { type: Sequelize.STRING  }, // who's making the promise
-      what: { type: Sequelize.STRING  }, // what's being promised
-      tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
-      tdue: { type: Sequelize.STRING },
-      domain: { type: Sequelize.STRING }, // request made on
-      //wtdid: { type: Sequelize.INTEGER }, // unixtime promise was fulfilled
-      //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
-      //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
-      // text:   { type: Sequelize.STRING }, // this was just for testing
-    })
-    //setup()
+sequelize.authenticate().then(function(err) {
+  //console.log('Database connection established')
+  Promise = sequelize.define('promises', {
+    urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
+    user: { type: Sequelize.STRING  }, // who's making the promise
+    what: { type: Sequelize.STRING  }, // TODO: change to "slug"
+    tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
+    tdue: { type: Sequelize.STRING },
+    // new argument against "domain": "commits.to" and "promises.to" might
+    // diverge, as different implementations. we should assume this version
+    // is "commits.to" and treat "promises.to" strictly as an alias.
+    // i guess this isn't an argument against storing it, i just don't think we
+    // should use it for anything currently.
+    domain: { type: Sequelize.STRING }, // domain the request was made on
+    //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
+    //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
+    //text:   { type: Sequelize.STRING }, // this was just for testing
   })
-  .catch(function (err) {
-    console.log('Unable to connect to the database: ', err)
-  })
+  //setup()
+})
+.catch(function (err) {
+  console.log('Database connection error: ', err)
+})
 
 export { Promise, sequelize }
 
@@ -62,7 +64,7 @@ export { Promise, sequelize }
 //   note = "promised in slack discussion about such-and-such"
 //   tini = [unixtime of first GET request of the promise's URL]
 //   tdue = [what "noon tomorrow" parsed to at time tini]
-//   tfin = [unixtime that the promise was fulfilled]
+//   tfin = [unixtime that the user marked the promise as fulfilled]
 //   fill = 0
 //   firm = false
 //   void = false

@@ -34,7 +34,9 @@ app.use(express.static('tmp'))
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 
-app.listen(process.env.PORT)
+app.listen(process.env.PORT, () => {
+  console.log(`The commits.to app is running on port ${process.env.PORT}`)
+})
 
 // Routes
 

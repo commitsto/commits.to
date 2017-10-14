@@ -101,5 +101,10 @@ export const promises = [
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // 10-06
   "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7", // 10-06, done
   "chris.promises.to/learn-more-about-something-else/by/monday", // 10-08
-  "dreev.commits.to/curtain_edit/by/oct_20", // 10-09
+  "dreev.commits.to/curtain_edit/by/oct_20", // 10-09, done
+  "dreev.commits.to/reply_to_smreeves/by/today", // 10-11, done
+  "dreev.promises.to/update_jess_and_ryan/by/december", // 10-11
+  "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week", // 10-12
+  "dreev.commits.to/finish_implementing_this_system/by/january", // 10-12
+  "chris.promises.to/build-out-a-promise-completion-interface/by/next-week", // 10-13
 ]

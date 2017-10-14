@@ -105,4 +105,6 @@ export const promises = [
   "dreev.commits.to/reply_to_smreeves/by/today", // 10-11, done
   "dreev.promises.to/update_jess_and_ryan/by/december", // 10-11
   "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week", // 10-12
+  "dreev.commits.to/finish_implementing_this_system/by/january", // 10-12
+  "chris.promises.to/build-out-a-promise-completion-interface/by/next-week", // 10-13
 ]

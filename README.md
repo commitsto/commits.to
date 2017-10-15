@@ -21,6 +21,12 @@ When Alice or Bob click that URL a promise is created in the promises.to app and
 We're gradually moving things to 
 <https://github.com/beeminder/iwill/issues>)
 
+(Note to self:
+I just had an idea that I'm typing here before I forget it even though it's half-baked.
+
+)
+
+
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
 ## Creation on GET?

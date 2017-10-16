@@ -98,6 +98,21 @@ app.get('/promises/remove/:id', (req, resp) => {
   })
 })
 
+app.get('/promises/complete/:id', (req, resp) => {
+  console.log('complete', req.params);
+  // Promise.update({
+  //  where: {
+  //    id: req.params.id
+  //  }
+  // })
+  // .then(function(deletedRows){
+  //   console.log('promise removed', deletedRows);
+  //   resp.redirect('/')
+  // })
+  
+  resp.redirect('/')
+})
+
 app.get('/promises/create/:urtx(*)', (req, resp) => {
   console.log('create', req.params)
   Promise.create(parsePromise(req.params.urtx))

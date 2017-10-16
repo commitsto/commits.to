@@ -1,17 +1,16 @@
 <section class="promise-card">
   <h2 class="promise-user">
-    <a href="/{{user}}.{{__appDomain}}/">
-      {{user}}
+    <a href="/{{promise.user}}.{{__appDomain}}/">
+      {{promise.user}}
     </a>
-    <span style="opacity:.5">{{id}}</span>
+    <span style="opacity:.5">{{promise.id}}</span>
   </h2>
-  {{log urtx}}
-  {{log domain}}
-  <div class="promise-domain">{{domain}}</div>
+  {{log promise.domain}}
+  <div class="promise-domain">{{dpromise.omain}}</div>
   
-  {{> promise}}
+  {{> promise promise=promise}}
   
-  {{#if actionable}}
+  {{#if secret}}
     <div class="promise-action-bar">
       <div class="action-bar-button">
         <a href="#" class="promise-action">

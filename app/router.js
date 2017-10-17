@@ -2,7 +2,7 @@
 
 import app from './express'
 import { users, setup } from '../data/seed'
-import { Promise, sequelize } from '../models/promise'
+import Promise, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 import mailself from '../lib/mail'
 

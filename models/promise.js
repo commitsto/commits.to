@@ -1,11 +1,8 @@
 // --------------------------------- 80chars ---------------------------------->
 import Sequelize from 'sequelize'
 
-var sequelize, Promise
-
 // set up a new database using database credentials set in .env
-sequelize = new Sequelize('database', process.env.DB_USER, 
-                                      process.env.DB_PASS, {
+export const sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PASS, {
   logging: false,
   host: '0.0.0.0',
   dialect: 'sqlite',
@@ -18,33 +15,6 @@ sequelize = new Sequelize('database', process.env.DB_USER,
   // Nothing in `.data` directory gets copied if someone remixes the project.
   storage: '.data/database.sqlite'
 })
-
-sequelize.authenticate().then(function(err) {
-  //console.log('Database connection established')
-  
-  Promise = sequelize.define('promises', {
-    urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
-    user: { type: Sequelize.STRING  }, // who's making the promise
-    what: { type: Sequelize.STRING  }, // TODO: change to "slug"
-    tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
-    tdue: { type: Sequelize.STRING },
-    // new argument against "domain": "commits.to" and "promises.to" might
-    // diverge, as different implementations. we should assume this version
-    // is "commits.to" and treat "promises.to" strictly as an alias.
-    // i guess this isn't an argument against storing it, i just don't think we
-    // should use it for anything currently.
-    domain: { type: Sequelize.STRING }, // domain the request was made on
-    //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
-    //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
-    //text:   { type: Sequelize.STRING }, // this was just for testing
-  })
-  //setup()
-})
-.catch(function (err) {
-  console.log('Database connection error: ', err)
-})
-
-export { Promise, sequelize }
 
 // DATABASE FIELDS FOR THE PROMISES TABLE:
 //   urtext -- full original text (URL) the user typed to create the promise
@@ -76,5 +46,30 @@ export { Promise, sequelize }
 // * whether the promise was created by the actual user (if they were logged in 
 //   and were the first to click on it) or by another logged-in user or by 
 //   someone not logged in
+
+export default Promise = sequelize.define('promises', {
+  urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
+  user: { type: Sequelize.STRING  }, // who's making the promise
+  what: { type: Sequelize.STRING  }, // TODO: change to "slug"
+  tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
+  tdue: { type: Sequelize.STRING },
+  // new argument against "domain": "commits.to" and "promises.to" might
+  // diverge, as different implementations. we should assume this version
+  // is "commits.to" and treat "promises.to" strictly as an alias.
+  // i guess this isn't an argument against storing it, i just don't think we
+  // should use it for anything currently.
+  domain: { type: Sequelize.STRING }, // domain the request was made on
+  //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
+  //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
+  //text:   { type: Sequelize.STRING }, // this was just for testing
+})
+
+sequelize.authenticate()
+  .then(function(err) {
+    console.log('Database connection established')
+  })
+  .catch(function (err) {
+    console.log('Database connection error: ', err)
+  })
 
 // --------------------------------- 80chars ---------------------------------->

@@ -1,7 +1,7 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import { Promise, sequelize } from '../models/promise'
+import Promise, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 // import computeCredit from './latepenalty'
 

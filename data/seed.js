@@ -1,3 +1,17 @@
+import { Promise } from '../models/promise.js'
+import parsePromise from '../lib/parse.js'
+
+// utility to populate table with hardcoded promises below
+export function setup() { 
+  Promise.sync({force: true}) // 'force: true' just drops the table if it exists
+    .then(function(){         // and creates a new one!
+      // Add the default promises to the database
+      for (var i = 0; i < promises.length; i++) {
+        Promise.create(parsePromise(promises[i]))
+      }
+    })
+}
+
 // we're domain agnostic, but we have to have a default
 export const domain = 'commits.to' ;
 

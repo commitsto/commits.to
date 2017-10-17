@@ -21,9 +21,13 @@ When Alice or Bob click that URL a promise is created in the promises.to app and
 We're gradually moving things to 
 <https://github.com/beeminder/iwill/issues>)
 
-(Note to self:
-I just had an idea that I'm typing here before I forget it even though it's half-baked.
-
+(Half-baked idea for later:
+It would be nice to reuse slugs and maybe there's a simple way to allow that if
+we always redirect promises to a canonical URL with an unambiguous date/time
+format.
+Say you type a URL like `bob.commits.to/foo/by/tomorrow`.
+We look up all promises with slug `foo` 
+TBD -- still formulating this!
 )
 
 

@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.js"></script>
+
+
 <section class="promise-card">
   <h2 class="promise-user">
     <a href="/{{promise.user}}.{{__appDomain}}/">
@@ -5,7 +9,7 @@
     </a>
     <span style="opacity:.5">{{promise.id}}</span>
   </h2>
-  {{log promise.domain}}
+
   <div class="promise-domain">{{dpromise.omain}}</div>
   
   {{> promise promise=promise}}
@@ -18,7 +22,7 @@
         </a>
       </div>
       <div class="action-bar-button">
-        <a href="#" class="promise-action">
+        <a href="#" onclick="completePromise({{promise.id}})" class="promise-action">
           Complete
         </a>
       </div>

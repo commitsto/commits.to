@@ -21,6 +21,7 @@ sequelize = new Sequelize('database', process.env.DB_USER,
 
 sequelize.authenticate().then(function(err) {
   //console.log('Database connection established')
+  
   Promise = sequelize.define('promises', {
     urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
     user: { type: Sequelize.STRING  }, // who's making the promise

@@ -22,9 +22,9 @@ We're gradually moving things to
 <https://github.com/beeminder/iwill/issues>)
 
 (Half-baked idea for later:
-It would be nice to reuse slugs and maybe there's a simple way to allow that if
-we always redirect promises to a canonical URL with an unambiguous date/time
-format.
+It would be nice to reuse slugs! 
+Like to say bob.commits.to/call_mom/this_week and repeat that later and treat it as a new promise.
+Maybe there's a simple way to allow that if we always redirect promises to a canonical URL with an unambiguous date/time format.
 Say you type a URL like `bob.commits.to/foo/by/tomorrow`.
 We look up all promises with slug `foo` 
 TBD -- still formulating this!

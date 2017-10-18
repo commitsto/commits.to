@@ -23,15 +23,16 @@ app.get('/promises/remove/:id', (req, resp) => {
 
 app.get('/promises/complete/:id', (req, resp) => {
   console.log('complete', req.params);
-  // Promise.update({
-  //  where: {
-  //    id: req.params.id
-  //  }
-  // })
-  // .then(function(deletedRows){
-  //   console.log('promise removed', deletedRows);
-  //   resp.redirect('/')
-  // })
+  Promise.update({
+   where: {
+     id: req.params.id
+   },
+  // FIXME
+  })
+  .then(function(deletedRows){
+    console.log('promise removed', deletedRows);
+    resp.redirect('/')
+  })
   
   resp.redirect('/')
 })

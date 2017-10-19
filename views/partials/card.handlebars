@@ -7,10 +7,11 @@
     <a href="/{{promise.user}}.{{__appDomain}}/">
       {{promise.user}}
     </a>
-    <span style="opacity:.5">{{promise.id}}</span>
+    <span style="opacity:.75">{{prettyDate promise.tfin}}</span>
+    <span style="opacity:.25">&nbsp;({{promise.id}})</span>
   </h2>
 
-  <div class="promise-domain">{{dpromise.omain}}</div>
+  <div class="promise-domain">{{promise.domain}}</div>
   
   {{> promise promise=promise}}
   

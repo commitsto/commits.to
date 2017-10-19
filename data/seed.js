@@ -1,4 +1,4 @@
-import { Promise } from '../models/promise.js'
+import Promise from '../models/promise.js'
 import parsePromise from '../lib/parse.js'
 
 // utility to populate table with hardcoded promises below
@@ -109,7 +109,7 @@ export const promises = [
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // 9-30
   "dreev.commits.to/let_yall_know_about_monitor/by/next_week", // 10-02, done
   "bee.commits.to/prettying_road_editor", // 10-04
-  "kim.promises.to/talk_finances_w_D/by/10/30/2017", // 10-05
+  "kim.promises.to/talk_finances_w_D/by/2017-10-30", // 10-05
   "dreev.commits.to/give_marcin_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "dreev.commits.to/give_james_d_status_update/by/oct-5-noon", // 9-04, done 10.5 hours late
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // 10-06
@@ -121,4 +121,7 @@ export const promises = [
   "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week", // 10-12
   "dreev.commits.to/finish_implementing_this_system/by/january", // 10-12
   "chris.promises.to/build-out-a-promise-completion-interface/by/next-week", // 10-13
+  "byorgey.promises.to/upload_new_factorization_cards/by/Oct_25", // 10-18
+  "byorgey.promises.to/email_cut_property_summary", // 10-18
+  "dreev.promises.to/find_ein_etc/by/3pm", // 10-18, done, B
 ]

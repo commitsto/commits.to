@@ -63,16 +63,16 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     resp.redirect('/sign-up')
   } else {
     // Check if a promise already exists with matching user+'|'+what
-    Promise.findOne({ where: {urtx: p.urtx} }) // this has to check against the parsed urtx (which strips the query param)
+    Promise.findOne({ where: {urtx} }) // this has to check against the parsed urtx (which strips the query param)
       .then(promise => {
         if (promise) {
-          console.log('promise exists', promise.urtx)
+          console.log('promise exists', promise)
           resp.render('promise', {
             promise,
-            secret: p.secret
+            secret: true // always show controls
           })
         } else {
-          console.log('redirecting to create promise', promise.urtx)
+          console.log('redirecting to create promise', promise, urtx)
           // TODO: https://github.com/beeminder/iwill/issues/23
           //Promise.create(p)
           

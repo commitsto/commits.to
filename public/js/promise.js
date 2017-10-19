@@ -1,27 +1,30 @@
 var swal = swal || {};
 
 var alert = {
-  title: 'Are you sure?',
+  title: 'Mark this promise completed?',
   text: "You won't be able to revert this!",
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  confirmButtonClass: 'btn btn-success',
-  cancelButtonClass: 'btn btn-danger'
+  confirmButtonText: 'Yes, complete it!',
+  cancelButtonText: 'No, cancel!'
 };
 
 function completePromise(id) {
   console.log('completePromise', id);
   
   swal(alert).then(function () {
-    swal(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
+    fetch(`/promise/complete/${id}`).then(function(response) {
+      if(response.ok) {
+        return swal(
+          'Completed!',
+          'Your promise has been fulfilled.',
+          'success'
+        )
+      }
+      throw new Error('Network response was not ok.');
+    })
   }, function (dismiss) {
     // dismiss can be 'cancel', 'overlay',
     // 'close', and 'timer'

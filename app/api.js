@@ -22,19 +22,34 @@ app.get('/promises/remove/:id', (req, resp) => {
 })
 
 app.get('/promises/complete/:id', (req, resp) => {
-  console.log('complete', req.params);
-  Promise.update({
+  Promise.update(
+  {
+    tfin: new Date().valueOf()
+  },
+  {
    where: {
      id: req.params.id
-   },
-  // FIXME
+   }
   })
-  .then(function(deletedRows){
-    console.log('promise removed', deletedRows);
+  .then(function(promise){
+    console.log('complete promise', promise);
     resp.redirect('/')
   })
+  // Promise.update({
+  //  where: {
+  //    id: req.params.id
+  //  }
+  // })
+  // .then(function(promise){
+  //   promise.updateAttributes({
+  //     tfin: new Date().valueOf()
+  //   })
+  //   .then(function() {
+  //     resp.redirect('/')
+  //   });
+  // })
   
-  resp.redirect('/')
+  // resp.redirect('/')
 })
 
 app.get('/promises/create/:urtx(*)', (req, resp) => {

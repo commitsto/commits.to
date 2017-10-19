@@ -53,6 +53,7 @@ export default Promise = sequelize.define('promises', {
   what: { type: Sequelize.STRING  }, // TODO: change to "slug"
   tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
   tdue: { type: Sequelize.STRING },
+  tfin: { type: Sequelize.STRING },
   // new argument against "domain": "commits.to" and "promises.to" might
   // diverge, as different implementations. we should assume this version
   // is "commits.to" and treat "promises.to" strictly as an alias.

@@ -46,14 +46,14 @@ export const promises = [
   "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm", // 9-11, done, B
   "dreev.promises.to/order_indian/by/5:30pm", // 9-12, done, B
   "dreev.commits.to/ask_bee_re_sunday_parkways", // 9-13, done, B
-  "dreev.commits.to/follow_up_with_everyone_re_guest_blogging", // 9-13
+  "dreev.commits.to/follow_up_with_everyone_re_guest_blogging", // 9-13, B
   "josh.commits.to/get_realisies_running/by/september_30", // 9-13
   "braden.commits.to/outline_bite_counting_post/by/Sunday_11pm", // 9-13
-  "dreev.commits.to/report_glitch_bug", // 9-14, done
-  "dreev.commits.to/googledocify_intern_form/by/12pm", // 9-14, done
-  "dreev.promises.to/test_penalty_func/by/saturday_noon", // 9-14, done
+  "dreev.commits.to/report_glitch_bug", // 9-14, done, B
+  "dreev.commits.to/googledocify_intern_form/by/12pm", // 9-14, done, B
+  "dreev.promises.to/test_penalty_func/by/saturday_noon", // 9-14, done, B
   "sergii.promises.to/work_on_points_2_to_4/by/next_monday", // 9-14
-  "dreev.commits.to/meta_debrief_kim/by/midnight_friday", // 9-14, done
+  "dreev.commits.to/meta_debrief_kim/by/midnight_friday", // 9-14, done, B
   "dreev.commits.to/ping_mirabai/by/sep_22", // 9-14, done
   "dreev.commits.to/send_ms_gross_email/by/sunday_11am", // 9-14, done
   "dreev.promises.to/ping_oli/by/nov_16", // 9-15

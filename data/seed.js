@@ -54,24 +54,24 @@ export const promises = [
   "dreev.promises.to/test_penalty_func/by/saturday_noon", // 9-14, done, B
   "sergii.promises.to/work_on_points_2_to_4/by/next_monday", // 9-14
   "dreev.commits.to/meta_debrief_kim/by/midnight_friday", // 9-14, done, B
-  "dreev.commits.to/ping_mirabai/by/sep_22", // 9-14, done
-  "dreev.commits.to/send_ms_gross_email/by/sunday_11am", // 9-14, done
-  "dreev.promises.to/ping_oli/by/nov_16", // 9-15
-  "dreev.promises.to/ping_byorgey/by/dec_20", // 9-15
-  "dreev.promises.to/labelzero/by/1am", // 9-15, done
+  "dreev.commits.to/ping_mirabai/by/sep_22", // 9-14, done, B
+  "dreev.commits.to/send_ms_gross_email/by/sunday_11am", // 9-14, done, B
+  "dreev.promises.to/ping_oli/by/nov_16", // 9-15, B
+  "dreev.promises.to/ping_byorgey/by/dec_20", // 9-15, B
+  "dreev.promises.to/labelzero/by/1am", // 9-15, done, B
   "chris.promises.to/follow_up_on_that_support_thread", // 9-18
   "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night", // 9-18, done
   "bee.commits.to/rest-of-paperwork-to-yoko-before-the-gym-tomorrow", // 9-18, done 2 hours late
-  "dreev.promises.to/debug_capitalization/by/tomorrow", // 9-18, done 23.4 hours late
+  "dreev.promises.to/debug_capitalization/by/tomorrow", // 9-18, done 23.4 hours late, B
   "bee.commits.to/email-sleep-as-android-for-specifics-about-sleep-length-measurement", // 9-19
   "jessica.commits.to/let_bob_know_re_meeting/by/tomorrow_5pm", // 9-19
   "samuel.commits.to/finish_ch_23_problem_set/by/today_6_pm", // 9-19
-  "dreev.promises.to/intern_disc/by/wed", // 9-19, done
+  "dreev.promises.to/intern_disc/by/wed", // 9-19, done, B
   "kim.promises.to/email_argue_summary/by/fri", // 9-19
-  "dreev.commits.to/clear_bogus_commit_for_nick/by/5_minutes_from_now", // 9-19, done
+  "dreev.commits.to/clear_bogus_commit_for_nick/by/5_minutes_from_now", // 9-19, done, B
   "kim.promises.to/reflect_Respond_anxiety_spiral_Assist/by/sat", // 9-19
-  "dreev.commits.to/schedule-k_tax_thing/by/5pm", // 9-19, done
-  "dreev.promises.to/set_up_mom_on_wordfeud/by/tomorrow", // 9-20, done/void
+  "dreev.commits.to/schedule-k_tax_thing/by/5pm", // 9-19, done, B
+  "dreev.promises.to/set_up_mom_on_wordfeud/by/tomorrow", // 9-20, done/void, B
   "dreev.promises.to/reply_to_use_case_email/by/midnight", // 9-20, done
   "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // 9-20
   "kim.promises.to/submit_conclusion_email/by/10/16", // 9-21
@@ -124,4 +124,7 @@ export const promises = [
   "byorgey.promises.to/upload_new_factorization_cards/by/Oct_25", // 10-18
   "byorgey.promises.to/email_cut_property_summary", // 10-18
   "dreev.promises.to/find_ein_etc/by/3pm", // 10-18, done, B
+  "bee.commits.to/go_to_bed/by/11pm", // 10-20
+  "dreev.commits.to/ascertain_re_sunday/by/wed", // 10-23, B
+  "dreev.promises.to/do_redirect_for_mel/by/10pm", // 10-23, B
 ]

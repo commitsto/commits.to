@@ -42,7 +42,7 @@ input {
 .promise-card {
   background-color: #2fa2fa;
   border-radius: .25rem;
-  border: 1px groove #7bc9ff;
+  border: 1px solid #7bc9ff;
   overflow: hidden;
   padding: 1rem;
   transition: background .25s ease-in-out; }
@@ -69,11 +69,10 @@ input {
 .promise-text {
   margin-top: .25rem; }
 
-.promise-action-bar {
-  display: flex;
+.promise-bar {
   margin: calc(-1rem - 1px);
-  margin-top: 1rem; }
-  .promise-action-bar .action-bar-button .promise-action {
+  margin-top: 2rem; }
+  .promise-bar .promise-bar-link {
     background-color: #FEFEFE;
     color: #2fa2fa;
     display: block;
@@ -84,8 +83,10 @@ input {
     padding: .5rem;
     text-align: center;
     text-transform: uppercase; }
-    .promise-action-bar .action-bar-button .promise-action:hover {
+    .promise-bar .promise-bar-link:hover {
       opacity: .75; }
+  .promise-bar .bar-button-action .promise-bar-link {
+    opacity: .25; }
 
 .create-promise {
   text-align: center;
@@ -119,20 +120,20 @@ input {
     flex-grow: 1;
     margin: .5rem; }
 
-s.user-promises-list h2 {
+.user-promises-list h2 {
   background-color: #2fa2fa;
   margin: -1rem -1rem 1rem;
   padding: 1rem; }
-  s.user-promises-list h2 a {
+  .user-promises-list h2 a {
     color: white; }
 
-s.user-promises-list .promise-text {
+.user-promises-list .promise-text {
   margin: 0; }
-  s.user-promises-list .promise-text a {
+  .user-promises-list .promise-text a {
     margin: -1rem;
     padding: 1rem; }
 
-s.user-promises-list .promise-user, s.user-promises-list .promise-user a {
+.user-promises-list .promise-user, .user-promises-list .promise-user a {
   display: none; }
 
 .promises-list {

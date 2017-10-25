@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.js"></script>
 
-
 <section class="promise-card">
   <h2 class="promise-user">
     <a href="/{{promise.user}}.{{__appDomain}}/">
@@ -15,18 +14,18 @@
   
   {{> promise promise=promise}}
   
-  {{#if secret}}
-    <div class="promise-action-bar">
-      <!--<div class="action-bar-button">
-        <a href="#" class="promise-action">
+  {{#unless promise.tfin}}
+    <div class="promise-bar">
+      <!--<div class="bar-button-status">
+        <a href="#" class="promise-bar-link">
           Delete
         </a>
       </div>-->
-      <div class="action-bar-button">
-        <a href="#" onclick="completePromise({{promise.id}})" class="promise-action">
-          Complete
+      <div class="bar-button-action">
+        <a href="#" onclick="completePromise({{promise.id}})" class="promise-bar-link">
+          Mark Complete
         </a>
       </div>
     </div>
-  {{/if}}
+  {{/unless}}
 </section>

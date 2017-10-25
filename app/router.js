@@ -66,7 +66,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     Promise.findOne({ where: {urtx} }) // this has to check against the parsed urtx (which strips the query param)
       .then(promise => {
         if (promise) {
-          console.log('promise exists', promise)
+          console.log('promise exists', promise.dataValues)
           resp.render('promise', {
             promise,
             secret: true // always show controls

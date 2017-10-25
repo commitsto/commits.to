@@ -1,28 +1,31 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.js"></script>
+
 <section class="promise-card">
   <h2 class="promise-user">
-    <a href="/{{user}}.{{__appDomain}}/">
-      {{user}}
+    <a href="/{{promise.user}}.{{__appDomain}}/">
+      {{promise.user}}
     </a>
-    <span style="opacity:.5">{{id}}</span>
+    <span style="opacity:.75">{{prettyDate promise.tfin}}</span>
+    <span style="opacity:.25">&nbsp;({{promise.id}})</span>
   </h2>
-  {{log urtx}}
-  {{log domain}}
-  <div class="promise-domain">{{domain}}</div>
+
+  <div class="promise-domain">{{promise.domain}}</div>
   
-  {{> promise}}
+  {{> promise promise=promise}}
   
-  {{#if actionable}}
-    <div class="promise-action-bar">
-      <div class="action-bar-button">
-        <a href="#" class="promise-action">
+  {{#unless promise.tfin}}
+    <div class="promise-bar">
+      <!--<div class="bar-button-status">
+        <a href="#" class="promise-bar-link">
           Delete
         </a>
-      </div>
-      <div class="action-bar-button">
-        <a href="#" class="promise-action">
-          Complete
+      </div>-->
+      <div class="bar-button-action">
+        <a href="#" onclick="completePromise({{promise.id}})" class="promise-bar-link">
+          Mark Complete
         </a>
       </div>
     </div>
-  {{/if}}
+  {{/unless}}
 </section>

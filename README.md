@@ -1,8 +1,12 @@
+See also: <https://github.com/beeminder/iwill/issues>
+
 # The I-Will System
 
 Problem:
 Alice casually says to Bob 
 "I'll let you know if I can make it to the meeting"
+or
+"I'll see if I can reproduce that bug"
 but then forgets to follow through.
 
 Solution:
@@ -17,51 +21,59 @@ alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm
 As in, she literally types that directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
 
-(NOTE: The spec here is evolving. 
-We're gradually moving things to 
-<https://github.com/beeminder/iwill/issues>)
+We actually have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
 
-(Note to self:
-I just had an idea that I'm typing here before I forget it even though it's half-baked.
+## Late Penalties
 
-)
+A big part of promises.to is tracking how reliable you are.
+Like what fraction of the promises you logged did you actually fulfill?
+If you fulfill a promise late you get partial credit.
+That way we can always compute a single metric for your reliability at any moment in time.
 
+
+The function we're using for late penalties is below.
+The idea is to have your reliability decrease strictly monotonically the moment the deadline hits, with sudden drops when you're a minute, an hour, a day, etc, late.
+(More on the rationale for that in lib/latepenalty.js.)
+The following shows the remaining credit as a function how late you are, first zoomed in to the first 60some seconds, and then zoomed out further and further:
 
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
-## Creation on GET?
+## Creation on GET
 
 Creating an object in a database in response to a GET request is pretty unkosher. 
-But it might be worth it because of how elegantly it reduces the friction for the user.
+We've decided it's worth it because of how elegantly it reduces the friction for the user.
+If/when that's abused we'll revisit this but initially we're making all tradeoffs in favor of lower friction.
 
-At the very least I think it's important that anyone be able to click yes to create a promise, no authentication needed.
-If/when that's abused we'll revisit this but initially we should make all tradeoffs in favor of lower friction.
-
-In fact, I kind of want to try the outrageous create-on-GET version because I think it might be a feature that every yourname.promises.to URL you type gets almost automatically logged as a promise.
-And I suspect that spiders and such generating URLs you didn't type will be a non-issue.
+Also it's a nice feature how every yourname.promises.to URL you type gets almost automatically logged as a promise.
+We'll address spiders and such generating URLs you didn't type as they're a problem.
 
 ## Beeminder integration
 
 The Beeminder datapoint gets the specified deadline as the date (even though it's in the future) and a zero as the datapoint value.
 The comment should include the deadline time of day and when the promise was first created.
 
-The Beeminder goal should be a do-more goal to fulfill like 8 promises per week.
+The Beeminder goal should be a do-more goal to fulfill, say, 8 promises per week.
 The way I (dreev) do this currently: 
-I create a datapoint for each promise (via IFTTT from Google Calendar) 
-when I promise it, and then change the datapoint to a 1 when I fulfill it 
-(or something less than 1 if I fulfill it late).
+I create a datapoint for each promise (via IFTTT from Google Calendar) when I promise it, and then change the datapoint to a 1 when I fulfill it (or something less than 1 if I fulfill it late).
 
 So Beeminder is not enforcing a success rate, just an absolute number of successes.
+
+Pro tip: 
+Promise a friend some things from your to-do list that you could do any time.
+That way you're always ready for an I-will beemergency.
+
 
 ## Uniqueness of Promise Names
 
 What should happen if alice says `alice.commits.to/send_the_report/by/thu` one week and then says `alice.commits.to/send_the_report/by/fri` the next week?
 
-I'm thinking we treat those as the same promise -- so we key on just `user`+`'/'`+`what`.
+Answer: treat them as the same promise.
+I.e., key on just `user`+`'/'`+`what`.
 
 In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
-Anything else involves magic that we shouldn't even think about for the MVP.
-The first time we're annoyed by a collision in promise names, we'll revisit this question.
+
+One thing to do about it is just let the user manually rename the old promise.
+It's up to the user whether they're ok with any links to the old promise pointing at the new promise.
 
 ## Account Settings
 
@@ -90,7 +102,7 @@ implement promise-voiding until there's demand for such a feature.
 ## Computing Statistics
 
 The only statistics we'll care about initially are the number of promises Alice has made and her reliability percentage.
-And pending vs past promises.
+And how many pending vs past promises.
 
 Definitions:
 
@@ -100,9 +112,9 @@ Definitions:
 
 A promise's fulfilled fraction, `fill`, is 1 if fulfilled on time, or the specified percentage. 
 If there's a fulfilled time specified then `fill` = the specified percentage (or 1 if not specified) times `credit(tfin-tnow)` where the credit function maps a number of seconds to how much credit you get if you're that much late (see lib/latepenalty.js).
-For example, credit(0) is 1 (no penalty) and credit(3600) is 0.99 (most of the credit for being just an hour late).
+For example, credit(0) is 1 (no penalty) and credit(3600) is 0.999 (most of the credit for being just an hour late).
 
-We need a continuous late penalty function because it will be super cool to see the reliability percentage tick down in real time when one of Alice's deadlines passes.
+We use a continuous late penalty function because it will be super cool to see the reliability percentage tick down in real time when one of Alice's deadlines passes.
 (Dreev recommends React for that stuff.)
 
 Finally, for the statistics, iterate through the promises, `p`, like so:
@@ -129,9 +141,9 @@ and has a reliability of
 ## Automatically Creating Calendar Entries
 
 It's pretty critical that the promises end up on your calendar.
-That could be done semi-manually by creating links like described here: <https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
-No Calendar API needed that way -- just construct the link and if the user is 
-logged in to Google it will create the calendar entry when the click it.
+That could be done semi-manually by creating links like described here: 
+<https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
+No Calendar API needed that way -- just construct the link and if the user is logged in to Google it will create the calendar entry when they click it.
 
 
 # Credits
@@ -139,7 +151,7 @@ logged in to Google it will create the calendar entry when the click it.
 Daniel Reeves wrote a blog post about the idea.
 Sergii Kalinchuk got the "promises.to" domain.
 Marcin Borkowski had the idea for URLs-as-UI for creating promises.
-Chris Butler wrote some of the initial code.
+Chris Butler wrote much of the initial code.
 
 <br>
 <br>
@@ -188,6 +200,23 @@ but no one else would.
 
 In the MVP we can skip the approval UI and worry about abuse like that the first time it's a problem, which I predict will be after promises.to is a million dollar company.
 
+## For Later: Active vs Inactive Promises
+
+It might be nice to reuse slugs!
+Like to say bob.commits.to/call_mom/this_week and repeat that later and treat it as a new promise.
+
+Half-baked idea for accomplishing that:
+
+Define a promise to be inactive if its `tfin` and `tdue` dates are both non-null and in the past. 
+(So even if a promise is done early it's still active till the due date, and even if it's overdue it's still active till it's done.
+Or "done" -- it could be marked 0% fulfilled.)
+If a URL is requested with slug foo and there exists a promise with slug foo but it's inactive, then ... 
+never mind, I don't think this works!
+(But maybe the notion of active vs inactive is useful for how promises are displayed.)
+
+New plan is to just treat user/slug pairs as necessarily unique.
+If you want to reuse a slug for a new promise it's up to you to rename (create a new slug for) the old promise first.
+
 ## Other domain name ideas
 
 * dreev.es/will/ (for anyone who has a domain for their own name)
@@ -200,9 +229,9 @@ In the MVP we can skip the approval UI and worry about abuse like that the first
 
 ## Getting something dogfoodable as quickly as possible
 
-1. parse incoming promises so all the fields are stored
-2. anything not parseable yields an error message that the user sees when clicking on the URL
-3. need a way to mark promises complete (tack on a query param to do it?)
+1. parse incoming promises so all the fields are stored on GET
+2. anything not parseable yields an error that the user sees when clicking on the URL
+3. let you mark a promise fulfilled (or fractionally fulfilled, including 0%)
 4. no privacy or security features; everything is public
 5. no calendar API, just construct a link the user can click to create the calendar event
 6. realtime reliability score!

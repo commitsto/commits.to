@@ -25,7 +25,8 @@
     "mailgun-js": "0.10.1",
     "lodash": "^4.17.4",
     "express-handlebars": "^3.0.0",
-    "node-sass-middleware": "^0.11.0"
+    "node-sass-middleware": "^0.11.0",
+    "sweetalert2": "^6.10.3"
   },
   "babel": {
     "presets": [
@@ -50,4 +51,4 @@
   ],
   "license": "MIT",
   "repository": "glitch/iwill"
-}
+} 

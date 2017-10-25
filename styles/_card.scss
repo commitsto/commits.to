@@ -1,7 +1,8 @@
 .promise-card {
   background-color: $blue;
   border-radius: .25rem;
-  border: 1px groove $blue-border;
+  border: 1px solid $blue-border;
+  overflow: hidden;
   padding: 1rem;
   transition: background .25s ease-in-out;
 
@@ -13,7 +14,7 @@
     color: white;
   }
   
-  span{
+  span {
     font-weight: 300;
     font-size: 50%;
   }
@@ -39,28 +40,30 @@
   margin-top: .25rem;
 }
 
-.promise-action-bar {
-  display: flex;
-  margin: 1rem calc(-1rem - 1px) -1rem;
+.promise-bar {
+  margin: calc(-1rem - 1px);
+  margin-top: 2rem;
   
-  .action-bar-button {
-    flex-basis: 50%;
-    
-    .promise-action {
-      background-color: $white;
-      color: $blue;
-      display: block;
-      font-size: .75rem;
-      font-weight: bold;
-      margin: 1px;
-      opacity: .5;
-      padding: .5rem;
-      text-align: center;
-      text-transform: uppercase;
+  .promise-bar-link {
+    background-color: $white;
+    color: $blue;
+    display: block;
+    font-size: .75rem;
+    font-weight: bold;
+    margin: -10px;
+    opacity: .5;
+    padding: .5rem;
+    text-align: center;
+    text-transform: uppercase;
 
-      &:hover {
-        opacity: .75;
-      }
+    &:hover {
+      opacity: .75;
+    }
+  }
+  
+  .bar-button-action {
+    .promise-bar-link {
+      opacity: .25;
     }
   }
 }

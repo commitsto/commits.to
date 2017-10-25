@@ -2,7 +2,8 @@
 import Sequelize from 'sequelize'
 
 // set up a new database using database credentials set in .env
-export const sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PASS, {
+export const sequelize = new Sequelize('database', process.env.DB_USER, 
+                                                   process.env.DB_PASS, {
   logging: false,
   host: '0.0.0.0',
   dialect: 'sqlite',
@@ -23,7 +24,7 @@ export const sequelize = new Sequelize('database', process.env.DB_USER, process.
 //   note -- optional additional notes or context for the promise
 //   tini -- unixtime that the promise was made
 //   tdue -- unixtime that the promise is due
-//   tfin -- unixtime that the promise was fulfilled
+//   tfin -- unixtime that the promise was (fractionally) fulfilled (even if 0%)
 //   fill -- fraction fulfilled, default 0
 //   firm -- true when the due date is confirmed and can't be edited again
 //   void -- true if the promise became unfulfillable or moot

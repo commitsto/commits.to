@@ -1,8 +1,12 @@
+See also: <https://github.com/beeminder/iwill/issues>
+
 # The I-Will System
 
 Problem:
 Alice casually says to Bob 
 "I'll let you know if I can make it to the meeting"
+or
+"I'll see if I can reproduce that bug"
 but then forgets to follow through.
 
 Solution:
@@ -17,20 +21,12 @@ alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm
 As in, she literally types that directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
 
-(NOTE: The spec here is evolving. 
-We're gradually moving things to 
-<https://github.com/beeminder/iwill/issues>)
+We actually have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
 
-(Half-baked idea for later:
-It would be nice to reuse slugs! 
-Like to say bob.commits.to/call_mom/this_week and repeat that later and treat it as a new promise.
-Maybe there's a simple way to allow that if we always redirect each promise to a canonical URL with an unambiguous date/time format.
-Say you type a URL like `bob.commits.to/foo/by/tomorrow`.
-We look up all promises with slug `foo` 
-TBD -- still formulating this!
-)
+## Late Penalties
 
-
+The function we're using for late penalties is below.
+The idea is to have 
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
 ## Creation on GET?
@@ -57,15 +53,22 @@ when I promise it, and then change the datapoint to a 1 when I fulfill it
 
 So Beeminder is not enforcing a success rate, just an absolute number of successes.
 
+Pro tip: 
+Promise a friend some things from your to-do list that you could do any time.
+That way you're always ready for an I-will beemergency.
+
+
 ## Uniqueness of Promise Names
 
 What should happen if alice says `alice.commits.to/send_the_report/by/thu` one week and then says `alice.commits.to/send_the_report/by/fri` the next week?
 
-I'm thinking we treat those as the same promise -- so we key on just `user`+`'/'`+`what`.
+Answer: treat them as the same promise.
+I.e., key on just `user`+`'/'`+`what`.
 
 In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
-Anything else involves magic that we shouldn't even think about for the MVP.
-The first time we're annoyed by a collision in promise names, we'll revisit this question.
+
+One thing to do about it is just let the user manually rename the old promise.
+It's up to the user whether they're ok with any links to the old promise pointing at the new promise.
 
 ## Account Settings
 
@@ -191,6 +194,23 @@ So the prankster would see a page that says Alice promises to kick a puppy
 but no one else would.
 
 In the MVP we can skip the approval UI and worry about abuse like that the first time it's a problem, which I predict will be after promises.to is a million dollar company.
+
+## For Later: Active vs Inactive Promises
+
+It might be nice to reuse slugs!
+Like to say bob.commits.to/call_mom/this_week and repeat that later and treat it as a new promise.
+
+Half-baked idea for accomplishing that:
+
+Define a promise to be inactive if its `tfin` and `tdue` dates are both non-null and in the past. 
+(So even if a promise is done early it's still active till the due date, and even if it's overdue it's still active till it's done.
+Or "done" -- it could be marked 0% fulfilled.)
+If a URL is requested with slug foo and there exists a promise with slug foo but it's inactive, then ... 
+never mind, I don't think this works!
+(But maybe the notion of active vs inactive is useful for how promises are displayed.)
+
+New plan is to just treat user/slug pairs as necessarily unique.
+If you want to reuse a slug for a new promise it's up to you to rename (create a new slug for) the old promise first.
 
 ## Other domain name ideas
 

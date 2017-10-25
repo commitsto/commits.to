@@ -128,5 +128,5 @@ export const promises = [
   "dreev.commits.to/ascertain_re_sunday/by/wed", // 10-23, B
   "dreev.promises.to/do_redirect_for_mel/by/10pm", // 10-23, B
   "dreev.commits.to/ping_malcolm_re_android/by/today", // 10-24, B
-  "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night", // 10-24, 
+  "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night", // 10-24, done, B
 ]

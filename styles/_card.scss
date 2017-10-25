@@ -2,6 +2,7 @@
   background-color: $blue;
   border-radius: .25rem;
   border: 1px groove $blue-border;
+  overflow: hidden;
   padding: 1rem;
   transition: background .25s ease-in-out;
 
@@ -13,7 +14,7 @@
     color: white;
   }
   
-  span{
+  span {
     font-weight: 300;
     font-size: 50%;
   }
@@ -41,10 +42,10 @@
 
 .promise-action-bar {
   display: flex;
-  margin: 1rem calc(-1rem - 1px) -1rem;
+  margin: calc(-1rem - 1px);
+  margin-top: 1rem;
   
   .action-bar-button {
-    flex-basis: 50%;
     
     .promise-action {
       background-color: $white;
@@ -52,7 +53,7 @@
       display: block;
       font-size: .75rem;
       font-weight: bold;
-      margin: 1px;
+      margin: -10px;
       opacity: .5;
       padding: .5rem;
       text-align: center;

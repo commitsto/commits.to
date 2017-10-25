@@ -15,6 +15,7 @@ app.use(sassMiddleware({
   // outputStyle: 'compressed',
 }))
 
+app.use(express.static('/app/styles'))
 app.use(express.static('/app/public'))
 
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}))

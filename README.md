@@ -34,7 +34,7 @@ That way we can always compute a single metric for your reliability at any momen
 The function we're using for late penalties is below.
 The idea is to have your reliability decrease strictly monotonically the moment the deadline hits, with sudden drops when you're a minute, an hour, a day, etc, late.
 (More on the rationale for that in lib/latepenalty.js.)
-The following shows the remaining credit as a function how late you are, first zoomed in to the first 60some seconds, and then zoomed out further and further:
+The following shows the remaining credit as a function of how late you are, first zoomed in to the first 60some seconds, and then zoomed out further and further:
 
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 

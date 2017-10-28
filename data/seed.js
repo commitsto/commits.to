@@ -39,6 +39,7 @@ export const promises = [
   "alice.promises.to/File_the_TPS_report/by/noon_mon",
   "bob.promises.to/Send_vacation_photos/by/saturday",
   "carol.promises.to/Call_the_dentist/by/12am",
+  "dreev.promises.to/update_meta_blog_post", // 8-9, done .999, B
   "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am", // 9-10, done, B
   "dreev.promises.to/show_bee_open_questions/by/10:30pm", // 9-10, done, B
   "braden.promises.to/help_with_javascript/by/5pm", // 9-11
@@ -129,5 +130,8 @@ export const promises = [
   "dreev.promises.to/do_redirect_for_mel/by/10pm", // 10-23, B
   "dreev.commits.to/ping_malcolm_re_android/by/today", // 10-24, B
   "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night", // 10-24, done, B
-  "dreev.promises.to/ask_kelley_re_ducks/by/nov_15", // 10-25, 
+  "dreev.promises.to/ask_kelley_re_ducks/by/nov_15", // 10-25, B
+  "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm", // 10-25
+  "dreev.commits.to/answer_nathaniels_other_questions/by/midnight", // 10-26, done 5m late, 
+  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, 
 ]

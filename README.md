@@ -1,4 +1,7 @@
-See also: <https://github.com/beeminder/iwill/issues>
+[Changelog](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0 )
+
+
+[GitHub Issues](https://github.com/beeminder/iwill/issues )
 
 # The I-Will System
 
@@ -23,6 +26,55 @@ When Alice or Bob click that URL a promise is created in the promises.to app and
 
 We actually have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
 
+## Creation on GET
+
+Creating an object in a database in response to a GET request is pretty unkosher. 
+We've decided it's worth it because of how elegantly it reduces the friction for the user.
+If/when that's abused we'll revisit this but initially we're making all tradeoffs in favor of lower friction.
+
+Also it's a nice feature how every yourname.promises.to URL you type gets almost automatically logged as a promise.
+We'll address spiders and such generating URLs you didn't type as they're a problem.
+
+## Promise Data Structure
+
+The fundamental object in the promises.to app is of course the promise aka the commitment.
+The following are the database fields for the Promises table:
+
+* `urtext`: full original text (URL) the user typed to create the promise
+* `user`: who's making the promise, parsed as the subdomain in the urtext
+* `slug`: unique identifier for the promise, parsed from the urtext URL
+* `note`: optional additional notes or context for the promise
+* `tini`: unixtime that the promise was made
+* `tdue`: unixtime that the promise is due
+* `tfin`: unixtime that the promise was (fractionally) fulfilled (even if 0%)
+* `fill`: fraction fulfilled, default 0
+* `firm`: true when the due date is confirmed and can't be edited again
+* `void`: true if the promise became unfulfillable or moot
+* `clix`: number of clicks a promise has gotten
+* `bmid`: the id of the Beeminder datapoint for this promise
+
+For example:
+
+* `urtext` = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
+* `user` = "bob"
+* `slug` = "foo_the_bar"
+* `note` = "promised in slack discussion about such-and-such"
+* `tini` = [unixtime of first GET request of the promise's URL]
+* `tdue` = [what "noon tomorrow" parsed to at time tini]
+* `tfin` = [unixtime that the user marked the promise as fulfilled]
+* `fill` = 0
+* `firm` = false
+* `void` = false
+* `clix` = 0
+* `bmid` = 4f9dd9fd86f22478d3000007
+
+Here are some other ideas for fields, that we can worry about as the project evolves:
+
+* information about the client that originally created the promise
+* whether the promise was created by the actual user (if they were logged in 
+  and were the first to click on it) or by another logged-in user or by 
+  someone not logged in
+
 ## Late Penalties
 
 A big part of promises.to is tracking how reliable you are.
@@ -38,19 +90,17 @@ The following shows the remaining credit as a function of how late you are, firs
 
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
-## Creation on GET
-
-Creating an object in a database in response to a GET request is pretty unkosher. 
-We've decided it's worth it because of how elegantly it reduces the friction for the user.
-If/when that's abused we'll revisit this but initially we're making all tradeoffs in favor of lower friction.
-
-Also it's a nice feature how every yourname.promises.to URL you type gets almost automatically logged as a promise.
-We'll address spiders and such generating URLs you didn't type as they're a problem.
-
 ## Beeminder integration
 
-The Beeminder datapoint gets the specified deadline as the date (even though it's in the future) and a zero as the datapoint value.
-The comment should include the deadline time of day and when the promise was first created.
+The idea is to 
+[send a datapoint to Beeminder](http://beeminder.com/api) 
+for each promise you make.
+A Beeminder datapoint consists of a date, a value, and a comment.
+Beeminder plots those cumulatively on a graph for you and lets you hard-commit to a certain rate of progress.
+
+In the case of promises.to the date on the Beeminder datapoint will be the promise's deadline (even though it's in the future) and the value will be the fulfilled fraction (initially zero).
+The comment should just have the promise's urtext since that's a link to all the data about a promise.
+Or something like "Auto-added by promises.to at 12:34pm -- " and then the urtext link.
 
 The Beeminder goal should be a do-more goal to fulfill, say, 8 promises per week.
 The way I (dreev) do this currently: 
@@ -62,6 +112,13 @@ Pro tip:
 Promise a friend some things from your to-do list that you could do any time.
 That way you're always ready for an I-will beemergency.
 
+The promises.to app's interactions with Beeminder (via Beeminder API calls) are as follows:
+
+1. When a promise is created, create a datapoint
+2. When a promise is marked (partially fulfilled), update the datapoint's value
+3. When a promise's due date changes, update the datapoint's date
+4. [POST-MVP] When a promise is deleted, delete the datapoint
+5. [POST-MVP] Create the initial Beeminder goal when a user signs up for promises.to
 
 ## Uniqueness of Promise Names
 
@@ -78,7 +135,8 @@ It's up to the user whether they're ok with any links to the old promise pointin
 ## Account Settings
 
 1. Username, used as a subdomain for the URL
-2. Timezone (needed to parse the deadlines; but less important since you have the chance to fix the deadline when creating the promise)
+2. Beeminder access token
+3. Timezone (needed to parse the deadlines; but less important since you have the chance to fix the deadline when creating the promise)
 
 Later:
 
@@ -236,7 +294,3 @@ If you want to reuse a slug for a new promise it's up to you to rename (create a
 5. no calendar API, just construct a link the user can click to create the calendar event
 6. realtime reliability score!
 
-# Changelog
-
-View the 
-[project history](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0)

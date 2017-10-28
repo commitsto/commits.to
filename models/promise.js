@@ -17,38 +17,8 @@ export const sequelize = new Sequelize('database', process.env.DB_USER,
   storage: '.data/database.sqlite'
 })
 
-// DATABASE FIELDS FOR THE PROMISES TABLE:
-//   urtext -- full original text (URL) the user typed to create the promise
-//   user -- who's making the promise, parsed as the subdomain in the urtext
-//   slug -- unique identifier for the promise, parsed from the urtext URL
-//   note -- optional additional notes or context for the promise
-//   tini -- unixtime that the promise was made
-//   tdue -- unixtime that the promise is due
-//   tfin -- unixtime that the promise was (fractionally) fulfilled (even if 0%)
-//   fill -- fraction fulfilled, default 0
-//   firm -- true when the due date is confirmed and can't be edited again
-//   void -- true if the promise became unfulfillable or moot
-//   clix -- number of clicks a promise has gotten
-// For example:
-//   urtext = "bob.promises.to/foo_the_bar/by/noon_tomorrow"
-//   user = "bob"
-//   slug = "foo_the_bar"
-//   note = "promised in slack discussion about such-and-such"
-//   tini = [unixtime of first GET request of the promise's URL]
-//   tdue = [what "noon tomorrow" parsed to at time tini]
-//   tfin = [unixtime that the user marked the promise as fulfilled]
-//   fill = 0
-//   firm = false
-//   void = false
-//   clix = 0
-
-// Other ideas for fields: 
-// * information about the client that originally created the promise
-// * whether the promise was created by the actual user (if they were logged in 
-//   and were the first to click on it) or by another logged-in user or by 
-//   someone not logged in
-
 export default Promise = sequelize.define('promises', {
+  // TODO: change 'urtx' to 'urtext' and see README for other fields
   urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
   user: { type: Sequelize.STRING  }, // who's making the promise
   what: { type: Sequelize.STRING  }, // TODO: change to "slug"

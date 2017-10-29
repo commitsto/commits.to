@@ -34,8 +34,6 @@ $( document ).ready(function() {
   var normalizedUrlDate = $inputText.data('value').replace(/[-_]/g, ' '); // really basic url parsing for now
   var startingValue = normalizedUrlDate || getDefaultDueDate();
   
-  console.log('default', normalizedUrlDate);
-  
   parseDate(startingValue); // init with url value or default to tomorrow
   
 });

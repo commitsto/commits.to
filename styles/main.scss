@@ -11,6 +11,9 @@ $dark-gray: #454545;
 $header-bg: #242424;
 $header-border: #424242;
 
+$card-border-radius: .25rem;
+$element-border-radius: 3px;
+
 @import 'base.scss';
 @import 'card.scss';
 @import 'promise.scss';
@@ -32,7 +35,7 @@ header {
       margin-left: .75rem;
       padding: .4rem 1rem;
       font-size: .75rem;
-      border-radius: 3px;
+      border-radius: $element-border-radius;
       background-color: $dark-gray;
       border: 1px solid $gray;
       box-shadow: 2px 2px $black;

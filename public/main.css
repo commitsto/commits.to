@@ -41,7 +41,7 @@ input {
 
 .promise-card {
   background-color: #2fa2fa;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   border: 1px solid #7bc9ff;
   overflow: hidden;
   padding: 1rem;
@@ -89,28 +89,82 @@ input {
     opacity: .25; }
 
 .create-promise {
-  text-align: center;
-  padding: 4rem; }
+  padding: 4rem 4rem 6rem;
+  position: relative; }
   .create-promise .promise-statement {
-    margin: 0 0 3rem;
+    margin: 0;
     line-height: 3rem;
     font-weight: 300; }
     .create-promise .promise-statement span {
       font-weight: bold; }
+      .create-promise .promise-statement span:last-of-type {
+        display: block; }
   .create-promise .promise-button {
-    border: 1px solid #2fa2fa;
-    border-radius: .5rem;
-    color: #2fa2fa;
+    color: #FEFEFE;
+    background-color: #2fa2fa;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
     display: block;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     transition: all .75s ease-in-out; }
     .create-promise .promise-button:hover {
       background-color: #2fa2fa;
       color: white; }
+  .create-promise .promise-picker {
+    align-items: center;
+    display: flex;
+    margin: 0 -1rem; }
+    .create-promise .promise-picker .picker__holder {
+      max-width: none; }
+    .create-promise .promise-picker h1 {
+      margin: 0 1rem; }
+    .create-promise .promise-picker fieldset {
+      flex-grow: 1;
+      margin: 1em 0;
+      border: 0;
+      padding: 0;
+      position: relative; }
+      .create-promise .promise-picker fieldset + h1 {
+        float: right; }
+    .create-promise .promise-picker input {
+      background: none;
+      border: 1px dotted #126bbd;
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+      color: #2fa2fa;
+      display: block;
+      font-size: 2em;
+      padding: .5em;
+      margin: 0;
+      width: 100%; }
+    .create-promise .promise-picker a {
+      color: #0089ec;
+      text-decoration: none; }
+    .create-promise .promise-picker a:hover {
+      text-decoration: underline; }
+    .create-promise .promise-picker #input_date {
+      position: absolute;
+      right: 1em;
+      top: .8em;
+      padding: 0;
+      margin: 0;
+      width: 0;
+      height: 0;
+      background: transparent;
+      color: #2fa2fa;
+      border: 0;
+      border-left: .5em solid transparent;
+      border-right: .5em solid transparent;
+      border-top: 0.75em solid #2fa2fa;
+      cursor: pointer; }
+    .create-promise .promise-picker #input_date:focus {
+      border-top-color: #0089ec; }
 
 .promises-preview {
   display: flex;

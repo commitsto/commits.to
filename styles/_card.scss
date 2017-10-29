@@ -1,6 +1,6 @@
 .promise-card {
   background-color: $blue;
-  border-radius: .25rem;
+  border-radius: $card-border-radius;
   border: 1px solid $blue-border;
   overflow: hidden;
   padding: 1rem;

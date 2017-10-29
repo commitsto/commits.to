@@ -70,3 +70,8 @@ History
 - Make domain configurable
 ### Removed
 - Automatic promise creation
+
+## 2017-10-25
+### Added
+- Promise completion endpoint
+- UI to mark promise complete

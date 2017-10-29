@@ -133,5 +133,5 @@ export const promises = [
   "dreev.promises.to/ask_kelley_re_ducks/by/nov_15", // 10-25, B
   "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm", // 10-25
   "dreev.commits.to/answer_nathaniels_other_questions/by/midnight", // 10-26, done 5m late, 
-  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, 
+  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, 1
 ]

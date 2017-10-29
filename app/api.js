@@ -7,9 +7,9 @@ import parsePromise from '../lib/parse'
 
 // Actions
 
-// FIXME refactor/secure this
 app.get('/promises/remove/:id', (req, resp) => {
   console.log('remove', req.params);
+  // FIXME: refactor/secure this
   Promise.destroy({
    where: {
      id: req.params.id
@@ -35,28 +35,13 @@ app.get('/promises/complete/:id', (req, resp) => {
     console.log('complete promise', promise);
     resp.redirect('/')
   })
-  // Promise.update({
-  //  where: {
-  //    id: req.params.id
-  //  }
-  // })
-  // .then(function(promise){
-  //   promise.updateAttributes({
-  //     tfin: new Date().valueOf()
-  //   })
-  //   .then(function() {
-  //     resp.redirect('/')
-  //   });
-  // })
-  
-  // resp.redirect('/')
 })
 
 app.get('/promises/create/:urtx(*)', (req, resp) => {
   console.log('create', req.params)
   Promise.create(parsePromise(req.params.urtx))
-  .then(function(deletedRows){
-    console.log('promise removed', deletedRows);
+  .then(function(promise){
+    console.log('promise created', promise);
     resp.redirect(`/${req.params.urtx}`);
   })
 })

@@ -1,5 +1,5 @@
-import Promise from '../models/promise.js'
-import parsePromise from '../lib/parse.js'
+import Promise from '../models/promise'
+import parsePromise from '../lib/promise'
 
 // utility to populate table with hardcoded promises below
 export function setup() { 

@@ -3,7 +3,7 @@
 import app from './express'
 import { users, setup } from '../data/seed'
 import Promise, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
+import parsePromise from '../lib/promise'
 import mailself from '../lib/mail'
 
 app.get([ // Home
@@ -45,12 +45,12 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
   // "/bob.promises.to/foo" (req.originalUrl doesn't include the hostname which
   // from the perspective of this Glitch app is "iwill.glitch.me")
   
-  // urtx is now, eg, "bob.promises.to/foo_the_bar/by/9am"
+  // urtext is now, eg, "bob.promises.to/foo_the_bar/by/9am"
     
   console.log('handleRequest', req.params)
   const request = req.originalUrl.substr(1) // get rid of the initial slash
   const p = parsePromise(request) // p's a hash: {user, slug, tini, tdue, etc}
-  const { urtx } = p
+  const { urtext } = p
   
   console.log(`DEBUG: handleRequest: ${JSON.stringify(p)}`)
   
@@ -63,7 +63,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     resp.redirect('/sign-up')
   } else {
     // Check if a promise already exists with matching user+'|'+what
-    Promise.findOne({ where: {urtx} }) // this has to check against the parsed urtx (which strips the query param)
+    Promise.findOne({ where: {urtext} }) // this has to check against the parsed urtext (which strips the query param)
       .then(promise => {
         if (promise) {
           console.log('promise exists', promise.dataValues)
@@ -72,14 +72,14 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
             secret: true // always show controls
           })
         } else {
-          console.log('redirecting to create promise', promise, urtx)
+          console.log('redirecting to create promise', promise, urtext)
           // TODO: https://github.com/beeminder/iwill/issues/23
           //Promise.create(p)
           
           // dreev literally wants every promise emailed to him so nothing gets
           // lost while we're hacking on this so please make sure this mailself
           // function gets called whenever a promise is created:
-          mailself('PROMISE', urtx)
+          mailself('PROMISE', urtext)
           
           resp.render('create', {
             promise: p,

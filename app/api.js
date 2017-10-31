@@ -2,7 +2,7 @@
 
 import app from './express'
 import Promise, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
+import parsePromise from '../lib/promise'
 // import computeCredit from './latepenalty'
 
 // Actions
@@ -21,10 +21,10 @@ app.get('/promises/remove/:id', (req, resp) => {
   })
 })
 
-app.get('/promises/complete/:id', (req, resp) => {
+app.get('/promises/complete/:id(*)', (req, resp) => {
   Promise.update(
   {
-    tfin: new Date().valueOf()
+    tfin: new Date()
   },
   {
    where: {
@@ -37,22 +37,22 @@ app.get('/promises/complete/:id', (req, resp) => {
   })
 })
 
-app.get('/promises/create/:urtx(*)', (req, resp) => {
+app.get('/promises/create/:urtext(*)', (req, resp) => {
   console.log('create', req.params)
-  Promise.create(parsePromise(req.params.urtx))
+  Promise.create(parsePromise(req.params.urtext))
   .then(function(promise){
     console.log('promise created', promise);
-    resp.redirect(`/${req.params.urtx}`);
+    resp.redirect(`/${req.params.urtext}`);
   })
 })
 
 // Endpoints
 
-app.get('/promise/:udp/:urtx', function(req, resp) {
-  let urtx = req.originalUrl.substr(9)
-  Promise.findOne({ where: {urtx}})
+app.get('/promise/:udp/:urtext', function(req, resp) {
+  let urtext = req.originalUrl.substr(9)
+  Promise.findOne({ where: {urtext}})
     .then(function(promise) {
-      console.log('single promise', urtx, promise)
+      console.log('single promise', urtext, promise)
     // resp.write(promise)
     resp.json(promise)
   })

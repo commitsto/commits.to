@@ -17,23 +17,32 @@ export const sequelize = new Sequelize('database', process.env.DB_USER,
   storage: '.data/database.sqlite'
 })
 
+// new argument against "domain": "commits.to" and "promises.to" might
+// diverge, as different implementations. we should assume this version
+// is "commits.to" and treat "promises.to" strictly as an alias.
+// i guess this isn't an argument against storing it, i just don't think we
+// should use it for anything currently.
+
 export default Promise = sequelize.define('promises', {
-  // TODO: change 'urtx' to 'urtext' and see README for other fields
-  urtx: { type: Sequelize.STRING  }, // urtext, including whole URL
-  user: { type: Sequelize.STRING  }, // who's making the promise
-  what: { type: Sequelize.STRING  }, // TODO: change to "slug"
-  tini: { type: Sequelize.INTEGER }, // unixtime that promise was made
-  tdue: { type: Sequelize.STRING },
-  tfin: { type: Sequelize.STRING },
-  // new argument against "domain": "commits.to" and "promises.to" might
-  // diverge, as different implementations. we should assume this version
-  // is "commits.to" and treat "promises.to" strictly as an alias.
-  // i guess this isn't an argument against storing it, i just don't think we
-  // should use it for anything currently.
+  id: { type: Sequelize.STRING, primaryKey: true }, // normalized urtext
+  bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
+  urtext: { type: Sequelize.STRING }, // full original text (URL) the user typed to create the promise
+  
+  user: { type: Sequelize.STRING }, // who's making the promise, parsed as the subdomain in the urtext
   domain: { type: Sequelize.STRING }, // domain the request was made on
-  //fill: { type: Sequelize.FLOAT   }, // fraction fulfilled
-  //void: { type: Sequelize.BOOLEAN }, // whether promise was voided
-  //text:   { type: Sequelize.STRING }, // this was just for testing
+  slug: { type: Sequelize.STRING }, // unique identifier for the promise, parsed from the urtext URL
+  what: { type: Sequelize.STRING }, // human-readable formatted version of the slug
+  
+  firm: { type: Sequelize.BOOLEAN, defaultValue: false }, // firm: true when the due date is confirmed and can't be edited again
+  void: { type: Sequelize.BOOLEAN, defaultValue: false }, // true if the promise became unfulfillable or moot
+  
+  tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
+  tdue: { type: Sequelize.DATE }, // unixtime that the promise is due
+  tfin: { type: Sequelize.DATE }, // When the promise was (fractionally) fulfilled (even if 0%)
+  
+  fill: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
+  clix: { type: Sequelize.INTEGER, defaultValue: 0 }, // number of clicks a promise has gotten
+  note: { type: Sequelize.STRING }, // optional additional notes or context for the promise  
 })
 
 sequelize.authenticate()

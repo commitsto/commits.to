@@ -1,5 +1,5 @@
 var getDefaultDueDate = function() {
- var tomorrow = new Date();
+  var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 7); // default to 7 days from now
   return tomorrow.toLocaleDateString();
 }

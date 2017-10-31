@@ -134,4 +134,7 @@ export const promises = [
   "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm", // 10-25
   "dreev.commits.to/answer_nathaniels_other_questions/by/midnight", // 10-26, done 5m late, 
   "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, 1
+  "chris.promises.to/finish-the-datepicker-feature/by/tomorrow", // 10-28
+  "dreev.promises.to/report_cinesift_bug_separately/by/midnight", // 10-28
+  "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm", // 10-30
 ]

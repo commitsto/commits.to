@@ -125,7 +125,7 @@ The promises.to app's interactions with Beeminder (via Beeminder API calls) are 
 What should happen if alice says `alice.commits.to/send_the_report/by/thu` one week and then says `alice.commits.to/send_the_report/by/fri` the next week?
 
 Answer: treat them as the same promise.
-I.e., key on just `user`+`'/'`+`what`.
+I.e., key on just `user`+`'/'`+`slug`.
 
 In practice it seems to be easy to make an unlimited number of unique names for promises and if there's a collision it will be perfectly clear to the user why and what to do about it.
 

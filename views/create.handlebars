@@ -14,8 +14,13 @@
   <div class="promise-picker">
     <h1>by:</h1>
     <fieldset>
-      <input type="text" data-value="{{promise.tdue}}" id="input_text">
-      <input type="text" id="input_date">
+      <input id="input_date_text" type="text" data-value="{{promise.tdue}}" class="text-input">
+      <input id="input_date" type="text" class="time-input">
+    </fieldset>
+    
+    <fieldset>
+      <input id="input_time_text" type="text" data-value="{{promise.tdue}}" class="text-input">
+      <input id="input_time" type="text" class="time-input">
     </fieldset>
     <h1>?</h1>
   </div>

@@ -1,37 +1,61 @@
 var getDefaultDueDate = function() {
   var tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 7); // default to 7 days from now
-  return tomorrow.toLocaleDateString();
+  return tomorrow;
 }
 
 $( document ).ready(function() {
   var $inputDate = $('#input_date').pickadate();
-  var picker = $inputDate.pickadate('picker');
+  var datePicker = $inputDate.pickadate('picker');
+  
+  var $inputTime = $('#input_time').pickatime();
+  var timePicker = $inputTime.pickatime('picker');
   
   var parseDate = function(value) {
-    var parsedDate = Date.parse(value);
-
+    // FIXME: handle timezones better
+    var date = new Date(value)
+    var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+    var parsedDate = new Date(date.getTime() + userTimezoneOffset);
+    
+    console.log('parseDate', value, parsedDate);
+    
     if (parsedDate) {
-      picker.set('select', [parsedDate.getFullYear(), parsedDate.getMonth(), parsedDate.getDate()]);
+      datePicker.set('select', parsedDate);
+      timePicker.set('select', parsedDate);
     }
   }
 
-  var $inputText = $('#input_text').on({
+  var $inputTextDate = $('#input_date_text').on({
     change: parseDate,
     focus: function() {
-      picker.open(false);
+      datePicker.open(false);
     },
     blur: function() {
-      picker.close();
+      datePicker.close();
+    }
+  });
+  
+  var $inputTextTime = $('#input_time_text').on({
+    change: parseDate,
+    focus: function() {
+      timePicker.open(false);
+    },
+    blur: function() {
+      timePicker.close();
     }
   });
 
-  picker.on('set', function() {
-    console.log('set', this.get('value'), $inputText.val());
-    $inputText.val(this.get('value'));
+  datePicker.on('set', function() {
+    console.log('set date', this.get('value'), $inputTextDate.val());
+    $inputTextDate.val(this.get('value'));
   });
   
-  var normalizedUrlDate = $inputText.data('value').replace(/[-_]/g, ' '); // really basic url parsing for now
+  timePicker.on('set', function() {
+    console.log('set time', this.get('value'), $inputTextTime.val());
+    $inputTextTime.val(this.get('value'));
+  });
+  
+  var normalizedUrlDate = $inputTextDate.data('value'); // really basic url parsing for now
   var startingValue = normalizedUrlDate || getDefaultDueDate();
   
   parseDate(startingValue); // init with url value or default to tomorrow

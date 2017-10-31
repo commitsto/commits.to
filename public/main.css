@@ -120,18 +120,24 @@ input {
     align-items: center;
     display: flex;
     margin: 0 -1rem; }
+    .create-promise .promise-picker > * {
+      flex-grow: 1;
+      flex-shrink: 1; }
     .create-promise .promise-picker .picker__holder {
       max-width: none; }
     .create-promise .promise-picker h1 {
       margin: 0 1rem; }
     .create-promise .promise-picker fieldset {
-      flex-grow: 1;
+      flex-grow: 25;
+      flex-shrink: 1;
       margin: 1em 0;
       border: 0;
       padding: 0;
       position: relative; }
-      .create-promise .promise-picker fieldset + h1 {
-        float: right; }
+      .create-promise .promise-picker fieldset + fieldset {
+        margin-left: .5rem;
+        flex-shrink: 5;
+        flex-grow: 1; }
     .create-promise .promise-picker input {
       background: none;
       border: 1px dotted #126bbd;
@@ -146,9 +152,9 @@ input {
     .create-promise .promise-picker a {
       color: #0089ec;
       text-decoration: none; }
-    .create-promise .promise-picker a:hover {
-      text-decoration: underline; }
-    .create-promise .promise-picker #input_date {
+      .create-promise .promise-picker a:hover {
+        text-decoration: underline; }
+    .create-promise .promise-picker .time-input {
       position: absolute;
       right: 1em;
       top: .8em;
@@ -163,8 +169,8 @@ input {
       border-right: .5em solid transparent;
       border-top: 0.75em solid #2fa2fa;
       cursor: pointer; }
-    .create-promise .promise-picker #input_date:focus {
-      border-top-color: #0089ec; }
+      .create-promise .promise-picker .time-input:focus {
+        border-top-color: #0089ec; }
 
 .promises-preview {
   display: flex;

@@ -137,4 +137,6 @@ export const promises = [
   "chris.promises.to/finish-the-datepicker-feature/by/tomorrow", // 10-28
   "dreev.promises.to/report_cinesift_bug_separately/by/midnight", // 10-28
   "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm", // 10-30
+  "dreev.promises.to/plug_nanowrimo_room", // 10-31
+  "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march", // 10-31
 ]

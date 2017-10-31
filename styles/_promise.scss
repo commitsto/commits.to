@@ -60,6 +60,11 @@
     display: flex;
     margin: 0 -1rem;
     
+    > * {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+    
     .picker__holder {
       max-width: none;
     }
@@ -67,17 +72,26 @@
     h1 {
       margin: 0 1rem;
     }
+    
     fieldset {
-      flex-grow: 1;
+      flex-grow: 25;
+      flex-shrink: 1;
       margin: 1em 0;
       border: 0;
       padding: 0;
       position: relative;
       
-      & + h1 {
-        float: right;
+      // & + h1 {
+      //   float: right;
+      // }
+      
+      & + fieldset {
+        margin-left: .5rem;
+        flex-shrink: 5;
+        flex-grow: 1;
       }
     }
+    
     input {
       background: none;
       border: 1px dotted $dark-blue;
@@ -91,15 +105,16 @@
       margin: 0;
       width: 100%;
     }
+    
     a {
       color: #0089ec;
       text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
-    #input_date {
+    .time-input {
       position: absolute;
       right: 1em;
       top: .8em;
@@ -114,9 +129,10 @@
       border-right: .5em solid transparent;
       border-top: .75em solid $blue;
       cursor: pointer;
-    }
-    #input_date:focus {
-      border-top-color: #0089ec;
+      
+      &:focus {
+        border-top-color: #0089ec;
+      }
     }
   }
 }

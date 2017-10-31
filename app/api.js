@@ -5,9 +5,11 @@ import Promise, { sequelize } from '../models/promise'
 import parsePromise from '../lib/promise'
 // import computeCredit from './latepenalty'
 
+import moment from 'moment-timezone'
+
 // Actions
 
-app.get('/promises/remove/:id', (req, resp) => {
+app.get('/promises/remove/:id(*)', (req, resp) => {
   console.log('remove', req.params);
   // FIXME: refactor/secure this
   Promise.destroy({
@@ -24,7 +26,7 @@ app.get('/promises/remove/:id', (req, resp) => {
 app.get('/promises/complete/:id(*)', (req, resp) => {
   Promise.update(
   {
-    tfin: new Date()
+    tfin: sequelize.literal('CURRENT_TIMESTAMP')
   },
   {
    where: {

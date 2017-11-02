@@ -3,6 +3,7 @@
 import app from './express'
 import Promise, { sequelize } from '../models/promise'
 import parsePromise from '../lib/promise'
+import mailself from '../lib/mail'
 // import computeCredit from './latepenalty'
 
 import moment from 'moment-timezone'
@@ -44,6 +45,7 @@ app.get('/promises/create/:urtext(*)', (req, resp) => {
   Promise.create(parsePromise(req.params.urtext))
   .then(function(promise){
     console.log('promise created', promise);
+    mailself('PROMISE', promise.urtext) // send dreev@ an email 
     resp.redirect(`/${req.params.urtext}`);
   })
 })

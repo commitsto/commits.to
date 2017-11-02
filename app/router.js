@@ -4,7 +4,8 @@ import app from './express'
 import { users, setup } from '../data/seed'
 import Promise, { sequelize } from '../models/promise'
 import parsePromise from '../lib/promise'
-import mailself from '../lib/mail'
+
+import { logger } from '../lib/logger'
 
 app.get([ // Home
   '/?',
@@ -47,18 +48,18 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
   
   // urtext is now, eg, "bob.promises.to/foo_the_bar/by/9am"
     
-  console.log('handleRequest', req.params)
+  console.log('handleRequest', req.params, req.ip, req.ips)
   const request = req.originalUrl.substr(1) // get rid of the initial slash
-  const p = parsePromise(request) // p's a hash: {user, slug, tini, tdue, etc}
-  const { id } = p
+  const parsedPromise = parsePromise(request)
+  const { id } = parsedPromise
   
-  console.log(`DEBUG: handleRequest: ${JSON.stringify(p)}`)
+  console.log(`DEBUG: handleRequest: ${JSON.stringify(parsedPromise)}`)
   
-  if (p.user === 'www' || p.user === '') {
+  if (parsedPromise.user === 'www' || parsedPromise.user === '') {
     // this is the case of no username, like if someone just went to
     // "promises.to" or tried to fetch "promises.to/robots.txt" or whatever
     resp.redirect('/')
-  } else if (!users.includes(p.user)) {
+  } else if (!users.includes(parsedPromise.user)) {
     // don't let people create new subdomains/users on the fly
     resp.redirect('/sign-up')
   } else {
@@ -76,13 +77,11 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
           // TODO: https://github.com/beeminder/iwill/issues/23
           //Promise.create(p)
           
-          // dreev literally wants every promise emailed to him so nothing gets
-          // lost while we're hacking on this so please make sure this mailself
-          // function gets called whenever a promise is created:
-          mailself('PROMISE', id)
+          // IMPORTANT: log every new promise request to papertrail
+          logger.info('new promise request', parsedPromise)
           
           resp.render('create', {
-            promise: p,
+            promise: parsedPromise,
           })
         }     
       })

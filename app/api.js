@@ -26,7 +26,7 @@ app.get('/promises/remove/:id(*)', (req, resp) => {
 app.get('/promises/complete/:id(*)', (req, resp) => {
   Promise.update(
   {
-    tfin: sequelize.literal('CURRENT_TIMESTAMP')
+    tfin: moment.utc()
   },
   {
    where: {

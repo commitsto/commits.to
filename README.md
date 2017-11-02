@@ -98,7 +98,7 @@ for each promise you make.
 A Beeminder datapoint consists of a date, a value, and a comment.
 Beeminder plots those cumulatively on a graph for you and lets you hard-commit to a certain rate of progress.
 
-In the case of promises.to the date on the Beeminder datapoint will be the promise's deadline (even though it's in the future) and the value will be the fulfilled fraction (initially zero).
+In the case of promises.to the date on the Beeminder datapoint is the promise's deadline `tdue` (even though it's in the future) and the value is the fulfilled fraction `fill` (initially zero).
 The comment should just have the promise's urtext since that's a link to all the data about a promise.
 Or something like "Auto-added by promises.to at 12:34pm -- " and then the urtext link.
 
@@ -144,6 +144,8 @@ Later:
 2. Display name, e.g., "Alice" as opposed to username "alice"
 
 ## UI For Marking Promises Fulfilled
+
+
 
 If Alice is logged in, the app lists her existing promises and lets her choose one of 
 {not fulfilled yet, fulfilled on time, fulfilled partially or late} 

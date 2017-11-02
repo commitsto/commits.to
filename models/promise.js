@@ -1,5 +1,6 @@
 // --------------------------------- 80chars ---------------------------------->
 import Sequelize from 'sequelize'
+import moment from 'moment-timezone'
 
 // set up a new database using database credentials set in .env
 export const sequelize = new Sequelize('database', process.env.DB_USER, 
@@ -36,8 +37,8 @@ export default Promise = sequelize.define('promises', {
   firm: { type: Sequelize.BOOLEAN, defaultValue: false }, // firm: true when the due date is confirmed and can't be edited again
   void: { type: Sequelize.BOOLEAN, defaultValue: false }, // true if the promise became unfulfillable or moot
   
-  tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
-  tdue: { type: Sequelize.DATE }, // unixtime that the promise is due
+  tini: { type: Sequelize.DATE, defaultValue: moment.tz('America/New_York') }, // when the was promise was made
+  tdue: { type: Sequelize.DATE, defaultValue: moment.tz('America/New_York').add(1, 'days') }, // unixtime that the promise is due
   tfin: { type: Sequelize.DATE }, // When the promise was (fractionally) fulfilled (even if 0%)
   
   fill: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)

@@ -1,8 +1,4 @@
-var getDefaultDueDate = function() {
-  var tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 7); // default to 7 days from now
-  return tomorrow;
-}
+
 
 $( document ).ready(function() {
   var $inputDate = $('#input_date').pickadate();
@@ -55,9 +51,8 @@ $( document ).ready(function() {
     $inputTextTime.val(this.get('value'));
   });
   
-  var normalizedUrlDate = $inputTextDate.data('value'); // really basic url parsing for now
-  var startingValue = normalizedUrlDate || getDefaultDueDate();
-  
+  var startingValue = $inputTextDate.data('value'); // really basic url parsing for now
+
   parseDate(startingValue); // init with url value or default to tomorrow
   
 });

@@ -50,7 +50,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
   console.log('handleRequest', req.params)
   const request = req.originalUrl.substr(1) // get rid of the initial slash
   const p = parsePromise(request) // p's a hash: {user, slug, tini, tdue, etc}
-  const { urtext } = p
+  const { id } = p
   
   console.log(`DEBUG: handleRequest: ${JSON.stringify(p)}`)
   
@@ -63,7 +63,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     resp.redirect('/sign-up')
   } else {
     // Check if a promise already exists with matching user+'|'+what
-    Promise.findOne({ where: {urtext} }) // this has to check against the parsed urtext (which strips the query param)
+    Promise.findOne({ where: { id } }) // this has to check against the parsed urtext (which strips the query param)
       .then(promise => {
         if (promise) {
           console.log('promise exists', promise.dataValues)
@@ -72,14 +72,14 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
             secret: true // always show controls
           })
         } else {
-          console.log('redirecting to create promise', promise, urtext)
+          console.log('redirecting to create promise', promise, id)
           // TODO: https://github.com/beeminder/iwill/issues/23
           //Promise.create(p)
           
           // dreev literally wants every promise emailed to him so nothing gets
           // lost while we're hacking on this so please make sure this mailself
           // function gets called whenever a promise is created:
-          mailself('PROMISE', urtext)
+          mailself('PROMISE', id)
           
           resp.render('create', {
             promise: p,

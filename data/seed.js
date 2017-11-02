@@ -139,4 +139,5 @@ export const promises = [
   "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm", // 10-30
   "dreev.promises.to/plug_nanowrimo_room", // 10-31
   "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march", // 10-31
+  "dreev.promises.to/verify_no_prov/by/10:30am", // 11-01
 ]

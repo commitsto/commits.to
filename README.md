@@ -145,6 +145,8 @@ Later:
 
 ## UI For Marking Promises Fulfilled
 
+UPDATE:
+For the MVP we'll make this dirt simple.
 
 
 If Alice is logged in, the app lists her existing promises and lets her choose one of 

@@ -2,7 +2,7 @@
 
 import app from './express'
 import Promise, { sequelize } from '../models/promise'
-import parsePromise from '../lib/promise'
+import parsePromise from '../lib/parse'
 import mailself from '../lib/mail'
 // import computeCredit from './latepenalty'
 
@@ -27,7 +27,7 @@ app.get('/promises/remove/:id(*)', (req, resp) => {
 app.get('/promises/complete/:id(*)', (req, resp) => {
   Promise.update(
   {
-    tfin: moment.utc()
+    tfin: moment()
   },
   {
    where: {

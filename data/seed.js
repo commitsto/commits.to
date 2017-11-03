@@ -1,5 +1,5 @@
 import Promise from '../models/promise'
-import parsePromise from '../lib/promise'
+import parsePromise from '../lib/parse'
 
 // utility to populate table with hardcoded promises below
 export function setup() { 
@@ -142,4 +142,5 @@ export const promises = [
   "dreev.promises.to/verify_no_prov/by/10:30am", // 11-01
   "dreev.promises.to/roadedbugcheck/by/today", // 11-02
   "chris.promises.to/finish-the-latest-pr/by/tonight", // 11-02
+  "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday", // 11-03
 ]

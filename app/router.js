@@ -3,7 +3,7 @@
 import app from './express'
 import { users, setup } from '../data/seed'
 import Promise, { sequelize } from '../models/promise'
-import parsePromise from '../lib/promise'
+import parsePromise from '../lib/parse'
 
 import { logger } from '../lib/logger'
 
@@ -48,12 +48,12 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
   
   // urtext is now, eg, "bob.promises.to/foo_the_bar/by/9am"
     
-  console.log('handleRequest', req.params, req.ip, req.ips)
+  console.log('handleRequest', req.params, req.ip)
   const request = req.originalUrl.substr(1) // get rid of the initial slash
-  const parsedPromise = parsePromise(request)
+  const parsedPromise = parsePromise(request, req.ip)
   const { id } = parsedPromise
   
-  console.log(`DEBUG: handleRequest: ${JSON.stringify(parsedPromise)}`)
+  console.log('DEBUG: handleRequest:', JSON.stringify(parsedPromise))
   
   if (parsedPromise.user === 'www' || parsedPromise.user === '') {
     // this is the case of no username, like if someone just went to

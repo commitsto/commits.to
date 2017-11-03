@@ -9,9 +9,9 @@ $( document ).ready(function() {
   
   var parseDate = function(value) {
     // FIXME: handle timezones better
-    var date = new Date(value)
-    var userTimezoneOffset = date.getTimezoneOffset() * 60000;
-    var parsedDate = new Date(date.getTime() + userTimezoneOffset);
+    var parsedDate = new Date(value)
+    // var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+    // var parsedDate = new Date(date.getTime() + userTimezoneOffset);
     
     console.log('parseDate', value, parsedDate);
     

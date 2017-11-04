@@ -1,13 +1,13 @@
-import Promise from '../models/promise'
+import Promises from '../models/promise'
 import parsePromise from '../lib/parse'
 
 // utility to populate table with hardcoded promises below
 export function setup() { 
-  Promise.sync({force: true}) // 'force: true' just drops the table if it exists
+  Promises.sync({force: true}) // 'force: true' just drops the table if it exists
     .then(function(){         // and creates a new one!
       // Add the default promises to the database
       for (var i = 0; i < promises.length; i++) {
-        Promise.create(parsePromise(promises[i]))
+        Promises.create(parsePromise(promises[i]))
       }
     })
 }
@@ -57,7 +57,7 @@ export const promises = [
   "dreev.commits.to/meta_debrief_kim/by/midnight_friday", // 9-14, done, B
   "dreev.commits.to/ping_mirabai/by/sep_22", // 9-14, done, B
   "dreev.commits.to/send_ms_gross_email/by/sunday_11am", // 9-14, done, B
-  "dreev.promises.to/ping_oli/by/nov_16", // 9-15, B
+  "dreev.promises.to/ping_oli/by/jan_16", // 9-15, B
   "dreev.promises.to/ping_byorgey/by/dec_20", // 9-15, B
   "dreev.promises.to/labelzero/by/1am", // 9-15, done, B
   "chris.promises.to/follow_up_on_that_support_thread", // 9-18

@@ -24,7 +24,7 @@ export const sequelize = new Sequelize('database', process.env.DB_USER,
 // i guess this isn't an argument against storing it, i just don't think we
 // should use it for anything currently.
 
-export default Promise = sequelize.define('promises', {
+export default sequelize.define('promises', {
   id: { type: Sequelize.STRING, primaryKey: true }, // normalized urtext
   bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
   urtext: { type: Sequelize.STRING }, // full original text (URL) the user typed to create the promise
@@ -37,8 +37,8 @@ export default Promise = sequelize.define('promises', {
   firm: { type: Sequelize.BOOLEAN, defaultValue: false }, // firm: true when the due date is confirmed and can't be edited again
   void: { type: Sequelize.BOOLEAN, defaultValue: false }, // true if the promise became unfulfillable or moot
   
-  tini: { type: Sequelize.DATE, defaultValue: moment.tz('America/New_York') }, // when the was promise was made
-  tdue: { type: Sequelize.DATE, defaultValue: moment.tz('America/New_York').add(1, 'days') }, // unixtime that the promise is due
+  tini: { type: Sequelize.DATE/*, defaultValue: moment().tz('America/New_York')*/ }, // when the was promise was made
+  tdue: { type: Sequelize.DATE/*, defaultValue: moment().tz('America/New_York').add(1, 'days')*/ }, // unixtime that the promise is due
   tfin: { type: Sequelize.DATE }, // When the promise was (fractionally) fulfilled (even if 0%)
   
   fill: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)

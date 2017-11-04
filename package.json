@@ -31,8 +31,7 @@
     "moment": "^2.19.1",
     "moment-timezone": "^0.5.14",
     "winston": "^2.4.0",
-    "winston-papertrail": "^1.0.5",
-    "ipapi": "^1.0.0"
+    "winston-papertrail": "^1.0.5"
   },
   "babel": {
     "presets": [

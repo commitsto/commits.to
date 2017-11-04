@@ -1,5 +1,3 @@
-
-
 $( document ).ready(function() {
   var $inputDate = $('#input_date').pickadate();
   var datePicker = $inputDate.pickadate('picker');
@@ -9,7 +7,7 @@ $( document ).ready(function() {
   
   var parseDate = function(value) {
     // FIXME: handle timezones better
-    var parsedDate = new Date(value)
+    var parsedDate = new Date(value);
     // var userTimezoneOffset = date.getTimezoneOffset() * 60000;
     // var parsedDate = new Date(date.getTime() + userTimezoneOffset);
     

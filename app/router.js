@@ -2,7 +2,7 @@
 
 import app from './express'
 import { users, setup } from '../data/seed'
-import Promise, { sequelize } from '../models/promise'
+import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 
 import { logger } from '../lib/logger'
@@ -12,7 +12,7 @@ app.get([ // Home
   '/promises.to/?',
   '/commits.to/?'
 ], (req, resp) => {
-    Promise.findAll({
+    Promises.findAll({
       order: sequelize.literal('tini DESC'),
       //limit: 30 show them all for now
     }).then(function(promises) {
@@ -26,7 +26,7 @@ app.get([ // Home
 // render the home view, but with only that user's promises
 app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
   var dbPromises = {}
-  Promise.findAll({
+  Promises.findAll({
    where: {
      user: req.params.user
    },
@@ -39,53 +39,41 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 })
 
 // TODO: handle domain agnosticism
+// The server at promises.to passes along the full URL the way the user typed
+// it, so when the user hits "bob.promises.to/foo" the Glitch app is called
+// with "iwill.glitch.me/bob.promises.to/foo" and req.originalUrl is
+// "/bob.promises.to/foo" (req.originalUrl doesn't include the hostname which
+// from the perspective of this Glitch app is "iwill.glitch.me")
+
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,resp) => {
-  // The server at promises.to passes along the full URL the way the user typed
-  // it, so when the user hits "bob.promises.to/foo" the Glitch app is called
-  // with "iwill.glitch.me/bob.promises.to/foo" and req.originalUrl is
-  // "/bob.promises.to/foo" (req.originalUrl doesn't include the hostname which
-  // from the perspective of this Glitch app is "iwill.glitch.me")
-  
-  // urtext is now, eg, "bob.promises.to/foo_the_bar/by/9am"
-    
-  console.log('handleRequest', req.params, req.ip)
-  const request = req.originalUrl.substr(1) // get rid of the initial slash
-  const parsedPromise = parsePromise(request, req.ip)
-  const { id } = parsedPromise
-  
-  console.log('DEBUG: handleRequest:', JSON.stringify(parsedPromise))
-  
-  if (parsedPromise.user === 'www' || parsedPromise.user === '') {
-    // this is the case of no username, like if someone just went to
-    // "promises.to" or tried to fetch "promises.to/robots.txt" or whatever
-    resp.redirect('/')
-  } else if (!users.includes(parsedPromise.user)) {
-    // don't let people create new subdomains/users on the fly
-    resp.redirect('/sign-up')
-  } else {
-    // Check if a promise already exists with matching user+'|'+what
-    Promise.findOne({ where: { id } }) // this has to check against the parsed urtext (which strips the query param)
-      .then(promise => {
+  const parsedPromise = parsePromise(req.originalUrl, req.ip).then(parsedPromise => {
+    const { id } = parsedPromise
+
+    console.log('handleRequest', req.ip, parsedPromise.tdue)
+
+    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
+      resp.redirect('/')
+    } else if (!users.includes(parsedPromise.user)) {
+      resp.redirect('/sign-up')
+    } else {
+      Promises.findOne({ where: { id } }).then((promise) => {
         if (promise) {
           console.log('promise exists', promise.dataValues)
           resp.render('promise', {
             promise,
-            secret: true // always show controls
+            secret: true // FIXME: does this do anything?
           })
         } else {
-          console.log('redirecting to create promise', promise, id)
-          // TODO: https://github.com/beeminder/iwill/issues/23
-          //Promise.create(p)
-          
-          // IMPORTANT: log every new promise request to papertrail
-          logger.info('new promise request', parsedPromise)
-          
+          console.log('redirecting to create promise', promise, id)          
+          logger.info('new promise request', parsedPromise) // don't remove this
+
           resp.render('create', {
             promise: parsedPromise,
           })
         }     
       })
-  }
+    }
+  })
 })
 
         
@@ -104,7 +92,7 @@ app.get('/reset', (req, resp) => {
 
 // removes all entries from the promises table
 app.get('/empty', (req, resp) => {
-  Promise.destroy({where: {}})
+  Promises.destroy({where: {}})
   resp.redirect('/')
 })
 

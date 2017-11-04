@@ -140,7 +140,7 @@ export const promises = [
   "dreev.promises.to/plug_nanowrimo_room", // 10-31
   "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march", // 10-31
   "dreev.promises.to/verify_no_prov/by/10:30am", // 11-01
-  "dreev.promises.to/roadedbugcheck/by/today", // 11-02
+  "dreev.promises.to/roadedbugcheck/by/today", // 11-02, done, B
   "chris.promises.to/finish-the-latest-pr/by/tonight", // 11-02
-  "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday", // 11-03
+  "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday", // 11-03, done, B
 ]

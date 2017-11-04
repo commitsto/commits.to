@@ -46,7 +46,7 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 // from the perspective of this Glitch app is "iwill.glitch.me")
 
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,resp) => {
-  const parsedPromise = parsePromise(req.originalUrl, req.ip)
+  const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
   .then(parsedPromise => {
     const { id } = parsedPromise
 

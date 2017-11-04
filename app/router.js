@@ -46,10 +46,11 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 // from the perspective of this Glitch app is "iwill.glitch.me")
 
 app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,resp) => {
-  const parsedPromise = parsePromise(req.originalUrl, req.ip).then(parsedPromise => {
+  const parsedPromise = parsePromise(req.originalUrl, req.ip)
+  .then(parsedPromise => {
     const { id } = parsedPromise
 
-    console.log('handleRequest', req.ip, parsedPromise.tdue)
+    console.log('handleRequest', req.ip, parsedPromise)
 
     if (parsedPromise.user === 'www' || parsedPromise.user === '') {
       resp.redirect('/')
@@ -61,7 +62,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
           console.log('promise exists', promise.dataValues)
           resp.render('promise', {
             promise,
-            secret: true // FIXME: does this do anything?
+            secret: true // FIXME: does this do anything still?
           })
         } else {
           console.log('redirecting to create promise', promise, id)          
@@ -73,6 +74,10 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
         }     
       })
     }
+  })
+  .catch((reason) => { // unparsable promise
+    console.log(reason)
+    resp.redirect('/')
   })
 })
 

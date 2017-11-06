@@ -1,16 +1,19 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import Promise, { sequelize } from '../models/promise'
+import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
-// import computeCredit from './latepenalty'
+import mailself from '../lib/mail'
+// import computeCredit from '../lib/latepenalty'
+
+import moment from 'moment-timezone'
 
 // Actions
 
-app.get('/promises/remove/:id', (req, resp) => {
+app.get('/promises/remove/:id(*)', (req, resp) => {
   console.log('remove', req.params);
   // FIXME: refactor/secure this
-  Promise.destroy({
+  Promises.destroy({
    where: {
      id: req.params.id
    }
@@ -21,10 +24,10 @@ app.get('/promises/remove/:id', (req, resp) => {
   })
 })
 
-app.get('/promises/complete/:id', (req, resp) => {
-  Promise.update(
+app.get('/promises/complete/:id(*)', (req, resp) => {
+  Promises.update(
   {
-    tfin: new Date().valueOf()
+    tfin: moment().tz('America/New_York')
   },
   {
    where: {
@@ -37,22 +40,25 @@ app.get('/promises/complete/:id', (req, resp) => {
   })
 })
 
-app.get('/promises/create/:urtx(*)', (req, resp) => {
+app.get('/promises/create/:urtext(*)', (req, resp) => {
   console.log('create', req.params)
-  Promise.create(parsePromise(req.params.urtx))
-  .then(function(promise){
-    console.log('promise created', promise);
-    resp.redirect(`/${req.params.urtx}`);
+  parsePromise({ urtext: req.params.urtext, ip: req.ip }).then((parsedPromise) => {
+    Promises.create(parsedPromise)
+    .then(function(promise){
+      console.log('promise created', promise);
+      mailself('PROMISE', promise.urtext) // send dreeves@ an email 
+      resp.redirect(`/${req.params.urtext}`);
+    })
   })
 })
 
 // Endpoints
 
-app.get('/promise/:udp/:urtx', function(req, resp) {
-  let urtx = req.originalUrl.substr(9)
-  Promise.findOne({ where: {urtx}})
+app.get('/promise/:udp/:urtext', function(req, resp) {
+  let urtext = req.originalUrl.substr(9)
+  Promises.findOne({ where: {urtext}})
     .then(function(promise) {
-      console.log('single promise', urtx, promise)
+      console.log('single promise', urtext, promise)
     // resp.write(promise)
     resp.json(promise)
   })
@@ -61,8 +67,8 @@ app.get('/promise/:udp/:urtx', function(req, resp) {
 
 app.get('/promises', function(req, resp) {
   var dbPromises = {}
-  Promise.findAll({
-    order: sequelize.literal('tini DESC')
+  Promises.findAll({
+    order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     // console.log('all promises', promises)
     // create nested array of promises by user:
@@ -76,10 +82,11 @@ app.get('/promises', function(req, resp) {
 
 app.get('/promises/:user', function(req, resp) {
   var dbPromises = {};
-  Promise.findAll({
-   where: {
-     user: req.params.user
-   },
+  Promises.findAll({
+    where: {
+      user: req.params.user
+    },
+    order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     console.log('user promises', promises);
     promises.forEach(function(promise) {

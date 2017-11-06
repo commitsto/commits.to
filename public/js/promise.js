@@ -26,7 +26,7 @@ function completePromise(id) {
   console.log('completePromise', id);
   
   swal(completePromiseText).then(function () {
-    fetch(`/promise/complete/${id}`).then(function(response) {
+    fetch(`/promises/complete/${id}`).then(function(response) {
       if(response.ok) {
         return swal(
           'Completed!',

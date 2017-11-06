@@ -1,32 +1,138 @@
 .create-promise {
-  text-align: center;
-  padding: 4rem;
+  padding: 4rem 4rem 6rem;
+  position: relative;
   
   .promise-statement {
-    margin: 0 0 3rem;
+    margin: 0;
     line-height: 3rem;
     font-weight: 300;
     
     span {
       font-weight: bold;
+      
+      &:last-of-type {
+        display: block;
+      }
     }
   }
   
+//   .promise-button {
+//     border: 1px solid $blue;
+//     border-radius: $card-border-radius;
+//     color: $blue;
+//     display: block;
+//     font-size: 2rem;
+//     font-weight: bold;
+//     text-transform: uppercase;
+//     padding: 2rem;
+//     text-align: center;
+//     transition: all .75s ease-in-out;
+    
+//     &:hover {
+//       background-color: $blue;
+//       color: white;
+//     }
+//   }
+  
   .promise-button {
-    border: 1px solid $blue;
-    border-radius: .5rem;
-    color: $blue;
+    color: $white;
+    background-color: $blue;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
     display: block;
     font-size: 2rem;
     font-weight: bold;
     text-transform: uppercase;
-    padding: 2rem;
+    padding: 1rem;
     text-align: center;
     transition: all .75s ease-in-out;
     
     &:hover {
       background-color: $blue;
       color: white;
+    }
+  }
+  
+  .promise-picker {
+    align-items: center;
+    display: flex;
+    margin: 0 -1rem;
+    
+    > * {
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+    
+    .picker__holder {
+      max-width: none;
+    }
+    
+    h1 {
+      margin: 0 1rem;
+    }
+    
+    fieldset {
+      flex-grow: 25;
+      flex-shrink: 1;
+      margin: 1em 0;
+      border: 0;
+      padding: 0;
+      position: relative;
+      
+      // & + h1 {
+      //   float: right;
+      // }
+      
+      & + fieldset {
+        margin-left: .5rem;
+        flex-shrink: 5;
+        flex-grow: 1;
+      }
+    }
+    
+    input {
+      background: none;
+      border: 1px dotted $dark-blue;
+      // border: none;
+      border-radius: $card-border-radius;
+      box-sizing: border-box;
+      color: $blue;
+      display: block;
+      font-size: 2em;
+      padding: .5em;
+      margin: 0;
+      width: 100%;
+    }
+    
+    a {
+      color: #0089ec;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .time-input {
+      position: absolute;
+      right: 1em;
+      top: .8em;
+      padding: 0;
+      margin: 0;
+      width: 0;
+      height: 0;
+      background: transparent;
+      color: $blue;
+      border: 0;
+      border-left: .5em solid transparent;
+      border-right: .5em solid transparent;
+      border-top: .75em solid $blue;
+      cursor: pointer;
+      
+      &:focus {
+        border-top-color: #0089ec;
+      }
     }
   }
 }

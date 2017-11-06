@@ -1,15 +1,27 @@
 $white: #FEFEFE;
 $black: #313131;
-$blue: #2fa2fa;
-$blue-border: #7bc9ff;
-$dark-blue: #126bbd;
-
 $light-gray: #999999;
 $gray: #73706d;
 $dark-gray: #454545;
 
+$green: #40af6d;
+$orange: #c39321;
+$red: #9c2248;
+$blue: #2fa2fa;
+
+$green-border: #016d42;
+$orange-border: #735806;
+$red-border: #9c1836;
+$blue-border: #7bc9ff;
+$gray-border: $dark-gray;
+
+$dark-blue: #126bbd;
+
 $header-bg: #242424;
 $header-border: #424242;
+
+$card-border-radius: .25rem;
+$element-border-radius: 3px;
 
 @import 'base.scss';
 @import 'card.scss';
@@ -32,7 +44,7 @@ header {
       margin-left: .75rem;
       padding: .4rem 1rem;
       font-size: .75rem;
-      border-radius: 3px;
+      border-radius: $element-border-radius;
       background-color: $dark-gray;
       border: 1px solid $gray;
       box-shadow: 2px 2px $black;

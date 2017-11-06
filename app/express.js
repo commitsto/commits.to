@@ -15,6 +15,8 @@ app.use(sassMiddleware({
   // outputStyle: 'compressed',
 }))
 
+app.enable('trust proxy')
+
 app.use(express.static('/app/styles'))
 app.use(express.static('/app/public'))
 

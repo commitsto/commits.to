@@ -1,6 +1,6 @@
 .promise-card {
   background-color: $blue;
-  border-radius: .25rem;
+  border-radius: $card-border-radius;
   border: 1px solid $blue-border;
   overflow: hidden;
   padding: 1rem;
@@ -18,6 +18,29 @@
     font-weight: 300;
     font-size: 50%;
   }
+  
+  &.promise--status {
+    &-green {
+      background-color: $green;
+      border-color: $green-border;
+    }
+    &-blue {
+      // background-color: $blue;
+    }
+    &-orange {
+      background-color: $orange;
+      border-color: $orange-border;
+    }
+    &-red {
+      background-color: $red;
+      border-color: $red-border;
+    }
+    &-gray {
+      background-color: $gray;
+      border-color: $gray-border;
+    }
+  }
+
 }
 
 .promise-user {

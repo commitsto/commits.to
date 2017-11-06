@@ -1,13 +1,13 @@
-import Promise from '../models/promise.js'
-import parsePromise from '../lib/parse.js'
+import Promises from '../models/promise'
+import { parsePromise } from '../lib/parse'
 
 // utility to populate table with hardcoded promises below
 export function setup() { 
-  Promise.sync({force: true}) // 'force: true' just drops the table if it exists
+  Promises.sync({force: true}) // 'force: true' just drops the table if it exists
     .then(function(){         // and creates a new one!
       // Add the default promises to the database
       for (var i = 0; i < promises.length; i++) {
-        Promise.create(parsePromise(promises[i]))
+        Promises.create(parsePromise({ urtext: promises[i] }))
       }
     })
 }
@@ -57,7 +57,7 @@ export const promises = [
   "dreev.commits.to/meta_debrief_kim/by/midnight_friday", // 9-14, done, B
   "dreev.commits.to/ping_mirabai/by/sep_22", // 9-14, done, B
   "dreev.commits.to/send_ms_gross_email/by/sunday_11am", // 9-14, done, B
-  "dreev.promises.to/ping_oli/by/nov_16", // 9-15, B
+  "dreev.promises.to/ping_oli/by/jan_16", // 9-15, B
   "dreev.promises.to/ping_byorgey/by/dec_20", // 9-15, B
   "dreev.promises.to/labelzero/by/1am", // 9-15, done, B
   "chris.promises.to/follow_up_on_that_support_thread", // 9-18
@@ -132,6 +132,18 @@ export const promises = [
   "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night", // 10-24, done, B
   "dreev.promises.to/ask_kelley_re_ducks/by/nov_15", // 10-25, B
   "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm", // 10-25
-  "dreev.commits.to/answer_nathaniels_other_questions/by/midnight", // 10-26, done 5m late, 
-  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, 1
+  "dreev.commits.to/answer_nathaniels_other_questions/by/midnight", // 10-26, done 5m late, B
+  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight", // 10-26, done, B
+  "chris.promises.to/finish-the-datepicker-feature/by/tomorrow", // 10-28
+  "dreev.promises.to/report_cinesift_bug_separately/by/midnight", // 10-28, B
+  "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm", // 10-30, done, B
+  "dreev.promises.to/plug_nanowrimo_room", // 10-31, done, B
+  "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march", // 10-31, B
+  "dreev.promises.to/verify_no_prov/by/10:30am", // 11-01, done, B
+  "dreev.promises.to/roadedbugcheck/by/today", // 11-02, done, B
+  "chris.promises.to/finish-the-latest-pr/by/tonight", // 11-02
+  "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday", // 11-03, done, B
+  "dreev.commits.to/payment_to_aaron/by/nov_30", // 11-04
+  "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work", // 10-31
+  "dreev.promises.to/send_michele_new_set_of_edits/by/nov_11_11pm", // 11-05
 ]

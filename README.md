@@ -417,7 +417,11 @@ If you want to reuse a slug for a new promise it's up to you to rename (create a
 * alice.willprobab.ly/ (emphasizes the reliability percentage)
 * alice.willresolute.ly (maybe it would grow on me?)
 
-Maybe silly idea: we currently have "promises.to" and "commits.to" which are pretty synonomous 
+Maybe silly idea: we currently have "promises.to" and "commits.to" which are pretty synonomous but if we had other domains that could maybe affect the reliability score.
+Like "promising" is one thing but if it's alice.intends.to (not that we have that domain) then maybe it doesn't fully count against you if you don't actually do it.
+Also if we made this work for people's personal domain names, like dreev.es/will, then we could have arbitrary verbs.
+So maybe `verb` would make sense as one of the promise data structure fields in the future?
+
 
 ## Getting something dogfoodable as quickly as possible
 

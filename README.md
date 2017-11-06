@@ -326,7 +326,8 @@ For example:
 
 * 2017-10-31: due date changed from 11/14 to 11/30 with comment "the original promise URL didn't specify a date and defaulted to 2 weeks out but the end of the month is what I had in mind"
 
-Some people will do things like "giving myself an extra day because my cat got sick" which is stupid and defeats the point but by having to make 
+Some people will do things like "giving myself an extra day because my cat got sick" which defeats the whole point but by having to make those justifications publicly you can see when someone is doing that and discount their supposed reliability percentage accordingly.
+I mean, people can cheat and game this in a million ways anyway so no restrictions we try to impose will ever really solve this kind of problem.
 
 (An alternative we were hashing out before was allowing you to edit the due date exactly once in case the system initially parsed it wrong or whatever.)
 

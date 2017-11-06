@@ -23,13 +23,46 @@ alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm
 
 As in, she literally types that, on the fly, directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
+The system let's Alice mark the promise completed and keeps track of her reliabliity -- the fraction of promises she keeps!
 
-We actually have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
+We have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
+
+
+## Overview of Functional Spec
+
+Our goal is to first deploy something that works for ourselves in the simplest way possible.
+No logins, no user accounts, no restrictions, no security, nothing.
+Anyone can surf to the URL for any promise and have carte blanche on changing it any way.
+We just store all the promises and show the reliability statistics based on them.
+
+Here's a walk-through of what needs to happen for a generic example of Bob promising to do a thing by noon:
+
+1. Bob surfs to `bob.commits.to/do_a_thing/by/noon` 
+(see "[Creation on GET](#creation-on-get)")
+2. The system checks if a promise `do_a_thing` exists for `bob` yet 
+(see "[Uniqueness of Promise Names](#uniqueness-of-promise-names)")
+3. If not, create a promise `do_a_thing` for user `bob` 
+(see "[Promise Data Structure](#promise-data-structure)" and 
+"[Date Parsing](#date-parsing)")
+4. The page served up for `bob.commits.to/do_a_thing/by/noon` shows a form with all the promise fields 
+(see "[Marking Promises Fulfilled](#marking-promises-fulfilled)"), 
+a big countdown to the deadline, and 
+any late penalty if the deadline has passed 
+(see "[Late Penalties](#late-penalties)")
+5. In the header or corner of the page should be Bob's overall reliability across all his promises 
+(see "[Computing Statistics](#computing-statistics)")
+6. Also on the page: a link to create a calendar entry
+(see "[Calendar Integration](#calendar-integration)")
+7. (We're eager to add Beeminder integration
+(see "[Beeminder Integration](#beeminder-integration)")
+but will wait on that till we have user logins)
+8. Nothing else special happens when a promise is marked fulfilled other than the reliability percentage updates, and maybe the color changes
+9. If you go to `bob.commits.to` or `bob.promises.to` with no slug then show Bob's overall reliability score and a list of all his promises
 
 
 ## Creation on GET
 
-First of all, creating an object in a database on the server in response to a GET request is pretty unkosher. 
+Creating an object in a database on the server in response to a GET request is pretty unkosher. 
 We've decided it's worth it because of how elegantly it reduces the friction for the user.
 If/when that's abused we'll revisit it but initially we're making all tradeoffs in favor of lower friction.
 
@@ -47,7 +80,7 @@ The following are the database fields for the Promises table:
 * `slug`: unique identifier for the promise, parsed from the urtext URL
 * (`note`: optional additional notes or context for the promise)
 * `tini`: unixtime that the promise was made
-* `tdue`: unixtime that the promise is due
+* `tdue`: unixtime that the promise is due, aka the deadline
 * `tfin`: unixtime that the promise was (fractionally) fulfilled (even if 0%)
 * `xfin`: fraction fulfilled, default null to indicate still pending
 * (`firm`: true when the due date is confirmed and can't be edited again)
@@ -80,7 +113,7 @@ Here are some other ideas for fields, that we can worry about as the project evo
 * Information about the client (browser, geoIP, etc) that originally created the promise
 
 
-## UI For Marking Promises Fulfilled
+## Marking Promises Fulfilled
 
 For the MVP we'll make this dirt simple.
 No logins or restrictions or anything.
@@ -91,7 +124,7 @@ Namely, `user` and `slug`.
 Or maybe who cares if the subdomain and path in `urtext` don't match `user` and `slug`!
 We can default to total laissez faire and tighten things down as needed.
 Sure, it defeats the point if you can keep changing the deadline but maybe the honor system will work surprisingly well!
-In any case we have ideas for later for how to further discourage cheating.
+In any case we have ideas for later for how to further discourage cheating (see "For Later: Public Changelog").
 
 In the meantime, **marking a promise (partially) fulfilled just means editing the `xfin` field and the `tfin` field**.
 
@@ -155,6 +188,8 @@ For example, credit(0) is 1 (no penalty) and credit(3600) is 0.999 (most of the 
 
 ## Beeminder Integration
 
+We'd like this to be part of the MVP but it means having actual user logins and storing a Beeminder access token, so for the very initial MVP we'll leave this out.
+
 The idea is to 
 [send a datapoint to Beeminder](http://beeminder.com/api) 
 for each promise you make.
@@ -181,20 +216,8 @@ The promises.to app's interactions with Beeminder (via Beeminder API calls) are 
 1. When a promise is created, create a datapoint
 2. When a promise is marked (partially) fulfilled, update the datapoint's value
 3. When a promise's due date changes, update the datapoint's date
-4. [POST-MVP] When a promise is deleted, delete the datapoint
-5. [POST-MVP] Create the initial Beeminder goal when a user signs up for promises.to
-
-
-## Account Settings
-
-1. Username, used as a subdomain for the URL
-2. Beeminder access token
-3. Timezone (needed to parse the deadlines; but less important since you can change the deadline if it's misparsed)
-
-Later:
-
-1. Pronoun (default "they/them/their/theirs")
-2. Display name, e.g., "Alice" as opposed to username "alice"
+4. [LATER] When a promise is deleted, delete the datapoint
+5. [LATER] Create the initial Beeminder goal when a user signs up for promises.to
 
 
 ## Computing Statistics
@@ -264,10 +287,10 @@ Especially cool is how it will tick down in real time when one of your deadlines
 (Dreev recommends React for having numbers like that always updated in real time.)
 
 
-## Automatically Creating Calendar Entries
+## Calendar Integration
 
 It's pretty critical that the promises end up on your calendar.
-That could be done semi-manually by creating links like described here: 
+Initially we'll do this semi-manually by creating links like described here: 
 <https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
 No Calendar API needed that way -- just construct the link and if the user is logged in to Google it will create the calendar entry when they click it.
 
@@ -284,6 +307,16 @@ Chris Butler wrote much of the initial code.
 <br>
 <br>
 
+## For Later: Color-coding
+
+* Gray: completed promises
+* Hot pink or showing flames or something cute: past due promises
+* Red: deadline in less than 24 hours
+* Orange: deadline in less than 48 hours
+* Blue: deadline in less than 72 hours
+* Green: deadline in more than 72 hours
+
+
 ## For Later: Public Changelog
 
 I think this is the most elegant and flexible solution to prevent cheating.
@@ -296,6 +329,18 @@ For example:
 Some people will do things like "giving myself an extra day because my cat got sick" which is stupid and defeats the point but by having to make 
 
 (An alternative we were hashing out before was allowing you to edit the due date exactly once in case the system initially parsed it wrong or whatever.)
+
+
+## For Later: Account Settings
+
+1. Username, used as a subdomain for the URL
+2. Beeminder access token
+3. Timezone (needed to parse the deadlines; but less important since you can change the deadline if it's misparsed)
+
+Later:
+
+1. Pronoun (default "they/them/their/theirs")
+2. Display name, e.g., "Alice" as opposed to username "alice"
 
 
 ## For Later: Ideas for parsing (that I mostly dislike)
@@ -372,6 +417,7 @@ If you want to reuse a slug for a new promise it's up to you to rename (create a
 * alice.willprobab.ly/ (emphasizes the reliability percentage)
 * alice.willresolute.ly (maybe it would grow on me?)
 
+Maybe silly idea: we currently have "promises.to" and "commits.to" which are pretty synonomous 
 
 ## Getting something dogfoodable as quickly as possible
 

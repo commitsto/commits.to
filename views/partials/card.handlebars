@@ -3,7 +3,7 @@
 
 <script src="/js/promise.js"></script>
 
-<section class="promise-card">
+<section class="promise-card {{dueStatus promise.tdue}}" style="{{creditStatus promise.tdue}}">
   <h2 class="promise-user">
     <a href="/{{promise.user}}.{{__appDomain}}/">
       {{promise.user}}

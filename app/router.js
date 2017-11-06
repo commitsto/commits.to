@@ -14,7 +14,7 @@ app.get([ // Home
 ], (req, resp) => {
     Promises.findAll({
       order: sequelize.literal('tini DESC'),
-      //limit: 30 show them all for now
+      // limit: 30
     }).then(function(promises) {
       resp.render('home', {
         promises
@@ -27,9 +27,10 @@ app.get([ // Home
 app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
   var dbPromises = {}
   Promises.findAll({
-   where: {
-     user: req.params.user
-   },
+    where: {
+      user: req.params.user
+    },
+    order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     resp.render('user', { 
       promises,
@@ -66,7 +67,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
           })
         } else {
           console.log('redirecting to create promise', promise, id)          
-          logger.info('new promise request', parsedPromise) // don't remove this
+          logger.info('new promise request', parsedPromise, req.ip) // don't remove this
 
           resp.render('create', {
             promise: parsedPromise,

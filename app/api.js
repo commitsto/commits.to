@@ -4,7 +4,7 @@ import app from './express'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 import mailself from '../lib/mail'
-// import computeCredit from './latepenalty'
+// import computeCredit from '../lib/latepenalty'
 
 import moment from 'moment-timezone'
 
@@ -42,7 +42,7 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
 
 app.get('/promises/create/:urtext(*)', (req, resp) => {
   console.log('create', req.params)
-  parsePromise(req.params.urtext).then((parsedPromise) => {
+  parsePromise({ urtext: req.params.urtext, ip: req.ip }).then((parsedPromise) => {
     Promises.create(parsedPromise)
     .then(function(promise){
       console.log('promise created', promise);
@@ -68,7 +68,7 @@ app.get('/promise/:udp/:urtext', function(req, resp) {
 app.get('/promises', function(req, resp) {
   var dbPromises = {}
   Promises.findAll({
-    order: sequelize.literal('tini DESC')
+    order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     // console.log('all promises', promises)
     // create nested array of promises by user:
@@ -83,9 +83,10 @@ app.get('/promises', function(req, resp) {
 app.get('/promises/:user', function(req, resp) {
   var dbPromises = {};
   Promises.findAll({
-   where: {
-     user: req.params.user
-   },
+    where: {
+      user: req.params.user
+    },
+    order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     console.log('user promises', promises);
     promises.forEach(function(promise) {

@@ -53,6 +53,18 @@ input {
   .promise-card span {
     font-weight: 300;
     font-size: 50%; }
+  .promise-card.promise--status-green {
+    background-color: #40af6d;
+    border-color: #016d42; }
+  .promise-card.promise--status-orange {
+    background-color: #c39321;
+    border-color: #735806; }
+  .promise-card.promise--status-red {
+    background-color: #9c2248;
+    border-color: #9c1836; }
+  .promise-card.promise--status-gray {
+    background-color: #73706d;
+    border-color: #454545; }
 
 .promise-user {
   align-items: center;

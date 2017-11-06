@@ -23,7 +23,7 @@ alice.promises.to/let_bob_know_re_meeting/by/tomorrow_5pm
 
 As in, she literally types that, on the fly, directly to Bob, manually, when she's making the promise to him.
 When Alice or Bob click that URL a promise is created in the promises.to app and a calendar entry is added to Alice's calendar and a datapoint is sent to Beeminder.
-The system let's Alice mark the promise completed and keeps track of her reliabliity -- the fraction of promises she keeps!
+The system lets Alice mark the promise completed and keeps track of her reliabliity -- the fraction of promises she keeps!
 
 We have both the "promises.to" and "commits.to" domain names and you can use them interchangeably.
 

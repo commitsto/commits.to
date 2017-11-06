@@ -146,4 +146,5 @@ export const promises = [
   "dreev.commits.to/payment_to_aaron/by/nov_30", // 11-04
   "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work", // 10-31
   "dreev.promises.to/send_michele_new_set_of_edits/by/nov_11_11pm", // 11-05
+  "dreev.commits.to/ask_person_re_food_morality", // 11-06
 ]

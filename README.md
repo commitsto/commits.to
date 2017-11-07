@@ -204,7 +204,7 @@ for each promise you make.
 A Beeminder datapoint consists of a date, a value, and a comment.
 Beeminder plots those cumulatively on a graph for you and lets you hard-commit to a certain rate of progress.
 
-In the case of promises.to the date on the Beeminder datapoint is the promise's deadline `tdue` (even though it's in the future) and the value is the fulfilled fraction `xfin` (initially zero).
+In the case of promises.to the date on the Beeminder datapoint is the promise's deadline, `tdue` (even though it's in the future), and the value is the fulfilled fraction, `xfin` (initially zero).
 The comment should just have the promise's urtext since that's a link to all the data about a promise.
 Or something like "Auto-added by promises.to at 12:34pm -- " and then the urtext link.
 (It's nice to use the timezone the user has set in Beeminder -- available in the User resource in the Beeminder API -- when showing a time of day.)
@@ -217,7 +217,8 @@ So Beeminder is not enforcing a success rate, just an absolute number of success
 
 Pro tip: 
 Promise a friend some things from your to-do list that you could do any time.
-That way you're always ready for an I-will beemergency.
+That way you're always ready for an I-will 
+[beemergency](https://blog.beeminder.com/glossary/#eep).
 
 The promises.to app's interactions with Beeminder (via Beeminder API calls) are as follows:
 

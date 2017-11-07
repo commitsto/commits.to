@@ -35,7 +35,7 @@ By counting up how many promises were made and how many were marked completed (a
 
 Our goal is to first deploy something that works for ourselves as the simplest possible CRUD app.
 No logins, no user accounts, no security, nothing.
-Anyone can surf to the URL for any promise and have carte blanche on changing it any way.
+Anyone can surf to the URL for any promise and have carte blanche on changing it in any way.
 We just store all the promises and show the reliability statistics based on them.
 
 Here's a walk-through of what needs to happen for a generic example of Bob promising to do a thing by noon:
@@ -78,7 +78,7 @@ We'll address spiders and such -- like the Googlebot trying to fetch yourname.pr
 The fundamental object in the promises.to app is of course the promise, aka the commitment.
 The following are the database fields for the Promises table:
 
-* `urtext`: full original text (URL) the user typed to create the promise
+* `urtext`: full [original text](https://www.google.com/search?q=urtext) (URL) the user typed to create the promise
 * `user`: who's making the promise, parsed as the subdomain in the urtext
 * `slug`: unique identifier for the promise, parsed from the urtext URL
 * (`note`: optional additional notes or context for the promise)
@@ -154,6 +154,9 @@ In practice it seems to be easy to make an unlimited number of unique names for 
 
 One thing to do about it is just let the user manually rename the old promise.
 It's up to the user whether they're ok with any links to the old promise pointing at the new promise.
+
+Again, carte blanche to change any of the promise fields.
+Straight up CRUD and assume the user knows what they're doing.
 
 
 ## Date Parsing

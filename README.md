@@ -30,8 +30,11 @@ We have both the "promises.to" and "commits.to" domain names and you can use the
 
 ## Overview of Functional Spec
 
-Our goal is to first deploy something that works for ourselves in the simplest way possible.
-No logins, no user accounts, no restrictions, no security, nothing.
+The idea is to create a promise by constructing a URL (URL as UI!) and to mark a promise complete by surfing to that URL and submitting an html form.
+By counting up how many promises were made and how many were marked completed (and applying a fancy late penalty function, already written and tested) we can show a real-time reliability percentage for each user.
+
+Our goal is to first deploy something that works for ourselves as the simplest possible CRUD app.
+No logins, no user accounts, no security, nothing.
 Anyone can surf to the URL for any promise and have carte blanche on changing it any way.
 We just store all the promises and show the reliability statistics based on them.
 

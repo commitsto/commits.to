@@ -136,7 +136,7 @@ The `xfin` and `tfin` fields should either both be null -- meaning the promise i
 I.e., when a promise is marked (fractionally) fulfilled, it needs a date that that happened.
 We want the code that calculates the statistics to be able to assume that.
 But that code is written and turns out to be robost to nonsensical settings of `xfin` and `tfin` so let's not trouble the UI with any special enforcement there.
-Again, until all this laissez faire causes identifiable problems.
+At some point all this laissez faire will cause problems but those are bridges we'll cross when we come to them.
 
 Finally, whenever anything about the promise changes it should be automatically mirrored in Beeminder (see the "[Beeminder Integration](#beeminder-integration)" section).
 
@@ -178,8 +178,8 @@ In the meantime, the `/by/...` part of the URL, and in fact anything after the s
 ## Late Penalties
 
 A big part of promises.to is tracking how reliable you are.
-Like what fraction of the promises you logged did you actually fulfill?
-If you fulfill a promise late you get partial credit.
+Namely, what fraction of the promises you logged did you actually fulfill?
+And there's a fun twist: if you fulfill a promise late you get partial credit.
 That way we can always compute a single metric for your reliability at any moment in time.
 
 The function we're using for late penalties is below.

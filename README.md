@@ -118,27 +118,27 @@ Here are some other ideas for fields, that we can worry about as the project evo
 
 ## Marking Promises Fulfilled
 
-For the MVP we'll make this dirt simple.
-No logins or restrictions or anything.
-Just an html form with all the promise fields (see the "Promise Data Structure" section) on every promise's page that lets anyone edit anything any time.
+This will want lots of UI love later but we'll start with an ugly html form that just throws in all the fields for the promise (see the "[Promise Data Structure](#promise-data-structure)" section).
+Again, no logins or restrictions at all.
+Anyone hitting a promise's URL can edit anything any time.
 
-We might want to say you can't edit fields that would make the urtext be wrong. 
+Later we might want to say you can't edit fields that would make the urtext be wrong. 
 Namely, `user` and `slug`. 
-Or maybe who cares if the subdomain and path in `urtext` don't match `user` and `slug`!
-We can default to total laissez faire and tighten things down as needed.
-Sure, it defeats the point if you can keep changing the deadline but maybe the honor system will work surprisingly well!
-In any case we have ideas for later for how to further discourage cheating (see "For Later: Public Changelog").
+For now, who cares if the subdomain and path in `urtext` don't match `user` and `slug`.
+We'll tighten that down as needed.
+And, sure, it defeats the point if you can keep changing the deadline but maybe the honor system will work surprisingly well.
+In any case we have ideas for later for how to further discourage cheating (see "For Later: Public Changelog" below).
 
 In the meantime, **marking a promise (partially) fulfilled just means editing the `xfin` field and the `tfin` field**.
 
-*One constraint: The `xfin` and `tfin` fields should either both be null -- meaning the promise is still awaiting completion -- or neither be null.
+Another thing for later: 
+The `xfin` and `tfin` fields should either both be null -- meaning the promise is still awaiting completion -- or neither be null.
 I.e., when a promise is marked (fractionally) fulfilled, it needs a date that that happened.
 We want the code that calculates the statistics to be able to assume that.
-That said, the code in the "Computing Statistics" section is pretty robust to that so if it's hard to implement UI-wise, don't worry about it.*
+But that code is written and turns out to be robost to nonsensical settings of `xfin` and `tfin` so let's not trouble the UI with any special enforcement there.
+Again, until all this laissez faire causes identifiable problems.
 
-Finally, whenever anything about the promise changes it needs to be automatically mirrored in Beeminder (see the "Beeminder Integration" section).
-And voiding a promise is the same as deleting it as far as Beeminder is concerned.
-But we can ignore the whole promise voiding part in the MVP.
+Finally, whenever anything about the promise changes it should be automatically mirrored in Beeminder (see the "[Beeminder Integration](#beeminder-integration)" section).
 
 
 ## Uniqueness of Promise Names
@@ -223,6 +223,7 @@ The promises.to app's interactions with Beeminder (via Beeminder API calls) are 
 2. When a promise is marked (partially) fulfilled, update the datapoint's value
 3. When a promise's due date changes, update the datapoint's date
 4. [LATER] When a promise is deleted, delete the datapoint
+5. [LATER] When a promise is voided maybe also delete the datapoint in Beeminder
 5. [LATER] Create the initial Beeminder goal when a user signs up for promises.to
 
 

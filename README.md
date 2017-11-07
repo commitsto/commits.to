@@ -262,7 +262,11 @@ In the second case, where `xfin` and `tfin` are specified, the
 `x%` is `1-credit(tfin-tdue)` and the 
 `y%` is `xfin*credit(tfin-tdue)`.
 
-For the overall reliability score for a user, we assume unfulfilled promises that are still pre-deadline don't count for or against you.
+(To be clear, "50% fulfilled on 2017-10-31" isn't meant like a progress meter, though the user could manually treat it that way.
+The idea is to treat the promise as being as done as it's going to get on Oct 31 and the credit you're getting is 50% of what you'd normally get.
+So you multiply that 50% by whatever the credit function says based on how much after the due date Oct 31 is.)
+
+For the overall reliability score for a user, we assume unfulfilled promises (`xfin` == null) that are still pre-deadline don't count for or against you.
 And we optimistically assume that any promise you're late on you're going to fulfill in the next instant.
 So we iterate through a user's promises like so:
 
@@ -298,9 +302,10 @@ Especially cool is how it will tick down in real time when one of your deadlines
 
 ## Calendar Integration
 
-It's pretty critical that the promises end up on your calendar.
-Initially we'll do this semi-manually by creating links like described here: 
+This is pretty important and easy so we'll consider this part of even the initial MVP.
+Namely, for each promise, create a link as described here --
 <https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar>  
+-- to add the promise (slug and deadline) to your calendar.
 No Calendar API needed that way -- just construct the link and if the user is logged in to Google it will create the calendar entry when they click it.
 
 <br>

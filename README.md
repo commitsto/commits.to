@@ -191,6 +191,8 @@ The following shows the remaining credit as a function of how late you are, firs
 
 For example, credit(0) is 1 (no penalty) and credit(3600) is 0.999 (most of the credit for being just an hour late).
 
+See the "[Computing Statistics](#computing-statistics)" section for how to actually use this in the app.
+
 
 ## Beeminder Integration
 
@@ -232,14 +234,14 @@ The promises.to app's interactions with Beeminder (via Beeminder API calls) are 
 The only statistics we'll care about initially are the number of promises the user has made and their reliability percentage.
 And how many pending vs past promises.
 
-The relevant fields (see the "Promise Data Structure" section) are:
+The relevant fields (see the "[Promise Data Structure](#promise-data-structure)" section) are:
 
 * `xfin` &mdash; a promise's fulfilled fraction, between 0 and 1, default 0
 * `tfin` &mdash; when the promise was (fractionally) fulfilled
 * `tdue` &mdash; promise's deadline
 
 And we'll take `tnow` to be the current unixtime.
-See the "Late Penalties" section for how to compute how much credit you get for a promise as a function of how late you fulfill it.
+See the "[Late Penalties](#late-penalties)" section for how to compute how much credit you get for a promise as a function of how late you fulfill it.
 
 For a specific promise, we prominently display near the slug either
 
@@ -253,7 +255,7 @@ The first case with "pending" is when `xfin` and `tfin` are null.
 In that case, the 
 `x%` is `1-credit(tnow-tdue)` and the 
 `y%` is 100% minus that, i.e., `credit(tnow-tdue)`.
-(The credit function, which takes the number of seconds late, returns 1 for negative numbers and then increases the higher the positive number.)
+(The credit function, which takes the number of seconds late, returns 1 for negative numbers and then decreases monotonically the later you are, i.e., for more and positive number of seconds late.)
 And instead of the string "pending" maybe it's a checkbox that when checked gives you the option to specify the fraction completed and when you (fractionally) completed it.
 
 In the second case, where `xfin` and `tfin` are specified, the 

@@ -81,14 +81,14 @@ The following are the database fields for the Promises table:
 * `urtext`: full [original text](https://www.google.com/search?q=urtext) (URL) the user typed to create the promise
 * `user`: who's making the promise, parsed as the subdomain in the urtext
 * `slug`: unique identifier for the promise, parsed from the urtext URL
-* (`note`: optional additional notes or context for the promise)
+* (`note`: optional additional notes or context for the promise )
 * `tini`: unixtime that the promise was made
 * `tdue`: unixtime that the promise is due, aka the deadline
 * `tfin`: unixtime that the promise was (fractionally) fulfilled (even if 0%)
 * `xfin`: fraction fulfilled, default null to indicate still pending
-* (`firm`: true when the due date is confirmed and can't be edited again)
-* (`void`: true if the promise became unfulfillable or moot)
-* (`clix`: number of clicks a promise has gotten)
+* (`firm`: true when the due date is confirmed and can't be edited again )
+* (`void`: true if the promise became unfulfillable or moot )
+* (`clix`: number of clicks a promise has gotten )
 * `bmid`: the id of the Beeminder datapoint for this promise
 
 (The ones in the parentheses we can ignore for the MVP, though `note` and `clix` may be easy enough to go ahead and throw in there.)

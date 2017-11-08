@@ -401,12 +401,17 @@ Even Later:
    tomorrow" and figuring out the time. We could also just take the last
    occurrence of "by" and parse everything after it as the deadline.
 
+For the MVP we definitely just want to use the slugs as given.
+At most we can apply a `humanize()` function to them when displaying the promise on the page that could, for example, replace underscores with spaces.
+Or try to be smart and turn "do-the-thing" into "do the thing" but also display the slug "do_things_1-3" as "do things 1-3" and not "do things 1 3".
+It's a can of worms so for the MVP we should pick something very simple and only do it in the display logic.
 
 ## For Later: Calendar as UI
 
-Maybe it's not too much friction to just manually add entries to your calendar as the primary interface for adding promises. 
-There are various ways to do that with very low friction already. 
-But then that needs to automatically trigger promises.to to capture each calendar entry.
+This is totally at odds with the current design but before we had the URLs-as-UI idea we thought you'd create promises by creating calendar entries and use the calendar API to automatically capture those.
+
+There are various ways to do add calendar entries with very low friction already. 
+Then that needs to automatically trigger promises.to to capture each calendar entry.
 (I'm doing that now with IFTTT to send promises to Beeminder.)
 
 And maybe it's fine for *every* calendar entry to get automatically added. 
@@ -416,7 +421,7 @@ If they are promises then you need to manually mark them as fulfilled or not.
 Beeminder (plus the embarrassment of having your reliability percentage drop 
 when a deadline passes) should suffice to make sure you remember to do that.
 
-This is moot for now while we work on the URL-as-UI version.
+Again, this is moot for now while we work on the URL-as-UI version.
 
 
 ## For Later: Security and Privacy
@@ -433,7 +438,7 @@ In the MVP we can skip the approval UI and worry about abuse like that the first
 
 ## For Later: Active vs Inactive Promises
 
-It might be nice to reuse slugs!
+Here's a big can of worms: It might be nice to reuse slugs!
 Like to say bob.commits.to/call_mom/this_week and repeat that later and treat it as a new promise.
 
 Half-baked idea for accomplishing that:
@@ -449,7 +454,7 @@ New plan is to just treat user/slug pairs as necessarily unique.
 If you want to reuse a slug for a new promise it's up to you to rename (create a new slug for) the old promise first.
 
 
-## Other domain name ideas
+## For Posterity: Domain Name Ideas
 
 * dreev.es/will/ (for anyone who has a domain for their own name)
 * alice.promises.to/ (sergii grabbed this one)
@@ -459,18 +464,18 @@ If you want to reuse a slug for a new promise it's up to you to rename (create a
 * alice.willprobab.ly/ (emphasizes the reliability percentage)
 * alice.willresolute.ly (maybe it would grow on me?)
 
-Maybe silly idea: we currently have "promises.to" and "commits.to" which are pretty synonomous but if we had other domains that could maybe affect the reliability score.
+Maybe silly idea: we currently have "promises.to" and "commits.to" which are pretty synonomous but if we had other domains, that could maybe affect the reliability score.
 Like "promising" is one thing but if it's alice.intends.to (not that we have that domain) then maybe it doesn't fully count against you if you don't actually do it.
-Also if we made this work for people's personal domain names, like dreev.es/will, then we could have arbitrary verbs.
+Also if we made this work for people's personal domain names, like dreev.es/will, then we could have arbitrary verbs -- dreev.es/might, etc.
 So maybe `verb` would make sense as one of the promise data structure fields in the future?
+(This is also too half-baked to do anything with.)
 
 
 ## Getting something dogfoodable as quickly as possible
 
-1. parse incoming promises so all the fields are stored on GET
-2. anything not parseable yields an error that the user sees when clicking on the URL
-3. let you mark a promise fulfilled (or fractionally fulfilled, including 0%)
-4. no privacy or security features; everything is public
-5. no calendar API, just construct a link the user can click to create the calendar event
-6. realtime reliability score!
-
+1. Parse incoming promises so all the fields are stored on GET
+2. Anything not parseable yields an error that the user sees when clicking on the URL
+3. Let you mark a promise fulfilled (or fractionally fulfilled, including 0%)
+4. No privacy or security features; everything is public
+5. Easy: construct a link the user can click to create the calendar event
+6. Realtime reliability score! (Code is done; just needs hooking up)

@@ -1,6 +1,3 @@
-[test change directly on github for merging into Glitch at 2017-11-07_21:51]
-[2nd test change directly on github at 2017-11-07 22:45]
-
 [Changelog](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0 )
 
 [GitHub Issues](https://github.com/beeminder/iwill/issues )

@@ -1,7 +1,3 @@
-[Changelog](https://glitch.com/edit/#!/iwill?path=CHANGELOG.md:1:0 )
-
-[GitHub Issues](https://github.com/beeminder/iwill/issues )
-
 # The I-Will System
 
 Problem:
@@ -130,12 +126,20 @@ In any case we have ideas for later for how to further discourage cheating (see 
 
 In the meantime, **marking a promise (partially) fulfilled just means editing the `xfin` field and the `tfin` field**.
 
-Another thing for later: 
 The `xfin` and `tfin` fields should either both be null -- meaning the promise is still awaiting completion -- or neither be null.
 I.e., when a promise is marked (fractionally) fulfilled, it needs a date that that happened.
-We want the code that calculates the statistics to be able to assume that.
-But that code is written and turns out to be robost to nonsensical settings of `xfin` and `tfin` so let's not trouble the UI with any special enforcement there.
-At some point all this laissez faire will cause problems but those are bridges we'll cross when we come to them.
+We won't enforce that in the UI but just show warnings.
+If `xfin` is null and `tfin` is specified: show:
+
+> Error: Promise fulfilled at `tfin` but needs fraction fulfilled!
+
+If `xfin` is specified but `tfin` is null, show:
+
+> Error: Promise marked {`xfin*100`}% done but needs completion date!
+
+If `xfin` is 0 then put "completion" in scare quotes and add a parenthetical:
+
+> (Or the date/time you officially gave up in this case.)
 
 Finally, whenever anything about the promise changes it should be automatically mirrored in Beeminder (see the "[Beeminder Integration](#beeminder-integration)" section).
 
@@ -257,8 +261,15 @@ The promises.to app's interactions with Beeminder (via Beeminder API calls) are 
 
 ## Computing Statistics
 
-The only statistics we'll care about initially are the number of promises the user has made and their reliability percentage.
-And how many pending vs past promises.
+We'll care about the following statistics initially:
+
+1. Each promise's late penalty (0% if not yet late)
+2. Each promise's max credit (100% if not yet late)
+3. Each user's total number of promises made
+4. Each user's total number of promises pending
+5. Each user's overall reliability score
+
+### Individual Promises
 
 The relevant fields (see the "[Promise Data Structure](#promise-data-structure)" section) are:
 
@@ -267,32 +278,31 @@ The relevant fields (see the "[Promise Data Structure](#promise-data-structure)"
 * `tdue` &mdash; promise's deadline
 
 And we'll take `tnow` to be the current unixtime.
-See the "[Late Penalties](#late-penalties)" section for how to compute how much credit you get for a promise as a function of how late you fulfill it.
+See the "[Late Penalties](#late-penalties)" section where we define the `credit()` function for how much credit you get for a promise as a function of how late you fulfill it.
 
-For a specific promise, we prominently display near the slug either
+For a specific promise, displayed prominently at the URL for the promise, we compute the late penalty and max credit as follows:
 
-> pending - `x%` late penalty = `y%` max credit
+```javascript
+const ox = xfin === null ? 1    : xfin // optimistic xfin is 1
+const ot = tfin === null ? tnow : tfin // optimistic tfin is now
+const c = credit(ot - tdue)
+latepen = 1 - c  // fraction of credit lost by being late
+maxcred = ox * c // ie, tfin minus the late penalty so far
+```
 
-or
+The late penalty and max credit will change in real time for a pending promise that's past its deadline, and will update instantly when `xfin` or `tfin` are edited.
 
-> 50% fulfilled on 2017-10-31 at 12:34pm - x% late penalty = y% credit.
+See "[Marking Promises Fulfilled](#marking-promises-fulfilled)" for handling the cases that `xfin` is specified but not `tfin` or vice versa.
+The code above is robust to that -- we'll just show a warning to the user.
 
-The first case with "pending" is when `xfin` and `tfin` are null.
-In that case, the 
-`x%` is `1-credit(tnow-tdue)` and the 
-`y%` is 100% minus that, i.e., `credit(tnow-tdue)`.
-(The credit function, which takes the number of seconds late, returns 1 for negative numbers and then decreases monotonically the later you are, i.e., for more and positive number of seconds late.)
-And instead of the string "pending" maybe it's a checkbox that when checked gives you the option to specify the fraction completed and when you (fractionally) completed it.
-
-In the second case, where `xfin` and `tfin` are specified, the 
-`x%` is `1-credit(tfin-tdue)` and the 
-`y%` is `xfin*credit(tfin-tdue)`.
-
-(To be clear, "50% fulfilled on 2017-10-31" isn't meant like a progress meter, though the user could manually treat it that way.
+(To be clear, if, say, `xfin` is 50% and `tfin` is 2017-10-31 that isn't meant like a progress meter -- "promise is 50% complete as of the 31st" -- though the user could manually treat it that way.
 The idea is to treat the promise as being as done as it's going to get on Oct 31 and the credit you're getting is 50% of what you'd normally get.
 So you multiply that 50% by whatever the credit function says based on how much after the due date Oct 31 is.)
 
-For the overall reliability score for a user, we assume unfulfilled promises (`xfin` == null) that are still pre-deadline don't count for or against you.
+### User's Overall Reliability
+
+For the overall reliability score for a user, we assume unfulfilled promises (`xfin` and `tfin` both null) that are still pre-deadline don't count for or against you.
+We call those pending promises, where there's still time to get full credit.
 And we optimistically assume that any promise you're late on you're going to fulfill in the next instant.
 So we iterate through a user's promises like so:
 
@@ -319,7 +329,6 @@ Now you can report that the user has made
 and has a reliability of 
 {`numerator/denominator*100`}%.
 
-
 The user's overall realtime reliability score should be shown prominently next to the username wherever it appears or huge in the header or something.
 It's the most important number in the whole app.
 Especially cool is how it will tick down in real time when one of your deadlines passes.
@@ -339,7 +348,7 @@ No Calendar API needed that way -- just construct the link and if the user is lo
 # Credits
 
 Daniel Reeves wrote a blog post about the idea.
-Sergii Kalinchuk got the "promises.to" domain.
+Sergii Kalinchuk got the "promises.to" domain and is running the server that for now just forwards to Glitch.
 Marcin Borkowski had the idea for URLs-as-UI for creating promises.
 Chris Butler wrote much of the initial code.
 
@@ -366,10 +375,11 @@ For example:
 
 * 2017-10-31: due date changed from 11/14 to 11/30 with comment "the original promise URL didn't specify a date and defaulted to 2 weeks out but the end of the month is what I had in mind"
 
-Some people will do things like "giving myself an extra day because my cat got sick" which completely defeats the point of the whole system (even for completely unimpeachable excuses it defeats the point, unless you explicitly make the deadline conditional in the first place) but by having to make those justifications publicly you can see when someone is doing that and discount their supposed reliability percentage accordingly.
+Some people will do things like "giving myself an extra day because my cat got sick" which completely defeats the point of the whole system (even for entirely unimpeachable excuses it defeats the point, unless you explicitly make the deadline conditional in the first place) but by having to make those justifications publicly you can see when someone is doing that and discount their supposed reliability percentage accordingly.
 I mean, people can cheat and game this in a million ways anyway so no restrictions we try to impose will ever really solve this kind of problem.
 
-(An alternative we were hashing out before was allowing you to edit the due date exactly once in case the system initially parsed it wrong or whatever.)
+(An alternative we were hashing out before was allowing you to edit the due date exactly once in case the system initially parsed it wrong or whatever.
+I think we'll be in a better position to make these kinds of design decisions after seeing more real-world usage. And I'm all for being super opinionated about things like not letting you edit deadlines.)
 
 
 ## For Later: Account Settings

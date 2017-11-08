@@ -184,14 +184,40 @@ That way we can always compute a single metric for your reliability at any momen
 
 The function we're using for late penalties is below.
 The idea is to have your reliability decrease strictly monotonically the moment the deadline hits, with sudden drops when you're a minute, an hour, a day, etc, late.
-(More on the rationale for that in `lib/latepenalty.js`.)
-The following shows the remaining credit as a function of how late you are, first zoomed in to the first 60some seconds, and then zoomed out further and further:
+Here's a plot of that function -- technically the fraction of credit remaining as a function of lateness -- first zoomed in to the first 60some seconds, and then zoomed out further and further:
 
 [![Late penalty function](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png?1507416292319 "Click for bigger version")](https://cdn.glitch.com/ff974d2d-e212-470e-8587-f065205350d0%2Flate-penalty.png)
 
-For example, credit(0) is 1 (no penalty) and credit(3600) is 0.999 (most of the credit for being just an hour late).
+For example, `credit(0)` is 1 (no penalty) and `credit(3600)` is 0.999 (most of the credit for being just an hour late).
 
-See the "[Computing Statistics](#computing-statistics)" section for how to actually use this in the app.
+See the "[Computing Statistics](#computing-statistics)" section for how to actually use this in the app or read on for more on why we like this weirdo function.
+
+### Rationale for the Crazy Late Penalty Function
+
+There are a few key constraints on the shape of this function:
+
+1. Strict monotonicity
+2. Asymptotically approaches zero
+3. Sudden drops at a minute/hour/day/week/month/year late
+
+Being strictly monotone means that you always see your reliability score visibly ticking down second by second whenever you have an overdue promise.
+
+Approaching but never reaching zero just means you'll always get some epsilon of credit for fulfilling a promise no matter how late you are.
+
+The third constraint is for beehavioral-economic reasons.
+We don't want you to feel like, once you've missed the deadline, that another 
+hour or day or week won't matter. 
+So the second-order discontinuities work like this: 
+If you miss the nominal deadline your credit drops to 99.999% within seconds. 
+The next sudden drop is at the 1-minute mark. 
+After that you can still get 99.9% credit if you're less than an hour 
+late. 
+And if you miss that, you can still get 99% credit if you're less than a 
+day late. 
+At 24 hours the credit drops again to 90%, etc. 
+A minute, an hour, a day, a week, a month, all the way up to the one-year anniversary of the deadline. 
+If you hit that then you still get 10% credit. 
+After that it drops pretty quickly to 1% and asymptotically approaches 0%, without ever reaching it.
 
 
 ## Beeminder Integration
@@ -353,7 +379,7 @@ I mean, people can cheat and game this in a million ways anyway so no restrictio
 2. Beeminder access token
 3. Timezone (needed to parse the deadlines; but less important since you can change the deadline if it's misparsed)
 
-Later:
+Even Later:
 
 1. Pronoun (default "they/them/their/theirs")
 2. Display name, e.g., "Alice" as opposed to username "alice"

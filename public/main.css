@@ -53,6 +53,14 @@ input {
   .promise-card span {
     font-weight: 300;
     font-size: 50%; }
+  .promise-card h2 .dateinfo {
+    float: right; }
+    .promise-card h2 .dateinfo ul {
+      margin: 0px; }
+    .promise-card h2 .dateinfo li {
+      list-style: none;
+      font-size: 50%;
+      text-align: right; }
   .promise-card.promise--status-green {
     background-color: #40af6d;
     border-color: #016d42; }

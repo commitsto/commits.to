@@ -39,6 +39,39 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
   })
 })
 
+// edit a promise
+app.get('/:user.([promises|commits]+\.to+)/:promise/edit', (req, resp) => {
+  const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
+  .then(parsedPromise => {
+    const { id } = parsedPromise
+
+    console.log('editPromise', req.ip, parsedPromise)
+
+    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
+      resp.redirect('/')
+    } else if (!users.includes(parsedPromise.user)) {
+      resp.redirect('/sign-up')
+    } else {
+      Promises.findOne({ where: { id } }).then((promise) => {
+        if (promise) {
+          console.log('promise exists', promise.dataValues)
+          resp.render('edit', {
+            promise,
+          })
+        } else {
+          console.error('no such promise', promise, id)
+          resp.redirect('/')
+        }
+      })
+    }
+  })
+  .catch((reason) => { // unparsable promise
+    console.log(reason)
+    resp.redirect('/')
+  })
+})
+
+
 // TODO: handle domain agnosticism
 // The server at promises.to passes along the full URL the way the user typed
 // it, so when the user hits "bob.promises.to/foo" the Glitch app is called
@@ -81,6 +114,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     resp.redirect('/')
   })
 })
+
 
         
 /* Static */

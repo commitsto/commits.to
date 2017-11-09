@@ -19,6 +19,16 @@
     font-size: 50%;
   }
   
+  h2 .dateinfo{
+    float: right;
+    ul { margin: 0px; }
+    li {
+      list-style: none;
+      font-size: 50%;
+      text-align: right;
+    }
+  }
+  
   &.promise--status {
     &-green {
       background-color: $green;

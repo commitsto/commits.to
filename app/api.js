@@ -90,6 +90,7 @@ app.get('/promises/:user', function(req, resp) {
   }).then(function(promises) {
     console.log('user promises', promises);
     promises.forEach(function(promise) {
+      console.log(promise.tfin)
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise)
     })

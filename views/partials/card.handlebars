@@ -8,9 +8,15 @@
     <a href="/{{promise.user}}.{{__appDomain}}/">
       {{promise.user}}
     </a>
-    <span style="opacity:.75">{{prettyDate promise.tfin}}</span>
-    <span style="opacity:.25">&nbsp;({{promise.id}})</span>
+    <div class="dateinfo">
+      <ul>
+        <li style="opacity:.75">{{prettyDate promise.tfin}}</li>
+        <li style="opacity:.25">&nbsp;({{promise.id}})</li>
+        <li><a href="#" onclick="editPromise('{{promise.id}}')">edit</a></li>
+      </ul>
+    </div>
   </h2>
+
 
   <div class="promise-domain">{{promise.domain}}</div>
   

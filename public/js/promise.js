@@ -44,3 +44,7 @@ function completePromise(id) {
     }
   })
 }
+
+function editPromise(id) {
+  
+}

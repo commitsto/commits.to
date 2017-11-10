@@ -16,24 +16,6 @@
     }
   }
   
-//   .promise-button {
-//     border: 1px solid $blue;
-//     border-radius: $card-border-radius;
-//     color: $blue;
-//     display: block;
-//     font-size: 2rem;
-//     font-weight: bold;
-//     text-transform: uppercase;
-//     padding: 2rem;
-//     text-align: center;
-//     transition: all .75s ease-in-out;
-    
-//     &:hover {
-//       background-color: $blue;
-//       color: white;
-//     }
-//   }
-  
   .promise-button {
     color: $white;
     background-color: $blue;
@@ -134,6 +116,10 @@
         border-top-color: #0089ec;
       }
     }
+  }
+  label {
+    color: $white;
+    float: left;
   }
 }
 

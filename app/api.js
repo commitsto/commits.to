@@ -40,6 +40,18 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
   })
 })
 
+// TODO: these should all be rendering json responses or something, not redirecting....
+app.post('/promises/edit/:id(*)', (req, resp) => {
+  console.log(req.body.promise)
+  Promises.update(
+    req.body.promise,
+  { where: { id: req.params.id }})
+  .then(function(promise) {
+    console.log('edited promise', promise);
+    resp.redirect(req.body.promise_url);
+  })
+})
+
 app.get('/promises/create/:urtext(*)', (req, resp) => {
   console.log('create', req.params)
   parsePromise({ urtext: req.params.urtext, ip: req.ip }).then((parsedPromise) => {

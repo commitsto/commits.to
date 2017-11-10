@@ -191,6 +191,9 @@ input {
       cursor: pointer; }
       .create-promise .promise-picker .time-input:focus {
         border-top-color: #0089ec; }
+  .create-promise label {
+    color: #FEFEFE;
+    float: left; }
 
 .promises-preview {
   display: flex;

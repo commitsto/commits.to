@@ -7,8 +7,9 @@
 
 <div class="create-promise blue-border">
   <h1 class="promise-statement">
-    Did <span>{{promise.user}}</span> just {{verbifyDomain domain=promise.domain}}
+    <span>{{promise.user}}</span> {{verbifyDomain domain=promise.domain}}
     <span>{{promise.what}}</span>
+    <span/>
   </h1>
   
   <div class="promise-picker">
@@ -22,8 +23,9 @@
       <input id="input_time_text" type="text" data-value="{{promise.tdue}}" class="text-input">
       <input id="input_time" type="text" class="time-input">
     </fieldset>
-    <h1>?</h1>
   </div>
   
-  <a class="promise-button" href="/promises/create/{{promise.urtext}}">Commit</a>
+  {{#if showSubmitButton}}
+    <a class="promise-button" href="/promises/create/{{promise.urtext}}">Commit</a>
+  {{/if}}
 </div>

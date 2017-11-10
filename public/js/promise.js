@@ -46,5 +46,5 @@ function completePromise(id) {
 }
 
 function editPromise(id) {
-  
+  fetch('/promises/edit/${id}')
 }

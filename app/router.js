@@ -40,7 +40,7 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
 })
 
 // edit a promise
-app.get('/:user.([promises|commits]+\.to+)/:promise/edit', (req, resp) => {
+app.get('/:user.([promises|commits]+\.to+)/:promise*?/edit', (req, resp) => {
   const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
   .then(parsedPromise => {
     const { id } = parsedPromise

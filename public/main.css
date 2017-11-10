@@ -94,7 +94,7 @@ input {
   margin-top: 2rem; }
   .promise-bar .promise-bar-link {
     background-color: #FEFEFE;
-    color: #2fa2fa;
+    color: #313131;
     display: block;
     font-size: .75rem;
     font-weight: bold;
@@ -106,7 +106,7 @@ input {
     .promise-bar .promise-bar-link:hover {
       opacity: .75; }
   .promise-bar .bar-button-action .promise-bar-link {
-    opacity: .25; }
+    opacity: .5; }
 
 .create-promise {
   padding: 4rem 4rem 6rem;

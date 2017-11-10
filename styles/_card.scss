@@ -79,7 +79,7 @@
   
   .promise-bar-link {
     background-color: $white;
-    color: $blue;
+    color: $black;
     display: block;
     font-size: .75rem;
     font-weight: bold;
@@ -96,7 +96,7 @@
   
   .bar-button-action {
     .promise-bar-link {
-      opacity: .25;
+      opacity: .5;
     }
   }
 }

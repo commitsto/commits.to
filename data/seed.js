@@ -82,19 +82,19 @@ export const promises = [
   "kim.promises.to/schedule_attorney_meet/by/10/1", // tini: 9-21
   "kim.promises.to/john_PAM_photos_ask/by/10/1", // tini: 9-21
   "kim.promises.to/Nike_p5_email/by/10/1", // tini: 9-21
-  "kim.promises.to/intro_martin_marna/by/10/5", // 9-21
-  "kim.promises.to/sbonomic_jitsjudgelist_doc/by/10/15", // 9-21
-  "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // 9-21
-  "kim.promises.to/talk_finances_w_D/by/2017-10-30", // 10-05
+  "kim.promises.to/intro_martin_marna/by/10/5", // tini: 9-21
+  "kim.promises.to/sbonomic_jitsjudgelist_doc/by/10/15", // tini: 9-21
+  "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // tini: 9-21
+  "kim.promises.to/talk_finances_w_D/by/2017-10-30", // tini: 10-05
 
-  "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night", // 9-18, done
-  "bee.commits.to/rest-of-paperwork-to-yoko-before-the-gym-tomorrow", // 9-18, done 2 hours late
-  "bee.commits.to/email-sleep-as-android-for-specifics-about-sleep-length-measurement", // 9-19
-  "bee.promises.to/read-hannas-emails", // 9-26, done
-  "bee.promises.to/reping-one-with-heart", // 9-26
-  "bee.promises.to/fill-out-metromile-feedback", // 9-26
-  "bee.promises.to/schedule-planning-with-cantor/by/friday-night", // 9-26, done
-  "bee.commits.to/put-away-camping-gear-this-weekend", // 9-29
-  "bee.commits.to/prettying_road_editor", // 10-04
-  "bee.commits.to/go_to_bed/by/11pm", // 10-20
+  "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night", // tini: 9-18, done
+  "bee.commits.to/rest-of-paperwork-to-yoko-before-the-gym-tomorrow", // tini: 9-18, done 2 hours late
+  "bee.commits.to/email-sleep-as-android-for-specifics-about-sleep-length-measurement", // tini: 9-19
+  "bee.promises.to/read-hannas-emails", // tini: 9-26, done
+  "bee.promises.to/reping-one-with-heart", // tini: 9-26
+  "bee.promises.to/fill-out-metromile-feedback", // tini: 9-26
+  "bee.promises.to/schedule-planning-with-cantor/by/friday-night", // tini: 9-26, done
+  "bee.commits.to/put-away-camping-gear-this-weekend", // tini: 9-29
+  "bee.commits.to/prettying_road_editor", // tini: 10-04
+  "bee.commits.to/go_to_bed/by/11pm", // tini: 10-20
 ]

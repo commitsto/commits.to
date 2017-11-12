@@ -2,6 +2,7 @@
 
 <div class="create-promise blue-border">
   <h1>{{promise.urtext}}</h1>
+  <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
   <fieldset>
     <label for="promise_user">Who</label>
     <input name="promise_user" type="text" value="{{promise.user}}">
@@ -20,5 +21,8 @@
     <label for="promise_slug">XFin</label>
     <input name="promise_xfin" type="text" value="{{promise.xfin}}">
   </fieldset>
-  <a class="promise-button" href="/promises/edit/{{promise.id}}">Edit</a>
+  <fieldset>
+    <input type="submit" class="promise-button" value="Edit">
+  </fieldset>
+  </form>
 </div>

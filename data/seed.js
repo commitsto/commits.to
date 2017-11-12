@@ -97,4 +97,5 @@ export const promises = [
   "bee.commits.to/put-away-camping-gear-this-weekend", // tini: 9-29
   "bee.commits.to/prettying_road_editor", // tini: 10-04
   "bee.commits.to/go_to_bed/by/11pm", // tini: 10-20
+  "bee.promises.to/reply_to_hin/by/tuesday", // tini: 11-10
 ]

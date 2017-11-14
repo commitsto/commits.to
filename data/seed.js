@@ -1,13 +1,37 @@
 import Promises from '../models/promise'
 import { parsePromise } from '../lib/parse'
 
+import data from './promises.json'
+
+export function importJson() {
+  Promises.sync().then(function(){
+    Object.keys(data).forEach((key) => {
+      const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
+      const promise = { 
+        id: key.toLowerCase(),
+        urtext: key,
+        user,
+        slug,
+        what: slug,
+        note,
+        tini: new Date(tini.slice(0,-4)),
+        tdue: new Date(tdue.slice(0,-4)),
+        tfin: new Date(tfin.slice(0,-4)),
+        xfin
+      }
+      console.log('import', key, data[key], promise)
+      Promises.create(promise)
+    })
+  })
+}
+
 // utility to populate table with hardcoded promises below
 export function setup() { 
   Promises.sync({force: true}) // 'force: true' just drops the table if it exists
     .then(function(){         // and creates a new one!
       // Add the default promises to the database
-      for (var i = 0; i < promises.length; i++) {
-        Promises.create(parsePromise({ urtext: promises[i] }))
+      for (var i = 0; i < data.length; i++) {
+        Promises.create(parsePromise({ urtext: data[i] }))
       }
     })
 }

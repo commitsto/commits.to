@@ -1,11 +1,16 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import { users, setup } from '../data/seed'
+import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 
 import { logger } from '../lib/logger'
+
+       
+/* Static */
+
+app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
 app.get([ // Home
   '/?',
@@ -114,27 +119,6 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
     console.log(reason)
     resp.redirect('/')
   })
-})
-
-
-        
-/* Static */
-
-app.get('/sign-up', (req, resp) => { resp.render('signup') })
-
-
-/* Utils */
-
-// drop db and repopulate
-app.get('/reset', (req, resp) => {
-  setup()
-  resp.redirect('/')
-})
-
-// removes all entries from the promises table
-app.get('/empty', (req, resp) => {
-  Promises.destroy({where: {}})
-  resp.redirect('/')
 })
 
 // --------------------------------- 80chars ---------------------------------->

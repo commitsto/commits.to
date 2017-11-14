@@ -4,6 +4,7 @@ import app from './express'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 import mailself from '../lib/mail'
+import { setup, importJson } from '../data/seed'
 // import computeCredit from '../lib/latepenalty'
 
 import moment from 'moment-timezone'
@@ -20,6 +21,18 @@ app.get('/promises/remove/:id(*)', (req, resp) => {
   })
   .then(function(deletedRows){
     console.log('promise removed', deletedRows);
+    resp.redirect('/')
+  })
+})
+
+app.get('/promises/:user/remove', function(req, resp) {
+  var dbPromises = {};
+  Promises.destroy({
+    where: {
+      user: req.params.user
+    }
+  }).then(function(deletedRows) {
+    console.log('user promises removed', deletedRows);
     resp.redirect('/')
   })
 })
@@ -110,6 +123,20 @@ app.get('/promises/:user', function(req, resp) {
     })
     resp.json(dbPromises)
   })
+})
+
+/* Utils */
+
+// drop db and repopulate
+app.get('/import', (req, resp) => {
+  importJson()
+  resp.redirect('/')
+})
+
+// removes all entries from the promises table
+app.get('/empty', (req, resp) => {
+  Promises.destroy({where: {}})
+  resp.redirect('/')
 })
 
 // --------------------------------- 80chars ---------------------------------->

@@ -18,6 +18,9 @@ app.get([ // Home
   '/commits.to/?'
 ], (req, resp) => {
     Promises.findAll({
+      where: {
+        tfin: null // only show uncompleted promises on the homepage
+      },
       order: sequelize.literal('tini DESC'),
       // limit: 30
     }).then(function(promises) {

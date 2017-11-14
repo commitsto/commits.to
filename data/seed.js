@@ -15,8 +15,8 @@ export function importJson() {
         what: slug,
         note,
         tini: new Date(tini.slice(0,-4)),
-        tdue: new Date(tdue.slice(0,-4)),
-        tfin: new Date(tfin.slice(0,-4)),
+        tdue: tdue && new Date(tdue.slice(0,-4)) || null,
+        tfin: tfin.length && new Date(tfin.slice(0,-4)) || null,
         xfin
       }
       console.log('import', key, data[key], promise)

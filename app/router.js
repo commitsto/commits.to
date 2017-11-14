@@ -104,6 +104,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
 
           resp.render('create', {
             promise: parsedPromise,
+            showSubmitButton: true // FIXME when everything is being stored
           })
         }     
       })

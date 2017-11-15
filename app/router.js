@@ -47,39 +47,6 @@ app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
   })
 })
 
-// edit a promise
-app.get('/:user.([promises|commits]+\.to+)/:promise*?/edit', (req, resp) => {
-  const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
-  .then(parsedPromise => {
-    const { id } = parsedPromise
-
-    console.log('editPromise', req.ip, parsedPromise)
-
-    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
-      resp.redirect('/')
-    } else if (!users.includes(parsedPromise.user)) {
-      resp.redirect('/sign-up')
-    } else {
-      Promises.findOne({ where: { id } }).then((promise) => {
-        if (promise) {
-          console.log('promise exists', promise.dataValues)
-          resp.render('edit', {
-            promise,
-          })
-        } else {
-          console.error('no such promise', promise, id)
-          resp.redirect('/')
-        }
-      })
-    }
-  })
-  .catch((reason) => { // unparsable promise
-    console.log(reason)
-    resp.redirect('/')
-  })
-})
-
-
 // TODO: handle domain agnosticism
 // The server at promises.to passes along the full URL the way the user typed
 // it, so when the user hits "bob.promises.to/foo" the Glitch app is called
@@ -109,12 +76,52 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
         } else {
           console.log('redirecting to create promise', promise, id)          
           logger.info('new promise request', parsedPromise, req.ip) // don't remove this
+          
+          // TODO
+          // Create promise in DB
+          // Show promise view with edit: true
+          // Display created_at date prominently
+          // Also track IP address created from
+          
 
           resp.render('create', {
             promise: parsedPromise,
             showSubmitButton: true // FIXME when everything is being stored
           })
         }     
+      })
+    }
+  })
+  .catch((reason) => { // unparsable promise
+    console.log(reason)
+    resp.redirect('/')
+  })
+})
+
+
+// edit a promise
+app.get('/:user.([promises|commits]+\.to+)/:promise*?/edit', (req, resp) => {
+  const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
+  .then(parsedPromise => {
+    const { id } = parsedPromise
+
+    console.log('editPromise', req.ip, parsedPromise)
+
+    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
+      resp.redirect('/')
+    } else if (!users.includes(parsedPromise.user)) {
+      resp.redirect('/sign-up')
+    } else {
+      Promises.findOne({ where: { id } }).then((promise) => {
+        if (promise) {
+          console.log('promise exists', promise.dataValues)
+          resp.render('edit', {
+            promise,
+          })
+        } else {
+          console.error('no such promise', promise, id)
+          resp.redirect('/')
+        }
       })
     }
   })

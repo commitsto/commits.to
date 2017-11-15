@@ -1265,8 +1265,8 @@
       "note": "",
       "tini": "2017-10-26 00:00:00 Thu",
       "tdue": "2017-11-15 13:00:00 Wed",
-      "tfin": "",
-      "xfin": 0,
+      "tfin": "2017-11-15 12:58:00 Wed",
+      "xfin": 1,
       "bmid": "yes"
    },
    "dreev.promises.to/ask_scott_seo_question/by/next_week": {
@@ -1378,5 +1378,15 @@
       "tfin": "2017-11-13 12:30:00 Mon",
       "xfin": 1,
       "bmid": "yes"
+   },
+   "dreev.promises.to/report_back_on_louis_new_user_bug_list/by/nov_25": {
+     "user": "dreev",
+     "slug": "report_back_on_louis_new_user_bug_list",
+     "note": "",
+     "tini": "2017-11-15 09:47:00 Wed",
+     "tdue": "2017-11-25 23:30:00 Sat",
+     "tfin": "",
+     "xfin": 0,
+     "bmid": ""
    }
 }

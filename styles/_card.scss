@@ -19,16 +19,6 @@
     font-size: 50%;
   }
   
-  h2 .dateinfo{
-    float: right;
-    ul { margin: 0px; }
-    li {
-      list-style: none;
-      font-size: 50%;
-      text-align: right;
-    }
-  }
-  
   &.promise--status {
     &-green {
       background-color: $green;
@@ -50,17 +40,36 @@
       border-color: $gray-border;
     }
   }
-
 }
 
 .promise-user {
   align-items: center;
+  background-color: $gray-blue;
   display: flex;
-  margin: 0;
+  margin: -1rem -1rem 1rem;
+  padding: 1rem;
+  
+  &, a {
+    letter-spacing: 1px;
+    // display: none;
+  }
 
   >:first-child {
     display: block;
     margin-right: auto;
+  }
+  
+  .dateinfo {
+    float: right;
+    font-weight: 300;
+
+    ul { margin: 0px; }
+    li {
+      list-style: none;
+      font-size: 50%;
+      text-align: right;
+      word-break: break-all;
+    }
   }
 }
 

@@ -96,21 +96,6 @@ export const promises = [
   "josh.commits.to/get_realisies_running/by/september_30", // tini: 9-13
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // tini: 10-06
 
-  "kim.promises.to/email_argue_summary/by/fri", // tini: 9-19
-  "kim.promises.to/reflect_Respond_anxiety_spiral_Assist/by/sat", // tini: 9-19
-  "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // tini: 9-20
-  "kim.promises.to/submit_conclusion_email/by/10/16", // tini: 9-21
-  "kim.promises.to/complete_type_1_essay/by/10/1", // tini: 9-21
-  "kim.promises.to/inform_eve_plans/by/2", // tini: 9-21
-  "kim.promises.to/email_cynthia_charlap_tickets/by/9/22", // tini: 9-21
-  "kim.promises.to/schedule_attorney_meet/by/10/1", // tini: 9-21
-  "kim.promises.to/john_PAM_photos_ask/by/10/1", // tini: 9-21
-  "kim.promises.to/Nike_p5_email/by/10/1", // tini: 9-21
-  "kim.promises.to/intro_martin_marna/by/10/5", // tini: 9-21
-  "kim.promises.to/sbonomic_jitsjudgelist_doc/by/10/15", // tini: 9-21
-  "kim.promises.to/consider_all_weekend_social_options/by/fri/10pm", // tini: 9-21
-  "kim.promises.to/talk_finances_w_D/by/2017-10-30", // tini: 10-05
-
   "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night", // tini: 9-18, done
   "bee.commits.to/rest-of-paperwork-to-yoko-before-the-gym-tomorrow", // tini: 9-18, done 2 hours late
   "bee.commits.to/email-sleep-as-android-for-specifics-about-sleep-length-measurement", // tini: 9-19
@@ -122,4 +107,5 @@ export const promises = [
   "bee.commits.to/prettying_road_editor", // tini: 10-04
   "bee.commits.to/go_to_bed/by/11pm", // tini: 10-20
   "bee.promises.to/reply_to_hin/by/tuesday", // tini: 11-10
+  "bee.commits.to/call_jacob_this_week/by/next_week", // tini: 11-13
 ]

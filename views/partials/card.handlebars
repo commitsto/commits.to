@@ -3,7 +3,7 @@
 
 <script src="/js/promise.js"></script>
 
-<section class="promise-card {{dueStatus promise.tdue}}" style="{{creditStatus promise.tdue}}">
+<section class="promise-card {{dueStatus promise.tdue}}">
   <h2 class="promise-user">
     <a href="/{{promise.user}}.{{__appDomain}}/">
       {{promise.user}}
@@ -11,6 +11,7 @@
     <div class="dateinfo">
       <ul>
         <li style="opacity:.75">{{prettyDate promise.tfin}}</li>
+        <li style="opacity:.50">&nbsp;({{creditStatus promise.tdue promise.tfin}})</li>
         <li style="opacity:.25">&nbsp;({{promise.id}})</li>
       </ul>
     </div>

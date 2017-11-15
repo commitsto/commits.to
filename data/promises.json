@@ -1235,9 +1235,9 @@
       "note": "",
       "tini": "2017-11-12 01:08:00 Sun",
       "tdue": "2017-11-13 21:00:00 Mon",
-      "tfin": "",
-      "xfin": 0.7,
-      "bmid": ""
+      "tfin": "2017-11-13 20:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
    },
    "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
       "user": "dreev",

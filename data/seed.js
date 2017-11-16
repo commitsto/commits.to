@@ -36,9 +36,6 @@ export function setup() {
     })
 }
 
-// we're domain agnostic, but we have to have a default
-export const domain = 'commits.to' ;
-
 export const users = [ 
   /* testing */ 
   "alice", "bob", "carol",

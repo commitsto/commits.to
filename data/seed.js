@@ -81,6 +81,9 @@ export const promises = [
   "owen.promises.to/adjust-the-shed/by/tonight_7pm", // tini: 9-28
   "owen.promises.to/research_and_pseudocode_calendar_integration/by/oct_6", // tini: 9-29, done
   
+  "josh.commits.to/get_realisies_running/by/september_30", // tini: 9-13
+  "josh.promises.to/get_realsies_payment_dashboard_up/by/2017_11_30", // tini: 11-15
+
   "sergii.promises.to/work_on_points_2_to_4/by/next_monday", // tini: 9-14
   "jessica.commits.to/let_bob_know_re_meeting/by/tomorrow_5pm", // tini: 9-19
   "samuel.commits.to/finish_ch_23_problem_set/by/today_6_pm", // tini: 9-19
@@ -90,7 +93,6 @@ export const promises = [
   "jennyli.promises.to/water_the_plants/by/sunday", // tini: 9-27
   "cole.promises.to/find_a_rep_for_dining_vendors", // tini: 9-28
   "caillu.commits.to/test_trying_out_time/by/2017-09-30_20:42", // tini: 9-30
-  "josh.commits.to/get_realisies_running/by/september_30", // tini: 9-13
   "mbork.promises.to/edit_tutorial_for_students/by/tomorrow_8am", // tini: 10-06
 
   "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night", // tini: 9-18, done

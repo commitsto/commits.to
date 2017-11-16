@@ -4,7 +4,8 @@
     border-radius: $card-border-radius;
     border: 1px solid $blue-border;
     overflow: hidden;
-    padding: 1rem;
+    padding-bottom: 2rem;
+    position: relative;
     transition: background .25s ease-in-out;
 
     &:hover {
@@ -26,7 +27,7 @@
         border-color: $green-border;
       }
       &-blue {
-        // background-color: $blue;
+        background-color: $blue;
       }
       &-orange {
         background-color: $orange;
@@ -52,25 +53,21 @@
 
   &-user {
     background-color: $gray-blue;
-    margin: -1rem -1rem 1rem;
     padding: 1rem;
 
-    h2, a {
+    h2, a { 
+      letter-spacing: 1px; 
       margin: 0 0 .25rem;
     }
 
-    .dateinfo {
-      float: right;
-      font-weight: 300;
-
-      ul { margin: 0px; }
-      li {
-        list-style: none;
-        font-size: 50%;
-        text-align: right;
-        word-break: break-all;
-      }
+    + .promise-bar {
+      margin-top: 0;
+      opacity: .5;
     }
+  }
+  
+  &-details {
+    padding: 1rem;
   }
 
   &-domain {
@@ -83,29 +80,38 @@
   }
 
   &-bar {
-    margin: calc(-1rem - 1px);
-    margin-top: 2rem;
+    background-color: $white;
+    margin-top: 1rem;
+    padding: .5rem;
+    
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      opacity: .33;
+      position: absolute;
+      width: 100%;
+    }
 
     .promise-bar-link {
-      background-color: $white;
       color: $black;
       display: block;
       font-size: .75rem;
-      font-weight: bold;
-      margin: -10px;
-      opacity: .5;
-      padding: .5rem;
+      font-weight: normal;
+      // opacity: .5;
       text-align: center;
       text-transform: uppercase;
 
       &:hover {
-        opacity: .75;
+        
       }
     }
 
-    .bar-button-action {
+    &--completed {
+      background-color: $black;
+      opacity: .8;
+
       .promise-bar-link {
-        opacity: .5;
+        color: $white;
       }
     }
   }

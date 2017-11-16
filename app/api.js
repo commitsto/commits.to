@@ -4,6 +4,7 @@ import app from './express'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 import mailself from '../lib/mail'
+import { setup, importJson } from '../data/seed'
 // import computeCredit from '../lib/latepenalty'
 
 import moment from 'moment-timezone'
@@ -24,6 +25,18 @@ app.get('/promises/remove/:id(*)', (req, resp) => {
   })
 })
 
+app.get('/promises/:user/remove', function(req, resp) {
+  var dbPromises = {};
+  Promises.destroy({
+    where: {
+      user: req.params.user
+    }
+  }).then(function(deletedRows) {
+    console.log('user promises removed', deletedRows);
+    resp.redirect('/')
+  })
+})
+
 app.get('/promises/complete/:id(*)', (req, resp) => {
   Promises.update(
   {
@@ -37,6 +50,20 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
   .then(function(promise){
     console.log('complete promise', promise);
     resp.redirect('/')
+  })
+})
+
+// TODO: these should all be rendering json responses or something, not redirecting....
+app.post('/promises/edit/:id(*)', (req, resp) => {
+  //console.log("EDIT PROMISE", req.body.promise)
+  console.log("EDIT REQUEST", req)
+  Promises.update(
+    {},
+    { where: { id: req.params.id }}
+  )
+  .then(function(promise) {
+    console.log('edited promise', promise);
+    resp.redirect(req.body.promise_url);
   })
 })
 
@@ -90,11 +117,26 @@ app.get('/promises/:user', function(req, resp) {
   }).then(function(promises) {
     console.log('user promises', promises);
     promises.forEach(function(promise) {
+      console.log(promise.tfin)
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise)
     })
     resp.json(dbPromises)
   })
+})
+
+/* Utils */
+
+// drop db and repopulate
+app.get('/import', (req, resp) => {
+  importJson()
+  resp.redirect('/')
+})
+
+// removes all entries from the promises table
+app.get('/empty', (req, resp) => {
+  Promises.destroy({where: {}})
+  resp.redirect('/')
 })
 
 // --------------------------------- 80chars ---------------------------------->

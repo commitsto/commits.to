@@ -1,0 +1,1392 @@
+  {
+   "dreev.commits.to/chrisbotc": {
+      "user": "dreev",
+      "slug": "chrisbotc",
+      "note": "(before commits.to existed)",
+      "tini": "2017-07-27 00:00:00 Thu",
+      "tdue": "2017-07-27 00:00:00 Thu",
+      "tfin": "2017-07-27 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/callbotccreditcard": {
+      "user": "dreev",
+      "slug": "callbotccreditcard",
+      "note": "",
+      "tini": "2017-07-28 00:00:00 Fri",
+      "tdue": "2017-07-28 00:00:00 Fri",
+      "tfin": "2017-07-28 00:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/paulcopy": {
+      "user": "dreev",
+      "slug": "paulcopy",
+      "note": "",
+      "tini": "2017-07-28 00:00:00 Fri",
+      "tdue": "2017-07-28 00:00:00 Fri",
+      "tfin": "2017-07-28 00:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/lilysms": {
+      "user": "dreev",
+      "slug": "lilysms",
+      "note": "",
+      "tini": "2017-07-29 00:00:00 Sat",
+      "tdue": "2017-07-29 00:00:00 Sat",
+      "tfin": "2017-07-29 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/dwwping": {
+      "user": "dreev",
+      "slug": "dwwping",
+      "note": "",
+      "tini": "2017-07-29 00:00:00 Sat",
+      "tdue": "2017-07-29 00:00:00 Sat",
+      "tfin": "2017-07-29 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/datbucks": {
+      "user": "dreev",
+      "slug": "datbucks",
+      "note": "",
+      "tini": "2017-07-29 00:00:00 Sat",
+      "tdue": "2017-07-29 00:00:00 Sat",
+      "tfin": "2017-07-29 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/masterfile": {
+      "user": "dreev",
+      "slug": "masterfile",
+      "note": "",
+      "tini": "2017-07-29 00:00:00 Sat",
+      "tdue": "2017-07-29 00:00:00 Sat",
+      "tfin": "2017-07-29 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/paulpromo": {
+      "user": "dreev",
+      "slug": "paulpromo",
+      "note": "",
+      "tini": "2017-07-31 00:00:00 Mon",
+      "tdue": "2017-07-31 00:00:00 Mon",
+      "tfin": "2017-07-31 00:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/cmreact": {
+      "user": "dreev",
+      "slug": "cmreact",
+      "note": "",
+      "tini": "2017-07-31 00:00:00 Mon",
+      "tdue": "2017-07-31 00:00:00 Mon",
+      "tfin": "2017-07-31 00:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/natemom": {
+      "user": "dreev",
+      "slug": "natemom",
+      "note": "",
+      "tini": "2017-08-01 00:00:00 Tue",
+      "tdue": "2017-08-01 00:00:00 Tue",
+      "tfin": "2017-08-01 00:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/lawrence": {
+      "user": "dreev",
+      "slug": "lawrence",
+      "note": "",
+      "tini": "2017-08-01 00:00:00 Tue",
+      "tdue": "2017-08-01 00:00:00 Tue",
+      "tfin": "2017-08-01 00:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/helpdot": {
+      "user": "dreev",
+      "slug": "helpdot",
+      "note": "",
+      "tini": "2017-08-02 00:00:00 Wed",
+      "tdue": "2017-08-02 00:00:00 Wed",
+      "tfin": "2017-08-02 00:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/davidr": {
+      "user": "dreev",
+      "slug": "davidr",
+      "note": "",
+      "tini": "2017-08-03 00:00:00 Thu",
+      "tdue": "2017-08-03 00:00:00 Thu",
+      "tfin": "2017-08-03 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/prjupdate": {
+      "user": "dreev",
+      "slug": "prjupdate",
+      "note": "",
+      "tini": "2017-08-03 00:00:00 Thu",
+      "tdue": "2017-08-03 00:00:00 Thu",
+      "tfin": "2017-08-03 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/cai": {
+      "user": "dreev",
+      "slug": "cai",
+      "note": "",
+      "tini": "2017-08-03 00:00:00 Thu",
+      "tdue": "2017-08-03 00:00:00 Thu",
+      "tfin": "2017-08-03 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/glnate": {
+      "user": "dreev",
+      "slug": "glnate",
+      "note": "",
+      "tini": "2017-08-05 00:00:00 Sat",
+      "tdue": "2017-08-05 00:00:00 Sat",
+      "tfin": "2017-08-05 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/leealexa": {
+      "user": "dreev",
+      "slug": "leealexa",
+      "note": "",
+      "tini": "2017-08-06 00:00:00 Sun",
+      "tdue": "2017-08-06 00:00:00 Sun",
+      "tfin": "2017-08-06 00:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ke": {
+      "user": "dreev",
+      "slug": "ke",
+      "note": "",
+      "tini": "2017-08-07 00:00:00 Mon",
+      "tdue": "2017-08-07 00:00:00 Mon",
+      "tfin": "2017-08-07 00:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/zapier": {
+      "user": "dreev",
+      "slug": "zapier",
+      "note": "[10m late ~= .999 credit]",
+      "tini": "2017-08-07 00:00:00 Mon",
+      "tdue": "2017-08-07 12:00:00 Mon",
+      "tfin": "2017-08-07 12:10:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/lawrcomp": {
+      "user": "dreev",
+      "slug": "lawrcomp",
+      "note": "[20m late ~= .999 credit]",
+      "tini": "2017-08-07 00:00:00 Mon",
+      "tdue": "2017-08-07 12:00:00 Mon",
+      "tfin": "2017-08-07 12:20:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/slackbuguvi": {
+      "user": "dreev",
+      "slug": "slackbuguvi",
+      "note": "",
+      "tini": "2017-08-09 00:00:00 Wed",
+      "tdue": "2017-08-09 00:00:00 Wed",
+      "tfin": "2017-08-09 00:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jacobsched": {
+      "user": "dreev",
+      "slug": "jacobsched",
+      "note": "",
+      "tini": "2017-08-10 00:00:00 Thu",
+      "tdue": "2017-08-10 00:00:00 Thu",
+      "tfin": "2017-08-10 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/lease_link_for_mom": {
+      "user": "dreev",
+      "slug": "lease_link_for_mom",
+      "note": "",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-11 00:00:00 Fri",
+      "tfin": "2017-08-11 00:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/gmaddr": {
+      "user": "dreev",
+      "slug": "gmaddr",
+      "note": "",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-11 00:00:00 Fri",
+      "tfin": "2017-08-11 00:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/bucket_answers": {
+      "user": "dreev",
+      "slug": "bucket_answers",
+      "note": "[34m late ~= .999 credit]",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-11 12:00:00 Fri",
+      "tfin": "2017-08-11 12:34:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jsspreadsheet": {
+      "user": "dreev",
+      "slug": "jsspreadsheet",
+      "note": "",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-12 00:00:00 Sat",
+      "tfin": "2017-08-12 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/bkfeedback": {
+      "user": "dreev",
+      "slug": "bkfeedback",
+      "note": "",
+      "tini": "2017-08-10 00:00:00 Thu",
+      "tdue": "2017-08-12 00:00:00 Sat",
+      "tfin": "2017-08-12 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/checkeve": {
+      "user": "dreev",
+      "slug": "checkeve",
+      "note": "",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-12 00:00:00 Sat",
+      "tfin": "2017-08-12 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/buckans2": {
+      "user": "dreev",
+      "slug": "buckans2",
+      "note": "(2nd one)",
+      "tini": "2017-08-12 00:00:00 Sat",
+      "tdue": "2017-08-12 00:00:00 Sat",
+      "tfin": "2017-08-12 00:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/famlist": {
+      "user": "dreev",
+      "slug": "famlist",
+      "note": "",
+      "tini": "2017-08-12 00:00:00 Sat",
+      "tdue": "2017-08-12 11:00:00 Sat",
+      "tfin": "2017-08-12 11:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/nectar": {
+      "user": "dreev",
+      "slug": "nectar",
+      "note": "",
+      "tini": "2017-08-12 00:00:00 Sat",
+      "tdue": "2017-08-13 16:00:00 Sun",
+      "tfin": "2017-08-13 16:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/mfreply": {
+      "user": "dreev",
+      "slug": "mfreply",
+      "note": "",
+      "tini": "2017-08-11 00:00:00 Fri",
+      "tdue": "2017-08-13 20:00:00 Sun",
+      "tfin": "2017-08-13 20:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/shirley": {
+      "user": "dreev",
+      "slug": "shirley",
+      "note": "",
+      "tini": "2017-08-15 00:00:00 Tue",
+      "tdue": "2017-08-16 16:00:00 Wed",
+      "tfin": "2017-08-16 16:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ledgsplit": {
+      "user": "dreev",
+      "slug": "ledgsplit",
+      "note": "",
+      "tini": "2017-08-22 00:00:00 Tue",
+      "tdue": "2017-08-22 18:00:00 Tue",
+      "tfin": "2017-08-22 18:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/fciou": {
+      "user": "dreev",
+      "slug": "fciou",
+      "note": "[50m late ~= .999 credit]",
+      "tini": "2017-08-22 00:00:00 Tue",
+      "tdue": "2017-08-22 22:00:00 Tue",
+      "tfin": "2017-08-23 22:50:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/pdfs": {
+      "user": "dreev",
+      "slug": "pdfs",
+      "note": "",
+      "tini": "2017-08-24 00:00:00 Thu",
+      "tdue": "2017-08-24 11:00:00 Thu",
+      "tfin": "2017-08-24 11:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/docs": {
+      "user": "dreev",
+      "slug": "docs",
+      "note": "",
+      "tini": "2017-08-24 00:00:00 Thu",
+      "tdue": "2017-08-24 17:00:00 Thu",
+      "tfin": "2017-08-24 17:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jclear": {
+      "user": "dreev",
+      "slug": "jclear",
+      "note": "",
+      "tini": "2017-08-24 00:00:00 Thu",
+      "tdue": "2017-08-25 12:00:00 Fri",
+      "tfin": "2017-08-25 12:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/payrollchk": {
+      "user": "dreev",
+      "slug": "payrollchk",
+      "note": "",
+      "tini": "2017-08-25 00:00:00 Fri",
+      "tdue": "2017-08-25 12:00:00 Fri",
+      "tfin": "2017-08-25 12:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/readfin": {
+      "user": "dreev",
+      "slug": "readfin",
+      "note": "",
+      "tini": "2017-08-23 00:00:00 Wed",
+      "tdue": "2017-08-26 12:00:00 Sat",
+      "tfin": "2017-08-26 12:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/calldad": {
+      "user": "dreev",
+      "slug": "calldad",
+      "note": "",
+      "tini": "2017-08-25 00:00:00 Fri",
+      "tdue": "2017-08-27 20:00:00 Sun",
+      "tfin": "2017-08-27 20:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jacobemail": {
+      "user": "dreev",
+      "slug": "jacobemail",
+      "note": "",
+      "tini": "2017-08-25 00:00:00 Fri",
+      "tdue": "2017-08-27 23:30:00 Sun",
+      "tfin": "2017-08-27 23:30:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/slackfree": {
+      "user": "dreev",
+      "slug": "slackfree",
+      "note": "",
+      "tini": "2017-08-14 00:00:00 Mon",
+      "tdue": "2017-08-28 12:00:00 Mon",
+      "tfin": "2017-08-28 12:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jtrsvp": {
+      "user": "dreev",
+      "slug": "jtrsvp",
+      "note": "",
+      "tini": "2017-08-23 00:00:00 Wed",
+      "tdue": "2017-08-28 16:00:00 Mon",
+      "tfin": "2017-08-28 16:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jtcount": {
+      "user": "dreev",
+      "slug": "jtcount",
+      "note": "[1h late ~= .99 credit]",
+      "tini": "2017-08-28 00:00:00 Mon",
+      "tdue": "2017-08-29 14:00:00 Tue",
+      "tfin": "2017-08-29 15:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/cmgusto": {
+      "user": "dreev",
+      "slug": "cmgusto",
+      "note": "",
+      "tini": "2017-08-22 00:00:00 Tue",
+      "tdue": "2017-08-29 17:00:00 Tue",
+      "tfin": "2017-08-29 17:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/fixxmom": {
+      "user": "dreev",
+      "slug": "fixxmom",
+      "note": "",
+      "tini": "2017-08-29 00:00:00 Tue",
+      "tdue": "2017-08-29 22:00:00 Tue",
+      "tfin": "2017-08-29 22:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/wpe": {
+      "user": "dreev",
+      "slug": "wpe",
+      "note": "",
+      "tini": "2017-08-28 00:00:00 Mon",
+      "tdue": "2017-08-30 16:00:00 Wed",
+      "tfin": "2017-08-30 16:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/m537": {
+      "user": "dreev",
+      "slug": "m537",
+      "note": "",
+      "tini": "2017-08-31 00:00:00 Thu",
+      "tdue": "2017-09-01 12:00:00 Fri",
+      "tfin": "2017-09-01 12:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/seanupdate": {
+      "user": "dreev",
+      "slug": "seanupdate",
+      "note": "",
+      "tini": "2017-08-09 00:00:00 Wed",
+      "tdue": "2017-09-05 00:00:00 Tue",
+      "tfin": "2017-09-05 00:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/benjcantor": {
+      "user": "dreev",
+      "slug": "benjcantor",
+      "note": "",
+      "tini": "2017-09-03 00:00:00 Sun",
+      "tdue": "2017-09-05 17:00:00 Tue",
+      "tfin": "2017-09-05 17:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/marcinspec": {
+      "user": "dreev",
+      "slug": "marcinspec",
+      "note": "",
+      "tini": "2017-09-05 00:00:00 Tue",
+      "tdue": "2017-09-05 22:00:00 Tue",
+      "tfin": "2017-09-05 22:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ccardsjacob": {
+      "user": "dreev",
+      "slug": "ccardsjacob",
+      "note": "",
+      "tini": "2017-09-04 00:00:00 Mon",
+      "tdue": "2017-09-06 12:00:00 Wed",
+      "tfin": "2017-09-06 12:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/fki": {
+      "user": "dreev",
+      "slug": "fki",
+      "note": "",
+      "tini": "2017-09-06 00:00:00 Wed",
+      "tdue": "2017-09-06 15:59:00 Wed",
+      "tfin": "2017-09-06 15:59:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jennylimail": {
+      "user": "dreev",
+      "slug": "jennylimail",
+      "note": "",
+      "tini": "2017-08-09 00:00:00 Wed",
+      "tdue": "2017-09-07 12:00:00 Thu",
+      "tfin": "2017-09-06 19:26:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/yuhouse": {
+      "user": "dreev",
+      "slug": "yuhouse",
+      "note": "",
+      "tini": "2017-09-05 00:00:00 Tue",
+      "tdue": "2017-09-07 23:00:00 Thu",
+      "tfin": "2017-09-07 23:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/teal": {
+      "user": "dreev",
+      "slug": "teal",
+      "note": "",
+      "tini": "2017-09-06 00:00:00 Wed",
+      "tdue": "2017-09-08 12:00:00 Fri",
+      "tfin": "2017-09-08 12:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/bugrepro": {
+      "user": "dreev",
+      "slug": "bugrepro",
+      "note": "",
+      "tini": "2017-09-08 00:00:00 Fri",
+      "tdue": "2017-09-08 16:00:00 Fri",
+      "tfin": "2017-09-08 16:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/robertoreply": {
+      "user": "dreev",
+      "slug": "robertoreply",
+      "note": "",
+      "tini": "2017-09-08 00:00:00 Fri",
+      "tdue": "2017-09-09 10:00:00 Sat",
+      "tfin": "2017-09-09 10:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/copyedit": {
+      "user": "dreev",
+      "slug": "copyedit",
+      "note": "",
+      "tini": "2017-09-09 00:00:00 Sat",
+      "tdue": "2017-09-09 19:00:00 Sat",
+      "tfin": "2017-09-09 19:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/hexapod": {
+      "user": "dreev",
+      "slug": "hexapod",
+      "note": "",
+      "tini": "2017-09-08 00:00:00 Fri",
+      "tdue": "2017-09-10 17:00:00 Sun",
+      "tfin": "2017-09-10 17:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/glenskates": {
+      "user": "dreev",
+      "slug": "glenskates",
+      "note": "",
+      "tini": "2017-09-04 00:00:00 Mon",
+      "tdue": "2017-09-10 21:00:00 Sun",
+      "tfin": "2017-09-10 21:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/promto": {
+      "user": "dreev",
+      "slug": "promto",
+      "note": "",
+      "tini": "2017-09-10 00:00:00 Sun",
+      "tdue": "2017-09-11 03:00:00 Mon",
+      "tfin": "2017-09-11 03:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am": {
+      "user": "dreev",
+      "slug": "show_sergii_this_doing_something_useful",
+      "note": "",
+      "tini": "2017-09-10 00:00:00 Sun",
+      "tdue": "2017-09-11 03:00:00 Mon",
+      "tfin": "2017-09-11 03:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/show_bee_open_questions/by/10:30pm": {
+      "user": "dreev",
+      "slug": "show_bee_open_questions",
+      "note": "",
+      "tini": "2017-09-11 00:00:00 Mon",
+      "tdue": "2017-09-11 22:30:00 Mon",
+      "tfin": "2017-09-11 22:30:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/show_brennan_intro/by/10:50pm": {
+      "user": "dreev",
+      "slug": "show_brennan_intro",
+      "note": "",
+      "tini": "2017-09-11 00:00:00 Mon",
+      "tdue": "2017-09-11 22:50:00 Mon",
+      "tfin": "2017-09-11 22:50:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm": {
+      "user": "dreev",
+      "slug": "queue_tweet_etc_for_blog_post",
+      "note": "",
+      "tini": "2017-09-11 00:00:00 Mon",
+      "tdue": "2017-09-12 14:00:00 Tue",
+      "tfin": "2017-09-12 14:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/order_indian/by/5:30pm": {
+      "user": "dreev",
+      "slug": "order_indian",
+      "note": "",
+      "tini": "2017-09-12 00:00:00 Tue",
+      "tdue": "2017-09-12 17:30:00 Tue",
+      "tfin": "2017-09-12 17:30:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/googledocify_intern_form/by/12pm": {
+      "user": "dreev",
+      "slug": "googledocify_intern_form",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-14 12:00:00 Thu",
+      "tfin": "2017-09-14 12:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/sergiistub": {
+      "user": "dreev",
+      "slug": "sergiistub",
+      "note": "",
+      "tini": "2017-09-03 00:00:00 Sun",
+      "tdue": "2017-09-14 12:00:00 Thu",
+      "tfin": "2017-09-14 12:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/benjslack": {
+      "user": "dreev",
+      "slug": "benjslack",
+      "note": "",
+      "tini": "2017-09-11 00:00:00 Mon",
+      "tdue": "2017-09-14 20:00:00 Thu",
+      "tfin": "2017-09-14 20:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/caiemail": {
+      "user": "dreev",
+      "slug": "caiemail",
+      "note": "",
+      "tini": "2017-08-29 00:00:00 Tue",
+      "tdue": "2017-09-14 20:00:00 Thu",
+      "tfin": "2017-09-14 20:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/garbage_out": {
+      "user": "dreev",
+      "slug": "garbage_out",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-14 23:00:00 Thu",
+      "tfin": "2017-09-14 23:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/labelzero/by/1am": {
+      "user": "dreev",
+      "slug": "labelzero",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-15 01:00:00 Fri",
+      "tfin": "2017-09-15 01:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/report_glitch_bug": {
+      "user": "dreev",
+      "slug": "report_glitch_bug",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-15 09:30:00 Fri",
+      "tfin": "2017-09-15 09:30:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/follow_up_with_everyone_re_guest_blogging": {
+      "user": "dreev",
+      "slug": "follow_up_with_everyone_re_guest_blogging",
+      "note": "(new ones may have come in...)",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-15 17:00:00 Fri",
+      "tfin": "2017-09-15 17:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/meta_debrief_kim/by/midnight_friday": {
+      "user": "dreev",
+      "slug": "meta_debrief_kim",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-15 23:59:00 Fri",
+      "tfin": "2017-09-15 23:59:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ask_bee_re_sunday_parkways": {
+      "user": "dreev",
+      "slug": "ask_bee_re_sunday_parkways",
+      "note": "",
+      "tini": "2017-09-13 00:00:00 Wed",
+      "tdue": "2017-09-16 12:00:00 Sat",
+      "tfin": "2017-09-16 12:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/test_penalty_func/by/saturday_noon": {
+      "user": "dreev",
+      "slug": "test_penalty_func",
+      "note": "",
+      "tini": "2017-09-14 00:00:00 Thu",
+      "tdue": "2017-09-16 12:00:00 Sat",
+      "tfin": "2017-09-16 12:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/breakfast_suggestion": {
+      "user": "dreev",
+      "slug": "breakfast_suggestion",
+      "note": "",
+      "tini": "2017-09-16 00:00:00 Sat",
+      "tdue": "2017-09-16 23:00:00 Sat",
+      "tfin": "2017-09-16 23:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/send_ms_gross_email/by/sunday_11am": {
+      "user": "dreev",
+      "slug": "send_ms_gross_email",
+      "note": "calendared as cantor_ms_g",
+      "tini": "2017-09-17 00:00:00 Sun",
+      "tdue": "2017-09-17 11:00:00 Sun",
+      "tfin": "2017-09-17 11:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/clear_bogus_commit_for_nick/by/5_minutes_from_now": {
+      "user": "dreev",
+      "slug": "clear_bogus_commit_for_nick",
+      "note": "",
+      "tini": "2017-09-19 00:00:00 Tue",
+      "tdue": "2017-09-19 00:05:00 Tue",
+      "tfin": "2017-09-19 00:05:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/debug_capitalization/by/tomorrow": {
+      "user": "dreev",
+      "slug": "debug_capitalization",
+      "note": "[23.4h late ~= .99 credit]",
+      "tini": "2017-09-19 00:00:00 Tue",
+      "tdue": "2017-09-19 23:59:00 Tue",
+      "tfin": "2017-09-20 23:25:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/intern_disc/by/wed": {
+      "user": "dreev",
+      "slug": "intern_disc",
+      "note": "",
+      "tini": "2017-09-19 00:00:00 Tue",
+      "tdue": "2017-09-20 00:00:00 Wed",
+      "tfin": "2017-09-20 00:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/jacobbudg": {
+      "user": "dreev",
+      "slug": "jacobbudg",
+      "note": "[24m late ~= .999 credit]",
+      "tini": "2017-08-30 00:00:00 Wed",
+      "tdue": "2017-09-20 12:00:00 Wed",
+      "tfin": "2017-09-20 12:24:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/schedule-k_tax_thing/by/5pm": {
+      "user": "dreev",
+      "slug": "schedule-k_tax_thing",
+      "note": "",
+      "tini": "2017-09-19 00:00:00 Tue",
+      "tdue": "2017-09-20 17:00:00 Wed",
+      "tfin": "2017-09-20 17:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/reply_to_use_case_email/by/midnight": {
+      "user": "dreev",
+      "slug": "reply_to_use_case_email",
+      "note": "",
+      "tini": "2017-09-20 00:00:00 Wed",
+      "tdue": "2017-09-20 23:59:00 Wed",
+      "tfin": "2017-09-20 23:59:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/set_up_mom_on_wordfeud/by/tomorrow": {
+      "user": "dreev",
+      "slug": "set_up_mom_on_wordfeud",
+      "note": "maybe voided",
+      "tini": "2017-09-20 00:00:00 Wed",
+      "tdue": "2017-09-21 00:00:00 Thu",
+      "tfin": "2017-09-21 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ping_mirabai/by/sep_22": {
+      "user": "dreev",
+      "slug": "ping_mirabai",
+      "note": "",
+      "tini": "2017-09-15 00:00:00 Fri",
+      "tdue": "2017-09-22 12:00:00 Fri",
+      "tfin": "2017-09-22 12:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/copy_editing_pass_on_tao2/by/tmw_2pm": {
+      "user": "dreev",
+      "slug": "copy_editing_pass_on_tao2",
+      "note": "calendared as bb_copyedit",
+      "tini": "2017-09-22 00:00:00 Fri",
+      "tdue": "2017-09-23 14:00:00 Sat",
+      "tfin": "2017-09-23 14:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/hanna_reply/by/tonight": {
+      "user": "dreev",
+      "slug": "hanna_reply",
+      "note": "",
+      "tini": "2017-09-26 00:00:00 Tue",
+      "tdue": "2017-09-26 23:59:00 Tue",
+      "tfin": "2017-09-26 23:59:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/add_chelsea_to_commits_to/by/11am": {
+      "user": "dreev",
+      "slug": "add_chelsea_to_commits_to",
+      "note": "",
+      "tini": "2017-09-29 00:00:00 Fri",
+      "tdue": "2017-09-29 11:00:00 Fri",
+      "tfin": "2017-09-29 11:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday": {
+      "user": "dreev",
+      "slug": "take_copyediting_pass_on_micheles_draft",
+      "note": "aka michele_copyediting_pass",
+      "tini": "2017-09-29 00:00:00 Fri",
+      "tdue": "2017-09-30 22:00:00 Sat",
+      "tfin": "2017-09-30 22:00:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/give_james_daniell_status_update/by/oct-5-noon": {
+      "user": "dreev",
+      "slug": "give_james_daniell_status_update",
+      "note": "[10.5h late ~= .99 credit]",
+      "tini": "2017-09-04 00:00:00 Mon",
+      "tdue": "2017-10-05 12:00:00 Thu",
+      "tfin": "2017-10-05 22:30:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/give_marcin_status_update/by/oct-5-noon": {
+      "user": "dreev",
+      "slug": "give_marcin_status_update",
+      "note": "marcinupdate [10.5h late ~= .99 credit]",
+      "tini": "2017-09-04 00:00:00 Mon",
+      "tdue": "2017-10-05 12:00:00 Thu",
+      "tfin": "2017-10-15 22:30:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ask_josh_about_realsies": {
+      "user": "dreev",
+      "slug": "ask_josh_about_realsies",
+      "note": "",
+      "tini": "2017-09-06 00:00:00 Wed",
+      "tdue": "2017-10-06 20:00:00 Fri",
+      "tfin": "2017-10-06 20:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/braden_update": {
+      "user": "dreev",
+      "slug": "braden_update",
+      "note": "",
+      "tini": "2017-09-01 00:00:00 Fri",
+      "tdue": "2017-10-10 12:00:00 Tue",
+      "tfin": "2017-10-10 12:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/show_cantor": {
+      "user": "dreev",
+      "slug": "show_cantor",
+      "note": "",
+      "tini": "2017-10-12 00:00:00 Thu",
+      "tdue": "2017-10-12 18:00:00 Thu",
+      "tfin": "2017-10-12 18:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/reply_to_smreeves/by/today": {
+      "user": "dreev",
+      "slug": "reply_to_smreeves",
+      "note": "",
+      "tini": "2017-10-12 00:00:00 Thu",
+      "tdue": "2017-10-12 23:58:00 Thu",
+      "tfin": "2017-10-12 23:58:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/let_yall_know_about_monitor/by/next_week": {
+      "user": "dreev",
+      "slug": "let_yall_know_about_monitor",
+      "note": "update_facebook_thread",
+      "tini": "2017-10-02 00:00:00 Mon",
+      "tdue": "2017-10-13 12:00:00 Fri",
+      "tfin": "2017-10-10 12:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/find_ein_etc/by/3pm": {
+      "user": "dreev",
+      "slug": "find_ein_etc",
+      "note": "",
+      "tini": "2017-10-18 00:00:00 Wed",
+      "tdue": "2017-10-18 15:00:00 Wed",
+      "tfin": "2017-10-18 15:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week": {
+      "user": "dreev",
+      "slug": "look_at_chrome_minder",
+      "note": "chromeminder",
+      "tini": "2017-10-12 00:00:00 Thu",
+      "tdue": "2017-10-20 14:00:00 Fri",
+      "tfin": "2017-10-20 14:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/curtain_edit/by/oct_20": {
+      "user": "dreev",
+      "slug": "curtain_edit",
+      "note": "",
+      "tini": "2017-10-09 00:00:00 Mon",
+      "tdue": "2017-10-20 15:00:00 Fri",
+      "tfin": "2017-10-20 15:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/do_redirect_for_mel/by/10pm": {
+      "user": "dreev",
+      "slug": "do_redirect_for_mel",
+      "note": "",
+      "tini": "2017-10-23 00:00:00 Mon",
+      "tdue": "2017-10-23 22:00:00 Mon",
+      "tfin": "2017-10-23 22:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ping_malcolm_re_android/by/today": {
+      "user": "dreev",
+      "slug": "ping_malcolm_re_android",
+      "note": "",
+      "tini": "2017-10-24 00:00:00 Tue",
+      "tdue": "2017-10-24 12:00:00 Tue",
+      "tfin": "2017-10-24 12:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night": {
+      "user": "dreev",
+      "slug": "talk_to_bee_and_uluc_re_beedroid_publishing",
+      "note": "aka bee_uluc_beedroid",
+      "tini": "2017-10-24 00:00:00 Tue",
+      "tdue": "2017-10-25 11:00:00 Wed",
+      "tfin": "2017-10-25 11:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ascertain_re_sunday/by/wed": {
+      "user": "dreev",
+      "slug": "ascertain_re_sunday",
+      "note": "",
+      "tini": "2017-10-23 00:00:00 Mon",
+      "tdue": "2017-10-25 19:00:00 Wed",
+      "tfin": "2017-10-25 19:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight": {
+      "user": "dreev",
+      "slug": "reply_to_rest_of_nathaniels_email",
+      "note": "",
+      "tini": "2017-10-26 00:00:00 Thu",
+      "tdue": "2017-10-26 00:00:00 Thu",
+      "tfin": "2017-10-26 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/answer_nathaniels_other_questions/by/midnight": {
+      "user": "dreev",
+      "slug": "answer_nathaniels_other_questions",
+      "note": "aka nathaniel2 [5m late ~= .999 credit]",
+      "tini": "2017-10-26 00:00:00 Thu",
+      "tdue": "2017-10-26 12:00:00 Thu",
+      "tfin": "2017-10-26 12:05:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm": {
+      "user": "dreev",
+      "slug": "describe_more_of_this_thing_to_michael",
+      "note": "aka describe_to_michael",
+      "tini": "2017-10-25 00:00:00 Wed",
+      "tdue": "2017-10-26 13:00:00 Thu",
+      "tfin": "2017-10-26 13:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/update_meta_blog_post": {
+      "user": "dreev",
+      "slug": "update_meta_blog_post",
+      "note": "update blog.beeminder.com/will [11m late ~= .999 credit]",
+      "tini": "2017-08-09 00:00:00 Wed",
+      "tdue": "2017-10-27 17:00:00 Fri",
+      "tfin": "2017-10-27 17:11:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/report_cinesift_bug_separately/by/midnight": {
+      "user": "dreev",
+      "slug": "report_cinesift_bug_separately",
+      "note": "",
+      "tini": "2017-10-28 00:00:00 Sat",
+      "tdue": "2017-10-29 00:00:00 Sun",
+      "tfin": "2017-10-29 00:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/francisco_check": {
+      "user": "dreev",
+      "slug": "francisco_check",
+      "note": "",
+      "tini": "2017-10-26 00:00:00 Thu",
+      "tdue": "2017-10-29 10:00:00 Sun",
+      "tfin": "2017-10-29 10:00:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm": {
+      "user": "dreev",
+      "slug": "first_set_of_final_edits_for_michele",
+      "note": "michele draft",
+      "tini": "2017-10-30 00:00:00 Mon",
+      "tdue": "2017-10-31 11:00:00 Tue",
+      "tfin": "2017-10-31 11:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/plug_nanowrimo_room": {
+      "user": "dreev",
+      "slug": "plug_nanowrimo_room",
+      "note": "beemail nanowrimo",
+      "tini": "2017-10-30 00:00:00 Mon",
+      "tdue": "2017-10-31 15:00:00 Tue",
+      "tfin": "2017-10-31 15:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/roadedbugcheck/by/today": {
+      "user": "dreev",
+      "slug": "roadedbugcheck",
+      "note": "aka roadbugcheck",
+      "tini": "2017-11-02 00:00:00 Thu",
+      "tdue": "2017-11-02 00:00:00 Thu",
+      "tfin": "2017-11-02 00:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/verify_no_prov/by/10:30am": {
+      "user": "dreev",
+      "slug": "verify_no_prov",
+      "note": "aka providence_check",
+      "tini": "2017-11-01 00:00:00 Wed",
+      "tdue": "2017-11-02 10:29:00 Thu",
+      "tfin": "2017-11-02 10:15:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday": {
+      "user": "dreev",
+      "slug": "send_health_broker_email_if_bee_doesnt",
+      "note": "aka healthbroker",
+      "tini": "2017-11-03 00:00:00 Fri",
+      "tdue": "2017-11-06 00:00:00 Mon",
+      "tfin": "2017-11-03 00:00:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7": {
+      "user": "dreev",
+      "slug": "ping_josh_re_realsies_integration",
+      "note": "aka realsies_ping",
+      "tini": "2017-10-08 00:00:00 Sun",
+      "tdue": "2017-11-07 23:00:00 Tue",
+      "tfin": "2017-11-07 23:00:00 Tue",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/ask_person_re_food_morality": {
+      "user": "dreev",
+      "slug": "ask_person_re_food_morality",
+      "note": "",
+      "tini": "2017-11-06 00:00:00 Mon",
+      "tdue": "2017-11-08 00:00:00 Wed",
+      "tfin": "2017-11-08 00:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/pay_ifttt_invoice/by/today": {
+      "user": "dreev",
+      "slug": "pay_ifttt_invoice",
+      "note": "",
+      "tini": "2017-11-10 15:47:00 Fri",
+      "tdue": "2017-11-10 23:59:59 Fri",
+      "tfin": "2017-11-10 15:55:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/update_spec_with_those_2_points/by/midnight": {
+      "user": "dreev",
+      "slug": "update_spec_with_those_2_points",
+      "note": "",
+      "tini": "2017-11-10 10:39:00 Fri",
+      "tdue": "2017-11-10 23:59:59 Fri",
+      "tfin": "2017-11-10 23:45:00 Fri",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/send_michele_new_set_of_edits/by/nov_11_11pm": {
+      "user": "dreev",
+      "slug": "send_michele_new_set_of_edits",
+      "note": "[45m late ~= .999 credit]",
+      "tini": "2017-11-05 00:00:00 Sun",
+      "tdue": "2017-11-11 23:00:00 Sat",
+      "tfin": "2017-11-11 23:45:00 Sat",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/paste_in_pmc_notes/by/monday": {
+      "user": "dreev",
+      "slug": "paste_in_pmc_notes",
+      "note": "",
+      "tini": "2017-11-12 01:08:00 Sun",
+      "tdue": "2017-11-13 21:00:00 Mon",
+      "tfin": "2017-11-13 20:00:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
+      "user": "dreev",
+      "slug": "spec_out_pub_changelog_idea",
+      "note": "",
+      "tini": "2017-10-31 00:00:00 Tue",
+      "tdue": "2017-11-15 00:00:00 Wed",
+      "tfin": "2017-11-08 00:00:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/dedup_the_iwills/by/nov": {
+      "user": "dreev",
+      "slug": "dedup_the_iwills",
+      "note": "",
+      "tini": "2017-09-22 00:00:00 Fri",
+      "tdue": "2017-11-15 00:00:00 Wed",
+      "tfin": "2017-11-09 23:42:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/ask_kelley_re_ducks/by/nov_15": {
+      "user": "dreev",
+      "slug": "ask_kelley_re_ducks",
+      "note": "",
+      "tini": "2017-10-26 00:00:00 Thu",
+      "tdue": "2017-11-15 13:00:00 Wed",
+      "tfin": "2017-11-15 12:58:00 Wed",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/ask_scott_seo_question/by/next_week": {
+      "user": "dreev",
+      "slug": "ask_scott_seo_question",
+      "note": "",
+      "tini": "2017-11-09 18:03:00 Thu",
+      "tdue": "2017-11-16 00:00:00 Thu",
+      "tfin": "2017-11-09 19:00:00 Thu",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/payment_to_aaron/by/nov_30": {
+      "user": "dreev",
+      "slug": "payment_to_aaron",
+      "note": "aka aaronpay",
+      "tini": "2017-11-04 00:00:00 Sat",
+      "tdue": "2017-11-30 23:00:00 Thu",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/update_jess_and_ryan/by/december": {
+      "user": "dreev",
+      "slug": "update_jess_and_ryan",
+      "note": "re seed/indinero",
+      "tini": "2017-10-11 00:00:00 Wed",
+      "tdue": "2017-12-01 12:00:00 Fri",
+      "tfin": "",
+      "xfin": 0.5,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1": {
+      "user": "dreev",
+      "slug": "ask_jana_about_blood_testers",
+      "note": "",
+      "tini": "2017-09-26 00:00:00 Tue",
+      "tdue": "2017-12-01 22:00:00 Fri",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/ping_byorgey/by/dec_20": {
+      "user": "dreev",
+      "slug": "ping_byorgey",
+      "note": "",
+      "tini": "2017-09-15 00:00:00 Fri",
+      "tdue": "2017-12-20 12:00:00 Wed",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/finish_implementing_this_system/by/january": {
+      "user": "dreev",
+      "slug": "finish_implementing_this_system",
+      "note": "aka working_commits_to",
+      "tini": "2017-10-27 17:11:00 Fri",
+      "tdue": "2018-01-01 09:00:00 Mon",
+      "tfin": "",
+      "xfin": 0.4,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/ping_oli/by/jan_16": {
+      "user": "dreev",
+      "slug": "ping_oli",
+      "note": "",
+      "tini": "2017-09-15 00:00:00 Fri",
+      "tdue": "2018-01-16 12:00:00 Tue",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march": {
+      "user": "dreev",
+      "slug": "bug_kelley_re_feb_blog_post",
+      "note": "",
+      "tini": "2017-10-31 00:00:00 Tue",
+      "tdue": "2018-02-28 12:00:00 Wed",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": "yes"
+   },
+   "dreev.commits.to/find_out_about_google_penalties/by/a_week_after_typepad_says_no_to_redirect_again": {
+      "user": "dreev",
+      "slug": "find_out_about_google_penalties",
+      "note": "[conditional deadline]",
+      "tini": "2017-11-10 18:30:00 Fri",
+      "tdue": "",
+      "tfin": "",
+      "xfin": 0,
+      "bmid": ""
+   },
+   "dreev.promises.to/continue_explaining_tiein": {
+      "user": "dreev",
+      "slug": "continue_explaining_tiein",
+      "note": "",
+      "tini": "2017-11-12 15:03:00 Sun",
+      "tdue": "",
+      "tfin": "2017-11-12 15:04:00 Sun",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/finish_copyediting_pass_on_bees_spec": {
+      "user": "dreev",
+      "slug": "finish_copyediting_pass_on_bees_spec",
+      "note": "",
+      "tini": "2017-11-13 11:46:00 Mon",
+      "tdue": "",
+      "tfin": "2017-11-13 12:30:00 Mon",
+      "xfin": 1,
+      "bmid": "yes"
+   },
+   "dreev.promises.to/report_back_on_louis_new_user_bug_list/by/nov_25": {
+     "user": "dreev",
+     "slug": "report_back_on_louis_new_user_bug_list",
+     "note": "",
+     "tini": "2017-11-15 09:47:00 Wed",
+     "tdue": "2017-11-25 23:30:00 Sat",
+     "tfin": "",
+     "xfin": 0,
+     "bmid": ""
+   }
+}

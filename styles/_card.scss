@@ -40,17 +40,36 @@
       border-color: $gray-border;
     }
   }
-
 }
 
 .promise-user {
   align-items: center;
+  background-color: $gray-blue;
   display: flex;
-  margin: 0;
+  margin: -1rem -1rem 1rem;
+  padding: 1rem;
+  
+  &, a {
+    letter-spacing: 1px;
+    // display: none;
+  }
 
   >:first-child {
     display: block;
     margin-right: auto;
+  }
+  
+  .dateinfo {
+    float: right;
+    font-weight: 300;
+
+    ul { margin: 0px; }
+    li {
+      list-style: none;
+      font-size: 50%;
+      text-align: right;
+      word-break: break-all;
+    }
   }
 }
 
@@ -69,7 +88,7 @@
   
   .promise-bar-link {
     background-color: $white;
-    color: $blue;
+    color: $black;
     display: block;
     font-size: .75rem;
     font-weight: bold;
@@ -86,7 +105,7 @@
   
   .bar-button-action {
     .promise-bar-link {
-      opacity: .25;
+      opacity: .5;
     }
   }
 }

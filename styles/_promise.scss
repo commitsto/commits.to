@@ -16,24 +16,6 @@
     }
   }
   
-//   .promise-button {
-//     border: 1px solid $blue;
-//     border-radius: $card-border-radius;
-//     color: $blue;
-//     display: block;
-//     font-size: 2rem;
-//     font-weight: bold;
-//     text-transform: uppercase;
-//     padding: 2rem;
-//     text-align: center;
-//     transition: all .75s ease-in-out;
-    
-//     &:hover {
-//       background-color: $blue;
-//       color: white;
-//     }
-//   }
-  
   .promise-button {
     color: $white;
     background-color: $blue;
@@ -135,6 +117,10 @@
       }
     }
   }
+  label {
+    color: $white;
+    float: left;
+  }
 }
 
 .promises-preview {
@@ -143,7 +129,9 @@
   margin: .5rem -.5rem 0;
   
   .promise-card {
-    flex-grow: 1;
     margin: .5rem;
+    flex: 1 1 auto;
+    margin: .5rem;
+    max-width: calc(33.333% - 1rem);
   }
 }

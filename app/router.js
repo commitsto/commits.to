@@ -1,11 +1,16 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import { users, setup } from '../data/seed'
+import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
 
 import { logger } from '../lib/logger'
+
+       
+/* Static */
+
+app.get('/sign-up', (req, resp) => { resp.render('signup') })
 
 app.get([ // Home
   '/?',
@@ -13,6 +18,9 @@ app.get([ // Home
   '/commits.to/?'
 ], (req, resp) => {
     Promises.findAll({
+      where: {
+        tfin: null // only show uncompleted promises on the homepage
+      },
       order: sequelize.literal('tini DESC'),
       // limit: 30
     }).then(function(promises) {
@@ -68,9 +76,17 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
         } else {
           console.log('redirecting to create promise', promise, id)          
           logger.info('new promise request', parsedPromise, req.ip) // don't remove this
+          
+          // TODO
+          // Create promise in DB
+          // Show promise view with edit: true
+          // Display created_at date prominently
+          // Also track IP address created from
+          
 
           resp.render('create', {
             promise: parsedPromise,
+            showSubmitButton: true // FIXME when everything is being stored
           })
         }     
       })
@@ -82,24 +98,37 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
   })
 })
 
-        
-/* Static */
 
-app.get('/sign-up', (req, resp) => { resp.render('signup') })
+// edit a promise
+app.get('/:user.([promises|commits]+\.to+)/:promise*?/edit', (req, resp) => {
+  const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
+  .then(parsedPromise => {
+    const { id } = parsedPromise
 
+    console.log('editPromise', req.ip, parsedPromise)
 
-/* Utils */
-
-// drop db and repopulate
-app.get('/reset', (req, resp) => {
-  setup()
-  resp.redirect('/')
-})
-
-// removes all entries from the promises table
-app.get('/empty', (req, resp) => {
-  Promises.destroy({where: {}})
-  resp.redirect('/')
+    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
+      resp.redirect('/')
+    } else if (!users.includes(parsedPromise.user)) {
+      resp.redirect('/sign-up')
+    } else {
+      Promises.findOne({ where: { id } }).then((promise) => {
+        if (promise) {
+          console.log('promise exists', promise.dataValues)
+          resp.render('edit', {
+            promise,
+          })
+        } else {
+          console.error('no such promise', promise, id)
+          resp.redirect('/')
+        }
+      })
+    }
+  })
+  .catch((reason) => { // unparsable promise
+    console.log(reason)
+    resp.redirect('/')
+  })
 })
 
 // --------------------------------- 80chars ---------------------------------->

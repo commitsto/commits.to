@@ -3,14 +3,20 @@
 
 <script src="/js/promise.js"></script>
 
-<section class="promise-card {{dueStatus promise.tdue}}" style="{{creditStatus promise.tdue}}">
+<section class="promise-card {{dueStatus promise.tdue}}">
   <h2 class="promise-user">
     <a href="/{{promise.user}}.{{__appDomain}}/">
       {{promise.user}}
     </a>
-    <span style="opacity:.75">{{prettyDate promise.tfin}}</span>
-    <span style="opacity:.25">&nbsp;({{promise.id}})</span>
+    <div class="dateinfo">
+      <ul>
+        <li style="opacity:.75">{{prettyDate promise.tfin}}</li>
+        <li style="opacity:.50">&nbsp;({{creditStatus promise.tdue promise.tfin}})</li>
+        <li style="opacity:.25">&nbsp;({{promise.id}})</li>
+      </ul>
+    </div>
   </h2>
+
 
   <div class="promise-domain">{{promise.domain}}</div>
   
@@ -25,7 +31,7 @@
       </div>-->
       <div class="bar-button-action">
         <a href="#" onclick="completePromise('{{promise.id}}')" class="promise-bar-link">
-          Mark Complete
+          {{prettyDate promise.tdue}}
         </a>
       </div>
     </div>

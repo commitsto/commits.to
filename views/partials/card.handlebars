@@ -1,39 +1,42 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.min.js"></script>
-
-<script src="/js/promise.js"></script>
-
 <section class="promise-card {{dueStatus promise.tdue}}">
-  <h2 class="promise-user">
-    <a href="/{{promise.user}}.{{__appDomain}}/">
-      {{promise.user}}
-    </a>
-    <div class="dateinfo">
-      <ul>
-        <li style="opacity:.75">{{prettyDate promise.tfin}}</li>
-        <li style="opacity:.50">&nbsp;({{creditStatus promise.tdue promise.tfin}})</li>
-        <li style="opacity:.25">&nbsp;({{promise.id}})</li>
-      </ul>
+  <div class="promise-user">
+    <h2>
+      <a href="/{{promise.user}}.{{__appDomain}}/">
+        {{promise.user}}
+      </a>
+    </h2>
+    <div class="promise-slug">{{promise.slug}}</div>
+    <!--<div class="promise-completion-date">
+      {{prettyDate promise.tfin}}
+    </div>-->
+  </div>
+  
+  <div class="promise-bar">
+    <div class="bar-button-action" style="opacity:.50">
+      <a class="promise-bar-link">
+        {{prettyDate promise.tfin}}
+      </a>
     </div>
-  </h2>
+  </div>
 
-
-  <div class="promise-domain">{{promise.domain}}</div>
+  <div class="promise-domain">{{promiseDomain promise.domain}}</div>
   
   {{> promise promise=promise}}
   
-  {{#unless promise.tfin}}
-    <div class="promise-bar">
-      <!--<div class="bar-button-status">
-        <a href="#" class="promise-bar-link">
-          Delete
-        </a>
-      </div>-->
+  <div class="promise-bar">
+    <!--<div class="bar-button-status">
+      <a href="#" class="promise-bar-link">
+        Delete
+      </a>
+    </div>-->
+    {{#if promise.tfin}}
+    {{else}}
+    {{/if}}
       <div class="bar-button-action">
-        <a href="#" onclick="completePromise('{{promise.id}}')" class="promise-bar-link">
+        <a class="promise-bar-link" href="#" onclick="completePromise('{{promise.id}}')">
           {{prettyDate promise.tdue}}
         </a>
       </div>
-    </div>
-  {{/unless}}
+
+  </div>
 </section>

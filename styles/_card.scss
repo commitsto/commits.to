@@ -1,111 +1,104 @@
-.promise-card {
-  background-color: $blue;
-  border-radius: $card-border-radius;
-  border: 1px solid $blue-border;
-  overflow: hidden;
-  padding: 1rem;
-  transition: background .25s ease-in-out;
-
-  &:hover {
-    background-color: $dark-blue;
-  }
-  
-  &, a, span {
-    color: white;
-  }
-  
-  span {
-    font-weight: 300;
-    font-size: 50%;
-  }
-  
-  &.promise--status {
-    &-green {
-      background-color: $green;
-      border-color: $green-border;
-    }
-    &-blue {
-      // background-color: $blue;
-    }
-    &-orange {
-      background-color: $orange;
-      border-color: $orange-border;
-    }
-    &-red {
-      background-color: $red;
-      border-color: $red-border;
-    }
-    &-gray {
-      background-color: $gray;
-      border-color: $gray-border;
-    }
-  }
-}
-
-.promise-user {
-  align-items: center;
-  background-color: $gray-blue;
-  display: flex;
-  margin: -1rem -1rem 1rem;
-  padding: 1rem;
-  
-  &, a {
-    letter-spacing: 1px;
-    // display: none;
-  }
-
-  >:first-child {
-    display: block;
-    margin-right: auto;
-  }
-  
-  .dateinfo {
-    float: right;
-    font-weight: 300;
-
-    ul { margin: 0px; }
-    li {
-      list-style: none;
-      font-size: 50%;
-      text-align: right;
-      word-break: break-all;
-    }
-  }
-}
-
-.promise-domain {
-  font-style: italic;
-  font-size: 75%;
-}
-
-.promise-text {
-  margin-top: .25rem;
-}
-
-.promise-bar {
-  margin: calc(-1rem - 1px);
-  margin-top: 2rem;
-  
-  .promise-bar-link {
-    background-color: $white;
-    color: $black;
-    display: block;
-    font-size: .75rem;
-    font-weight: bold;
-    margin: -10px;
-    opacity: .5;
-    padding: .5rem;
-    text-align: center;
-    text-transform: uppercase;
+.promise {
+  &-card {
+    background-color: $blue;
+    border-radius: $card-border-radius;
+    border: 1px solid $blue-border;
+    overflow: hidden;
+    padding-bottom: 3rem;
+    position: relative;
+    transition: background .25s ease-in-out;
 
     &:hover {
-      opacity: .75;
+      background-color: $dark-blue;
+    }
+
+    &, a, span {
+      color: white;
+    }
+
+    span {
+      font-weight: 300;
+      font-size: 50%;
     }
   }
   
-  .bar-button-action {
-    .promise-bar-link {
+  &-credit {
+    right: 0;
+    padding: .5rem;
+    position: absolute;
+    top: 0;
+    
+  }
+  
+  &-slug {
+    font-size: .75rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: .25;
+  }
+
+  &-user {
+    background-color: $gray-blue;
+    padding: 1rem;
+
+    h2, a { 
+      letter-spacing: 1px; 
+      margin: 0 0 .25rem;
+    }
+
+    + .promise-bar {
+      margin-top: 0;
       opacity: .5;
+    }
+  }
+  
+  &-details {
+    padding: 1rem;
+  }
+
+  &-domain {
+    font-style: italic;
+    font-size: 75%;
+  }
+
+  &-text {
+    margin-top: .25rem;
+  }
+
+  &-bar {
+    background-color: $white;
+    margin-top: 1rem;
+    padding: .5rem;
+    
+    &--bottom {
+      bottom: 0;
+      left: 0;
+      opacity: .33;
+      position: absolute;
+      width: 100%;
+    }
+
+    .promise-bar-link {
+      color: $black;
+      display: block;
+      font-size: .75rem;
+      font-weight: normal;
+      // opacity: .5;
+      text-align: center;
+      text-transform: uppercase;
+
+      &:hover {
+        
+      }
+    }
+
+    &--completed {
+      background-color: $black;
+      opacity: .8;
+
+      .promise-bar-link {
+        color: $white;
+      }
     }
   }
 }

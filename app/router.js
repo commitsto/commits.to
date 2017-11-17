@@ -1,6 +1,7 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
+import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
@@ -19,7 +20,7 @@ app.get([ // Home
 ], (req, resp) => {
     Promises.findAll({
       where: {
-        tfin: null // only show uncompleted promises on the homepage
+        // tfin: null // only show uncompleted promises on the homepage
       },
       order: sequelize.literal('tini DESC'),
       // limit: 30

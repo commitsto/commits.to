@@ -133,6 +133,12 @@ app.get('/import', (req, resp) => {
   resp.redirect('/')
 })
 
+// drop db and repopulate
+app.get('/reset', (req, resp) => {
+  setup()
+  resp.redirect('/')
+})
+
 // removes all entries from the promises table
 app.get('/empty', (req, resp) => {
   Promises.destroy({where: {}})

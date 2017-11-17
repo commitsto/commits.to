@@ -29,6 +29,46 @@ $element-border-radius: 3px;
 @import 'promise.scss';
 @import 'user.scss';
 
+.promise--status {
+  &-green {
+    background-color: $green;
+    border-color: $green-border;
+  }
+  &-blue {
+    background-color: $blue;
+  }
+  &-orange {
+    background-color: $orange;
+    border-color: $orange-border;
+  }
+  &-red {
+    background-color: $red;
+    border-color: $red-border;
+  }
+  &-gray {
+    background-color: $gray;
+    border-color: $gray-border;
+  }
+}
+
+.credit--status {
+  &-green {
+    background: linear-gradient(to right, $gray-blue -10%, $green);
+  }
+  &-blue {
+    background: linear-gradient(to right, $gray-blue -10%, $blue);
+  }
+  &-orange {
+    background: linear-gradient(to right, $gray-blue -10%, $orange);
+  }
+  &-red {
+    background: linear-gradient(to right, $gray-blue -10%, $red);
+  }
+  &-gray {
+    background: linear-gradient(to right, $gray-blue -10%, $gray);
+  }
+}
+
 header {
   background-color: $header-bg;
   border-bottom: 1px ridge $header-border;

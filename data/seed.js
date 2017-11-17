@@ -34,10 +34,6 @@ export function setup() {
       Object.keys(promises).forEach((key) => {
         let prom = parsePromise({ urtext: key })
         prom = _.extend(prom, promises[key])
-        console.log('load seed promise', prom)
-        // prom.tini = promises[key].tini;
-        // prom.tdue = promises[key].tdue;
-        // prom.tdue = promises[key].tdue;
         Promises.create(prom)
       })
     })

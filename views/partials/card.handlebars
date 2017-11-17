@@ -1,4 +1,7 @@
 <section class="promise-card {{dueStatus promise.tdue}}">
+  <div class="promise-credit {{creditColor promise.tdue promise.tfin}}">
+    {{creditStatus promise.tdue promise.tfin}}
+  </div>
   <div class="promise-user">
     <h2>
       <a href="/{{promise.user}}.{{__appDomain}}/">

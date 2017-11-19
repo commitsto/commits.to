@@ -1389,14 +1389,45 @@
      "xfin": 0,
      "bmid": ""
    },
-  "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
-    "user": "dreev",
-    "slug": "update_promises_json_to_iso8601",
-    "note": "",
-    "tini": "2017-11-15T15:57:00-08:00",
-    "tdue": "2017-11-15T20:00:00-08:00",
-    "tfin": "2017-11-15T19:59:00-08:00",
-    "xfin": 1,
-    "bmid": "yes"
-  }
+"dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
+  "user": "dreev",
+  "slug": "update_promises_json_to_iso8601",
+  "note": "",
+  "tini": "2017-11-15T15:57:00-08:00",
+  "tdue": "2017-11-15T20:00:00-08:00",
+  "tfin": "2017-11-15T19:59:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
+},
+"dreev.commits.to/paste_instr": {
+  "user": "dreev",
+  "slug": "paste_instr",
+  "note": "paste instructions for using glitch as git repo",
+  "tini": "2017-11-16T19:21:00-08:00",
+  "tdue": "",
+  "tfin": "2017-11-16T21:20:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
+},
+"dreev.commits.to/retry_realsie_with_bee/by/midnight": {
+  "user": "dreev",
+  "slug": "retry_realsie_with_bee",
+  "note": "",
+  "tini": "2017-11-17T00:42:00-08:00",
+  "tdue": "2017-11-17T23:59:59-08:00",
+  "tfin": "",
+  "xfin": 0,
+  "bmid": "no"
+},
+"dreev.promises.to/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
+  "user": "dreev",
+  "slug": "add_link_to_realsies_in_promisesto_app",
+  "note": "[conditional deadline]",
+  "tini": "2017-11-17T01:13:00-08:00",
+  "tdue": "",
+  "tfin": "",
+  "xfin": 0,
+  "bmid": "no"  
+}
+    
 }

@@ -2,49 +2,55 @@
   <div class="promise-credit {{creditColor promise.tdue promise.tfin}}">
     {{creditStatus promise.tdue promise.tfin}}
   </div>
-  <div class="promise-user">
-    <h2>
+  
+  <div class="promise-header">
+    <h2 class="promise-user">
       <a href="/{{promise.user}}.{{__appDomain}}/">
         {{promise.user}}
       </a>
     </h2>
-    <div class="promise-slug">{{promise.slug}}</div>
-    <!--<div class="promise-completion-date">
-      {{prettyDate promise.tfin}}
-    </div>-->
+    <div class="promise-slug">
+      <a href="/{{promise.urtext}}">
+        {{promise.slug}}
+      </a>
+    </div>
   </div>
-  {{#if promise.tfin}}
-    <div class="promise-bar">
-      <div class="bar-button-action" style="opacity:.75">
-        <a class="promise-bar-link">
-          By {{prettyDate promise.tdue}}
-        </a>
-      </div>
+  
+  {{#if promise.tdue}}
+    <div class="promise-bar promise-bar--due">
+      <span class="promise-bar-date" style="opacity:.75">
+        By {{prettyDate promise.tdue}}
+      </span>
     </div>
   {{/if}}
 
   <div class="promise-details">
-    <div class="promise-domain">
-      {{promiseDomain promise.domain}}
-    </div>
-    {{> promise promise=promise}}
+    <a href="/{{promise.urtext}}">
+      <div class="promise-domain">
+        {{promiseDomain promise.domain}}
+      </div>
+      
+      {{> promise promise=promise}}
+      
+      {{#if promise.note}}
+        <small>
+          ({{promise.note}})
+        </small>
+      {{/if}}
+    </a>
   </div>
 
   <div class="promise-bar promise-bar--bottom {{#if promise.tfin}}promise-bar--completed{{/if}}">
-    <!--<div class="bar-button-status">
-      <a href="#" class="promise-bar-link">
-        Delete
-      </a>
-    </div>-->
     <div class="bar-button-action">
-      <a class="promise-bar-link" href="#" onclick="completePromise('{{promise.id}}')">
-        {{#if promise.tfin}}
+      {{#if promise.tfin}}
+        <span class="promise-bar-date" style="opacity:.75">
           Completed {{prettyDate promise.tfin}}
-        {{else}}
+        </span>
+      {{else}}
+        <a class="promise-bar-link" href="#" onclick="completePromise('{{promise.id}}')">
           Mark Complete
-        {{/if}}
-      </a>
+        </a>
+      {{/if}}
     </div>
-
   </div>
 </section>

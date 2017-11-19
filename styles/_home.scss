@@ -1,0 +1,12 @@
+.promises-preview {
+  display: flex;
+  flex-wrap: wrap;
+  margin: .5rem -.5rem 0;
+  
+  .promise-card {
+    margin: .5rem;
+    flex: 1 1 auto;
+    margin: .5rem;
+    // max-width: calc(33.333% - 1rem);
+  }
+}

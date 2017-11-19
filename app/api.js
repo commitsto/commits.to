@@ -38,14 +38,10 @@ app.get('/promises/:user/remove', function(req, resp) {
 })
 
 app.get('/promises/complete/:id(*)', (req, resp) => {
-  Promises.update(
-  {
-    tfin: moment().tz('America/New_York')
-  },
-  {
-   where: {
-     id: req.params.id
-   }
+  Promises.update({
+    tfin: moment()//.tz('America/New_York') // FIXME
+  },{
+   where: { id: req.params.id }
   })
   .then(function(promise){
     console.log('complete promise', promise);
@@ -53,17 +49,21 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
   })
 })
 
-// TODO: these should all be rendering json responses or something, not redirecting....
-app.post('/promises/edit/:id(*)', (req, resp) => {
-  //console.log("EDIT PROMISE", req.body.promise)
-  console.log("EDIT REQUEST", req)
-  Promises.update(
-    {},
-    { where: { id: req.params.id }}
-  )
-  .then(function(promise) {
-    console.log('edited promise', promise);
-    resp.redirect(req.body.promise_url);
+
+app.post('/promises/edit/:id(*)', (req, res) => {
+  console.log('edit promise', req.params.id, req.body);
+
+  Promises.update({
+    ...req.body
+  },{
+    where: { id: req.params.id }
+  })
+  .then(function(rows) {
+    if (rows && req.params.id) {
+      res.redirect(`/${req.params.id}`); 
+    } else {
+      res.redirect('/')
+    }
   })
 })
 

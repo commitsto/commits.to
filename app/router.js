@@ -8,128 +8,92 @@ import parsePromise from '../lib/parse'
 
 import { logger } from '../lib/logger'
 
-       
-/* Static */
+// validates all requests with a :user param
+app.param('user', function(req, res, next, id) {
+  console.log('user check');
+  if (!users.includes(id)) {
+    res.redirect('/sign-up')
+  } else {
+    next()
+  }
+});
 
-app.get('/sign-up', (req, resp) => { resp.render('signup') })
-
-app.get([ // Home
-  '/?',
-  '/promises.to/?',
-  '/commits.to/?'
-], (req, resp) => {
-    Promises.findAll({
-      where: {
-        // tfin: null // only show uncompleted promises on the homepage
-      },
-      order: sequelize.literal('tini DESC'),
-      // limit: 30
-    }).then(function(promises) {
-      resp.render('home', {
-        promises
-      })
-    })
-})
-
-// if a user visits bob.promises.to (or iwill.glitch.me/bob.promises.to) then
-// render the home view, but with only that user's promises
-app.get('/:user.([promises|commits]+\.to+)', (req,resp) => {
-  var dbPromises = {}
+app.get('/:user.(commits.to|promises.to)', (req, res) => {
+  console.log('user', req.params.user);
   Promises.findAll({
     where: {
       user: req.params.user
     },
     order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
-    resp.render('user', { 
+    console.log('found promises for user', req.params.user)
+    res.render('user', { 
       promises,
       user: req.params.user
     })
   })
 })
 
-// TODO: handle domain agnosticism
-// The server at promises.to passes along the full URL the way the user typed
-// it, so when the user hits "bob.promises.to/foo" the Glitch app is called
-// with "iwill.glitch.me/bob.promises.to/foo" and req.originalUrl is
-// "/bob.promises.to/foo" (req.originalUrl doesn't include the hostname which
-// from the perspective of this Glitch app is "iwill.glitch.me")
-
-app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,resp) => {
+// promise parsing middleware
+app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res, next) => {
   const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
-  .then(parsedPromise => {
-    const { id } = parsedPromise
+    .then(parsedPromise => {
+      req.parsedPromise = parsedPromise
+      console.log('promise middleware', req.ip, req.parsedPromise.id)
+      
+      // const { id, user } = parsedPromise
+      // if (users.includes(user)) {
+      //   Promises.findOne({ where: { id } }).then((promise) => {
+      //     if (promise) {
+      //       console.log('promise exists', promise.dataValues)
+      //       // TODO update clix
+      //       next()
+      //     } else {
+      //       // TODO
+      //       // Create promise in DB
+      //       // Add field to req object?
+      //       // Also track IP address created from
+      //     }
+      //   })
+      // }
+      next()
+    })
+    .catch((reason) => { // unparsable promise
+      console.log('promise parsing error', reason)
+      res.redirect('/')
+    })
+})
 
-    console.log('handleRequest', req.ip, parsedPromise)
+// edit promise (this has to come before the show route, else it's ambiguous)
+app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res, next) => {
+  const { parsedPromise: { id, user } = {} } = req
+  console.log('edit promise', id)
+  Promises.findOne({ where: { id } }).then((promise) => res.render('edit', { promise }))
+})
 
-    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
-      resp.redirect('/')
-    } else if (!users.includes(parsedPromise.user)) {
-      resp.redirect('/sign-up')
-    } else {
-      Promises.findOne({ where: { id } }).then((promise) => {
-        if (promise) {
-          console.log('promise exists', promise.dataValues)
-          resp.render('promise', {
-            promise,
-            secret: true // FIXME: does this do anything still?
-          })
-        } else {
-          console.log('redirecting to create promise', promise, id)          
-          logger.info('new promise request', parsedPromise, req.ip) // don't remove this
-          
-          // TODO
-          // Create promise in DB
-          // Show promise view with edit: true
-          // Display created_at date prominently
-          // Also track IP address created from
-          
-
-          resp.render('create', {
-            promise: parsedPromise,
-            showSubmitButton: true // FIXME when everything is being stored
-          })
-        }     
-      })
-    }
-  })
-  .catch((reason) => { // unparsable promise
-    console.log(reason)
-    resp.redirect('/')
+// promise show
+app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
+  const { parsedPromise: { id, user }  = {}} = req
+  Promises.findOne({ where: { id } }).then((promise) => {
+    console.log('show promise', id)
+    res.render('show', { promise })
   })
 })
 
-
-// edit a promise
-app.get('/:user.([promises|commits]+\.to+)/:promise*?/edit', (req, resp) => {
-  const parsedPromise = parsePromise({ urtext: req.originalUrl.replace(/\/edit$/,''), ip: req.ip })
-  .then(parsedPromise => {
-    const { id } = parsedPromise
-
-    console.log('editPromise', req.ip, parsedPromise)
-
-    if (parsedPromise.user === 'www' || parsedPromise.user === '') {
-      resp.redirect('/')
-    } else if (!users.includes(parsedPromise.user)) {
-      resp.redirect('/sign-up')
-    } else {
-      Promises.findOne({ where: { id } }).then((promise) => {
-        if (promise) {
-          console.log('promise exists', promise.dataValues)
-          resp.render('edit', {
-            promise,
-          })
-        } else {
-          console.error('no such promise', promise, id)
-          resp.redirect('/')
-        }
-      })
-    }
-  })
-  .catch((reason) => { // unparsable promise
-    console.log(reason)
-    resp.redirect('/')
+// home
+app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) => {
+  Promises.findAll({
+    // where: { tfin: null }, // only show uncompleted promises on the homepage
+    // limit: 30
+    order: sequelize.literal('tini DESC'),
+  }).then(function(promises) {
+    res.render('home', {
+      promises
+    })
   })
 })
+
+// placeholder
+app.get('/sign-up', (req, res) => { res.render('signup') })
 
 // --------------------------------- 80chars ---------------------------------->

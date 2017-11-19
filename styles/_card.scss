@@ -3,6 +3,7 @@
     background-color: $blue;
     border-radius: $card-border-radius;
     border: 1px solid $blue-border;
+    cursor: pointer;
     overflow: hidden;
     padding-bottom: 3rem;
     position: relative;
@@ -11,14 +12,9 @@
     &:hover {
       background-color: $dark-blue;
     }
-
-    &, a, span {
+    
+    &, a {
       color: white;
-    }
-
-    span {
-      font-weight: 300;
-      font-size: 50%;
     }
   }
   
@@ -34,71 +30,77 @@
     font-size: .75rem;
     font-weight: 300;
     letter-spacing: 1px;
-    opacity: .25;
+    opacity: .5;
+    word-break: break-all;
   }
 
-  &-user {
+  &-header {
     background-color: $gray-blue;
     padding: 1rem;
-
-    h2, a { 
-      letter-spacing: 1px; 
-      margin: 0 0 .25rem;
-    }
-
+    
     + .promise-bar {
       margin-top: 0;
       opacity: .5;
     }
   }
   
+  &-user {
+    letter-spacing: 1px; 
+    margin: 0 0 .25rem;
+    text-transform: capitalize;
+  }
+  
   &-details {
     padding: 1rem;
+    
+    a {
+      display: block;
+    }
   }
 
   &-domain {
     font-style: italic;
-    font-size: 75%;
+    font-weight: 300;
+    opacity: .5;
   }
 
   &-text {
+    font-size: 1.1rem;
     margin-top: .25rem;
+    text-transform: capitalize;
   }
 
   &-bar {
-    background-color: $white;
+    font-size: .75rem;
+    font-weight: normal;
+    letter-spacing: .25px;
     margin-top: 1rem;
-    padding: .5rem;
+    opacity: .8;
+    padding: .5rem 1rem;
+    text-align: left;
+    text-transform: uppercase;
     
     &--bottom {
+      background-color: $white;
       bottom: 0;
       left: 0;
-      opacity: .33;
+      opacity: .25;
       position: absolute;
+      text-align: right;
       width: 100%;
-    }
-
-    .promise-bar-link {
-      color: $black;
-      display: block;
-      font-size: .75rem;
-      font-weight: normal;
-      // opacity: .5;
-      text-align: center;
-      text-transform: uppercase;
-
-      &:hover {
-        
+      
+      &, a {
+        color: $dark-gray;
       }
+    }
+    
+    &--due {
+      background-color: $black; 
     }
 
     &--completed {
-      background-color: $black;
-      opacity: .8;
-
-      .promise-bar-link {
-        color: $white;
-      }
+      color: $black;
+      text-align: left;
     }
   }
 }

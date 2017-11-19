@@ -17,10 +17,28 @@
   <script src="/js/promise.js"></script>
 </head>
 <body>
-  {{> header}}
+  <header>
+    <h1>
+      <a href="/">
+        {{__appDomain}}
+      </a>
+    </h1>
+    <nav>
+      <a class="button" target="_blank" href="http://blog.beeminder.com/will">blog post</a>
+      <a class="button" target="_blank" href="https://github.com/beeminder/iwill">github repo</a>
+      <a class="button" target="_blank" href="https://github.com/beeminder/iwill/wiki">spec</a>
+    </nav>
+  </header>
+  
   <main>
     {{{body}}}
   </main>
-  {{> footer}}
+  
+  <footer>
+    <small>
+      We're working on the rest of the implementation, where you can mark promises
+      fulfilled and everyone can see statistics on your reliability.
+    </small>
+  </footer>
 </body>
 </html>

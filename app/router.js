@@ -5,12 +5,12 @@ import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse'
-
+import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
-  console.log('user check');
+  console.log('user check')
   if (!users.includes(id)) {
     res.redirect('/sign-up')
   } else {
@@ -27,7 +27,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     console.log('found promises for user', req.params.user)
-    res.render('user', { 
+    res.render('user', {
       promises,
       user: req.params.user
     })
@@ -38,25 +38,33 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
 app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res, next) => {
   const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
     .then(parsedPromise => {
-      req.parsedPromise = parsedPromise
+      req.parsedPromise = parsedPromise // add to the request object that is passed along
+
       console.log('promise middleware', req.ip, req.parsedPromise.id)
-      
-      // const { id, user } = parsedPromise
-      // if (users.includes(user)) {
-      //   Promises.findOne({ where: { id } }).then((promise) => {
-      //     if (promise) {
-      //       console.log('promise exists', promise.dataValues)
-      //       // TODO update clix
-      //       next()
-      //     } else {
-      //       // TODO
-      //       // Create promise in DB
-      //       // Add field to req object?
-      //       // Also track IP address created from
-      //     }
-      //   })
-      // }
-      next()
+
+      const { id, user } = parsedPromise
+      if (users.includes(user)) {
+        Promises.findOne({ where: { id } })
+          .then((promise) => {
+            if (promise) {
+              console.log('promise exists', promise.dataValues)
+              promise.increment(['clix'], { by: 1 }).then(updated => {
+                console.log('clix incremented', updated.id)
+                return next()
+              })
+            } else {
+              // TODO track IP address created from
+              Promises.create(parsedPromise)
+                .then(promise => {
+                  console.log('promise created', promise)
+                  mailself('PROMISE', promise.urtext) // send dreeves@ an email
+                  return next()
+                })
+            }
+          })
+      } else {
+       return next()
+      }
     })
     .catch((reason) => { // unparsable promise
       console.log('promise parsing error', reason)

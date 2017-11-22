@@ -14,8 +14,12 @@
     <input name="tini" type="text" value="{{promise.tini}}">
     <label for="tdue">Tdue</label>
     <input name="tdue" type="text" value="{{promise.tdue}}">
-    <label for="tfin">Tfin</label>
-    <input name="tfin" type="text" value="{{promise.tfin}}">
+    
+    {{#if promise.tfin}}
+      <label for="tfin">Tfin</label>
+      <input name="tfin" type="text" value="{{promise.tfin}}">
+    {{/if}}
+    
     <label for="slug">XFin</label>
     <input name="xfin" type="text" value="{{promise.xfin}}">
   </fieldset>

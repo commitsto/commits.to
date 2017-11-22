@@ -1415,9 +1415,9 @@
   "note": "",
   "tini": "2017-11-17T00:42:00-08:00",
   "tdue": "2017-11-17T23:59:59-08:00",
-  "tfin": "",
-  "xfin": 0,
-  "bmid": "no"
+  "tfin": "2017-11-19T22:32:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
 },
 "dreev.promises.to/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
   "user": "dreev",
@@ -1428,6 +1428,16 @@
   "tfin": "",
   "xfin": 0,
   "bmid": "no"  
+},
+"dreev.promises.to/pay_michael/by/today": {
+  "user": "dreev",
+  "slug": "pay_michael",
+  "note": "",
+  "tini": "2017-11-20T08:06:00-08:00",
+  "tdue": "2017-11-20T23:59:59-08:00",
+  "tfin": "2017-11-20T14:00:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
 }
     
 }

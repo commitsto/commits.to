@@ -70,9 +70,13 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
       Promises.findOne({ where: { id } }).then((promise) => {
         if (promise) {
           console.log('promise exists', promise.dataValues)
-          resp.render('promise', {
-            promise,
-            secret: true // FIXME: does this do anything still?
+          Promises.findAll({}).then((promises) => {
+            console.log('promises exist', promises.length)
+            resp.render('show', {
+              promise,
+              promises: promises,
+              secret: true // FIXME: does this do anything still?
+            })
           })
         } else {
           console.log('redirecting to create promise', promise, id)          

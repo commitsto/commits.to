@@ -2,11 +2,14 @@
   <h2>
     <a href="/{{user}}.{{__appDomain}}/">
       {{user}}
+      <span class="user-reliability {{reliabilityColor user promises}}">
+        {{reliabilityStatus user promises}}
+      </span>
     </a>
   </h2>
   <ul class="promises-list">
     {{#each promises}}
-      <li>{{> card promise=this}}</li>
+      <li>{{> card promise=this promises=../promises}}</li>
     {{/each}}
   </ul>
 </ul>

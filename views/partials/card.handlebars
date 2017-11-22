@@ -6,7 +6,7 @@
     <h2>
       <a href="/{{promise.user}}.{{__appDomain}}/">
         {{promise.user}}
-        <span class="user-reliability {{reliabilityColor promise.user promises}}">
+        <span class="reliability--status {{reliabilityColor promise.user promises}}">
           {{reliabilityStatus promise.user promises}}
         </span>
       </a>
@@ -16,19 +16,19 @@
       {{prettyDate promise.tfin}}
     </div>-->
   </div>
-  {{#if promise.tfin}}
-    <div class="promise-bar">
-      <div class="bar-button-action" style="opacity:.75">
-        <a class="promise-bar-link">
-          Due {{prettyDate promise.tdue}}
-        </a>
-      </div>
-      <span class="promis-bar--gcal" style="float:right;">
+  {{#if promise.tdue}}
+    <div class="promise-bar" style="min-height: 40px">
+      <span class="promis-bar--gcal" style="float: right; position: relative; z-index: 10">
         <a target="_blank"
 href="https://calendar.google.com/calendar/event?action=TEMPLATE&text={{promise.user}}%20{{promise.domain}}%20{{promise.what}}&dates={{isoDate promise.tdue}}/{{isoDate promise.tdue}}&details={{promise.id}}">
           <img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_en.gif">
         </a>
       </span>
+      <div class="bar-button-action" style="opacity:.75;">
+        <a class="promise-bar-link" style="text-align:left;">
+          {{prettyDate promise.tdue}}
+        </a>
+      </div>
     </div>
   {{/if}}
 

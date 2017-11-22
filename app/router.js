@@ -72,7 +72,7 @@ app.get('/:user.([promises|commits]+\.to+)/:promise?/:modifier?/:date*?', (req,r
           console.log('promise exists', promise.dataValues)
           Promises.findAll({}).then((promises) => {
             console.log('promises exist', promises.length)
-            resp.render('show', {
+            resp.render('promise', {
               promise,
               promises: promises,
               secret: true // FIXME: does this do anything still?

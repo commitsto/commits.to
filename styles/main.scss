@@ -69,6 +69,30 @@ $element-border-radius: 3px;
   }
 }
 
+
+.reliability--status {
+  padding: 4px;
+  color: $white;
+  border: 1px solid $white;
+  font-size: 100%;
+  &-green {
+    background-color: $green;
+  }
+  &-blue {
+    background-color: $blue;
+  }
+  &-orange {
+    background-color: $orange;
+  }
+  &-red {
+    background-color: $red;
+  }
+  &-gray {
+    background-color: $gray;
+  }
+}
+
+
 header {
   background-color: $header-bg;
   border-bottom: 1px ridge $header-border;

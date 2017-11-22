@@ -50,7 +50,7 @@ export const users = [
   /* weekly beemail */ 
   "samuel", "cole", "jessica", "steven",
   /* contributors */ 
-  "chris", "stephen",
+  "chris", "stephen", "temujin9",
   /* invitees */ 
   "pierre", "chelsea", 
 ]

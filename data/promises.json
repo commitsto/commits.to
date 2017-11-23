@@ -1387,7 +1387,7 @@
      "tdue": "2017-11-25T23:30:00-08:00",
      "tfin": "",
      "xfin": 0,
-     "bmid": ""
+     "bmid": "no"
    },
 "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
   "user": "dreev",
@@ -1456,8 +1456,8 @@
   "tini": "2017-11-22T20:23:00-08:00",
   "tdue": "2017-11-25T13:00:00-08:00",
   "tfin": "",
-  "xfin": 0,
-  "bmid": "no"  
+  "xfin": 1,
+  "bmid": "yes"  
 }
     
 }

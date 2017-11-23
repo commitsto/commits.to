@@ -1,13 +1,15 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import Promises, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
+import moment from 'moment-timezone'
+
 import mailself from '../lib/mail'
 import { setup, importJson } from '../data/seed'
-// import computeCredit from '../lib/latepenalty'
 
-import moment from 'moment-timezone'
+
+import Promises, { sequelize } from '../models/promise'
+import parsePromise from '../lib/parse'
+import computeCredit from '../lib/latepenalty'
 
 // Actions
 
@@ -38,13 +40,21 @@ app.get('/promises/:user/remove', function(req, resp) {
 })
 
 app.get('/promises/complete/:id(*)', (req, resp) => {
-  Promises.update({
-    tfin: moment()//.tz('America/New_York') // FIXME
-  },{
+  // TODO set cred field here
+  Promises.findOne({
    where: { id: req.params.id }
   })
   .then(function(promise){
-    console.log('complete promise', promise);
+    const diff = moment().diff(promise.tdue, 'seconds')
+    const cred = computeCredit(diff)
+    
+    console.log('complete promise', promise, diff, cred);
+    
+    promise.update({
+      tfin: moment(),//.tz('America/New_York') // FIXME,
+      cred
+    })
+    
     resp.redirect('/')
   })
 })
@@ -53,13 +63,18 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
 app.post('/promises/edit/:id(*)', (req, res) => {
   console.log('edit promise', req.params.id, req.body);
 
-  Promises.update({
-    ...req.body
-  },{
+  Promises.find({
     where: { id: req.params.id }
   })
-  .then(function(rows) {
-    if (rows && req.params.id) {
+  .then(function(promise) {
+    console.log('edit promise', promise)
+    
+    const diff = moment().diff(promise.tdue, 'seconds')
+    const cred = computeCredit(diff)
+    
+    promise.update({cred, ...req.body})
+    
+    if (promise && req.params.id) {
       res.redirect(`/${req.params.id}`); 
     } else {
       res.redirect('/')

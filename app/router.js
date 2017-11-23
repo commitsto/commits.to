@@ -83,11 +83,9 @@ app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res, next) => {
 // show promise
 app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
   const { parsedPromise: { id, user }  = {}} = req
-  let promises = null
-  Promises.findAll().then((p) => promises = p )
   Promises.findOne({ where: { id } }).then((promise) => {
     console.log('show promise', id)
-    res.render('show', { promise, promises: promises })
+    res.render('show', { promise })
   })
 })
 

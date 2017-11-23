@@ -40,11 +40,11 @@ app.get('/promises/:user/remove', function(req, resp) {
 })
 
 app.get('/promises/complete/:id(*)', (req, resp) => {
-  // TODO set cred field here
   Promises.findOne({
    where: { id: req.params.id }
   })
   .then(function(promise){
+    // ***FIXME refactor into method
     const diff = moment().diff(promise.tdue, 'seconds')
     const cred = computeCredit(diff)
     
@@ -68,7 +68,7 @@ app.post('/promises/edit/:id(*)', (req, res) => {
   })
   .then(function(promise) {
     console.log('edit promise', promise)
-    
+    // ***FIXME refactor into method
     const diff = moment().diff(promise.tdue, 'seconds')
     const cred = computeCredit(diff)
     

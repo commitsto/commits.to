@@ -4,9 +4,14 @@
     padding: 2rem;
     background-color: $blue;
     
-    a {
+    .user-name {
       color: $white;
       text-transform: capitalize;
+    }
+    
+    .user-reliability {
+      font-weight: 300;
+      float: right; //FIXME flex?
     }
   }
   

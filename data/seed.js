@@ -190,5 +190,8 @@ export const promises = {
   },
   "bee.commits.to/call_jacob_this_week/by/next_week": {
     tini: '2017-1-13'
+  },
+  "bee.commits.to/answer_lau_on_klondikebar/by/5:05pm": {
+    tini: '2017-11-20'
   }
 }

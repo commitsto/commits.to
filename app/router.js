@@ -28,7 +28,9 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     order: sequelize.literal('tdue DESC'),
   }).then(function(promises) {
     console.log(`${req.params.user}'s promises:`, promises)
+    
     // FIXME should be able to do this with one query
+    // TODO also find & calculate overdue promises
     Promises.findAll({
       where: {
         user: req.params.user,

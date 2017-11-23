@@ -12,14 +12,13 @@ import { logger } from '../lib/logger'
 app.param('user', function(req, res, next, id) {
   console.log('user check')
   if (!users.includes(id)) {
-    res.redirect('/sign-up')
-  } else {
-    next()
+    return res.redirect('/sign-up')
   }
-});
+  next()
+})
 
+// user promises list
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
-  console.log('user', req.params.user);
   Promises.findAll({
     where: {
       user: req.params.user
@@ -27,9 +26,9 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     order: sequelize.literal('tdue DESC')
   }).then(function(promises) {
     console.log('found promises for user', req.params.user)
-    res.render('user', {
+    res.render('user', { 
       promises,
-      user: req.params.user
+      user: req.params.user,
     })
   })
 })
@@ -39,9 +38,9 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
   const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
     .then(parsedPromise => {
       req.parsedPromise = parsedPromise // add to the request object that is passed along
-
+      
       console.log('promise middleware', req.ip, req.parsedPromise.id)
-
+      
       const { id, user } = parsedPromise
       if (users.includes(user)) {
         Promises.findOne({ where: { id } })
@@ -57,13 +56,13 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
               Promises.create(parsedPromise)
                 .then(promise => {
                   console.log('promise created', promise)
-                  mailself('PROMISE', promise.urtext) // send dreeves@ an email
+                  mailself('PROMISE', promise.urtext) // send dreeves@ an email 
                   return next()
                 })
             }
           })
       } else {
-       return next()
+       return next() 
       }
     })
     .catch((reason) => { // unparsable promise
@@ -76,15 +75,19 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
 app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res, next) => {
   const { parsedPromise: { id, user } = {} } = req
   console.log('edit promise', id)
-  Promises.findOne({ where: { id } }).then((promise) => res.render('edit', { promise }))
+  let promises = null
+  Promises.findAll().then((p) => promises = p )
+  Promises.findOne({ where: { id } }).then((promise) => res.render('edit', { promise, promises: promises }))
 })
 
-// promise show
+// show promise
 app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
   const { parsedPromise: { id, user }  = {}} = req
+  let promises = null
+  Promises.findAll().then((p) => promises = p )
   Promises.findOne({ where: { id } }).then((promise) => {
     console.log('show promise', id)
-    res.render('show', { promise })
+    res.render('show', { promise, promises: promises })
   })
 })
 

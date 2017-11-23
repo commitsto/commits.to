@@ -1438,6 +1438,16 @@
   "tfin": "2017-11-20T14:00:00-08:00",
   "xfin": 1,
   "bmid": "yes"
+},
+"dreev.commits.to/tryitout/by/6pm": {
+  "user": "dreev",
+  "slug": "tryitout",
+  "note": "",
+  "tini": "2017-11-22T15:00:00-08:00",
+  "tdue": "2017-11-22T18:00:00-08:00",
+  "tfin": "2017-11-22T17:00:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
 }
     
 }

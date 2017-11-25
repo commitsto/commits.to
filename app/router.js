@@ -24,9 +24,9 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   Promises.findAll({
     where: {
       user: req.params.user,
-      [sequelize.Op.not]: [
-        { tfin: null },
-      ],
+      // [sequelize.Op.not]: [
+      //   { tfin: null },
+      // ],
     },
     order: sequelize.literal('tdue DESC'),
   }).then(function(promises) {

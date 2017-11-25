@@ -6,10 +6,8 @@ import moment from 'moment-timezone'
 import mailself from '../lib/mail'
 import { setup, importJson } from '../data/seed'
 
-
 import Promises, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
-import computeCredit from '../lib/latepenalty'
+import parsePromise, { parseCredit } from '../lib/parse'
 
 // Actions
 
@@ -43,18 +41,13 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
   Promises.findOne({
    where: { id: req.params.id }
   })
-  .then(function(promise){
-    // ***FIXME refactor into method
-    const diff = moment().diff(promise.tdue, 'seconds')
-    const cred = computeCredit(diff)
-    
-    console.log('complete promise', promise, diff, cred);
-    
+  .then(function(promise){  
     promise.update({
       tfin: moment(),//.tz('America/New_York') // FIXME,
-      cred
+      cred: parseCredit({ dueDate: promise.tdue })
     })
     
+    console.log('complete promise', promise);
     resp.redirect('/')
   })
 })
@@ -67,13 +60,12 @@ app.post('/promises/edit/:id(*)', (req, res) => {
     where: { id: req.params.id }
   })
   .then(function(promise) {
+    promise.update({
+      cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
+      ...req.body
+    })
+    
     console.log('edit promise', promise)
-    // ***FIXME refactor into method
-    const diff = moment().diff(promise.tdue, 'seconds')
-    const cred = computeCredit(diff)
-    
-    promise.update({cred, ...req.body})
-    
     if (promise && req.params.id) {
       res.redirect(`/${req.params.id}`); 
     } else {

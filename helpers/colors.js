@@ -2,9 +2,12 @@ import moment from 'moment-timezone'
 import Handlebars from 'handlebars'
 
 Handlebars.registerHelper('creditColor', function(credit) {
-  let color = undefined;
+  let color = 'green';
   
   switch (true) {
+    case (credit == null):
+      color = '' //FIXME
+      break
     case (credit < .5):
       color = 'red'
       break
@@ -14,11 +17,9 @@ Handlebars.registerHelper('creditColor', function(credit) {
     case (credit < 1):
       color = 'blue'
       break
-    case (credit != undefined):
-      color = 'green'
   }
   
-  // console.log('creditColor', credit, color)
+  console.log('creditColor', credit, color)
   return `credit--status-${color}`
 });
 

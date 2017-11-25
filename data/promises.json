@@ -1458,6 +1458,26 @@
   "tfin": "",
   "xfin": 1,
   "bmid": "yes"  
+},
+"dreev.commits.to/update_spec_re_tdue_null": {
+  "user": "dreev",
+  "slug": "update_spec_re_tdue_null",
+  "note": "",
+  "tini": "2017-11-24T08:37:00-08:00",
+  "tdue": "",
+  "tfin": "2017-11-24T19:09:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/check_avg": {
+  "user": "dreev",
+  "slug": "check_avg",
+  "note": "",
+  "tini": "2017-11-23T19:21:00-08:00",
+  "tdue": "",
+  "tfin": "2017-11-24T19:24:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
 }
     
 }

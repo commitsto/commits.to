@@ -19,7 +19,7 @@ Handlebars.registerHelper('creditColor', function(credit) {
       break
   }
   
-  console.log('creditColor', credit, color)
+  // console.log('creditColor', credit, color)
   return `credit--status-${color}`
 });
 

@@ -18,12 +18,3 @@ Handlebars.registerHelper('dueStatus', function(dueDate) {
   // console.log('dueStatus', dueDate)
   return hoursUntil(dueDate)
 })
-
-Handlebars.registerHelper('dateBar', function(dueDate) {
-  // if (!dueDate) return
-  const diff = parseInt(hoursUntil(dueDate))
-  const width = (diff > 100 || diff < 0) ? 'auto' : `${100 - diff}%`
-  // console.log('promiseStatus', dueDate, duration.asSeconds(), now, end, credit)
-  // return `promise--status ${credit}`
-  return `width: ${width}`
-})

@@ -8,6 +8,8 @@ import data from './promises.json'
 import moment from 'moment-timezone'
 import computeCredit from '../lib/latepenalty'
 
+// FIXME refactor parsePromise to work for all imports
+
 export function importJson() {
   Promises.sync().then(function(){
     Object.keys(data).forEach((key) => {

@@ -43,6 +43,7 @@ export default sequelize.define('promises', {
   credit: {
     type: Sequelize.VIRTUAL,
     get: function() {
+      // TODO make parseCredit more robust
       const cred = parseCredit({
         dueDate: this.get('tdue'),
         finishDate: this.get('tfin')

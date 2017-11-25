@@ -5,9 +5,14 @@ import { parsePromise } from '../lib/parse'
 
 import data from './promises.json'
 
+import moment from 'moment-timezone'
+import computeCredit from '../lib/latepenalty'
+
 export function importJson() {
   Promises.sync().then(function(){
     Object.keys(data).forEach((key) => {
+      
+      // ***FIXME refactor into method
       const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
       const promise = { 
         id: key.toLowerCase(),
@@ -16,9 +21,10 @@ export function importJson() {
         slug,
         what: slug,
         note,
+        cred: tfin && tdue && computeCredit(moment(tdue).diff(tfin, 'seconds')) || null,
         tini: tini && new Date(tini) || null,
         tdue: tdue && new Date(tdue) || null,
-        tfin: tfin.length && new Date(tfin) || null,
+        tfin: tfin && new Date(tfin) || null,
         xfin
       }
       console.log('import', key, data[key], promise)

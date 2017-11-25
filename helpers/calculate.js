@@ -12,17 +12,6 @@ export const hoursUntil = function(dueDate) {
   return Math.abs(diff)
 }
 
-Handlebars.registerHelper('creditStatus', function(dueDate, finishDate) {
-  if (!finishDate || !dueDate) return;
-  
-  // ***FIXME refactor into method
-  const diff = moment(finishDate).diff(dueDate, 'seconds')
-  const credit = computeCredit(diff)
-  // console.log('creditStatus', dueDate, finishDate, diff, credit)
-  // return `promise--status ${credit}`
-  return `${credit.toFixed(credit === 1 ? 2 : 5)}`
-})
-
 Handlebars.registerHelper('dueStatus', function(dueDate) {
   if (!dueDate) return
   

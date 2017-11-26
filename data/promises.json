@@ -1455,7 +1455,7 @@
   "note": "",
   "tini": "2017-11-22T20:23:00-08:00",
   "tdue": "2017-11-25T13:00:00-08:00",
-  "tfin": "",
+  "tfin": "2017-11-23T12:00:00-08:00",
   "xfin": 1,
   "bmid": "yes"  
 },
@@ -1478,6 +1478,16 @@
   "tfin": "2017-11-24T19:24:00-08:00",
   "xfin": 1,
   "bmid": "yes"  
+},
+"dreev.commits.to/collect_copy_for_new_michele_draft/by/wed": {
+  "user": "dreev",
+  "slug": "collect_copy_for_new_michele_draft",
+  "note": "",
+  "tini": "2017-11-25T12:22:00-08:00",
+  "tdue": "2017-11-29T10:00:00-08:00",
+  "tfin": "",
+  "xfin": 0,
+  "bmid": "no"  
 }
     
 }

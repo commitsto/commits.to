@@ -2,7 +2,7 @@
 import Sequelize from 'sequelize'
 import moment from 'moment-timezone'
 
-import { parseCredit } from '../lib/parse'
+import parseCredit from '../lib/parse/credit'
 
 // set up a new database using database credentials set in .env
 export const sequelize = new Sequelize('database', process.env.DB_USER, 

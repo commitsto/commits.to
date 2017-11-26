@@ -4,7 +4,7 @@ import app from './express'
 import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
+import parsePromise from '../lib/parse/promise'
 import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
 

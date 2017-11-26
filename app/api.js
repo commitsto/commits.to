@@ -7,7 +7,8 @@ import mailself from '../lib/mail'
 import { setup, importJson } from '../data/seed'
 
 import Promises, { sequelize } from '../models/promise'
-import parsePromise, { parseCredit } from '../lib/parse'
+import parsePromise from '../lib/parse/promise'
+import parseCredit from '../lib/parse/credit'
 
 // Actions
 

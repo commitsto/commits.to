@@ -48,7 +48,7 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
       cred: parseCredit({ dueDate: promise.tdue })
     })
     
-    console.log('complete promise', promise);
+    console.log('complete promise', promise.dataValues);
     resp.redirect('/')
   })
 })
@@ -80,7 +80,7 @@ app.get('/promises/create/:urtext(*)', (req, resp) => {
   parsePromise({ urtext: req.params.urtext, ip: req.ip }).then((parsedPromise) => {
     Promises.create(parsedPromise)
     .then(function(promise){
-      console.log('promise created', promise);
+      console.log('promise created', promise.dataValues);
       mailself('PROMISE', promise.urtext) // send dreeves@ an email 
       resp.redirect(`/${req.params.urtext}`);
     })

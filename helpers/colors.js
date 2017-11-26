@@ -24,20 +24,24 @@ Handlebars.registerHelper('creditColor', function(credit) {
 });
 
 Handlebars.registerHelper('dueColor', function(diff) {
-  let color = 'green'
+  let color = 'gray'
   
   switch (true) {
-    case (diff < 0):
-      color = 'gray'
-      break  
-    case(diff < 24):
-      color = 'red'
+    case(diff < -(24 * 5)):
+      color = 'green'
       break
-    case(diff < (24 * 2)):
-      color = 'orange'
-      break
-    case(diff < (24 * 5)):
+    case(diff < -(24 * 2)):
       color = 'blue'
+      break
+    case(diff < -24):
+      color = 'yellow'
+      break
+      
+    case(diff < 0):
+      color = 'orange'  
+      break
+    case (diff > 0):
+      color = 'red'
   }
   
   // console.log('dueColor', diff, color)

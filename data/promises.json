@@ -1384,10 +1384,10 @@
      "slug": "report_back_on_louis_new_user_bug_list",
      "note": "",
      "tini": "2017-11-15T09:47:00-08:00",
-     "tdue": "2017-11-25T23:30:00-08:00",
-     "tfin": "",
-     "xfin": 0,
-     "bmid": "no"
+     "tdue": "2017-11-25T23:59:59-08:00",
+     "tfin": "2017-11-25T23:54:00-08:00",
+     "xfin": 1,
+     "bmid": "yes"
    },
 "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
   "user": "dreev",

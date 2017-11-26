@@ -16,6 +16,11 @@
     &, a {
       color: white;
     }
+    
+    &.completed {
+      background-color: transparent;
+      border-color: $light-gray;
+    }
   }
   
   &-credit {

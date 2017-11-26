@@ -1,12 +1,10 @@
 import _ from 'lodash'
 
 import Promises from '../models/promise'
-import { parsePromise } from '../lib/parse'
+import { parsePromise } from '../lib/parse/promise'
+import { parseCredit } from '../lib/parse/credit'
 
 import data from './promises.json'
-
-import moment from 'moment-timezone'
-import computeCredit from '../lib/latepenalty'
 
 // FIXME refactor parsePromise to work for all imports
 
@@ -23,7 +21,7 @@ export function importJson() {
         slug,
         what: slug,
         note,
-        cred: tfin && tdue && computeCredit(moment(tdue).diff(tfin, 'seconds')) || null,
+        cred: tfin && tdue && parseCredit({ dueDate :tdue, finishDate: tfin }) || null,
         tini: tini && new Date(tini) || null,
         tdue: tdue && new Date(tdue) || null,
         tfin: tfin && new Date(tfin) || null,

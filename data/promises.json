@@ -945,7 +945,7 @@
       "note": "marcinupdate [10.5h late ~= .99 credit]",
       "tini": "2017-09-04T00:00:00-07:00",
       "tdue": "2017-10-05T12:00:00-07:00",
-      "tfin": "2017-10-15T22:30:00-07:00",
+      "tfin": "2017-10-05T22:30:00-07:00",
       "xfin": 1,
       "bmid": "yes"
    },
@@ -1364,7 +1364,7 @@
       "slug": "continue_explaining_tiein",
       "note": "",
       "tini": "2017-11-12T15:03:00-08:00",
-      "tdue": "",
+      "tdue": "2017-11-12T15:03:00-08:00",
       "tfin": "2017-11-12T15:04:00-08:00",
       "xfin": 1,
       "bmid": "yes"
@@ -1374,7 +1374,7 @@
       "slug": "finish_copyediting_pass_on_bees_spec",
       "note": "",
       "tini": "2017-11-13T11:46:00-08:00",
-      "tdue": "",
+      "tdue": "2017-11-13T11:46:00-08:00",
       "tfin": "2017-11-13T12:30:00-08:00",
       "xfin": 1,
       "bmid": "yes"
@@ -1387,7 +1387,7 @@
      "tdue": "2017-11-25T23:30:00-08:00",
      "tfin": "",
      "xfin": 0,
-     "bmid": ""
+     "bmid": "no"
    },
 "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
   "user": "dreev",
@@ -1455,6 +1455,36 @@
   "note": "",
   "tini": "2017-11-22T20:23:00-08:00",
   "tdue": "2017-11-25T13:00:00-08:00",
+  "tfin": "2017-11-23T12:00:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/update_spec_re_tdue_null": {
+  "user": "dreev",
+  "slug": "update_spec_re_tdue_null",
+  "note": "",
+  "tini": "2017-11-24T08:37:00-08:00",
+  "tdue": "",
+  "tfin": "2017-11-24T19:09:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/check_avg": {
+  "user": "dreev",
+  "slug": "check_avg",
+  "note": "",
+  "tini": "2017-11-23T19:21:00-08:00",
+  "tdue": "",
+  "tfin": "2017-11-24T19:24:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/collect_copy_for_new_michele_draft/by/wed": {
+  "user": "dreev",
+  "slug": "collect_copy_for_new_michele_draft",
+  "note": "",
+  "tini": "2017-11-25T12:22:00-08:00",
+  "tdue": "2017-11-29T10:00:00-08:00",
   "tfin": "",
   "xfin": 0,
   "bmid": "no"  

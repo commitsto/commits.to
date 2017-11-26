@@ -1,13 +1,18 @@
 import _ from 'lodash'
 
 import Promises from '../models/promise'
-import { parsePromise } from '../lib/parse'
+import { parsePromise } from '../lib/parse/promise'
+import { parseCredit } from '../lib/parse/credit'
 
 import data from './promises.json'
+
+// FIXME refactor parsePromise to work for all imports
 
 export function importJson() {
   Promises.sync().then(function(){
     Object.keys(data).forEach((key) => {
+      
+      // ***FIXME refactor into method
       const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
       const promise = { 
         id: key.toLowerCase(),
@@ -16,9 +21,10 @@ export function importJson() {
         slug,
         what: slug,
         note,
+        cred: tfin && tdue && parseCredit({ dueDate :tdue, finishDate: tfin }) || null,
         tini: tini && new Date(tini) || null,
         tdue: tdue && new Date(tdue) || null,
-        tfin: tfin.length && new Date(tfin) || null,
+        tfin: tfin && new Date(tfin) || null,
         xfin
       }
       console.log('import', key, data[key], promise)
@@ -152,11 +158,14 @@ export const promises = {
 
   "bee.commits.to/new-family-photo-to-yoko/by/tomorrow-night": {
     tini: '2017-9-8',
-    tfin: '2017-9-9'
+    tfin: '2017-9-9',
+    cred: .9
   },
   "bee.commits.to/rest-of-paperwork-to-yoko-before-the-gym-tomorrow": {
-    tini: '2017-9-18',
-    tdue: '2017-9-18',
+    tini: '2017-9-17',
+    tdue: '2017-9-18 9:59',
+    tfin: '2017-9-18 11:59',
+    cred: .99,
     note: '2 hours late'
   },
   "bee.commits.to/email-sleep-as-android-for-specifics-about-sleep-length-measurement": {
@@ -164,7 +173,8 @@ export const promises = {
   },
   "bee.promises.to/read-hannas-emails": {
     tini: '2017-9-6',
-    tfin: '2017-9-6'
+    tfin: '2017-9-6',
+    cred: 1
   },
   "bee.promises.to/reping-one-with-heart": {
     tini: '2017-9-26'
@@ -174,7 +184,8 @@ export const promises = {
   },
   "bee.promises.to/schedule-planning-with-cantor/by/friday-night": {
     tini: '2017-9-6',
-    tfin: '2017-9-6'
+    tfin: '2017-9-6',
+    cred: 1
   },
   "bee.commits.to/put-away-camping-gear-this-weekend": {
     tini: '2017-9-29'

@@ -3,7 +3,11 @@
 import express from 'express'
 import expressHandlebars from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
-import '../lib/handlebars'
+
+import '../helpers/calculate'
+import '../helpers/colors'
+import '../helpers/format'
+import '../helpers/utils'
 
 const app = express()
 

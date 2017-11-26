@@ -4,7 +4,7 @@ import app from './express'
 import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse'
+import parsePromise from '../lib/parse/promise'
 import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
 
@@ -19,16 +19,35 @@ app.param('user', function(req, res, next, id) {
 
 // user promises list
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
+  console.log('user promises', req.params.user)
+  
   Promises.findAll({
     where: {
-      user: req.params.user
-    },
-    order: sequelize.literal('tdue DESC')
-  }).then(function(promises) {
-    console.log('found promises for user', req.params.user)
-    res.render('user', { 
-      promises,
       user: req.params.user,
+      // [sequelize.Op.not]: [
+      //   { tfin: null },
+      // ],
+    },
+    order: sequelize.literal('tdue DESC'),
+  }).then(function(promises) {
+    console.log(`${req.params.user}'s promises:`, promises.length)
+    
+    // FIXME should be able to do this with one query
+    // TODO also find & calculate overdue promises
+    Promises.findAll({
+      where: {
+        user: req.params.user,
+        [sequelize.Op.not]: [
+          { tfin: null },
+        ],
+      },
+      attributes: [[sequelize.fn('AVG', sequelize.col('cred')), 'reliability']],
+    }).then(rels => {
+      res.render('user', { 
+        promises,
+        user: req.params.user,
+        reliability: rels[0].dataValues.reliability
+      })
     })
   })
 })

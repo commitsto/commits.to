@@ -46,7 +46,7 @@ export default sequelize.define('promises', {
       // TODO make parseCredit more robust
       const cred = parseCredit({
         dueDate: this.get('tdue'),
-        finishDate: this.get('tfin')
+        finishDate: this.get('tfin') || undefined // for default param to override
       })
       
       console.log('virtual credit', cred)
@@ -56,7 +56,7 @@ export default sequelize.define('promises', {
   
   tini: { type: Sequelize.DATE, defaultValue: moment() }, // when the was promise was made
   tdue: { type: Sequelize.DATE/*, defaultValue: moment().tz('America/New_York').add(1, 'days')*/ }, // unixtime that the promise is due
-  tfin: { type: Sequelize.DATE }, // When the promise was (fractionally) fulfilled (even if 0%)
+  tfin: { type: Sequelize.DATE, defaultValue: undefined }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
   
   clix: { type: Sequelize.INTEGER, defaultValue: 0 }, // number of clicks a promise has gotten

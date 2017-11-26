@@ -42,6 +42,7 @@ It's even weirdly relaxing.
 When you get a commitment logged and on your calendar you yourself have faith that it will happen so you can put it out of your head in the meantime.
 I'm excited for this to be something anyone can use!
 
+<aside>test2250</aside>
 
 <a name="overview"></a>
 ## Overview
@@ -185,7 +186,7 @@ Some combinations of `tfin` and `xfin` don't make sense so we'll consider each p
 
 <blockquote>
 
-##### Case 1: `tfin` null, `xfin` null
+<h5>Case 1: `tfin` null, `xfin` null</h5>
 
 The promise is unfulfilled.
 This is the default state.

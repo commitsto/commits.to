@@ -1,5 +1,9 @@
 {{> card promise=promise}}
 
-<small>This promise has been viewed {{promise.clix}} times.</small>
-
-{{promise.credit}}
+<div class="card-footer">
+  <small>This promise has been viewed {{promise.clix}} times.</small>
+  
+  <a style="float:right" target="_blank" href="{{calendarUrl promise}}">
+    Add to Google Calendar
+  </a>
+</div>

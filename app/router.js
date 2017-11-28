@@ -4,6 +4,7 @@ import app from './express'
 import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
+import Users from '../models/user'
 import parsePromise from '../lib/parse/promise'
 import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
@@ -20,6 +21,9 @@ app.param('user', function(req, res, next, id) {
 // user promises list
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
   console.log('user promises', req.params.user)
+  
+  const u = Users.find({ where: { name: req.params.user } })
+  console.log('user list', u)//, //u.getPromises())
   
   Promises.findAll({
     where: {

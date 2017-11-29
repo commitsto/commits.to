@@ -19,15 +19,24 @@ app.param('user', function(req, res, next, id) {
 })
 
 // user promises list
+
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
   console.log('user promises', req.params.user)
   
-  const u = Users.find({ where: { name: req.params.user } })
-  console.log('user list', u)//, //u.getPromises())
+  const u = Users.findOne({  }) //where: { id: req.params.user }
+    .then(user => {
+      console.log('getPromises', user)
+      if(user) {
+        user.getPromises().then(promises => {
+          console.log('getPromises promises', promises)
+        })
+      }
+    })
+  console.log('user list', u)
   
   Promises.findAll({
     where: {
-      username: req.params.user,
+      userId: req.params.user,
       // [sequelize.Op.not]: [
       //   { tfin: null },
       // ],
@@ -40,7 +49,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     // TODO also find & calculate overdue promises
     Promises.findAll({
       where: {
-        username: req.params.user,
+        userId: req.params.user,
         [sequelize.Op.not]: [
           { tfin: null },
         ],

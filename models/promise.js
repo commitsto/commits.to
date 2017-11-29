@@ -32,7 +32,7 @@ export default sequelize.define('promises', {
   urtext: { type: Sequelize.STRING }, // full original text (URL) the user typed to create the promise
   domain: { type: Sequelize.STRING }, // domain the request was made on
   
-  username: { type: Sequelize.STRING }, // who's making the promise, parsed as the subdomain in the urtext
+  // user: { type: Sequelize.STRING }, // who's making the promise, parsed as the subdomain in the urtext
   slug: { type: Sequelize.STRING }, // unique identifier for the promise, parsed from the urtext URL
   what: { type: Sequelize.STRING }, // human-readable formatted version of the slug
   
@@ -63,12 +63,12 @@ export default sequelize.define('promises', {
   clix: { type: Sequelize.INTEGER, defaultValue: 0 }, // number of clicks a promise has gotten
   note: { type: Sequelize.STRING }, // optional additional notes or context for the promise 
 }, {
-  indexes: [
-    {
-      // unique: true,
-      fields: ['username']
-    }
-  ]
+  // indexes: [
+  //   {
+  //     // unique: true,
+  //     fields: ['user']
+  //   }
+  // ]
 })
 
 sequelize.authenticate()

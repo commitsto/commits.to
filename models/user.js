@@ -5,7 +5,7 @@ import moment from 'moment-timezone'
 import Promises, { sequelize } from './promise'
 
 const Users = sequelize.define('users', {
-  name: { // username
+  id: { // username
     type: Sequelize.STRING,
     primaryKey: true,
     unique: true,
@@ -17,8 +17,8 @@ const Users = sequelize.define('users', {
   
 // })
 
-Users.hasMany(Promises, { foreignKey: 'username', sourceKey: 'name' })
-Promises.belongsTo(Users, { foreignKey: 'username', targetKey: 'name' })  
+Users.hasMany(Promises)//, { foreignKey: 'user', sourceKey: 'name' })
+Promises.belongsTo(Users)//, { as: 'user', foreignKey: 'user', targetKey: 'name' })  
 
 // sequelize.authenticate()
 //   .then(function(err) {

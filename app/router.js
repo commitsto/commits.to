@@ -27,7 +27,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   
   Promises.findAll({
     where: {
-      user: req.params.user,
+      username: req.params.user,
       // [sequelize.Op.not]: [
       //   { tfin: null },
       // ],
@@ -40,7 +40,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     // TODO also find & calculate overdue promises
     Promises.findAll({
       where: {
-        user: req.params.user,
+        username: req.params.user,
         [sequelize.Op.not]: [
           { tfin: null },
         ],
@@ -49,7 +49,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     }).then(rels => {
       res.render('user', { 
         promises,
-        user: req.params.user,
+        username: req.params.user,
         reliability: rels[0].dataValues.reliability
       })
     })
@@ -117,6 +117,7 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
     // limit: 30
     order: sequelize.literal('tini DESC'),
   }).then(function(promises) {
+    console.log('WTF glitch?!?')
     res.render('home', {
       promises
     })
@@ -124,6 +125,6 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
 })
 
 // placeholder
-app.get('/sign-up', (req, res) => { res.render('signup') })
+app.get('/sign-up', (req, res) => { console.log('WTF glitch?!?'); res.render('signup') })
 
 // --------------------------------- 80chars ---------------------------------->

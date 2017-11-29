@@ -7,7 +7,7 @@ import { parseCredit } from '../lib/parse/credit'
 
 import data from './promises.json'
 
-// create seed users
+create seed users
 export function seed() { 
   Users.sync({force: true}) // 'force: true' just drops the table if it exists
     .then(function(){
@@ -29,7 +29,7 @@ export function importJson() {
       const promise = { 
         id: key.toLowerCase(),
         urtext: key,
-        user,
+        username: user,
         slug,
         what: slug,
         note,

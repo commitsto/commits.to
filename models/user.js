@@ -17,7 +17,8 @@ const Users = sequelize.define('users', {
   
 // })
 
-Users.hasMany(Promises, { foreignKey: 'user', sourceKey: 'name', constraints: false })
+Users.hasMany(Promises, { foreignKey: 'username', sourceKey: 'name' })
+Promises.belongsTo(Users, { foreignKey: 'username', targetKey: 'name' })  
 
 // sequelize.authenticate()
 //   .then(function(err) {

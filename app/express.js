@@ -12,17 +12,17 @@ import '../helpers/utils'
 const app = express()
 
 app.use(sassMiddleware({
-  src: '/app/styles',
-  dest: '/app/public',
+  src: `${process.env.APP_PATH}styles`,
+  dest: `${process.env.APP_PATH}public`,
   force: true,
-  // debug: true,
+  debug: true,
   // outputStyle: 'compressed',
 }))
 
 app.enable('trust proxy')
 
-app.use(express.static('/app/styles'))
-app.use(express.static('/app/public'))
+app.use(express.static(`${process.env.APP_PATH}styles`))
+app.use(express.static(`${process.env.APP_PATH}public`))
 
 app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')

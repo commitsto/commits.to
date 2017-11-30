@@ -3,3 +3,4 @@ node_modules/
 .v8flags*
 .babel.json
 .viminfo
+*database.sqlite

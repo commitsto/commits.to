@@ -7,6 +7,9 @@ import parseCredit from '../lib/parse/credit'
 
 import data from './promises.json'
 
+Users.hasMany(Promises, { constraints: false })
+Promises.belongsTo(Users, { constraints: false })
+
 // create seed users
 export function seed() { 
   Users.sync({force: true}) // 'force: true' just drops the table if it exists

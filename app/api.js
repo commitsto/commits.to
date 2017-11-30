@@ -4,7 +4,7 @@ import app from './express'
 import moment from 'moment-timezone'
 
 import mailself from '../lib/mail'
-import { setup, importJson } from '../data/seed'
+import { seed, setup, importJson } from '../data/seed'
 
 import Promises, { sequelize } from '../models/promise'
 import parsePromise from '../lib/parse/promise'
@@ -143,6 +143,7 @@ app.get('/import', (req, resp) => {
 
 // drop db and repopulate
 app.get('/reset', (req, resp) => {
+  seed()
   setup()
   resp.redirect('/')
 })

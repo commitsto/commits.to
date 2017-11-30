@@ -4,6 +4,7 @@ import app from './express'
 import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
 import Promises, { sequelize } from '../models/promise'
+import Users from '../models/user'
 import parsePromise from '../lib/parse/promise'
 import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
@@ -18,12 +19,24 @@ app.param('user', function(req, res, next, id) {
 })
 
 // user promises list
+
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
   console.log('user promises', req.params.user)
   
+  const u = Users.findOne({  }) //where: { id: req.params.user }
+    .then(user => {
+      console.log('getPromises', user)
+      if(user) {
+        user.getPromises().then(promises => {
+          console.log('getPromises promises', promises)
+        })
+      }
+    })
+  console.log('user list', u)
+  
   Promises.findAll({
     where: {
-      user: req.params.user,
+      userId: req.params.user,
       // [sequelize.Op.not]: [
       //   { tfin: null },
       // ],
@@ -36,7 +49,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     // TODO also find & calculate overdue promises
     Promises.findAll({
       where: {
-        user: req.params.user,
+        userId: req.params.user,
         [sequelize.Op.not]: [
           { tfin: null },
         ],
@@ -45,7 +58,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     }).then(rels => {
       res.render('user', { 
         promises,
-        user: req.params.user,
+        username: req.params.user,
         reliability: rels[0].dataValues.reliability
       })
     })
@@ -113,6 +126,7 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
     // limit: 30
     order: sequelize.literal('tini DESC'),
   }).then(function(promises) {
+    console.log('WTF glitch?!?')
     res.render('home', {
       promises
     })
@@ -120,6 +134,6 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
 })
 
 // placeholder
-app.get('/sign-up', (req, res) => { res.render('signup') })
+app.get('/sign-up', (req, res) => { console.log('WTF glitch?!?'); res.render('signup') })
 
 // --------------------------------- 80chars ---------------------------------->

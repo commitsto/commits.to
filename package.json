@@ -4,7 +4,8 @@
   "description": "Commitment tracker",
   "main": "server.js",
   "scripts": {
-    "start": "node babel.js"
+    "start": "node babel.js",
+    "start:dev": "PORT=8080 DB_PATH=data/ APP_PATH= nodemon babel.js"
   },
   "dependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
@@ -56,5 +57,8 @@
     "promises.to"
   ],
   "license": "MIT",
-  "repository": "glitch/iwill"
+  "repository": "glitch/iwill",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
 }

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 
 import Promises from '../models/promise'
+import Users from '../models/user'
 import { parsePromise } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 

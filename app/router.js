@@ -3,7 +3,8 @@
 import app from './express'
 import APP_DOMAIN from '../data/config'
 import { users } from '../data/seed'
-import Promises, { sequelize } from '../models/promise'
+import Promises from '../models/promise'
+import { Sequelize } from '../db/sequelize'
 import parsePromise from '../lib/parse/promise'
 import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
@@ -24,11 +25,11 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   Promises.findAll({
     where: {
       user: req.params.user,
-      // [sequelize.Op.not]: [
+      // [Sequelize.Op.not]: [
       //   { tfin: null },
       // ],
     },
-    order: sequelize.literal('tdue DESC'),
+    order: Sequelize.literal('tdue DESC'),
   }).then(function(promises) {
     console.log(`${req.params.user}'s promises:`, promises.length)
     
@@ -37,11 +38,11 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     Promises.findAll({
       where: {
         user: req.params.user,
-        [sequelize.Op.not]: [
+        [Sequelize.Op.not]: [
           { tfin: null },
         ],
       },
-      attributes: [[sequelize.fn('AVG', sequelize.col('cred')), 'reliability']],
+      attributes: [[Sequelize.fn('AVG', Sequelize.col('cred')), 'reliability']],
     }).then(rels => {
       res.render('user', { 
         promises,
@@ -111,7 +112,7 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
   Promises.findAll({
     // where: { tfin: null }, // only show uncompleted promises on the homepage
     // limit: 30
-    order: sequelize.literal('tini DESC'),
+    order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
     res.render('home', {
       promises

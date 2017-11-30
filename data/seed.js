@@ -16,7 +16,7 @@ export function seed() {
     .then(function(){
       users.forEach((key) => {
         console.log('create user', key)
-        Users.create(key)
+        Users.create({id: key})
       })
     })
 }

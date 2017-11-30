@@ -2,12 +2,15 @@
 
 import app from './express'
 import APP_DOMAIN from '../data/config'
-import { users } from '../data/seed'
-import Promises from '../models/promise'
-import { Sequelize } from '../db/sequelize'
-import parsePromise from '../lib/parse/promise'
-import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
+import mailself from '../lib/mail'
+
+import { Sequelize } from '../db/sequelize'
+import Promises from '../models/promise'
+import Users from '../models/user'
+
+import { users } from '../data/seed'
+import parsePromise from '../lib/parse/promise'
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
@@ -24,7 +27,7 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   
   Promises.findAll({
     where: {
-      user: req.params.user,
+      userId: req.params.user,
       // [Sequelize.Op.not]: [
       //   { tfin: null },
       // ],
@@ -35,21 +38,32 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     
     // FIXME should be able to do this with one query
     // TODO also find & calculate overdue promises
-    Promises.findAll({
+    Users.findOne({
       where: {
-        user: req.params.user,
-        [Sequelize.Op.not]: [
-          { tfin: null },
-        ],
-      },
-      attributes: [[Sequelize.fn('AVG', Sequelize.col('cred')), 'reliability']],
-    }).then(rels => {
-      res.render('user', { 
-        promises,
-        user: req.params.user,
-        reliability: rels[0].dataValues.reliability
-      })
-    })
+        id: req.params.user,
+      }
+    }).then(user => {
+      console.log('user findOne', user.dataValues)
+      
+      if (user) {
+        user.getPromises({ where: {} }).then(promises => {
+          console.log('getPromises', promises[0].dataValues)
+          
+          // FIXME this is so bad
+          // TODO replace cred static field with calculated credit field
+          user.getPromises({ attributes: [[Sequelize.fn('AVG', Sequelize.col('cred')), 'reliability']] })
+            .then(rel => {
+              console.log('reliability', rel)
+            
+              res.render('user', { 
+                promises,
+                user: req.params.user,
+                reliability: rel[0].dataValues.reliability
+              })
+            })
+        })
+      }
+    })      
   })
 })
 

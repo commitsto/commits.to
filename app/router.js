@@ -75,8 +75,10 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
       
       console.log('promise middleware', req.ip, req.parsedPromise.id)
       
-      const { id, user } = parsedPromise
-      if (users.includes(user)) {
+      const { id, userId } = parsedPromise
+      if (users.includes(userId)) {
+        console.log('middleware user', userId)
+        
         Promises.findOne({ where: { id } })
           .then((promise) => {
             if (promise) {

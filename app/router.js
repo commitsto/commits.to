@@ -1,7 +1,6 @@
 // --------------------------------- 80chars ---------------------------------->
 
 import app from './express'
-import APP_DOMAIN from '../data/config'
 import log from '../lib/logger'
 import mailself from '../lib/mail'
 
@@ -128,8 +127,14 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
   Promises.findAll({
     // where: { tfin: null }, // only show uncompleted promises on the homepage
     // limit: 30
+    include: [{
+      model: Users
+    }],
     order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
+    // console.log('homepage promises', promises)
+    log.info('render: home', promises[0].user.dataValues)
+
     res.render('home', {
       promises
     })

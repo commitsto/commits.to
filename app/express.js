@@ -15,7 +15,7 @@ app.use(sassMiddleware({
   src: `${process.env.APP_PATH}styles`,
   dest: `${process.env.APP_PATH}public`,
   force: true,
-  debug: true,
+  // debug: true,
   // outputStyle: 'compressed',
 }))
 

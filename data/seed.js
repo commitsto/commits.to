@@ -1,10 +1,25 @@
 import _ from 'lodash'
 
 import Promises from '../models/promise'
+import Users from '../models/user'
 import { parsePromise } from '../lib/parse/promise'
-import { parseCredit } from '../lib/parse/credit'
+import parseCredit from '../lib/parse/credit'
 
 import data from './promises.json'
+
+Users.hasMany(Promises, { constraints: false })
+Promises.belongsTo(Users, { constraints: false })
+
+// create seed users
+export function seed() { 
+  Users.sync({force: true}) // 'force: true' just drops the table if it exists
+    .then(function(){
+      users.forEach((key) => {
+        console.log('create user', key)
+        Users.create({id: key})
+      })
+    })
+}
 
 // FIXME refactor parsePromise to work for all imports
 

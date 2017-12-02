@@ -2,11 +2,15 @@
 
 import app from './express'
 import APP_DOMAIN from '../data/config'
-import { users } from '../data/seed'
-import Promises, { sequelize } from '../models/promise'
-import parsePromise from '../lib/parse/promise'
-import mailself from '../lib/mail'
 import { logger } from '../lib/logger'
+import mailself from '../lib/mail'
+
+import { Sequelize } from '../db/sequelize'
+import Promises from '../models/promise'
+import Users from '../models/user'
+
+import { users } from '../data/seed'
+import parsePromise from '../lib/parse/promise'
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
@@ -23,32 +27,43 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   
   Promises.findAll({
     where: {
-      user: req.params.user,
-      // [sequelize.Op.not]: [
+      userId: req.params.user,
+      // [Sequelize.Op.not]: [
       //   { tfin: null },
       // ],
     },
-    order: sequelize.literal('tdue DESC'),
+    order: Sequelize.literal('tdue DESC'),
   }).then(function(promises) {
     console.log(`${req.params.user}'s promises:`, promises.length)
     
     // FIXME should be able to do this with one query
     // TODO also find & calculate overdue promises
-    Promises.findAll({
+    Users.findOne({
       where: {
-        user: req.params.user,
-        [sequelize.Op.not]: [
-          { tfin: null },
-        ],
-      },
-      attributes: [[sequelize.fn('AVG', sequelize.col('cred')), 'reliability']],
-    }).then(rels => {
-      res.render('user', { 
-        promises,
-        user: req.params.user,
-        reliability: rels[0].dataValues.reliability
-      })
-    })
+        id: req.params.user,
+      }
+    }).then(user => {
+      console.log('user findOne', user.dataValues)
+      
+      if (user) {
+        user.getPromises({ where: {} }).then(promises => {
+          console.log('getPromises', promises[0].dataValues)
+          
+          // FIXME this is so bad
+          // TODO replace cred static field with calculated credit field
+          user.getPromises({ attributes: [[Sequelize.fn('AVG', Sequelize.col('cred')), 'reliability']] })
+            .then(rel => {
+              console.log('reliability', rel)
+            
+              res.render('user', { 
+                promises,
+                user: req.params.user,
+                reliability: rel[0].dataValues.reliability
+              })
+            })
+        })
+      }
+    })      
   })
 })
 
@@ -60,8 +75,10 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
       
       console.log('promise middleware', req.ip, req.parsedPromise.id)
       
-      const { id, user } = parsedPromise
-      if (users.includes(user)) {
+      const { id, userId } = parsedPromise
+      if (users.includes(userId)) {
+        console.log('middleware user', userId)
+        
         Promises.findOne({ where: { id } })
           .then((promise) => {
             if (promise) {
@@ -111,7 +128,7 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
   Promises.findAll({
     // where: { tfin: null }, // only show uncompleted promises on the homepage
     // limit: 30
-    order: sequelize.literal('tini DESC'),
+    order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
     res.render('home', {
       promises

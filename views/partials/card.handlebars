@@ -15,7 +15,7 @@
       </a>
     </div>
   </div>
-  
+
   {{#if promise.tdue}}
     <div class="promise-bar promise-bar--due">
       <span class="promise-bar-date" style="opacity:.75">
@@ -29,9 +29,9 @@
       <div class="promise-domain">
         {{promiseDomain promise.domain}}
       </div>
-      
+
       {{> promise promise=promise}}
-      
+
       {{#if promise.note}}
         <small>
           ({{promise.note}})

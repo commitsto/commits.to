@@ -125,7 +125,7 @@ app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
 // home
 app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) => {
   Promises.findAll({
-    // where: { tfin: null }, // only show uncompleted promises on the homepage
+    // where: { tfin: null }, // only show uncompleted
     // limit: 30
     include: [{
       model: Users

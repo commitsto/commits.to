@@ -1,11 +1,11 @@
 {
   "name": "promises",
-  "version": "0.0.2",
+  "version": "0.9.0",
   "description": "Commitment tracker",
-  "main": "server.js",
+  "main": "app/express.js",
   "scripts": {
     "start": "node babel.js",
-    "start:dev": "PORT=8080 DB_PATH=data/ APP_PATH= ENV_NAME=chris.dev nodemon babel.js"
+    "start:dev": "nodemon babel.js"
   },
   "dependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
@@ -59,6 +59,7 @@
   "license": "MIT",
   "repository": "glitch/iwill",
   "devDependencies": {
+    "dotenv": "^4.0.0",
     "eslint": "^4.12.1",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.8.0",

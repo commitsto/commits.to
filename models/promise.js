@@ -27,8 +27,9 @@ export default sequelize.define('promises', {
         finishDate: this.get('tfin')
       })
 
-      console.log('virtual credit', cred)
-      return cred || null
+      const credit = isNaN(cred) ? 1 : cred
+      console.log('virtual credit', credit)
+      return credit
     }
   },
 

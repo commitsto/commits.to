@@ -26,6 +26,4 @@ sequelize.authenticate()
     console.log('Database connection error: ', err)
   })
 
-export default sequelize
-
-export { Sequelize }
+export { Sequelize, sequelize }

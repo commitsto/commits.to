@@ -5,7 +5,7 @@
   "main": "app/express.js",
   "scripts": {
     "start": "node babel.js",
-    "start:dev": "nodemon babel.js"
+    "start:dev": "DEBUG=sequelize* nodemon babel.js"
   },
   "dependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
@@ -16,7 +16,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-plugin-transform-regenerator": "^6.9.0",
     "babel-polyfill": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015-node6": "^0.4.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "express": "^4.16.2",
@@ -37,7 +37,7 @@
   },
   "babel": {
     "presets": [
-      "es2015",
+      "es2015-node6",
       "stage-1"
     ],
     "plugins": [

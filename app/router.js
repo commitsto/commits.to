@@ -33,12 +33,13 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     if (user) {
       user.getPromises()
         .then(promises => {
-          log.debug(`${req.params.user}'s promises:`, promises.length)
+          const reliability = _.meanBy(promises, 'credit')
+          log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
           res.render('user', {
             promises,
             user: req.params.user,
-            reliability: _.meanBy(promises, 'credit')
+            reliability
           })
         })
     }

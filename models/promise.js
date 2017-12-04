@@ -28,7 +28,7 @@ export default sequelize.define('promises', {
       })
 
       console.log('virtual credit', cred)
-      return cred
+      return cred || null
     }
   },
 

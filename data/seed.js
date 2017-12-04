@@ -49,11 +49,11 @@ export function importJson() {
     Object.keys(data).forEach((key) => {
 
       // ***FIXME refactor into method
-      const { username, slug, note, tini, tdue, tfin, xfin } = data[key]
+      const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
       const promise = {
         id: key.toLowerCase(),
         urtext: key,
-        username,
+        username: user,
         slug,
         what: slug,
         note,
@@ -65,7 +65,14 @@ export function importJson() {
       }
       log.info('import', key, data[key], promise)
 
-      Promises.create(promise)
+      Users.findOne({
+        where: {
+          username: user
+        }
+      }).then((u) => {
+        const p = u && u.createPromise(promise)
+        log.info('creating promise for', u.dataValues, p)
+      })
     })
   })
 }
@@ -76,8 +83,7 @@ export const users = [
   /* initial co-conspirators */
   'dreev', 'sergii', 'kim', 'bee', 'braden',
   /* daily beemail */
-  'byorgey', 'nick', 'josh', 'dehowell', 'caillu', 'mbork', 'roy', 'jennyli',
-  'owen',
+  'byorgey', 'nick', 'josh', 'dehowell', 'caillu', 'mbork', 'roy', 'jennyli', 'owen',
   /* weekly beemail */
   'samuel', 'cole', 'jessica', 'steven',
   /* contributors */

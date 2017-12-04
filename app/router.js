@@ -1,13 +1,13 @@
 // --------------------------------- 80chars ---------------------------------->
+import _ from 'lodash'
 
 import app from './express'
-import APP_DOMAIN from '../data/config'
-import { logger } from '../lib/logger'
+import log from '../lib/logger'
 import mailself from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
 import Promises from '../models/promise'
-import Users from '../models/user'
+import { Users } from '../models/user'
 
 import { users } from '../data/seed'
 import parsePromise from '../lib/parse/promise'
@@ -23,62 +23,42 @@ app.param('user', function(req, res, next, id) {
 
 // user promises list
 app.get('/:user.(commits.to|promises.to)', (req, res) => {
-  console.log('user promises', req.params.user)
-  
-  Promises.findAll({
+  log.debug('user promises', req.params.user)
+
+  Users.findOne({
     where: {
-      userId: req.params.user,
-      // [Sequelize.Op.not]: [
-      //   { tfin: null },
-      // ],
-    },
-    order: Sequelize.literal('tdue DESC'),
-  }).then(function(promises) {
-    console.log(`${req.params.user}'s promises:`, promises.length)
-    
-    // FIXME should be able to do this with one query
-    // TODO also find & calculate overdue promises
-    Users.findOne({
-      where: {
-        id: req.params.user,
-      }
-    }).then(user => {
-      console.log('user findOne', user.dataValues)
-      
-      if (user) {
-        user.getPromises({ where: {} }).then(promises => {
-          console.log('getPromises', promises[0].dataValues)
-          
-          // FIXME this is so bad
-          // TODO replace cred static field with calculated credit field
-          user.getPromises({ attributes: [[Sequelize.fn('AVG', Sequelize.col('cred')), 'reliability']] })
-            .then(rel => {
-              console.log('reliability', rel)
-            
-              res.render('user', { 
-                promises,
-                user: req.params.user,
-                reliability: rel[0].dataValues.reliability
-              })
-            })
+      username: req.params.user,
+    }
+  }).then(user => {
+    if (user) {
+      user.getPromises()
+        .then(promises => {
+          log.debug(`${req.params.user}'s promises:`, promises.length)
+
+          res.render('user', {
+            promises,
+            user: req.params.user,
+            reliability: _.meanBy(promises, 'credit')
+          })
         })
-      }
-    })      
+    }
   })
 })
+
+// FIXME: check users in DB
 
 // promise parsing middleware
 app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res, next) => {
   const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
     .then(parsedPromise => {
       req.parsedPromise = parsedPromise // add to the request object that is passed along
-      
+
       console.log('promise middleware', req.ip, req.parsedPromise.id)
-      
-      const { id, userId } = parsedPromise
-      if (users.includes(userId)) {
-        console.log('middleware user', userId)
-        
+
+      const { id, username } = parsedPromise
+      if (users.includes(username)) {
+        console.log('middleware user', username)
+
         Promises.findOne({ where: { id } })
           .then((promise) => {
             if (promise) {
@@ -92,13 +72,13 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
               Promises.create(parsedPromise)
                 .then(promise => {
                   console.log('promise created', promise)
-                  mailself('PROMISE', promise.urtext) // send dreeves@ an email 
+                  mailself('PROMISE', promise.urtext) // send dreeves@ an email
                   return next()
                 })
             }
           })
       } else {
-       return next() 
+       return res.redirect('/sign-up')
       }
     })
     .catch((reason) => { // unparsable promise
@@ -110,14 +90,16 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
 // edit promise (this has to come before the show route, else it's ambiguous)
 app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res, next) => {
   const { parsedPromise: { id, user } = {} } = req
+
   console.log('edit promise', id)
-  Promises.findOne({ where: { id } }).then((promise) => res.render('edit', { promise }))
+  Promises.findOne({ where: { id }, include: [{ model: Users }] }).then((promise) => res.render('edit', { promise }))
 })
 
 // show promise
 app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
-  const { parsedPromise: { id, user }  = {}} = req
-  Promises.findOne({ where: { id } }).then((promise) => {
+  const { parsedPromise: { id }  = {}} = req
+
+  Promises.findOne({ where: { id }, include: [{ model: Users }] }).then((promise) => {
     console.log('show promise', id)
     res.render('show', { promise })
   })
@@ -126,10 +108,16 @@ app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
 // home
 app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) => {
   Promises.findAll({
-    // where: { tfin: null }, // only show uncompleted promises on the homepage
+    // where: { tfin: null }, // only show uncompleted
     // limit: 30
+    include: [{
+      model: Users
+    }],
     order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
+    // console.log('homepage promises', promises)
+    log.info('render: home', promises[0] && promises[0].user && promises[0].user.dataValues)
+
     res.render('home', {
       promises
     })

@@ -2,11 +2,11 @@
   <div class="promise-credit {{creditColor promise.credit}}">
     {{promise.credit}}
   </div>
-  
+
   <div class="promise-header">
     <h2 class="promise-user">
-      <a href="/{{promise.userId}}.{{__appDomain}}/">
-        {{promise.userId}}
+      <a href="/{{promise.user.username}}.{{__appDomain}}/">
+        {{promise.user.username}}
       </a>
     </h2>
     <div class="promise-slug">
@@ -15,7 +15,7 @@
       </a>
     </div>
   </div>
-  
+
   {{#if promise.tdue}}
     <div class="promise-bar promise-bar--due">
       <span class="promise-bar-date" style="opacity:.75">
@@ -29,9 +29,9 @@
       <div class="promise-domain">
         {{promiseDomain promise.domain}}
       </div>
-      
+
       {{> promise promise=promise}}
-      
+
       {{#if promise.note}}
         <small>
           ({{promise.note}})

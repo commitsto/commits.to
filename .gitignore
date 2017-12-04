@@ -1,6 +1,9 @@
-public/main.css
-node_modules/
-.v8flags*
-.babel.json
-.viminfo
+.config/
 *database.sqlite
+node_modules/
+public/main.css
+
+.babel.json
+.env
+.viminfo
+.v8flags*

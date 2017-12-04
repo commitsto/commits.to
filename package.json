@@ -1,11 +1,11 @@
 {
   "name": "promises",
-  "version": "0.0.2",
+  "version": "0.9.0",
   "description": "Commitment tracker",
-  "main": "server.js",
+  "main": "app/express.js",
   "scripts": {
     "start": "node babel.js",
-    "start:dev": "PORT=8080 DB_PATH=data/ APP_PATH= nodemon babel.js"
+    "start:dev": "DEBUG=sequelize* nodemon babel.js"
   },
   "dependencies": {
     "babel-plugin-syntax-async-functions": "^6.8.0",
@@ -16,7 +16,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-plugin-transform-regenerator": "^6.9.0",
     "babel-polyfill": "^6.9.0",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015-node6": "^0.4.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "express": "^4.16.2",
@@ -37,7 +37,7 @@
   },
   "babel": {
     "presets": [
-      "es2015",
+      "es2015-node6",
       "stage-1"
     ],
     "plugins": [
@@ -59,6 +59,14 @@
   "license": "MIT",
   "repository": "glitch/iwill",
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "dotenv": "^4.0.0",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.12.1",
+    "winston-console-formatter": "^0.3.1"
   }
 }

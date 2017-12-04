@@ -3,7 +3,7 @@
   <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
   <fieldset>
     <label for="user">Who</label>
-    <input name="user" type="text" value="{{promise.user}}">
+    <input name="user.username" type="text" value="{{promise.user.username}}">
     <label for="slug">Slug</label>
     <input name="slug" type="text" value="{{promise.slug}}">
     <label for="void">void</label>
@@ -14,12 +14,12 @@
     <input name="tini" type="text" value="{{promise.tini}}">
     <label for="tdue">Tdue</label>
     <input name="tdue" type="text" value="{{promise.tdue}}">
-    
+
     {{#if promise.tfin}}
       <label for="tfin">Tfin</label>
       <input name="tfin" type="text" value="{{promise.tfin}}">
     {{/if}}
-    
+
     <label for="slug">XFin</label>
     <input name="xfin" type="text" value="{{promise.xfin}}">
   </fieldset>

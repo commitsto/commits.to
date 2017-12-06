@@ -71,7 +71,7 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
       req.promise.setUser(req.user)
 
       req.promise.increment(['clix'], { by: 1 }).then(promise => {
-        log.debug('clix incremented', promise.id)
+        log.debug('clix incremented', promise.dataValues)
         return next()
       })
     })
@@ -83,7 +83,7 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
 
 // edit promise (this has to come before the show route, else it's ambiguous)
 app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res) => {
-  log.debug('edit promise', req.promise)
+  log.debug('edit promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise
   })
@@ -91,7 +91,7 @@ app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res) => {
 
 // show promise
 app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res) => {
-  // log.debug('show promise', req.promise)
+  log.debug('show promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise
   })
@@ -107,8 +107,7 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
     }],
     order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
-    // console.log('homepage promises', promises)
-    log.debug('render: home', promises)
+    log.debug('home promises', promises.length)
 
     res.render('home', {
       promises
@@ -117,6 +116,9 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
 })
 
 // placeholder
-app.get('/sign-up', (req, res) => { res.render('signup') })
+app.get('/sign-up', (req, res) => {
+  log.debug('render sign up')
+  res.render('signup')
+})
 
 // --------------------------------- 80chars ---------------------------------->

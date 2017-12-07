@@ -9,11 +9,21 @@ import { Sequelize } from '../db/sequelize'
 import Promises from '../models/promise'
 import { Users } from '../models/user'
 
+import { users } from '../data/seed'
 import parsePromise from '../lib/parse/promise'
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
-  log.debug('user check', id)
+  console.log('user check')
+  if (!users.includes(id)) {
+    return res.redirect('/sign-up')
+  }
+  next()
+})
+
+// user promises list
+app.get('/:user.(commits.to|promises.to)', (req, res) => {
+  log.debug('user promises', req.params.user)
 
   Users.findOne({
     where: {
@@ -21,79 +31,78 @@ app.param('user', function(req, res, next, id) {
     }
   }).then(user => {
     if (user) {
-      req.user = user
-      return next()
+      user.getPromises()
+        .then(promises => {
+          const reliability = _.meanBy(promises, 'credit')
+          log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
+
+          res.render('user', {
+            promises,
+            user: req.params.user,
+            reliability
+          })
+        })
     }
-    return res.redirect('/sign-up')
   })
 })
 
-// user promises list
-app.get('/:user.(commits.to|promises.to)', (req, res) => {
-  log.debug('user promises', req.params.user)
-
-  req.user.getPromises().then(promises => {
-    const reliability = _.meanBy(promises, 'credit')
-    log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
-
-    res.render('user', {
-      promises,
-      user: req.user,
-      reliability
-    })
-  })
-})
+// FIXME: check users in DB
 
 // promise parsing middleware
 app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res, next) => {
-  parsePromise({ urtext: req.originalUrl, ip: req.ip }).then(parsedPromise => {
-    req.parsedPromise = parsedPromise // add to the request object that is passed along
+  const parsedPromise = parsePromise({ urtext: req.originalUrl, ip: req.ip })
+    .then(parsedPromise => {
+      req.parsedPromise = parsedPromise // add to the request object that is passed along
 
-    log.debug('promise middleware', req.ip, req.parsedPromise.id)
+      console.log('promise middleware', req.ip, req.parsedPromise.id)
 
-    Promises.findOrCreate({
-      where: {
-        id: parsedPromise.id
-      },
-      defaults: parsedPromise
-    }).then((promise, created) => {
-      let toLog = { level: 'debug', state: 'exists' }
+      const { id, username } = parsedPromise
+      if (users.includes(username)) {
+        console.log('middleware user', username)
 
-      if (created) {
-        toLog = { level: 'info', state: 'created' }
-        mailself('PROMISE', promise[0].urtext) // send dreeves@ an email
+        Promises.findOne({ where: { id } })
+          .then((promise) => {
+            if (promise) {
+              console.log('promise exists', promise.dataValues)
+              promise.increment(['clix'], { by: 1 }).then(updated => {
+                console.log('clix incremented', updated.id)
+                return next()
+              })
+            } else {
+              // TODO track IP address created from
+              Promises.create(parsedPromise)
+                .then(promise => {
+                  console.log('promise created', promise)
+                  mailself('PROMISE', promise.urtext) // send dreeves@ an email
+                  return next()
+                })
+            }
+          })
+      } else {
+       return res.redirect('/sign-up')
       }
-      log[toLog.level](`promise ${toLog.state}`, promise[0].dataValues)
-
-      // do our own JOIN
-      req.promise = promise[0]
-      req.promise.user = req.user
-      req.promise.setUser(req.user)
-
-      req.promise.increment(['clix'], { by: 1 }).then(promise => {
-        log.debug('clix incremented', promise.dataValues)
-        return next()
-      })
     })
-  }).catch((reason) => { // unparsable promise
-    log.error('promise parsing error', reason)
-    res.redirect('/')
-  })
+    .catch((reason) => { // unparsable promise
+      console.log('promise parsing error', reason)
+      res.redirect('/')
+    })
 })
 
 // edit promise (this has to come before the show route, else it's ambiguous)
-app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res) => {
-  log.debug('edit promise', req.promise.dataValues)
-  res.render('show', {
-    promise: req.promise
-  })
+app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res, next) => {
+  const { parsedPromise: { id, user } = {} } = req
+
+  console.log('edit promise', id)
+  Promises.findOne({ where: { id }, include: [{ model: Users }] }).then((promise) => res.render('edit', { promise }))
 })
 
 // show promise
-app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res) => {
-  log.debug('show promise', req.promise.dataValues)
-  res.render('show', {
-    promise: req.promise
+app.get('/:user.(commits.to|promises.to)/:urtext(*)', (req, res, next) => {
+  const { parsedPromise: { id }  = {}} = req
+
+  Promises.findOne({ where: { id }, include: [{ model: Users }] }).then((promise) => {
+    console.log('show promise', id)
+    res.render('show', { promise })
   })
 })
 
@@ -107,7 +116,8 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
     }],
     order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
-    log.debug('home promises', promises.length)
+    // console.log('homepage promises', promises)
+    log.info('render: home', promises[0] && promises[0].user && promises[0].user.dataValues)
 
     res.render('home', {
       promises
@@ -116,9 +126,6 @@ app.get(['/?', '/((www.)?)promises.to/?', '/((www.)?)commits.to/?'], (req, res) 
 })
 
 // placeholder
-app.get('/sign-up', (req, res) => {
-  log.debug('render sign up')
-  res.render('signup')
-})
+app.get('/sign-up', (req, res) => { res.render('signup') })
 
 // --------------------------------- 80chars ---------------------------------->

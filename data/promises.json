@@ -345,7 +345,7 @@
     "note": "[50m late ~= .999 credit]",
     "tini": "2017-08-22T00:00:00-07:00",
     "tdue": "2017-08-22T22:00:00-07:00",
-    "tfin": "2017-08-23T22:50:00-07:00",
+    "tfin": "2017-08-22T22:50:00-07:00",
     "xfin": 1,
     "bmid": "yes"
   },
@@ -1508,5 +1508,27 @@
     "tfin": "2017-11-28T19:08:00-08:00",
     "xfin": 1,
     "bmid": "yes"
-  }
+  },
+"dreev.promises.to/finish_cybermon_replies/by/dec5": {
+    "user": "dreev",
+    "slug": "finish_cybermon_replies",
+    "note": "",
+    "tini": "2017-12-04T15:00:00-08:00",
+    "tdue": "2017-12-05T12:00:00-08:00",
+    "tfin": "2017-12-06T00:35:00-08:00",
+    "xfin": 1,
+    "bmid": ""
+},
+"dreev.promises.to/fill_out_gusto_thing/by/today": {
+    "user": "dreev",
+    "slug": "fill_out_gusto_thing",
+    "note": "",
+    "tini": "2017-12-05T15:39:00-08:00",
+    "tdue": "2017-12-05T23:59:59-08:00",
+    "tfin": "2017-12-06T00:54:30-08:00",
+    "xfin": 1,
+    "bmid": ""
+
+}
+
 }

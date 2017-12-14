@@ -28,7 +28,7 @@ export default sequelize.define('promises', {
       })
 
       const credit = isNaN(cred) ? 1 : cred
-      console.log('virtual credit', credit)
+      //console.log('virtual credit', credit)
       return credit
     }
   },

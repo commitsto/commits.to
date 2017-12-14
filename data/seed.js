@@ -79,7 +79,7 @@ export function importJson() {
 
 export const users = [
   /* testing */
-  'alice', 'bob', 'carol',
+  'alice', 'bob', 'carol', 'deb', 
   /* initial co-conspirators */
   'dreev', 'sergii', 'kim', 'bee', 'braden',
   /* daily beemail */

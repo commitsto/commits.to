@@ -1316,7 +1316,7 @@
     "tini": "2017-09-15T00:00:00-07:00",
     "tdue": "2017-12-20T12:00:00-08:00",
     "tfin": "",
-    "xfin": 0,
+    "xfin": 1,
     "bmid": "yes"
   },
   "dreev.commits.to/finish_implementing_this_system/by/january": {
@@ -1538,6 +1538,66 @@
   "tfin": "2017-12-03T13:00:00-08:00",
   "xfin": 1,
   "bmid": "yes"
+},
+"dreev.promises.to/send_all_buttons_owed/by/january": {
+  "user": "dreev",
+  "slug": "send_all_buttons_owed",
+  "note": "",
+  "tini": "2017-12-14T21:43:00-08:00",
+  "tdue": "2018-01-01T00:00:00-08:00",
+  "tfin": "",
+  "xfin": 0,
+  "bmid": "no"  
+},
+"dreev.commits.to/move_psych_money_braden_thread": {
+  "user": "dreev",
+  "slug": "move_psych_money_braden_thread",
+  "note": "",
+  "tini": "2017-12-15T11:41:00-08:00",
+  "tdue": "",
+  "tfin": "",
+  "xfin": 1,
+  "bmid": "yes"  
+  
+},
+"dreev.commits.to/move_ifttt_button_bug_report": {
+  "user": "dreev",
+  "slug": "move_ifttt_button_bug_report",
+  "note": "",
+  "tini": "2017-12-15T11:47:00-08:00",
+  "tdue": "",
+  "tfin": "",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/reserve_car_for_tpk": {
+  "user": "dreev",
+  "slug": "reserve_car_for_tpk",
+  "note": "",
+  "tini": "2017-12-15T20:00:00-08:00",
+  "tdue": "",
+  "tfin": "2017-12-16T19:00:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/report_on_secret_book": {
+    "user": "dreev",
+  "slug": "report_on_secret_book",
+  "note": "",
+  "tini": "2017-12-17T12:00:00-08:00",
+  "tdue": "",
+  "tfin": "2017-12-17T15:00:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/report_back_on_holiday_hack_night": {
+  "user": "dreev",
+  "slug": "report_back_on_holiday_hack_night",
+  "note": "",
+  "tini": "2017-12-17T15:00:00-08:00",
+  "tdue": "",
+  "tfin": "2017-12-18T22:13:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"
 }
-
 }

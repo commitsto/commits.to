@@ -15,9 +15,9 @@ export const ENV_NAME = env.ENV_NAME
 export const PORT = env.PORT
 
 export const MAILGUN_DOMAIN = env.MAILGUN_DOMAIN
-export const MAILGUN_KEY = env.MAILGUN_KEY
-export const MAILGUN_FROM = env.MAILGUN_FROM
-export const MAILGUN_TO = env.MAILGUN_TO
+export const MAILGUN_KEY    = env.MAILGUN_KEY
+export const MAILGUN_FROM   = env.MAILGUN_FROM
+export const MAILGUN_TO     = env.MAILGUN_TO
 
 // default domain
 export default 'commits.to'

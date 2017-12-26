@@ -1,21 +1,14 @@
 // --------------------------------- 80chars ---------------------------------->
 import Sequelize from 'sequelize'
 
-import { DB_USER, DB_PASS, DB_PATH } from '../data/config'
+var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
 
-// set up a new database using database credentials set in .env
-const sequelize = new Sequelize('database', DB_USER, DB_PASS, {
-  logging: false,
-  host: '0.0.0.0',
-  dialect: 'sqlite',
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000,
-  },
-  // Security note: db is saved to `.data/database.sqlite` in local filesystem.
-  // Nothing in `.data` directory gets copied if someone remixes the project.
-  storage: `${DB_PATH}/database.sqlite`
+const sequelize = new Sequelize(match[5], match[1], match[2], {
+  dialect: 'postgres',
+  protocol: 'postgres',
+  port: match[4],
+  host: match[3],
+  logging: true //false
 })
 
 sequelize.authenticate()

@@ -5,13 +5,7 @@ if (process.env.ENVIRONMENT !== 'production') {
 const env = process.env
 
 export const APP_PATH = env.APP_PATH
-
-export const DB_PATH = env.DB_PATH
-export const DB_USER = env.DB_USER
-export const DB_PASS = env.DB_PASS
-
 export const ENV_NAME = env.ENV_NAME
-
 export const PORT = env.PORT
 
 export const MAILGUN_DOMAIN = env.MAILGUN_DOMAIN

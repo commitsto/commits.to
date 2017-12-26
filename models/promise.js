@@ -4,7 +4,7 @@ import moment from 'moment-timezone'
 
 import parseCredit from '../lib/parse/credit'
 
-export default sequelize.define('promises', {
+export default sequelize.define("promises", {
   id: { type: Sequelize.STRING, primaryKey: true }, // normalized urtext
   bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
   urtext: { type: Sequelize.STRING }, // full original text (URL) the user typed to create the promise

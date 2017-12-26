@@ -32,6 +32,7 @@
     "moment": "^2.19.4",
     "moment-timezone": "^0.5.14",
     "winston": "^2.4.0",
+    "winston-console-formatter": "^0.3.1",
     "winston-papertrail": "^1.0.5",
     "ipapi.co": "^0.2.3"
   },
@@ -66,7 +67,6 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.12.1",
-    "winston-console-formatter": "^0.3.1"
+    "nodemon": "^1.12.1"
   }
 }

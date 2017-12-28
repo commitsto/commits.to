@@ -1599,5 +1599,35 @@
   "tfin": "2017-12-18T22:13:00-08:00",
   "xfin": 1,
   "bmid": "yes"
+},
+"dreev.commits.to/show_bee_graphiql": {
+  "user": "dreev",
+  "slug": "show_bee_graphiql",
+  "note": "",
+  "tini": "2017-12-18T15:00:00-08:00",
+  "tdue": "",
+  "tfin": "2017-12-19T23:59:00-08:00",
+  "xfin": 1,
+  "bmid": "yes"  
+},
+"dreev.commits.to/call_car_rental": {
+  "user": "dreev",
+  "slug": "call_car_rental",
+  "note": "",
+  "tini": "2017-12-26T15:00:00-08:00",
+  "tdue": "2017-12-27T10:30:00-08:00",
+  "tfin": "2017-12-27T10:30:00-08:00",
+  "xfin": 1,
+  "bmid": "no"
+},
+"dreev.promises.to/fix_karmabot/by/wed_night": {
+  "user": "dreev",
+  "slug": "fix_karmabot",
+  "note": "",
+  "tini": "2017-12-24T15:00:00-08:00",
+  "tdue": "2017-12-27T22:00:00-08:00",
+  "tfin": "2017-12-28T03:55:00-08:00",
+  "xfin": 1,
+  "bmid": "no"
 }
 }

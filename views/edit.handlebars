@@ -1,13 +1,21 @@
 <div class="create-promise blue-border">
-  <h1>{{promise.urtext}}</h1>
+  <!-- <h1>{{promise.urtext}}</h1> -->
+  <h1 class="promise-statement">
+    <span>{{promise.user.username}}</span> {{verbifyDomain domain=promise.domain}}
+    <span>{{promise.what}}</span>
+    by:
+    <span>{{prettyDate promise.tdue}}</span>
+  </h1>
   <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
-  <fieldset>
     <label for="user">Who</label>
     <input name="user.username" type="text" value="{{promise.user.username}}">
+
     <label for="slug">Slug</label>
     <input name="slug" type="text" value="{{promise.slug}}">
+
     <label for="void">void</label>
     <input name="void" type="text" value="{{promise.void}}">
+
     <label for="note">Note</label>
     <input name="note" type="text" value="{{promise.note}}">
 
@@ -17,14 +25,12 @@
     <label for="tdue">Tdue</label>
     {{> datepicker id='tdue' value=promise.tdue}}
 
-      <label for="tfin">Tfin</label>
-      {{> datepicker id='tfin' value=promise.tfin}}
+    <label for="tfin">Tfin</label>
+    {{> datepicker id='tfin' value=promise.tfin}}
 
     <label for="slug">XFin</label>
     <input name="xfin" type="text" value="{{promise.xfin}}">
-  </fieldset>
-  <fieldset>
-    <input type="submit" class="promise-button" value="Edit">
-  </fieldset>
+
+    <input type="submit" class="promise-button" value="Save">
   </form>
 </div>

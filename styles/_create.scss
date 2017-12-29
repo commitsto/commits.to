@@ -1,21 +1,21 @@
 .create-promise {
-  padding: 4rem 4rem 6rem;
   position: relative;
-  
+  padding: 2rem 2rem 7rem;
+
   .promise-statement {
-    margin: 0;
+    margin: 0 0 2rem;
     line-height: 3rem;
     font-weight: 300;
-    
+
     span {
       font-weight: bold;
-      
+
       &:last-of-type {
         display: block;
       }
     }
   }
-  
+
   .promise-button {
     color: $white;
     background-color: $blue;
@@ -30,7 +30,10 @@
     padding: 1rem;
     text-align: center;
     transition: all .75s ease-in-out;
-    
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+
     &:hover {
       background-color: $blue;
       color: white;
@@ -40,54 +43,39 @@
   .promise-picker {
     align-items: center;
     display: flex;
-    margin: 0 -1rem;
-    
+    margin: 0 0 1rem;
+
     > * {
       flex-grow: 1;
       flex-shrink: 1;
     }
-    
+
     .picker__holder {
       max-width: none;
     }
-    
+
     h1 {
       margin: 0 1rem;
     }
-    
+
     fieldset {
       flex-grow: 25;
       flex-shrink: 1;
-      margin: 1em 0;
       border: 0;
       padding: 0;
       position: relative;
-      
+
       // & + h1 {
       //   float: right;
       // }
-      
+
       & + fieldset {
         margin-left: .5rem;
         flex-shrink: 5;
         flex-grow: 1;
       }
     }
-    
-    input {
-      background: none;
-      border: 1px dotted $dark-blue;
-      // border: none;
-      border-radius: $card-border-radius;
-      box-sizing: border-box;
-      color: $blue;
-      display: block;
-      font-size: 2em;
-      padding: .5em;
-      margin: 0;
-      width: 100%;
-    }
-    
+
     a {
       color: #0089ec;
       text-decoration: none;
@@ -99,7 +87,7 @@
     .time-input {
       position: absolute;
       right: 1em;
-      top: .8em;
+      top: 1.1em;
       padding: 0;
       margin: 0;
       width: 0;
@@ -111,7 +99,7 @@
       border-right: .5em solid transparent;
       border-top: .75em solid $blue;
       cursor: pointer;
-      
+
       &:focus {
         border-top-color: #0089ec;
       }
@@ -119,6 +107,21 @@
   }
   label {
     color: $white;
-    float: left;
+  }
+  input {
+    &:nth-last-of-type(2) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .promise-picker {
+    flex-direction: column;
+
+    fieldset {
+      width: 100%;
+      margin-left: 0 !important;
+    }
   }
 }

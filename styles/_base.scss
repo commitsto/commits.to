@@ -22,25 +22,22 @@ a {
   text-decoration: none;
 }
 
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  width: 100%;
-  border-radius: 3px;
-}
-
 fieldset {
   border: 0;
+  padding: 0;
 }
 
 input {
+  background: none;
+  border: 1px dotted $dark-blue;
+  border-radius: $card-border-radius;
+  box-sizing: border-box;
+  color: $blue;
   display: block;
-  margin-bottom: 10px;
-  padding: 5px;
+  font-size: 1.5em;
+  padding: .5em;
+  margin: .5rem 0 1.5rem;
   width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
 }
 
 .blue-border {

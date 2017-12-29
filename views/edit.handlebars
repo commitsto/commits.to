@@ -12,18 +12,13 @@
     <input name="note" type="text" value="{{promise.note}}">
 
     <label for="slug">Tini</label>
-    <!-- <input name="tini" type="text" value="{{promise.tini}}"> -->
     {{> datepicker id='tini' value=promise.tini}}
 
     <label for="tdue">Tdue</label>
-    <!-- <input name="tdue" type="text" value="{{promise.tdue}}"> -->
     {{> datepicker id='tdue' value=promise.tdue}}
 
-    {{#if promise.tfin}}
       <label for="tfin">Tfin</label>
-      <!-- <input name="tfin" type="text" value="{{promise.tfin}}"> -->
       {{> datepicker id='tfin' value=promise.tfin}}
-    {{/if}}
 
     <label for="slug">XFin</label>
     <input name="xfin" type="text" value="{{promise.xfin}}">

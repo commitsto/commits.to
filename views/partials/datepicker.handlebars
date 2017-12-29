@@ -7,6 +7,7 @@
     var timePicker = $inputTime.pickatime('picker');
 
     var parseDate = function(value) {
+      if (!value) return;
       // FIXME: handle timezones better
       var parsedDate = new Date(value);
       // var userTimezoneOffset = date.getTimezoneOffset() * 60000;

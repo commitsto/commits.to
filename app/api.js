@@ -20,7 +20,7 @@ app.get('/promises/remove/:id(*)', (req, resp) => {
      id: req.params.id
    }
   })
-  .then(function(deletedRows){
+  .then(function(deletedRows) {
     console.log('promise removed', deletedRows);
     resp.redirect('/')
   })
@@ -42,17 +42,16 @@ app.get('/promises/complete/:id(*)', (req, resp) => {
   Promises.findOne({
    where: { id: req.params.id }
   })
-  .then(function(promise){  
+  .then(function(promise) {
     promise.update({
       tfin: moment(),//.tz('America/New_York') // FIXME,
       cred: parseCredit({ dueDate: promise.tdue })
     })
-    
+
     console.log('complete promise', promise.dataValues);
     resp.redirect('/')
   })
 })
-
 
 app.post('/promises/edit/:id(*)', (req, res) => {
   console.log('edit promise', req.params.id, req.body);
@@ -65,10 +64,10 @@ app.post('/promises/edit/:id(*)', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...req.body
     })
-    
+
     console.log('edit promise', promise)
     if (promise && req.params.id) {
-      res.redirect(`/${req.params.id}`); 
+      res.redirect(`/${req.params.id}`);
     } else {
       res.redirect('/')
     }
@@ -79,9 +78,9 @@ app.get('/promises/create/:urtext(*)', (req, resp) => {
   console.log('create', req.params)
   parsePromise({ urtext: req.params.urtext, ip: req.ip }).then((parsedPromise) => {
     Promises.create(parsedPromise)
-    .then(function(promise){
+    .then(function(promise) {
       console.log('promise created', promise.dataValues);
-      mailself('PROMISE', promise.urtext) // send dreeves@ an email 
+      mailself('PROMISE', promise.urtext) // send dreeves@ an email
       resp.redirect(`/${req.params.urtext}`);
     })
   })
@@ -107,7 +106,7 @@ app.get('/promises', function(req, resp) {
   }).then(function(promises) {
     // console.log('all promises', promises)
     // create nested array of promises by user:
-    promises.forEach(function(promise) { 
+    promises.forEach(function(promise) {
       dbPromises[promise.user] = dbPromises[promise.user] || []
       dbPromises[promise.user].push(promise)
     });

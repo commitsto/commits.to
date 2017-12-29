@@ -84,7 +84,7 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
 // edit promise (this has to come before the show route, else it's ambiguous)
 app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res) => {
   log.debug('edit promise', req.promise.dataValues)
-  res.render('show', {
+  res.render('edit', {
     promise: req.promise
   })
 })

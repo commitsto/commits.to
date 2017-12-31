@@ -1,4 +1,4 @@
-// --------------------------------- 80chars ---------------------------------->
+
 
 import express from 'express'
 import expressHandlebars from 'express-handlebars'
@@ -39,5 +39,3 @@ app.listen(PORT, () => {
 })
 
 export default app
-
-// --------------------------------- 80chars ---------------------------------->

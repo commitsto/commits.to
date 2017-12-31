@@ -1,4 +1,3 @@
-// --------------------------------- 80chars ---------------------------------->
 import _ from 'lodash'
 
 import app from './express'
@@ -120,5 +119,3 @@ app.get('/sign-up', (req, res) => {
   log.debug('render sign up')
   res.render('signup')
 })
-
-// --------------------------------- 80chars ---------------------------------->

@@ -1,6 +1,4 @@
-// --------------------------------- 80chars ---------------------------------->
 import { sequelize, Sequelize } from '../db/sequelize'
-import moment from 'moment-timezone'
 
 import parseCredit from '../lib/parse/credit'
 
@@ -49,5 +47,3 @@ export default sequelize.define("promises", {
     }
   ]
 }*/)
-
-// --------------------------------- 80chars ---------------------------------->

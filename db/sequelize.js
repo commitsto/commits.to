@@ -1,4 +1,4 @@
-// --------------------------------- 80chars ---------------------------------->
+
 import Sequelize from 'sequelize'
 
 var match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)

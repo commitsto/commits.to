@@ -48,22 +48,29 @@
   &-header {
     background-color: $gray-blue;
     padding: 1rem;
-    
+
     + .promise-bar {
       margin-top: 0;
       opacity: .5;
     }
   }
-  
+
   &-user {
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
     margin: 0 0 .25rem;
     text-transform: capitalize;
+
+    span {
+      font-size: 65%;
+      font-weight: normal;
+      letter-spacing: .5px;
+      opacity: .75;
+    }
   }
-  
+
   &-details {
     padding: 1rem;
-    
+
     a {
       display: block;
     }

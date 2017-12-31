@@ -33,6 +33,24 @@ $element-border-radius: 3px;
   }
 }
 
+.reliability--status {
+  &-green {
+    color: $green;
+  }
+  &-blue {
+    color: $blue;
+  }
+  &-orange {
+    color: $orange;
+  }
+  &-red {
+    color: $red;
+  }
+  &-gray {
+    color: $gray;
+  }
+}
+
 .credit--status {
   &-green {
     background: linear-gradient(to right, $gray-blue -10%, $green);

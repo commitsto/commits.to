@@ -31,9 +31,8 @@ export default sequelize.define("promises", {
     }
   },
 
-  // FIXME dates
   tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
-  tdue: { type: Sequelize.DATE/*, defaultValue: moment().tz('America/New_York').add(1, 'days')*/ }, // unixtime that the promise is due
+  tdue: { type: Sequelize.DATE/*, defaultValue: Sequelize.NOW */ }, // unixtime that the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
 

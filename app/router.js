@@ -35,6 +35,8 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
     const reliability = _.meanBy(promises, 'credit')
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
+    req.user.update({ score: reliability })
+
     res.render('user', {
       promises,
       user: req.user,

@@ -24,22 +24,34 @@ export function seed() {
 
 // utility to populate table with hardcoded promises below
 export function setup() {
-  Promises.sync({force: true}) // 'force: true' just drops the table if it exists
-    .then(function(){
-      Object.keys(promises).forEach((key) => {
-        let prom = parsePromise({ urtext: key })
-        prom = _.extend(prom, promises[key])
+  Promises.sync({force: true}).then(function(){
+    Object.keys(promises).forEach((key) => {
+      let prom = parsePromise({ urtext: key })
+      prom = _.extend(prom, promises[key])
 
-        Users.findOne({
-          where: {
-            username: prom.username
-          }
-        }).then((user) => {
-          const p = user && user.createPromise(prom)
-          log.info('creating promise for', user.dataValues, p)
-        })
+      Users.findOne({
+        where: {
+          username: prom.username
+        }
+      }).then((user) => {
+        const p = user && user.createPromise(prom)
+        log.info('creating promise for', user.dataValues, p)
       })
     })
+  })
+}
+
+export function cache() {
+  Users.findAll().then(users => {
+    users.forEach(user => {
+      user.getPromises().then(promises => {
+        const reliability = _.meanBy(promises, 'credit')
+        log.debug(`caching ${user.username}'s reliability:`, reliability, promises.length)
+
+        user.update({ score: reliability })
+      })
+    })
+  })
 }
 
 

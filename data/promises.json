@@ -1629,5 +1629,15 @@
   "tfin": "2017-12-28T03:55:00-08:00",
   "xfin": 1,
   "bmid": "no"
+},
+"dreev.commits.to/check_with_brady_re_guest_post/by/dec_31": {
+  "user": "dreev",
+  "slug": "check_with_brady_re_guest_post",
+  "note": "",
+  "tini": "2017-12-12T13:10:00-08:00",
+  "tdue": "2017-12-31T23:59:59-08:00",
+  "tfin": "2018-01-02T19:53:00-08:00",
+  "xfin": 1,
+  "bmid": "no"
 }
 }

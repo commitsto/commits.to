@@ -68,5 +68,8 @@ var deletePromise = function(username, slug) {
       throw new Error('Network response was not ok.')
     })
   }, function(dismiss) {
+    if (dismiss === 'close') {
+      window.location.pathname = '/'
+    }
   })
 }

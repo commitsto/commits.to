@@ -5,7 +5,7 @@
 
   <div class="promise-header">
     <h2 class="promise-user">
-      <a href="{{userPath promise.user}}">
+      <a href="{{userPath user}}">
         {{promise.user.username}}
       </a>
       <span class="{{scoreColor promise.user.score}}">
@@ -50,9 +50,11 @@
           Completed {{prettyDate promise.tfin}}
         </span>
       {{else}}
-        <a class="promise-bar-link" href="#" onclick="completePromise('{{promise.id}}')">
-          Mark Complete
-        </a>
+        {{#if user}}
+          <a class="promise-bar-link" href="#" onclick="completePromise('{{user.username}}', '{{promise.slug}}')">
+            Mark Complete
+          </a>
+        {{/if}}
       {{/if}}
     </div>
   </div>

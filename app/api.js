@@ -136,6 +136,12 @@ app.get('/promises/:user', function(req, resp) {
   })
 })
 
+// calculate and store reliability for each user
+app.get('/cache', (req, resp) => {
+  cache()
+  resp.redirect('/')
+})
+
 if (ALLOW_ADMIN_ACTIONS) {
   /* Utils */
 
@@ -149,12 +155,6 @@ if (ALLOW_ADMIN_ACTIONS) {
   app.get('/reset', (req, resp) => {
     seed()
     setup()
-    resp.redirect('/')
-  })
-
-  // calculate and store reliability for each user
-  app.get('/cache', (req, resp) => {
-    cache()
     resp.redirect('/')
   })
 

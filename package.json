@@ -22,6 +22,7 @@
     "chrono-node": "^1.3.5",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "express-subdomain-handler": "^0.1.0",
     "ipapi.co": "^0.2.3",
     "lodash": "^4.17.4",
     "mailgun-js": "0.10.1",

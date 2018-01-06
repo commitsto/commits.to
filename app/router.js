@@ -31,7 +31,7 @@ app.param('user', function(req, res, next, id) {
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
-  req.user.getPromises().then(promises => {
+  req.user.getPromises({ include: [{ model: Users }] }).then(promises => {
     const reliability = _.meanBy(promises, 'credit')
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 

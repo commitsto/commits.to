@@ -11,10 +11,8 @@ Handlebars.registerHelper('promiseDomain', function(domain) {
   return domain || APP_DOMAIN
 })
 
-Handlebars.registerHelper('userPath', function(user) {
-  console.log('userPath', user)
-
-  return pathForUser(user.username)
+Handlebars.registerHelper('userPath', function({ username }) {
+  return pathForUser(username)
 })
 
 Handlebars.registerHelper('promisePath', function({ user: { username }, slug }) {

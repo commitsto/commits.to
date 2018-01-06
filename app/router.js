@@ -47,6 +47,8 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
+  if (req.params.promise === 'favicon.ico') return next()
+
   parsePromise({ username: req.user.username, slug: req.originalUrl, ip: req.ip }).then(parsedPromise => {
     req.parsedPromise = parsedPromise // add to the request object that is passed along
 

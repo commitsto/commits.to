@@ -2,7 +2,7 @@ var swal = swal || {}
 
 var completePromiseText = {
   title: 'Mark this promise completed?',
-  text: 'You won\'t be able to revert this!',
+  text: 'You can always edit this later.',
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
@@ -11,16 +11,16 @@ var completePromiseText = {
   cancelButtonText: 'No, cancel!'
 }
 
-// var deletePromise = {
-//   title: 'Delete this?',
-//   text: "You won't be able to revert this!",
-//   type: 'warning',
-//   showCancelButton: true,
-//   confirmButtonColor: '#3085d6',
-//   cancelButtonColor: '#d33',
-//   confirmButtonText: 'Yes, complete it!',
-//   cancelButtonText: 'No, cancel!'
-// }
+var deletePromiseText = {
+  title: 'Delete this promise?',
+  text: 'You won\'t be able to revert this!',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!'
+}
 
 var completePromise = function(username, slug) {
   console.log('completePromise', slug, username)
@@ -49,4 +49,24 @@ var completePromise = function(username, slug) {
 
 var editPromise = function(id) {
   fetch('/promises/edit/${id}')
+}
+
+var deletePromise = function(username, slug) {
+  console.log('deletePromise', slug, username)
+
+  var apiUrl = `/promises/remove/${slug}`
+
+  swal(deletePromiseText).then(function() {
+    fetch(apiUrl).then(function(response) {
+      if (response.ok) {
+        return swal(
+          'Deleted!',
+          'Your promise has been deleted.',
+          'success'
+        )
+      }
+      throw new Error('Network response was not ok.')
+    })
+  }, function(dismiss) {
+  })
 }

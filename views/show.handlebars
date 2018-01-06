@@ -2,7 +2,11 @@
 
 <div class="card-footer" style="text-align:center">
   <a style="float:left" href="{{editPromisePath promise}}">
-    Edit Promise
+    Edit
+  </a>
+
+  <a style="float:left" href="#" onclick="deletePromise('{{user.username}}', '{{promise.slug}}')">
+    &nbsp;| Delete
   </a>
 
   <small>This promise has been viewed {{promise.clix}} times.</small>

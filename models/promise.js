@@ -1,10 +1,8 @@
-// --------------------------------- 80chars ---------------------------------->
 import { sequelize, Sequelize } from '../db/sequelize'
-import moment from 'moment-timezone'
 
 import parseCredit from '../lib/parse/credit'
 
-export default sequelize.define('promises', {
+export default sequelize.define("promises", {
   id: { type: Sequelize.STRING, primaryKey: true }, // normalized urtext
   bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
   urtext: { type: Sequelize.STRING }, // full original text (URL) the user typed to create the promise
@@ -33,9 +31,8 @@ export default sequelize.define('promises', {
     }
   },
 
-  // FIXME dates
-  tini: { type: Sequelize.DATE, defaultValue: moment() }, // when the was promise was made
-  tdue: { type: Sequelize.DATE/*, defaultValue: moment().tz('America/New_York').add(1, 'days')*/ }, // unixtime that the promise is due
+  tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
+  tdue: { type: Sequelize.DATE/*, defaultValue: Sequelize.NOW */ }, // unixtime that the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
 
@@ -49,5 +46,3 @@ export default sequelize.define('promises', {
     }
   ]
 }*/)
-
-// --------------------------------- 80chars ---------------------------------->

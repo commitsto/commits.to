@@ -1,6 +1,6 @@
 <section class="promise-card {{#if promise.tfin}}completed{{/if}} {{dueColor (dueStatus promise.tdue)}}">
   <div class="promise-credit {{creditColor promise.credit}}">
-    {{promise.credit}}
+    {{prettyPercent promise.credit}}
   </div>
 
   <div class="promise-header">
@@ -8,6 +8,9 @@
       <a href="/{{promise.user.username}}.{{__appDomain}}/">
         {{promise.user.username}}
       </a>
+      <span class="{{scoreColor promise.user.score}}">
+        {{prettyPercent promise.user.score}}
+      </span>
     </h2>
     <div class="promise-slug">
       <a href="/{{promise.urtext}}">

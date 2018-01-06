@@ -1,0 +1,79 @@
+<script>
+  $(document).ready(function() {
+    var $inputDate = $('#input_date-{{id}}').pickadate();
+    var datePicker = $inputDate.pickadate('picker');
+
+    var $inputTime = $('#input_time-{{id}}').pickatime();
+    var timePicker = $inputTime.pickatime('picker');
+
+    var parseDate = function(value) {
+      if (!value) return;
+      // FIXME: handle timezones better
+      var parsedDate = new Date(value);
+      // var userTimezoneOffset = date.getTimezoneOffset() * 60000;
+      // var parsedDate = new Date(date.getTime() + userTimezoneOffset);
+
+      console.log('parseDate', value, parsedDate);
+
+      if (parsedDate) {
+        datePicker.set('select', parsedDate);
+        timePicker.set('select', parsedDate);
+      }
+    }
+
+    var setDate = function() {
+      var value = $inputTextDate.val() + ' ' + $inputTextTime.val();
+      $('#{{id}}').val(moment(value));
+    }
+
+    var $inputTextDate = $('#input_date_text-{{id}}').on({
+      change: parseDate,
+      focus: function() {
+        datePicker.open(false);
+      },
+      blur: function() {
+        datePicker.close();
+      }
+    });
+
+    var $inputTextTime = $('#input_time_text-{{id}}').on({
+      change: parseDate,
+      focus: function() {
+        timePicker.open(false);
+      },
+      blur: function() {
+        timePicker.close();
+      }
+    });
+
+    datePicker.on('set', function() {
+      const value = this.get('value');
+      console.log('set date', value, $inputTextDate.val());
+      $inputTextDate.val(value);
+      setDate();
+    });
+
+    timePicker.on('set', function() {
+      const value = this.get('value');
+      console.log('set time', value, $inputTextTime.val());
+      $inputTextTime.val(value);
+      setDate();
+    });
+
+    parseDate($inputTextDate.data('value')); // init with url value or default to tomorrow
+  });
+</script>
+
+<div class="promise-picker">
+  <fieldset>
+    <input id="input_date_text-{{id}}" type="text" data-value="{{value}}" class="text-input">
+    <input id="input_date-{{id}}" type="text" class="time-input">
+  </fieldset>
+
+  <fieldset>
+    <input id="input_time_text-{{id}}" type="text" data-value="{{value}}" class="text-input">
+    <input id="input_time-{{id}}" type="text" class="time-input">
+  </fieldset>
+
+  <input id="{{id}}" name="{{id}}" type="hidden" value="{{value}}">
+</div>

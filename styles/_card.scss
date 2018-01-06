@@ -1,7 +1,7 @@
 .card-footer {
   margin-top: 2rem;
   color: $light-gray;
-  
+
 }
 
 .promise {
@@ -18,25 +18,25 @@
     &:hover {
       background-color: $dark-blue;
     }
-    
+
     &, a {
       color: white;
     }
-    
+
     &.completed {
       background-color: transparent;
       border-color: $light-gray;
     }
   }
-  
+
   &-credit {
     right: 0;
     padding: .5rem;
     position: absolute;
     top: 0;
-    
+
   }
-  
+
   &-slug {
     font-size: .75rem;
     font-weight: 300;
@@ -48,22 +48,29 @@
   &-header {
     background-color: $gray-blue;
     padding: 1rem;
-    
+
     + .promise-bar {
       margin-top: 0;
       opacity: .5;
     }
   }
-  
+
   &-user {
-    letter-spacing: 1px; 
+    letter-spacing: 1px;
     margin: 0 0 .25rem;
     text-transform: capitalize;
+
+    span {
+      font-size: 65%;
+      font-weight: normal;
+      letter-spacing: .5px;
+      opacity: .75;
+    }
   }
-  
+
   &-details {
     padding: 1rem;
-    
+
     a {
       display: block;
     }
@@ -90,7 +97,7 @@
     padding: .5rem 1rem;
     text-align: left;
     text-transform: uppercase;
-    
+
     &--bottom {
       background-color: $white;
       bottom: 0;
@@ -99,14 +106,14 @@
       position: absolute;
       text-align: right;
       width: 100%;
-      
+
       &, a {
         color: $dark-gray;
       }
     }
-    
+
     &--due {
-      background-color: $black; 
+      background-color: $black;
     }
 
     &--completed {

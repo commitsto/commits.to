@@ -1,4 +1,3 @@
-// --------------------------------- 80chars ---------------------------------->
 import _ from 'lodash'
 
 import app from './express'
@@ -35,6 +34,8 @@ app.get('/:user.(commits.to|promises.to)', (req, res) => {
   req.user.getPromises().then(promises => {
     const reliability = _.meanBy(promises, 'credit')
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
+
+    req.user.update({ score: reliability })
 
     res.render('user', {
       promises,
@@ -84,7 +85,7 @@ app.get('/:user.(commits.to|promises.to)/:promise/:modifier?/:date*?', (req, res
 // edit promise (this has to come before the show route, else it's ambiguous)
 app.get('/:user.(commits.to|promises.to)/:urtext*?/edit', (req, res) => {
   log.debug('edit promise', req.promise.dataValues)
-  res.render('show', {
+  res.render('edit', {
     promise: req.promise
   })
 })
@@ -120,5 +121,3 @@ app.get('/sign-up', (req, res) => {
   log.debug('render sign up')
   res.render('signup')
 })
-
-// --------------------------------- 80chars ---------------------------------->

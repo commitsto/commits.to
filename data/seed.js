@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import Promises from '../models/promise'
 import { Users } from '../models/user'
-import { parsePromise } from '../lib/parse/promise'
+import { parseUrtext } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 
 import data from './promises.json'
@@ -26,7 +26,7 @@ export function seed() {
 export function setup() {
   Promises.sync({force: true}).then(function(){
     Object.keys(promises).forEach((key) => {
-      let prom = parsePromise({ urtext: key })
+      let prom = parseUrtext({ urtext: key })
       prom = _.extend(prom, promises[key])
 
       Users.findOne({

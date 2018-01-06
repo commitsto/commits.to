@@ -154,7 +154,6 @@ if (ALLOW_ADMIN_ACTIONS) {
   // drop db and repopulate
   app.get('/reset', (req, resp) => {
     seed()
-    setup()
     resp.redirect('/')
   })
 

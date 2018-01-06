@@ -13,13 +13,15 @@ Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
 
 // create seed users
 export function seed() {
-  Users.sync({force: true}) // 'force: true' just drops the table if it exists
+  return Users.sync({force: true}) // 'force: true' just drops the table if it exists
     .then(function(){
       users.forEach((key) => {
         log.info('create user', key)
         Users.create({username: key})
       })
     })
+    .then(() => setup())
+    .then(() => importJson())
 }
 
 // utility to populate table with hardcoded promises below

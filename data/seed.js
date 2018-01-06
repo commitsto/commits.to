@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import Promises from '../models/promise'
 import { Users } from '../models/user'
-import { parseUrtext } from '../lib/parse/promise'
+import { parsePromiseFromId } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 import parseText from '../lib/parse/text'
 
@@ -14,8 +14,8 @@ Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
 
 // create seed users
 export function seed() {
-  return Users.sync({force: true}) // 'force: true' just drops the table if it exists
-    .then(function(){
+  return Users.sync({ force: true }) // 'force: true' just drops the table if it exists
+    .then(function() {
       users.forEach((key) => {
         log.info('create user', key)
         Users.create({username: key})
@@ -27,10 +27,12 @@ export function seed() {
 
 // utility to populate table with hardcoded promises below
 export function setup() {
-  Promises.sync({force: true}).then(function(){
+  Promises.sync({ force: true }).then(function() {
     Object.keys(promises).forEach((key) => {
-      let prom = parseUrtext({ urtext: key })
+      let prom = parsePromiseFromId({ id: key })
       prom = _.extend(prom, promises[key])
+
+      console.log('setup parsed promise', prom);
 
       Users.findOne({
         where: {
@@ -38,7 +40,7 @@ export function setup() {
         }
       }).then((user) => {
         const p = user && user.createPromise(prom)
-        log.info('creating promise for', user.dataValues, p)
+        log.info('creating promise for', user && user.dataValues, p)
       })
     })
   })
@@ -60,7 +62,7 @@ export function cache() {
 
 // FIXME refactor parsePromise to work for all imports
 export function importJson() {
-  Promises.sync().then(function(){
+  Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
 
       // ***FIXME refactor into method

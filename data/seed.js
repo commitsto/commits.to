@@ -117,15 +117,6 @@ export const promises = {
   'chris.promises.to/follow_up_on_that_support_thread': {
     tini: '2017-9-18'
   },
-  'chris.promises.to/open_a_smoothie_shop/by/December': {
-    tini: '2017-9-25'
-  },
-  'chris.promises.to/learn-more-about-glitch/by/monday': {
-    tini: '2017-9-28'
-  },
-  'chris.promises.to/learn-more-about-something-else/by/monday': {
-    tini: '2017-9-28'
-  },
   'chris.promises.to/build-out-a-promise-completion-interface/by/next-week': {
     tini: '2017-0-13'
   },

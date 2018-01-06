@@ -9,6 +9,7 @@ export const APP_PATH = env.APP_PATH
 export const ENV_NAME = env.ENV_NAME
 export const PORT = env.PORT
 
+export const ALLOW_ADMIN_ACTIONS = env.ALLOW_ADMIN_ACTIONS
 export const DATABASE_URL = env.DATABASE_URL
 
 export const MAILGUN_DOMAIN = env.MAILGUN_DOMAIN

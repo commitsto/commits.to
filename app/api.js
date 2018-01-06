@@ -3,6 +3,7 @@ import moment from 'moment-timezone'
 
 import mailself from '../lib/mail'
 import { cache, seed, setup, importJson } from '../data/seed'
+import { ALLOW_ADMIN_ACTIONS } from '../data/config'
 
 import Promises, { sequelize } from '../models/promise'
 import { Users } from '../models/user'
@@ -135,29 +136,31 @@ app.get('/promises/:user', function(req, resp) {
   })
 })
 
-/* Utils */
+if (ALLOW_ADMIN_ACTIONS) {
+  /* Utils */
 
-// drop db and repopulate
-app.get('/import', (req, resp) => {
-  importJson()
-  resp.redirect('/')
-})
+  // drop db and repopulate
+  app.get('/import', (req, resp) => {
+    importJson()
+    resp.redirect('/')
+  })
 
-// drop db and repopulate
-app.get('/reset', (req, resp) => {
-  seed()
-  setup()
-  resp.redirect('/')
-})
+  // drop db and repopulate
+  app.get('/reset', (req, resp) => {
+    seed()
+    setup()
+    resp.redirect('/')
+  })
 
-// calculate and store reliability for each user
-app.get('/cache', (req, resp) => {
-  cache()
-  resp.redirect('/')
-})
+  // calculate and store reliability for each user
+  app.get('/cache', (req, resp) => {
+    cache()
+    resp.redirect('/')
+  })
 
-// removes all entries from the promises table
-app.get('/empty', (req, resp) => {
-  Promises.destroy({ where: {} })
-  resp.redirect('/')
-})
+  // removes all entries from the promises table
+  app.get('/empty', (req, resp) => {
+    Promises.destroy({ where: {} })
+    resp.redirect('/')
+  })
+}

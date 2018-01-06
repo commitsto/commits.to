@@ -56,12 +56,12 @@ app.get('/_s/:user/promises/complete/:slug(*)', (req, resp) => {
   })
 })
 
-app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
-  console.log('edit promise', req.params.id, req.body)
+app.post('/_s/:user/promises/edit/:slug(*)', (req, res) => {
+  console.log('edit promise', req.params.slug, req.body)
 
   Promises.find({
     where: {
-      id: req.params.id
+      slug: req.params.slug
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
@@ -71,8 +71,8 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
     })
 
     console.log('edit promise', promise)
-    if (promise && req.params.id) {
-      res.redirect(`/${req.params.id}`)
+    if (promise && req.params.slug) {
+      res.redirect(`/${req.params.slug}`)
     } else {
       res.redirect('/')
     }

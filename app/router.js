@@ -94,7 +94,8 @@ app.get('/_s/:user/:slug*?/edit', (req, res) => {
 app.get('/_s/:user/:slug(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)
   res.render('show', {
-    promise: req.promise
+    promise: req.promise,
+    user: req.user
   })
 })
 

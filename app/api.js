@@ -145,7 +145,7 @@ app.get('/cache', (req, resp) => {
 if (ALLOW_ADMIN_ACTIONS) {
   /* Utils */
 
-  // drop db and repopulate
+  // insert promises.json into db
   app.get('/import', (req, resp) => {
     importJson()
     resp.redirect('/')

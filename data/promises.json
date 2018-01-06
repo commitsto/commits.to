@@ -629,9 +629,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am": {
+  "dreev.commits.to/show_sergii_this_doing_something_useful/by/3am": {
     "user": "dreev",
-    "slug": "show_sergii_this_doing_something_useful",
+    "slug": "show_sergii_this_doing_something_useful/by/3am",
     "note": "",
     "tini": "2017-09-10T00:00:00-07:00",
     "tdue": "2017-09-11T03:00:00-07:00",
@@ -639,9 +639,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_bee_open_questions/by/10:30pm": {
+  "dreev.commits.to/show_bee_open_questions/by/10:30pm": {
     "user": "dreev",
-    "slug": "show_bee_open_questions",
+    "slug": "show_bee_open_questions/by/10:30pm",
     "note": "",
     "tini": "2017-09-11T00:00:00-07:00",
     "tdue": "2017-09-11T22:30:00-07:00",
@@ -649,9 +649,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_brennan_intro/by/10:50pm": {
+  "dreev.commits.to/show_brennan_intro/by/10:50pm": {
     "user": "dreev",
-    "slug": "show_brennan_intro",
+    "slug": "show_brennan_intro/by/10:50pm",
     "note": "",
     "tini": "2017-09-11T00:00:00-07:00",
     "tdue": "2017-09-11T22:50:00-07:00",
@@ -659,9 +659,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm": {
+  "dreev.commits.to/queue_tweet_etc_for_blog_post/by/2pm": {
     "user": "dreev",
-    "slug": "queue_tweet_etc_for_blog_post",
+    "slug": "queue_tweet_etc_for_blog_post/by/2pm",
     "note": "",
     "tini": "2017-09-11T00:00:00-07:00",
     "tdue": "2017-09-12T14:00:00-07:00",
@@ -669,9 +669,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/order_indian/by/5:30pm": {
+  "dreev.commits.to/order_indian/by/5:30pm": {
     "user": "dreev",
-    "slug": "order_indian",
+    "slug": "order_indian/by/5:30pm",
     "note": "",
     "tini": "2017-09-12T00:00:00-07:00",
     "tdue": "2017-09-12T17:30:00-07:00",
@@ -681,7 +681,7 @@
   },
   "dreev.commits.to/googledocify_intern_form/by/12pm": {
     "user": "dreev",
-    "slug": "googledocify_intern_form",
+    "slug": "googledocify_intern_form/by/12pm",
     "note": "",
     "tini": "2017-09-14T00:00:00-07:00",
     "tdue": "2017-09-14T12:00:00-07:00",
@@ -729,9 +729,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/labelzero/by/1am": {
+  "dreev.commits.to/labelzero/by/1am": {
     "user": "dreev",
-    "slug": "labelzero",
+    "slug": "labelzero/by/1am",
     "note": "",
     "tini": "2017-09-14T00:00:00-07:00",
     "tdue": "2017-09-15T01:00:00-07:00",
@@ -761,7 +761,7 @@
   },
   "dreev.commits.to/meta_debrief_kim/by/midnight_friday": {
     "user": "dreev",
-    "slug": "meta_debrief_kim",
+    "slug": "meta_debrief_kim/by/midnight_friday",
     "note": "",
     "tini": "2017-09-14T00:00:00-07:00",
     "tdue": "2017-09-15T23:59:00-07:00",
@@ -779,9 +779,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/test_penalty_func/by/saturday_noon": {
+  "dreev.commits.to/test_penalty_func/by/saturday_noon": {
     "user": "dreev",
-    "slug": "test_penalty_func",
+    "slug": "test_penalty_func/by/saturday_noon",
     "note": "",
     "tini": "2017-09-14T00:00:00-07:00",
     "tdue": "2017-09-16T12:00:00-07:00",
@@ -801,7 +801,7 @@
   },
   "dreev.commits.to/send_ms_gross_email/by/sunday_11am": {
     "user": "dreev",
-    "slug": "send_ms_gross_email",
+    "slug": "send_ms_gross_email/by/sunday_11am",
     "note": "calendared as cantor_ms_g",
     "tini": "2017-09-17T00:00:00-07:00",
     "tdue": "2017-09-17T11:00:00-07:00",
@@ -811,7 +811,7 @@
   },
   "dreev.commits.to/clear_bogus_commit_for_nick/by/5_minutes_from_now": {
     "user": "dreev",
-    "slug": "clear_bogus_commit_for_nick",
+    "slug": "clear_bogus_commit_for_nick/by/5_minutes_from_now",
     "note": "",
     "tini": "2017-09-19T00:00:00-07:00",
     "tdue": "2017-09-19T00:05:00-07:00",
@@ -819,9 +819,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/debug_capitalization/by/tomorrow": {
+  "dreev.commits.to/debug_capitalization/by/tomorrow": {
     "user": "dreev",
-    "slug": "debug_capitalization",
+    "slug": "debug_capitalization/by/tomorrow",
     "note": "[23.4h late ~= .99 credit]",
     "tini": "2017-09-19T00:00:00-07:00",
     "tdue": "2017-09-19T23:59:00-07:00",
@@ -829,9 +829,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/intern_disc/by/wed": {
+  "dreev.commits.to/intern_disc/by/wed": {
     "user": "dreev",
-    "slug": "intern_disc",
+    "slug": "intern_disc/by/wed",
     "note": "",
     "tini": "2017-09-19T00:00:00-07:00",
     "tdue": "2017-09-20T00:00:00-07:00",
@@ -851,7 +851,7 @@
   },
   "dreev.commits.to/schedule-k_tax_thing/by/5pm": {
     "user": "dreev",
-    "slug": "schedule-k_tax_thing",
+    "slug": "schedule-k_tax_thing/by/5pm",
     "note": "",
     "tini": "2017-09-19T00:00:00-07:00",
     "tdue": "2017-09-20T17:00:00-07:00",
@@ -859,9 +859,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/reply_to_use_case_email/by/midnight": {
+  "dreev.commits.to/reply_to_use_case_email/by/midnight": {
     "user": "dreev",
-    "slug": "reply_to_use_case_email",
+    "slug": "reply_to_use_case_email/by/midnight",
     "note": "",
     "tini": "2017-09-20T00:00:00-07:00",
     "tdue": "2017-09-20T23:59:00-07:00",
@@ -869,9 +869,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/set_up_mom_on_wordfeud/by/tomorrow": {
+  "dreev.commits.to/set_up_mom_on_wordfeud/by/tomorrow": {
     "user": "dreev",
-    "slug": "set_up_mom_on_wordfeud",
+    "slug": "set_up_mom_on_wordfeud/by/tomorrow",
     "note": "maybe voided",
     "tini": "2017-09-20T00:00:00-07:00",
     "tdue": "2017-09-21T00:00:00-07:00",
@@ -881,7 +881,7 @@
   },
   "dreev.commits.to/ping_mirabai/by/sep_22": {
     "user": "dreev",
-    "slug": "ping_mirabai",
+    "slug": "ping_mirabai/by/sep_22",
     "note": "",
     "tini": "2017-09-15T00:00:00-07:00",
     "tdue": "2017-09-22T12:00:00-07:00",
@@ -891,7 +891,7 @@
   },
   "dreev.commits.to/copy_editing_pass_on_tao2/by/tmw_2pm": {
     "user": "dreev",
-    "slug": "copy_editing_pass_on_tao2",
+    "slug": "copy_editing_pass_on_tao2/by/tmw_2pm",
     "note": "calendared as bb_copyedit",
     "tini": "2017-09-22T00:00:00-07:00",
     "tdue": "2017-09-23T14:00:00-07:00",
@@ -899,9 +899,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/hanna_reply/by/tonight": {
+  "dreev.commits.to/hanna_reply/by/tonight": {
     "user": "dreev",
-    "slug": "hanna_reply",
+    "slug": "hanna_reply/by/tonight",
     "note": "",
     "tini": "2017-09-26T00:00:00-07:00",
     "tdue": "2017-09-26T23:59:00-07:00",
@@ -909,9 +909,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/add_chelsea_to_commits_to/by/11am": {
+  "dreev.commits.to/add_chelsea_to_commits_to/by/11am": {
     "user": "dreev",
-    "slug": "add_chelsea_to_commits_to",
+    "slug": "add_chelsea_to_commits_to/by/11am",
     "note": "",
     "tini": "2017-09-29T00:00:00-07:00",
     "tdue": "2017-09-29T11:00:00-07:00",
@@ -921,7 +921,7 @@
   },
   "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday": {
     "user": "dreev",
-    "slug": "take_copyediting_pass_on_micheles_draft",
+    "slug": "take_copyediting_pass_on_micheles_draft/by/saturday",
     "note": "aka michele_copyediting_pass",
     "tini": "2017-09-29T00:00:00-07:00",
     "tdue": "2017-09-30T22:00:00-07:00",
@@ -931,7 +931,7 @@
   },
   "dreev.commits.to/give_james_daniell_status_update/by/oct-5-noon": {
     "user": "dreev",
-    "slug": "give_james_daniell_status_update",
+    "slug": "give_james_daniell_status_update/by/oct-5-noon",
     "note": "[10.5h late ~= .99 credit]",
     "tini": "2017-09-04T00:00:00-07:00",
     "tdue": "2017-10-05T12:00:00-07:00",
@@ -941,7 +941,7 @@
   },
   "dreev.commits.to/give_marcin_status_update/by/oct-5-noon": {
     "user": "dreev",
-    "slug": "give_marcin_status_update",
+    "slug": "give_marcin_status_update/by/oct-5-noon",
     "note": "marcinupdate [10.5h late ~= .99 credit]",
     "tini": "2017-09-04T00:00:00-07:00",
     "tdue": "2017-10-05T12:00:00-07:00",
@@ -981,7 +981,7 @@
   },
   "dreev.commits.to/reply_to_smreeves/by/today": {
     "user": "dreev",
-    "slug": "reply_to_smreeves",
+    "slug": "reply_to_smreeves/by/today",
     "note": "",
     "tini": "2017-10-12T00:00:00-07:00",
     "tdue": "2017-10-12T23:58:00-07:00",
@@ -991,7 +991,7 @@
   },
   "dreev.commits.to/let_yall_know_about_monitor/by/next_week": {
     "user": "dreev",
-    "slug": "let_yall_know_about_monitor",
+    "slug": "let_yall_know_about_monitor/by/next_week",
     "note": "update_facebook_thread",
     "tini": "2017-10-02T00:00:00-07:00",
     "tdue": "2017-10-13T12:00:00-07:00",
@@ -999,9 +999,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/find_ein_etc/by/3pm": {
+  "dreev.commits.to/find_ein_etc/by/3pm": {
     "user": "dreev",
-    "slug": "find_ein_etc",
+    "slug": "find_ein_etc/by/3pm",
     "note": "",
     "tini": "2017-10-18T00:00:00-07:00",
     "tdue": "2017-10-18T15:00:00-07:00",
@@ -1009,9 +1009,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week": {
+  "dreev.commits.to/look_at_chrome_minder/by/end_of_next_week": {
     "user": "dreev",
-    "slug": "look_at_chrome_minder",
+    "slug": "look_at_chrome_minder/by/end_of_next_week",
     "note": "chromeminder",
     "tini": "2017-10-12T00:00:00-07:00",
     "tdue": "2017-10-20T14:00:00-07:00",
@@ -1021,7 +1021,7 @@
   },
   "dreev.commits.to/curtain_edit/by/oct_20": {
     "user": "dreev",
-    "slug": "curtain_edit",
+    "slug": "curtain_edit/by/oct_20",
     "note": "",
     "tini": "2017-10-09T00:00:00-07:00",
     "tdue": "2017-10-20T15:00:00-07:00",
@@ -1029,9 +1029,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/do_redirect_for_mel/by/10pm": {
+  "dreev.commits.to/do_redirect_for_mel/by/10pm": {
     "user": "dreev",
-    "slug": "do_redirect_for_mel",
+    "slug": "do_redirect_for_mel/by/10pm",
     "note": "",
     "tini": "2017-10-23T00:00:00-07:00",
     "tdue": "2017-10-23T22:00:00-07:00",
@@ -1041,7 +1041,7 @@
   },
   "dreev.commits.to/ping_malcolm_re_android/by/today": {
     "user": "dreev",
-    "slug": "ping_malcolm_re_android",
+    "slug": "ping_malcolm_re_android/by/today",
     "note": "",
     "tini": "2017-10-24T00:00:00-07:00",
     "tdue": "2017-10-24T12:00:00-07:00",
@@ -1051,7 +1051,7 @@
   },
   "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night": {
     "user": "dreev",
-    "slug": "talk_to_bee_and_uluc_re_beedroid_publishing",
+    "slug": "talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night",
     "note": "aka bee_uluc_beedroid",
     "tini": "2017-10-24T00:00:00-07:00",
     "tdue": "2017-10-25T11:00:00-07:00",
@@ -1061,7 +1061,7 @@
   },
   "dreev.commits.to/ascertain_re_sunday/by/wed": {
     "user": "dreev",
-    "slug": "ascertain_re_sunday",
+    "slug": "ascertain_re_sunday/by/wed",
     "note": "",
     "tini": "2017-10-23T00:00:00-07:00",
     "tdue": "2017-10-25T19:00:00-07:00",
@@ -1069,9 +1069,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight": {
+  "dreev.commits.to/reply_to_rest_of_nathaniels_email/by/tonight": {
     "user": "dreev",
-    "slug": "reply_to_rest_of_nathaniels_email",
+    "slug": "reply_to_rest_of_nathaniels_email/by/tonight",
     "note": "",
     "tini": "2017-10-26T00:00:00-07:00",
     "tdue": "2017-10-26T00:00:00-07:00",
@@ -1081,7 +1081,7 @@
   },
   "dreev.commits.to/answer_nathaniels_other_questions/by/midnight": {
     "user": "dreev",
-    "slug": "answer_nathaniels_other_questions",
+    "slug": "answer_nathaniels_other_questions/by/midnight",
     "note": "aka nathaniel2 [5m late ~= .999 credit]",
     "tini": "2017-10-26T00:00:00-07:00",
     "tdue": "2017-10-26T12:00:00-07:00",
@@ -1091,7 +1091,7 @@
   },
   "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm": {
     "user": "dreev",
-    "slug": "describe_more_of_this_thing_to_michael",
+    "slug": "describe_more_of_this_thing_to_michael/by/1pm",
     "note": "aka describe_to_michael",
     "tini": "2017-10-25T00:00:00-07:00",
     "tdue": "2017-10-26T13:00:00-07:00",
@@ -1099,7 +1099,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_meta_blog_post": {
+  "dreev.commits.to/update_meta_blog_post": {
     "user": "dreev",
     "slug": "update_meta_blog_post",
     "note": "update blog.beeminder.com/will [11m late ~= .999 credit]",
@@ -1109,9 +1109,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/report_cinesift_bug_separately/by/midnight": {
+  "dreev.commits.to/report_cinesift_bug_separately/by/midnight": {
     "user": "dreev",
-    "slug": "report_cinesift_bug_separately",
+    "slug": "report_cinesift_bug_separately/by/midnight",
     "note": "",
     "tini": "2017-10-28T00:00:00-07:00",
     "tdue": "2017-10-29T00:00:00-07:00",
@@ -1131,7 +1131,7 @@
   },
   "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm": {
     "user": "dreev",
-    "slug": "first_set_of_final_edits_for_michele",
+    "slug": "first_set_of_final_edits_for_michele/by/2pm",
     "note": "michele draft",
     "tini": "2017-10-30T00:00:00-07:00",
     "tdue": "2017-10-31T11:00:00-07:00",
@@ -1139,7 +1139,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/plug_nanowrimo_room": {
+  "dreev.commits.to/plug_nanowrimo_room": {
     "user": "dreev",
     "slug": "plug_nanowrimo_room",
     "note": "beemail nanowrimo",
@@ -1149,9 +1149,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/roadedbugcheck/by/today": {
+  "dreev.commits.to/roadedbugcheck/by/today": {
     "user": "dreev",
-    "slug": "roadedbugcheck",
+    "slug": "roadedbugcheck/by/today",
     "note": "aka roadbugcheck",
     "tini": "2017-11-02T00:00:00-07:00",
     "tdue": "2017-11-02T00:00:00-07:00",
@@ -1159,9 +1159,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/verify_no_prov/by/10:30am": {
+  "dreev.commits.to/verify_no_prov/by/10:30am": {
     "user": "dreev",
-    "slug": "verify_no_prov",
+    "slug": "verify_no_prov/by/10:30am",
     "note": "aka providence_check",
     "tini": "2017-11-01T00:00:00-07:00",
     "tdue": "2017-11-02T10:29:00-07:00",
@@ -1171,7 +1171,7 @@
   },
   "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday": {
     "user": "dreev",
-    "slug": "send_health_broker_email_if_bee_doesnt",
+    "slug": "send_health_broker_email_if_bee_doesnt/by/monday",
     "note": "aka healthbroker",
     "tini": "2017-11-03T00:00:00-07:00",
     "tdue": "2017-11-06T00:00:00-08:00",
@@ -1181,7 +1181,7 @@
   },
   "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7": {
     "user": "dreev",
-    "slug": "ping_josh_re_realsies_integration",
+    "slug": "ping_josh_re_realsies_integration/by/nov_7",
     "note": "aka realsies_ping",
     "tini": "2017-10-08T00:00:00-07:00",
     "tdue": "2017-11-07T23:00:00-08:00",
@@ -1201,7 +1201,7 @@
   },
   "dreev.commits.to/pay_ifttt_invoice/by/today": {
     "user": "dreev",
-    "slug": "pay_ifttt_invoice",
+    "slug": "pay_ifttt_invoice/by/today",
     "note": "",
     "tini": "2017-11-10T15:47:00-08:00",
     "tdue": "2017-11-10T23:59:59-08:00",
@@ -1209,9 +1209,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_spec_with_those_2_points/by/midnight": {
+  "dreev.commits.to/update_spec_with_those_2_points/by/midnight": {
     "user": "dreev",
-    "slug": "update_spec_with_those_2_points",
+    "slug": "update_spec_with_those_2_points/by/midnight",
     "note": "",
     "tini": "2017-11-10T10:39:00-08:00",
     "tdue": "2017-11-10T23:59:59-08:00",
@@ -1219,9 +1219,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/send_michele_new_set_of_edits/by/nov_11_11pm": {
+  "dreev.commits.to/send_michele_new_set_of_edits/by/nov_11_11pm": {
     "user": "dreev",
-    "slug": "send_michele_new_set_of_edits",
+    "slug": "send_michele_new_set_of_edits/by/nov_11_11pm",
     "note": "[45m late ~= .999 credit]",
     "tini": "2017-11-05T00:00:00-07:00",
     "tdue": "2017-11-11T23:00:00-08:00",
@@ -1229,9 +1229,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/paste_in_pmc_notes/by/monday": {
+  "dreev.commits.to/paste_in_pmc_notes/by/monday": {
     "user": "dreev",
-    "slug": "paste_in_pmc_notes",
+    "slug": "paste_in_pmc_notes/by/monday",
     "note": "",
     "tini": "2017-11-12T01:08:00-08:00",
     "tdue": "2017-11-13T21:00:00-08:00",
@@ -1239,9 +1239,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
+  "dreev.commits.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
     "user": "dreev",
-    "slug": "spec_out_pub_changelog_idea",
+    "slug": "spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work",
     "note": "",
     "tini": "2017-10-31T00:00:00-07:00",
     "tdue": "2017-11-15T00:00:00-08:00",
@@ -1251,7 +1251,7 @@
   },
   "dreev.commits.to/dedup_the_iwills/by/nov": {
     "user": "dreev",
-    "slug": "dedup_the_iwills",
+    "slug": "dedup_the_iwills/by/nov",
     "note": "",
     "tini": "2017-09-22T00:00:00-07:00",
     "tdue": "2017-11-15T00:00:00-08:00",
@@ -1259,9 +1259,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_kelley_re_ducks/by/nov_15": {
+  "dreev.commits.to/ask_kelley_re_ducks/by/nov_15": {
     "user": "dreev",
-    "slug": "ask_kelley_re_ducks",
+    "slug": "ask_kelley_re_ducks/by/nov_15",
     "note": "",
     "tini": "2017-10-26T00:00:00-07:00",
     "tdue": "2017-11-15T13:00:00-08:00",
@@ -1269,9 +1269,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_scott_seo_question/by/next_week": {
+  "dreev.commits.to/ask_scott_seo_question/by/next_week": {
     "user": "dreev",
-    "slug": "ask_scott_seo_question",
+    "slug": "ask_scott_seo_question/by/next_week",
     "note": "",
     "tini": "2017-11-09T18:03:00-08:00",
     "tdue": "2017-11-16T00:00:00-08:00",
@@ -1281,7 +1281,7 @@
   },
   "dreev.commits.to/payment_to_aaron/by/nov_30": {
     "user": "dreev",
-    "slug": "payment_to_aaron",
+    "slug": "payment_to_aaron/by/nov_30",
     "note": "aka aaronpay",
     "tini": "2017-11-04T00:00:00-07:00",
     "tdue": "2017-11-30T23:00:00-08:00",
@@ -1289,9 +1289,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_jess_and_ryan/by/december": {
+  "dreev.commits.to/update_jess_and_ryan/by/december": {
     "user": "dreev",
-    "slug": "update_jess_and_ryan",
+    "slug": "update_jess_and_ryan/by/december",
     "note": "re seed/indinero",
     "tini": "2017-10-11T00:00:00-07:00",
     "tdue": "2017-12-01T12:00:00-08:00",
@@ -1299,9 +1299,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1": {
+  "dreev.commits.to/ask_jana_about_blood_testers/by/dec_1": {
     "user": "dreev",
-    "slug": "ask_jana_about_blood_testers",
+    "slug": "ask_jana_about_blood_testers/by/dec_1",
     "note": "",
     "tini": "2017-09-26T00:00:00-07:00",
     "tdue": "2017-12-01T22:00:00-08:00",
@@ -1309,9 +1309,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ping_byorgey/by/dec_20": {
+  "dreev.commits.to/ping_byorgey/by/dec_20": {
     "user": "dreev",
-    "slug": "ping_byorgey",
+    "slug": "ping_byorgey/by/dec_20",
     "note": "",
     "tini": "2017-09-15T00:00:00-07:00",
     "tdue": "2017-12-20T12:00:00-08:00",
@@ -1321,7 +1321,7 @@
   },
   "dreev.commits.to/finish_implementing_this_system/by/january": {
     "user": "dreev",
-    "slug": "finish_implementing_this_system",
+    "slug": "finish_implementing_this_system/by/january",
     "note": "aka working_commits_to",
     "tini": "2017-10-27T17:11:00-07:00",
     "tdue": "2018-01-01T09:00:00-08:00",
@@ -1329,9 +1329,9 @@
     "xfin": 0.4,
     "bmid": "yes"
   },
-  "dreev.promises.to/ping_oli/by/jan_16": {
+  "dreev.commits.to/ping_oli/by/jan_16": {
     "user": "dreev",
-    "slug": "ping_oli",
+    "slug": "ping_oli/by/jan_16",
     "note": "",
     "tini": "2017-09-15T00:00:00-07:00",
     "tdue": "2018-01-16T12:00:00-08:00",
@@ -1341,7 +1341,7 @@
   },
   "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march": {
     "user": "dreev",
-    "slug": "bug_kelley_re_feb_blog_post",
+    "slug": "bug_kelley_re_feb_blog_post/by/march",
     "note": "",
     "tini": "2017-10-31T00:00:00-07:00",
     "tdue": "2018-02-28T12:00:00-08:00",
@@ -1351,7 +1351,7 @@
   },
   "dreev.commits.to/find_out_about_google_penalties/by/a_week_after_typepad_says_no_to_redirect_again": {
     "user": "dreev",
-    "slug": "find_out_about_google_penalties",
+    "slug": "find_out_about_google_penalties/by/a_week_after_typepad_says_no_to_redirect_again",
     "note": "[conditional deadline]",
     "tini": "2017-11-10T18:30:00-08:00",
     "tdue": "",
@@ -1359,7 +1359,7 @@
     "xfin": 0,
     "bmid": ""
   },
-  "dreev.promises.to/continue_explaining_tiein": {
+  "dreev.commits.to/continue_explaining_tiein": {
     "user": "dreev",
     "slug": "continue_explaining_tiein",
     "note": "",
@@ -1369,7 +1369,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/finish_copyediting_pass_on_bees_spec": {
+  "dreev.commits.to/finish_copyediting_pass_on_bees_spec": {
     "user": "dreev",
     "slug": "finish_copyediting_pass_on_bees_spec",
     "note": "",
@@ -1379,9 +1379,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/report_back_on_louis_new_user_bug_list/by/nov_25": {
+  "dreev.commits.to/report_back_on_louis_new_user_bug_list/by/nov_25": {
     "user": "dreev",
-    "slug": "report_back_on_louis_new_user_bug_list",
+    "slug": "report_back_on_louis_new_user_bug_list/by/nov_25",
     "note": "",
     "tini": "2017-11-15T09:47:00-08:00",
     "tdue": "2017-11-25T23:59:59-08:00",
@@ -1389,9 +1389,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
+  "dreev.commits.to/update_promises_json_to_iso8601/by/8pm": {
     "user": "dreev",
-    "slug": "update_promises_json_to_iso8601",
+    "slug": "update_promises_json_to_iso8601/by/8pm",
     "note": "",
     "tini": "2017-11-15T15:57:00-08:00",
     "tdue": "2017-11-15T20:00:00-08:00",
@@ -1411,7 +1411,7 @@
   },
   "dreev.commits.to/retry_realsie_with_bee/by/midnight": {
     "user": "dreev",
-    "slug": "retry_realsie_with_bee",
+    "slug": "retry_realsie_with_bee/by/midnight",
     "note": "",
     "tini": "2017-11-17T00:42:00-08:00",
     "tdue": "2017-11-17T23:59:59-08:00",
@@ -1419,9 +1419,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
+  "dreev.commits.to/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
     "user": "dreev",
-    "slug": "add_link_to_realsies_in_promisesto_app",
+    "slug": "add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts",
     "note": "[conditional deadline]",
     "tini": "2017-11-17T01:13:00-08:00",
     "tdue": "",
@@ -1429,9 +1429,9 @@
     "xfin": 0,
     "bmid": "no"
   },
-  "dreev.promises.to/pay_michael/by/today": {
+  "dreev.commits.to/pay_michael/by/today": {
     "user": "dreev",
-    "slug": "pay_michael",
+    "slug": "pay_michael/by/today",
     "note": "",
     "tini": "2017-11-20T08:06:00-08:00",
     "tdue": "2017-11-20T23:59:59-08:00",
@@ -1441,7 +1441,7 @@
   },
   "dreev.commits.to/tryitout/by/6pm": {
     "user": "dreev",
-    "slug": "tryitout",
+    "slug": "tryitout/by/6pm",
     "note": "",
     "tini": "2017-11-22T15:00:00-08:00",
     "tdue": "2017-11-22T18:00:00-08:00",
@@ -1449,9 +1449,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/email_galaurie_re_payroll/by/saturday": {
+  "dreev.commits.to/email_galaurie_re_payroll/by/saturday": {
     "user": "dreev",
-    "slug": "email_galaurie_re_payroll",
+    "slug": "email_galaurie_re_payroll/by/saturday",
     "note": "",
     "tini": "2017-11-22T20:23:00-08:00",
     "tdue": "2017-11-25T13:00:00-08:00",
@@ -1481,7 +1481,7 @@
   },
   "dreev.commits.to/collect_copy_for_new_michele_draft/by/wed": {
     "user": "dreev",
-    "slug": "collect_copy_for_new_michele_draft",
+    "slug": "collect_copy_for_new_michele_draft/by/wed",
     "note": "",
     "tini": "2017-11-25T12:22:00-08:00",
     "tdue": "2017-11-29T10:00:00-08:00",
@@ -1491,7 +1491,7 @@
   },
   "dreev.commits.to/crop_image_and_improve_intro/by/tomorrow": {
     "user": "dreev",
-    "slug": "crop_image_and_improve_intro",
+    "slug": "crop_image_and_improve_intro/by/tomorrow",
     "note": "",
     "tini": "2017-11-27T19:30:00-08:00",
     "tdue": "2017-11-28T19:30:00-08:00",
@@ -1499,9 +1499,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/pay_faire_for_typo/by/tonight": {
+  "dreev.commits.to/pay_faire_for_typo/by/tonight": {
     "user": "dreev",
-    "slug": "pay_faire_for_typo",
+    "slug": "pay_faire_for_typo/by/tonight",
     "note": "",
     "tini": "2017-11-28T19:03:00-08:00",
     "tdue": "2017-11-28T23:59:59-08:00",
@@ -1509,9 +1509,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/finish_cybermon_replies/by/dec5": {
+  "dreev.commits.to/finish_cybermon_replies/by/dec5": {
     "user": "dreev",
-    "slug": "finish_cybermon_replies",
+    "slug": "finish_cybermon_replies/by/dec5",
     "note": "",
     "tini": "2017-12-04T15:00:00-08:00",
     "tdue": "2017-12-05T12:00:00-08:00",
@@ -1519,9 +1519,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/fill_out_gusto_thing/by/today": {
+  "dreev.commits.to/fill_out_gusto_thing/by/today": {
     "user": "dreev",
-    "slug": "fill_out_gusto_thing",
+    "slug": "fill_out_gusto_thing/by/today",
     "note": "",
     "tini": "2017-12-05T15:39:00-08:00",
     "tdue": "2017-12-05T23:59:59-08:00",
@@ -1531,7 +1531,7 @@
   },
   "dreev.commits.to/ping_jacob/by/sun_1pm": {
     "user": "dreev",
-    "slug": "ping_jacob",
+    "slug": "ping_jacob/by/sun_1pm",
     "note": "",
     "tini": "2017-11-30T00:00:00-08:00",
     "tdue": "2017-12-03T13:00:00-08:00",
@@ -1539,9 +1539,9 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/send_all_buttons_owed/by/january": {
+  "dreev.commits.to/send_all_buttons_owed/by/january": {
     "user": "dreev",
-    "slug": "send_all_buttons_owed",
+    "slug": "send_all_buttons_owed/by/january",
     "note": "",
     "tini": "2017-12-14T21:43:00-08:00",
     "tdue": "2018-01-01T00:00:00-08:00",
@@ -1619,9 +1619,9 @@
     "xfin": 1,
     "bmid": "no"
   },
-  "dreev.promises.to/fix_karmabot/by/wed_night": {
+  "dreev.commits.to/fix_karmabot/by/wed_night": {
     "user": "dreev",
-    "slug": "fix_karmabot",
+    "slug": "fix_karmabot/by/wed_night",
     "note": "",
     "tini": "2017-12-24T15:00:00-08:00",
     "tdue": "2017-12-27T22:00:00-08:00",
@@ -1631,7 +1631,7 @@
   },
   "dreev.commits.to/check_with_brady_re_guest_post/by/dec_31": {
     "user": "dreev",
-    "slug": "check_with_brady_re_guest_post",
+    "slug": "check_with_brady_re_guest_post/by/dec_31",
     "note": "",
     "tini": "2017-12-12T13:10:00-08:00",
     "tdue": "2017-12-31T23:59:59-08:00",
@@ -1641,7 +1641,7 @@
   },
   "dreev.commits.to/tell_travis_who_our_movers_were/by/saturday": {
     "user": "dreev",
-    "slug": "tell_travis_who_our_movers_were",
+    "slug": "tell_travis_who_our_movers_were/by/saturday",
     "note": "",
     "tini": "2018-01-04T16:17:00-08:00",
     "tdue": "2018-01-06T12:00:00-08:00",

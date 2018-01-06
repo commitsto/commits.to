@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars'
 import APP_DOMAIN from '../data/config'
 
-const pathForUser = (name) => `//${name}.${APP_DOMAIN}/`
+const pathForUser = (name) => `//${name}.${APP_DOMAIN}`
 
 Handlebars.registerHelper('__appDomain', function() {
   return APP_DOMAIN

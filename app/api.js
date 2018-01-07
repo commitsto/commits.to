@@ -1,5 +1,6 @@
 import app from './express'
 import moment from 'moment-timezone'
+import _ from 'lodash'
 
 import mailself from '../lib/mail'
 import { cache, seed, setup, importJson } from '../data/seed'
@@ -58,7 +59,11 @@ app.get('/_s/:user/promises/complete/:id(*)', (req, resp) => {
 })
 
 app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
-  console.log('edit promise', req.params.id, req.body)
+  // invalid dates/empty string values should unset db fields
+  const data = _.mapValues(req.body, (value) =>
+    _.includes(['Invalid date', ''], value) ? null : value)
+
+  console.log('edit promise**', req.params.id, data, req.body)
 
   Promises.find({
     where: {
@@ -68,15 +73,15 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
   }).then(function(promise) {
     promise.update({
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
-      ...req.body
+      ...data
+    }).then(function(prom) {
+      console.log('promise updated', req.body)
+      if (promise) {
+        res.redirect(`/${prom.urtext}`)
+      } else {
+        res.redirect('/')
+      }
     })
-
-    console.log('edit promise', promise)
-    if (promise && req.params.id) {
-      res.redirect(`/${req.params.id}`)
-    } else {
-      res.redirect('/')
-    }
   })
 })
 

@@ -22,12 +22,12 @@ export function seed() {
       })
     })
     .then(() => setup())
-    // .then(() => importJson())
+    .then(() => importJson())
 }
 
 // utility to populate table with hardcoded promises below
 export function setup() {
-  Promises.sync({ force: true }).then(function() {
+  return Promises.sync({ force: true }).then(function() {
     Object.keys(promises).forEach((key) => {
       let prom = parsePromiseFromId({ id: key })
       prom = _.extend(prom, promises[key])
@@ -62,7 +62,7 @@ export function cache() {
 
 // FIXME refactor parsePromise to work for all imports
 export function importJson() {
-  Promises.sync().then(function() {
+  return Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
 
       // ***FIXME refactor into method

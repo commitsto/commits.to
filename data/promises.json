@@ -1,5 +1,5 @@
 {
-  "dreev.commits.to/chrisbotc": {
+  "/chrisbotc": {
     "user": "dreev",
     "slug": "chrisbotc",
     "note": "(before commits.to existed)",
@@ -9,7 +9,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/callbotccreditcard": {
+  "/callbotccreditcard": {
     "user": "dreev",
     "slug": "callbotccreditcard",
     "note": "",
@@ -19,7 +19,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/paulcopy": {
+  "/paulcopy": {
     "user": "dreev",
     "slug": "paulcopy",
     "note": "",
@@ -29,7 +29,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/lilysms": {
+  "/lilysms": {
     "user": "dreev",
     "slug": "lilysms",
     "note": "",
@@ -39,7 +39,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/dwwping": {
+  "/dwwping": {
     "user": "dreev",
     "slug": "dwwping",
     "note": "",
@@ -49,7 +49,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/datbucks": {
+  "/datbucks": {
     "user": "dreev",
     "slug": "datbucks",
     "note": "",
@@ -59,7 +59,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/masterfile": {
+  "/masterfile": {
     "user": "dreev",
     "slug": "masterfile",
     "note": "",
@@ -69,7 +69,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/paulpromo": {
+  "/paulpromo": {
     "user": "dreev",
     "slug": "paulpromo",
     "note": "",
@@ -79,7 +79,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/cmreact": {
+  "/cmreact": {
     "user": "dreev",
     "slug": "cmreact",
     "note": "",
@@ -89,7 +89,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/natemom": {
+  "/natemom": {
     "user": "dreev",
     "slug": "natemom",
     "note": "",
@@ -99,7 +99,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/lawrence": {
+  "/lawrence": {
     "user": "dreev",
     "slug": "lawrence",
     "note": "",
@@ -109,7 +109,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/helpdot": {
+  "/helpdot": {
     "user": "dreev",
     "slug": "helpdot",
     "note": "",
@@ -119,7 +119,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/davidr": {
+  "/davidr": {
     "user": "dreev",
     "slug": "davidr",
     "note": "",
@@ -129,7 +129,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/prjupdate": {
+  "/prjupdate": {
     "user": "dreev",
     "slug": "prjupdate",
     "note": "",
@@ -139,7 +139,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/cai": {
+  "/cai": {
     "user": "dreev",
     "slug": "cai",
     "note": "",
@@ -149,7 +149,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/glnate": {
+  "/glnate": {
     "user": "dreev",
     "slug": "glnate",
     "note": "",
@@ -159,7 +159,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/leealexa": {
+  "/leealexa": {
     "user": "dreev",
     "slug": "leealexa",
     "note": "",
@@ -169,7 +169,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ke": {
+  "/ke": {
     "user": "dreev",
     "slug": "ke",
     "note": "",
@@ -179,7 +179,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/zapier": {
+  "/zapier": {
     "user": "dreev",
     "slug": "zapier",
     "note": "[10m late ~= .999 credit]",
@@ -189,7 +189,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/lawrcomp": {
+  "/lawrcomp": {
     "user": "dreev",
     "slug": "lawrcomp",
     "note": "[20m late ~= .999 credit]",
@@ -199,7 +199,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/slackbuguvi": {
+  "/slackbuguvi": {
     "user": "dreev",
     "slug": "slackbuguvi",
     "note": "",
@@ -209,7 +209,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jacobsched": {
+  "/jacobsched": {
     "user": "dreev",
     "slug": "jacobsched",
     "note": "",
@@ -219,7 +219,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/lease_link_for_mom": {
+  "/lease_link_for_mom": {
     "user": "dreev",
     "slug": "lease_link_for_mom",
     "note": "",
@@ -229,7 +229,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/gmaddr": {
+  "/gmaddr": {
     "user": "dreev",
     "slug": "gmaddr",
     "note": "",
@@ -239,7 +239,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/bucket_answers": {
+  "/bucket_answers": {
     "user": "dreev",
     "slug": "bucket_answers",
     "note": "[34m late ~= .999 credit]",
@@ -249,7 +249,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jsspreadsheet": {
+  "/jsspreadsheet": {
     "user": "dreev",
     "slug": "jsspreadsheet",
     "note": "",
@@ -259,7 +259,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/bkfeedback": {
+  "/bkfeedback": {
     "user": "dreev",
     "slug": "bkfeedback",
     "note": "",
@@ -269,7 +269,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/checkeve": {
+  "/checkeve": {
     "user": "dreev",
     "slug": "checkeve",
     "note": "",
@@ -279,7 +279,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/buckans2": {
+  "/buckans2": {
     "user": "dreev",
     "slug": "buckans2",
     "note": "(2nd one)",
@@ -289,7 +289,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/famlist": {
+  "/famlist": {
     "user": "dreev",
     "slug": "famlist",
     "note": "",
@@ -299,7 +299,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/nectar": {
+  "/nectar": {
     "user": "dreev",
     "slug": "nectar",
     "note": "",
@@ -309,7 +309,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/mfreply": {
+  "/mfreply": {
     "user": "dreev",
     "slug": "mfreply",
     "note": "",
@@ -319,7 +319,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/shirley": {
+  "/shirley": {
     "user": "dreev",
     "slug": "shirley",
     "note": "",
@@ -329,7 +329,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ledgsplit": {
+  "/ledgsplit": {
     "user": "dreev",
     "slug": "ledgsplit",
     "note": "",
@@ -339,7 +339,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/fciou": {
+  "/fciou": {
     "user": "dreev",
     "slug": "fciou",
     "note": "[50m late ~= .999 credit]",
@@ -349,7 +349,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/pdfs": {
+  "/pdfs": {
     "user": "dreev",
     "slug": "pdfs",
     "note": "",
@@ -359,7 +359,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/docs": {
+  "/docs": {
     "user": "dreev",
     "slug": "docs",
     "note": "",
@@ -369,7 +369,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jclear": {
+  "/jclear": {
     "user": "dreev",
     "slug": "jclear",
     "note": "",
@@ -379,7 +379,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/payrollchk": {
+  "/payrollchk": {
     "user": "dreev",
     "slug": "payrollchk",
     "note": "",
@@ -389,7 +389,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/readfin": {
+  "/readfin": {
     "user": "dreev",
     "slug": "readfin",
     "note": "",
@@ -399,7 +399,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/calldad": {
+  "/calldad": {
     "user": "dreev",
     "slug": "calldad",
     "note": "",
@@ -409,7 +409,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jacobemail": {
+  "/jacobemail": {
     "user": "dreev",
     "slug": "jacobemail",
     "note": "",
@@ -419,7 +419,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/slackfree": {
+  "/slackfree": {
     "user": "dreev",
     "slug": "slackfree",
     "note": "",
@@ -429,7 +429,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jtrsvp": {
+  "/jtrsvp": {
     "user": "dreev",
     "slug": "jtrsvp",
     "note": "",
@@ -439,7 +439,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jtcount": {
+  "/jtcount": {
     "user": "dreev",
     "slug": "jtcount",
     "note": "[1h late ~= .99 credit]",
@@ -449,7 +449,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/cmgusto": {
+  "/cmgusto": {
     "user": "dreev",
     "slug": "cmgusto",
     "note": "",
@@ -459,7 +459,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/fixxmom": {
+  "/fixxmom": {
     "user": "dreev",
     "slug": "fixxmom",
     "note": "",
@@ -469,7 +469,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/wpe": {
+  "/wpe": {
     "user": "dreev",
     "slug": "wpe",
     "note": "",
@@ -479,7 +479,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/m537": {
+  "/m537": {
     "user": "dreev",
     "slug": "m537",
     "note": "",
@@ -489,7 +489,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/seanupdate": {
+  "/seanupdate": {
     "user": "dreev",
     "slug": "seanupdate",
     "note": "",
@@ -499,7 +499,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/benjcantor": {
+  "/benjcantor": {
     "user": "dreev",
     "slug": "benjcantor",
     "note": "",
@@ -509,7 +509,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/marcinspec": {
+  "/marcinspec": {
     "user": "dreev",
     "slug": "marcinspec",
     "note": "",
@@ -519,7 +519,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ccardsjacob": {
+  "/ccardsjacob": {
     "user": "dreev",
     "slug": "ccardsjacob",
     "note": "",
@@ -529,7 +529,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/fki": {
+  "/fki": {
     "user": "dreev",
     "slug": "fki",
     "note": "",
@@ -539,7 +539,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jennylimail": {
+  "/jennylimail": {
     "user": "dreev",
     "slug": "jennylimail",
     "note": "",
@@ -549,7 +549,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/yuhouse": {
+  "/yuhouse": {
     "user": "dreev",
     "slug": "yuhouse",
     "note": "",
@@ -559,7 +559,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/teal": {
+  "/teal": {
     "user": "dreev",
     "slug": "teal",
     "note": "",
@@ -569,7 +569,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/bugrepro": {
+  "/bugrepro": {
     "user": "dreev",
     "slug": "bugrepro",
     "note": "",
@@ -579,7 +579,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/robertoreply": {
+  "/robertoreply": {
     "user": "dreev",
     "slug": "robertoreply",
     "note": "",
@@ -589,7 +589,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/copyedit": {
+  "/copyedit": {
     "user": "dreev",
     "slug": "copyedit",
     "note": "",
@@ -599,7 +599,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/hexapod": {
+  "/hexapod": {
     "user": "dreev",
     "slug": "hexapod",
     "note": "",
@@ -609,7 +609,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/glenskates": {
+  "/glenskates": {
     "user": "dreev",
     "slug": "glenskates",
     "note": "",
@@ -619,7 +619,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/promto": {
+  "/promto": {
     "user": "dreev",
     "slug": "promto",
     "note": "",
@@ -629,7 +629,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_sergii_this_doing_something_useful/by/3am": {
+  "/show_sergii_this_doing_something_useful/by/3am": {
     "user": "dreev",
     "slug": "show_sergii_this_doing_something_useful",
     "note": "",
@@ -639,7 +639,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_bee_open_questions/by/10:30pm": {
+  "/show_bee_open_questions/by/10:30pm": {
     "user": "dreev",
     "slug": "show_bee_open_questions",
     "note": "",
@@ -649,7 +649,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/show_brennan_intro/by/10:50pm": {
+  "/show_brennan_intro/by/10:50pm": {
     "user": "dreev",
     "slug": "show_brennan_intro",
     "note": "",
@@ -659,7 +659,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/queue_tweet_etc_for_blog_post/by/2pm": {
+  "/queue_tweet_etc_for_blog_post/by/2pm": {
     "user": "dreev",
     "slug": "queue_tweet_etc_for_blog_post",
     "note": "",
@@ -669,7 +669,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/order_indian/by/5:30pm": {
+  "/order_indian/by/5:30pm": {
     "user": "dreev",
     "slug": "order_indian",
     "note": "",
@@ -679,7 +679,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/googledocify_intern_form/by/12pm": {
+  "/googledocify_intern_form/by/12pm": {
     "user": "dreev",
     "slug": "googledocify_intern_form",
     "note": "",
@@ -689,7 +689,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/sergiistub": {
+  "/sergiistub": {
     "user": "dreev",
     "slug": "sergiistub",
     "note": "",
@@ -699,7 +699,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/benjslack": {
+  "/benjslack": {
     "user": "dreev",
     "slug": "benjslack",
     "note": "",
@@ -709,7 +709,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/caiemail": {
+  "/caiemail": {
     "user": "dreev",
     "slug": "caiemail",
     "note": "",
@@ -719,7 +719,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/garbage_out": {
+  "/garbage_out": {
     "user": "dreev",
     "slug": "garbage_out",
     "note": "",
@@ -729,7 +729,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/labelzero/by/1am": {
+  "/labelzero/by/1am": {
     "user": "dreev",
     "slug": "labelzero",
     "note": "",
@@ -739,7 +739,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/report_glitch_bug": {
+  "/report_glitch_bug": {
     "user": "dreev",
     "slug": "report_glitch_bug",
     "note": "",
@@ -749,7 +749,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/follow_up_with_everyone_re_guest_blogging": {
+  "/follow_up_with_everyone_re_guest_blogging": {
     "user": "dreev",
     "slug": "follow_up_with_everyone_re_guest_blogging",
     "note": "(new ones may have come in...)",
@@ -759,7 +759,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/meta_debrief_kim/by/midnight_friday": {
+  "/meta_debrief_kim/by/midnight_friday": {
     "user": "dreev",
     "slug": "meta_debrief_kim",
     "note": "",
@@ -769,7 +769,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ask_bee_re_sunday_parkways": {
+  "/ask_bee_re_sunday_parkways": {
     "user": "dreev",
     "slug": "ask_bee_re_sunday_parkways",
     "note": "",
@@ -779,7 +779,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/test_penalty_func/by/saturday_noon": {
+  "/test_penalty_func/by/saturday_noon": {
     "user": "dreev",
     "slug": "test_penalty_func",
     "note": "",
@@ -789,7 +789,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/breakfast_suggestion": {
+  "/breakfast_suggestion": {
     "user": "dreev",
     "slug": "breakfast_suggestion",
     "note": "",
@@ -799,7 +799,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/send_ms_gross_email/by/sunday_11am": {
+  "/send_ms_gross_email/by/sunday_11am": {
     "user": "dreev",
     "slug": "send_ms_gross_email",
     "note": "calendared as cantor_ms_g",
@@ -809,7 +809,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/clear_bogus_commit_for_nick/by/5_minutes_from_now": {
+  "/clear_bogus_commit_for_nick/by/5_minutes_from_now": {
     "user": "dreev",
     "slug": "clear_bogus_commit_for_nick",
     "note": "",
@@ -819,7 +819,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/debug_capitalization/by/tomorrow": {
+  "/debug_capitalization/by/tomorrow": {
     "user": "dreev",
     "slug": "debug_capitalization",
     "note": "[23.4h late ~= .99 credit]",
@@ -829,7 +829,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/intern_disc/by/wed": {
+  "/intern_disc/by/wed": {
     "user": "dreev",
     "slug": "intern_disc",
     "note": "",
@@ -839,7 +839,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/jacobbudg": {
+  "/jacobbudg": {
     "user": "dreev",
     "slug": "jacobbudg",
     "note": "[24m late ~= .999 credit]",
@@ -849,7 +849,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/schedule-k_tax_thing/by/5pm": {
+  "/schedule-k_tax_thing/by/5pm": {
     "user": "dreev",
     "slug": "schedule-k_tax_thing",
     "note": "",
@@ -859,7 +859,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/reply_to_use_case_email/by/midnight": {
+  "/reply_to_use_case_email/by/midnight": {
     "user": "dreev",
     "slug": "reply_to_use_case_email",
     "note": "",
@@ -869,7 +869,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/set_up_mom_on_wordfeud/by/tomorrow": {
+  "/set_up_mom_on_wordfeud/by/tomorrow": {
     "user": "dreev",
     "slug": "set_up_mom_on_wordfeud",
     "note": "maybe voided",
@@ -879,7 +879,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ping_mirabai/by/sep_22": {
+  "/ping_mirabai/by/sep_22": {
     "user": "dreev",
     "slug": "ping_mirabai",
     "note": "",
@@ -889,7 +889,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/copy_editing_pass_on_tao2/by/tmw_2pm": {
+  "/copy_editing_pass_on_tao2/by/tmw_2pm": {
     "user": "dreev",
     "slug": "copy_editing_pass_on_tao2",
     "note": "calendared as bb_copyedit",
@@ -899,7 +899,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/hanna_reply/by/tonight": {
+  "/hanna_reply/by/tonight": {
     "user": "dreev",
     "slug": "hanna_reply",
     "note": "",
@@ -909,7 +909,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/add_chelsea_to_commits_to/by/11am": {
+  "/add_chelsea_to_commits_to/by/11am": {
     "user": "dreev",
     "slug": "add_chelsea_to_commits_to",
     "note": "",
@@ -919,7 +919,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/take_copyediting_pass_on_micheles_draft/by/saturday": {
+  "/take_copyediting_pass_on_micheles_draft/by/saturday": {
     "user": "dreev",
     "slug": "take_copyediting_pass_on_micheles_draft",
     "note": "aka michele_copyediting_pass",
@@ -929,7 +929,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/give_james_daniell_status_update/by/oct-5-noon": {
+  "/give_james_daniell_status_update/by/oct-5-noon": {
     "user": "dreev",
     "slug": "give_james_daniell_status_update",
     "note": "[10.5h late ~= .99 credit]",
@@ -939,7 +939,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/give_marcin_status_update/by/oct-5-noon": {
+  "/give_marcin_status_update/by/oct-5-noon": {
     "user": "dreev",
     "slug": "give_marcin_status_update",
     "note": "marcinupdate [10.5h late ~= .99 credit]",
@@ -949,7 +949,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ask_josh_about_realsies": {
+  "/ask_josh_about_realsies": {
     "user": "dreev",
     "slug": "ask_josh_about_realsies",
     "note": "",
@@ -959,7 +959,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/braden_update": {
+  "/braden_update": {
     "user": "dreev",
     "slug": "braden_update",
     "note": "",
@@ -969,7 +969,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/show_cantor": {
+  "/show_cantor": {
     "user": "dreev",
     "slug": "show_cantor",
     "note": "",
@@ -979,7 +979,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/reply_to_smreeves/by/today": {
+  "/reply_to_smreeves/by/today": {
     "user": "dreev",
     "slug": "reply_to_smreeves",
     "note": "",
@@ -989,7 +989,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/let_yall_know_about_monitor/by/next_week": {
+  "/let_yall_know_about_monitor/by/next_week": {
     "user": "dreev",
     "slug": "let_yall_know_about_monitor",
     "note": "update_facebook_thread",
@@ -999,7 +999,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/find_ein_etc/by/3pm": {
+  "/find_ein_etc/by/3pm": {
     "user": "dreev",
     "slug": "find_ein_etc",
     "note": "",
@@ -1009,7 +1009,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/look_at_chrome_minder/by/end_of_next_week": {
+  "/look_at_chrome_minder/by/end_of_next_week": {
     "user": "dreev",
     "slug": "look_at_chrome_minder",
     "note": "chromeminder",
@@ -1019,7 +1019,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/curtain_edit/by/oct_20": {
+  "/curtain_edit/by/oct_20": {
     "user": "dreev",
     "slug": "curtain_edit",
     "note": "",
@@ -1029,7 +1029,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/do_redirect_for_mel/by/10pm": {
+  "/do_redirect_for_mel/by/10pm": {
     "user": "dreev",
     "slug": "do_redirect_for_mel",
     "note": "",
@@ -1039,7 +1039,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ping_malcolm_re_android/by/today": {
+  "/ping_malcolm_re_android/by/today": {
     "user": "dreev",
     "slug": "ping_malcolm_re_android",
     "note": "",
@@ -1049,7 +1049,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night": {
+  "/talk_to_bee_and_uluc_re_beedroid_publishing/by/tomorrow_night": {
     "user": "dreev",
     "slug": "talk_to_bee_and_uluc_re_beedroid_publishing",
     "note": "aka bee_uluc_beedroid",
@@ -1059,7 +1059,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ascertain_re_sunday/by/wed": {
+  "/ascertain_re_sunday/by/wed": {
     "user": "dreev",
     "slug": "ascertain_re_sunday",
     "note": "",
@@ -1069,7 +1069,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/reply_to_rest_of_nathaniels_email/by/tonight": {
+  "/reply_to_rest_of_nathaniels_email/by/tonight": {
     "user": "dreev",
     "slug": "reply_to_rest_of_nathaniels_email",
     "note": "",
@@ -1079,7 +1079,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/answer_nathaniels_other_questions/by/midnight": {
+  "/answer_nathaniels_other_questions/by/midnight": {
     "user": "dreev",
     "slug": "answer_nathaniels_other_questions",
     "note": "aka nathaniel2 [5m late ~= .999 credit]",
@@ -1089,7 +1089,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/describe_more_of_this_thing_to_michael/by/1pm": {
+  "/describe_more_of_this_thing_to_michael/by/1pm": {
     "user": "dreev",
     "slug": "describe_more_of_this_thing_to_michael",
     "note": "aka describe_to_michael",
@@ -1099,7 +1099,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_meta_blog_post": {
+  "/update_meta_blog_post": {
     "user": "dreev",
     "slug": "update_meta_blog_post",
     "note": "update blog.beeminder.com/will [11m late ~= .999 credit]",
@@ -1109,7 +1109,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/report_cinesift_bug_separately/by/midnight": {
+  "/report_cinesift_bug_separately/by/midnight": {
     "user": "dreev",
     "slug": "report_cinesift_bug_separately",
     "note": "",
@@ -1119,7 +1119,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/francisco_check": {
+  "/francisco_check": {
     "user": "dreev",
     "slug": "francisco_check",
     "note": "",
@@ -1129,7 +1129,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/first_set_of_final_edits_for_michele/by/2pm": {
+  "/first_set_of_final_edits_for_michele/by/2pm": {
     "user": "dreev",
     "slug": "first_set_of_final_edits_for_michele",
     "note": "michele draft",
@@ -1139,7 +1139,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/plug_nanowrimo_room": {
+  "/plug_nanowrimo_room": {
     "user": "dreev",
     "slug": "plug_nanowrimo_room",
     "note": "beemail nanowrimo",
@@ -1149,7 +1149,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/roadedbugcheck/by/today": {
+  "/roadedbugcheck/by/today": {
     "user": "dreev",
     "slug": "roadedbugcheck",
     "note": "aka roadbugcheck",
@@ -1159,7 +1159,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/verify_no_prov/by/10:30am": {
+  "/verify_no_prov/by/10:30am": {
     "user": "dreev",
     "slug": "verify_no_prov",
     "note": "aka providence_check",
@@ -1169,7 +1169,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/send_health_broker_email_if_bee_doesnt/by/monday": {
+  "/send_health_broker_email_if_bee_doesnt/by/monday": {
     "user": "dreev",
     "slug": "send_health_broker_email_if_bee_doesnt",
     "note": "aka healthbroker",
@@ -1179,7 +1179,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ping_josh_re_realsies_integration/by/nov_7": {
+  "/ping_josh_re_realsies_integration/by/nov_7": {
     "user": "dreev",
     "slug": "ping_josh_re_realsies_integration",
     "note": "aka realsies_ping",
@@ -1189,7 +1189,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/ask_person_re_food_morality": {
+  "/ask_person_re_food_morality": {
     "user": "dreev",
     "slug": "ask_person_re_food_morality",
     "note": "",
@@ -1199,7 +1199,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/pay_ifttt_invoice/by/today": {
+  "/pay_ifttt_invoice/by/today": {
     "user": "dreev",
     "slug": "pay_ifttt_invoice",
     "note": "",
@@ -1209,7 +1209,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_spec_with_those_2_points/by/midnight": {
+  "/update_spec_with_those_2_points/by/midnight": {
     "user": "dreev",
     "slug": "update_spec_with_those_2_points",
     "note": "",
@@ -1219,7 +1219,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/send_michele_new_set_of_edits/by/nov_11_11pm": {
+  "/send_michele_new_set_of_edits/by/nov_11_11pm": {
     "user": "dreev",
     "slug": "send_michele_new_set_of_edits",
     "note": "[45m late ~= .999 credit]",
@@ -1229,7 +1229,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/paste_in_pmc_notes/by/monday": {
+  "/paste_in_pmc_notes/by/monday": {
     "user": "dreev",
     "slug": "paste_in_pmc_notes",
     "note": "",
@@ -1239,7 +1239,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
+  "/spec_out_pub_changelog_idea/by/a_week_after_reliability_scores_work": {
     "user": "dreev",
     "slug": "spec_out_pub_changelog_idea",
     "note": "",
@@ -1249,7 +1249,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/dedup_the_iwills/by/nov": {
+  "/dedup_the_iwills/by/nov": {
     "user": "dreev",
     "slug": "dedup_the_iwills",
     "note": "",
@@ -1259,7 +1259,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_kelley_re_ducks/by/nov_15": {
+  "/ask_kelley_re_ducks/by/nov_15": {
     "user": "dreev",
     "slug": "ask_kelley_re_ducks",
     "note": "",
@@ -1269,7 +1269,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_scott_seo_question/by/next_week": {
+  "/ask_scott_seo_question/by/next_week": {
     "user": "dreev",
     "slug": "ask_scott_seo_question",
     "note": "",
@@ -1279,7 +1279,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/payment_to_aaron/by/nov_30": {
+  "/payment_to_aaron/by/nov_30": {
     "user": "dreev",
     "slug": "payment_to_aaron",
     "note": "aka aaronpay",
@@ -1289,7 +1289,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_jess_and_ryan/by/december": {
+  "/update_jess_and_ryan/by/december": {
     "user": "dreev",
     "slug": "update_jess_and_ryan",
     "note": "re seed/indinero",
@@ -1299,7 +1299,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ask_jana_about_blood_testers/by/dec_1": {
+  "/ask_jana_about_blood_testers/by/dec_1": {
     "user": "dreev",
     "slug": "ask_jana_about_blood_testers",
     "note": "",
@@ -1309,7 +1309,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/ping_byorgey/by/dec_20": {
+  "/ping_byorgey/by/dec_20": {
     "user": "dreev",
     "slug": "ping_byorgey",
     "note": "",
@@ -1319,7 +1319,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/finish_implementing_this_system/by/january": {
+  "/finish_implementing_this_system/by/january": {
     "user": "dreev",
     "slug": "finish_implementing_this_system",
     "note": "aka working_commits_to",
@@ -1329,7 +1329,7 @@
     "xfin": 0.4,
     "bmid": "yes"
   },
-  "dreev.promises.to/ping_oli/by/jan_16": {
+  "/ping_oli/by/jan_16": {
     "user": "dreev",
     "slug": "ping_oli",
     "note": "",
@@ -1339,7 +1339,7 @@
     "xfin": 0,
     "bmid": "yes"
   },
-  "dreev.commits.to/bug_kelley_re_feb_blog_post/by/march": {
+  "/bug_kelley_re_feb_blog_post/by/march": {
     "user": "dreev",
     "slug": "bug_kelley_re_feb_blog_post",
     "note": "",
@@ -1349,7 +1349,7 @@
     "xfin": 0,
     "bmid": "yes"
   },
-  "dreev.commits.to/find_out_about_google_penalties/by/a_week_after_typepad_says_no_to_redirect_again": {
+  "/find_out_about_google_penalties/by/a_week_after_typepad_says_no_to_redirect_again": {
     "user": "dreev",
     "slug": "find_out_about_google_penalties",
     "note": "[conditional deadline]",
@@ -1359,7 +1359,7 @@
     "xfin": 0,
     "bmid": ""
   },
-  "dreev.promises.to/continue_explaining_tiein": {
+  "/continue_explaining_tiein": {
     "user": "dreev",
     "slug": "continue_explaining_tiein",
     "note": "",
@@ -1369,7 +1369,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/finish_copyediting_pass_on_bees_spec": {
+  "/finish_copyediting_pass_on_bees_spec": {
     "user": "dreev",
     "slug": "finish_copyediting_pass_on_bees_spec",
     "note": "",
@@ -1379,7 +1379,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/report_back_on_louis_new_user_bug_list/by/nov_25": {
+  "/report_back_on_louis_new_user_bug_list/by/nov_25": {
     "user": "dreev",
     "slug": "report_back_on_louis_new_user_bug_list",
     "note": "",
@@ -1389,7 +1389,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/update_promises_json_to_iso8601/by/8pm": {
+  "/update_promises_json_to_iso8601/by/8pm": {
     "user": "dreev",
     "slug": "update_promises_json_to_iso8601",
     "note": "",
@@ -1399,7 +1399,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/paste_instr": {
+  "/paste_instr": {
     "user": "dreev",
     "slug": "paste_instr",
     "note": "paste instructions for using glitch as git repo",
@@ -1409,7 +1409,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/retry_realsie_with_bee/by/midnight": {
+  "/retry_realsie_with_bee/by/midnight": {
     "user": "dreev",
     "slug": "retry_realsie_with_bee",
     "note": "",
@@ -1419,7 +1419,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
+  "/add_link_to_realsies_in_promisesto_app/by/2_weeks_after_open_beta_starts": {
     "user": "dreev",
     "slug": "add_link_to_realsies_in_promisesto_app",
     "note": "[conditional deadline]",
@@ -1429,7 +1429,7 @@
     "xfin": 0,
     "bmid": "no"
   },
-  "dreev.promises.to/pay_michael/by/today": {
+  "/pay_michael/by/today": {
     "user": "dreev",
     "slug": "pay_michael",
     "note": "",
@@ -1439,7 +1439,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/tryitout/by/6pm": {
+  "/tryitout/by/6pm": {
     "user": "dreev",
     "slug": "tryitout",
     "note": "",
@@ -1449,7 +1449,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/email_galaurie_re_payroll/by/saturday": {
+  "/email_galaurie_re_payroll/by/saturday": {
     "user": "dreev",
     "slug": "email_galaurie_re_payroll",
     "note": "",
@@ -1459,7 +1459,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/update_spec_re_tdue_null": {
+  "/update_spec_re_tdue_null": {
     "user": "dreev",
     "slug": "update_spec_re_tdue_null",
     "note": "",
@@ -1469,7 +1469,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/check_avg": {
+  "/check_avg": {
     "user": "dreev",
     "slug": "check_avg",
     "note": "",
@@ -1479,7 +1479,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/collect_copy_for_new_michele_draft/by/wed": {
+  "/collect_copy_for_new_michele_draft/by/wed": {
     "user": "dreev",
     "slug": "collect_copy_for_new_michele_draft",
     "note": "",
@@ -1489,7 +1489,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.commits.to/crop_image_and_improve_intro/by/tomorrow": {
+  "/crop_image_and_improve_intro/by/tomorrow": {
     "user": "dreev",
     "slug": "crop_image_and_improve_intro",
     "note": "",
@@ -1499,7 +1499,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-  "dreev.promises.to/pay_faire_for_typo/by/tonight": {
+  "/pay_faire_for_typo/by/tonight": {
     "user": "dreev",
     "slug": "pay_faire_for_typo",
     "note": "",
@@ -1509,7 +1509,7 @@
     "xfin": 1,
     "bmid": "yes"
   },
-"dreev.promises.to/finish_cybermon_replies/by/dec5": {
+  "/finish_cybermon_replies/by/dec5": {
     "user": "dreev",
     "slug": "finish_cybermon_replies",
     "note": "",
@@ -1518,8 +1518,8 @@
     "tfin": "2017-12-06T00:35:00-08:00",
     "xfin": 1,
     "bmid": "yes"
-},
-"dreev.promises.to/fill_out_gusto_thing/by/today": {
+  },
+  "/fill_out_gusto_thing/by/today": {
     "user": "dreev",
     "slug": "fill_out_gusto_thing",
     "note": "",
@@ -1528,116 +1528,125 @@
     "tfin": "2017-12-06T00:54:30-08:00",
     "xfin": 1,
     "bmid": "yes"
-},
-"dreev.commits.to/ping_jacob/by/sun_1pm": {
-  "user": "dreev",
-  "slug": "ping_jacob",
-  "note": "",
-  "tini": "2017-11-30T00:00:00-08:00",
-  "tdue": "2017-12-03T13:00:00-08:00",
-  "tfin": "2017-12-03T13:00:00-08:00",
-  "xfin": 1,
-  "bmid": "yes"
-},
-"dreev.promises.to/send_all_buttons_owed/by/january": {
-  "user": "dreev",
-  "slug": "send_all_buttons_owed",
-  "note": "",
-  "tini": "2017-12-14T21:43:00-08:00",
-  "tdue": "2018-01-01T00:00:00-08:00",
-  "tfin": "",
-  "xfin": 0,
-  "bmid": "no"  
-},
-"dreev.commits.to/move_psych_money_braden_thread": {
-  "user": "dreev",
-  "slug": "move_psych_money_braden_thread",
-  "note": "",
-  "tini": "2017-12-15T11:41:00-08:00",
-  "tdue": "",
-  "tfin": "",
-  "xfin": 1,
-  "bmid": "yes"  
-  
-},
-"dreev.commits.to/move_ifttt_button_bug_report": {
-  "user": "dreev",
-  "slug": "move_ifttt_button_bug_report",
-  "note": "",
-  "tini": "2017-12-15T11:47:00-08:00",
-  "tdue": "",
-  "tfin": "",
-  "xfin": 1,
-  "bmid": "yes"  
-},
-"dreev.commits.to/reserve_car_for_tpk": {
-  "user": "dreev",
-  "slug": "reserve_car_for_tpk",
-  "note": "",
-  "tini": "2017-12-15T20:00:00-08:00",
-  "tdue": "",
-  "tfin": "2017-12-16T19:00:00-08:00",
-  "xfin": 1,
-  "bmid": "yes"  
-},
-"dreev.commits.to/report_on_secret_book": {
+  },
+  "/ping_jacob/by/sun_1pm": {
     "user": "dreev",
-  "slug": "report_on_secret_book",
-  "note": "",
-  "tini": "2017-12-17T12:00:00-08:00",
-  "tdue": "",
-  "tfin": "2017-12-17T15:00:00-08:00",
-  "xfin": 1,
-  "bmid": "yes"  
-},
-"dreev.commits.to/report_back_on_holiday_hack_night": {
-  "user": "dreev",
-  "slug": "report_back_on_holiday_hack_night",
-  "note": "",
-  "tini": "2017-12-17T15:00:00-08:00",
-  "tdue": "",
-  "tfin": "2017-12-18T22:13:00-08:00",
-  "xfin": 1,
-  "bmid": "yes"
-},
-"dreev.commits.to/show_bee_graphiql": {
-  "user": "dreev",
-  "slug": "show_bee_graphiql",
-  "note": "",
-  "tini": "2017-12-18T15:00:00-08:00",
-  "tdue": "",
-  "tfin": "2017-12-19T23:59:00-08:00",
-  "xfin": 1,
-  "bmid": "yes"  
-},
-"dreev.commits.to/call_car_rental": {
-  "user": "dreev",
-  "slug": "call_car_rental",
-  "note": "",
-  "tini": "2017-12-26T15:00:00-08:00",
-  "tdue": "2017-12-27T10:30:00-08:00",
-  "tfin": "2017-12-27T10:30:00-08:00",
-  "xfin": 1,
-  "bmid": "no"
-},
-"dreev.promises.to/fix_karmabot/by/wed_night": {
-  "user": "dreev",
-  "slug": "fix_karmabot",
-  "note": "",
-  "tini": "2017-12-24T15:00:00-08:00",
-  "tdue": "2017-12-27T22:00:00-08:00",
-  "tfin": "2017-12-28T03:55:00-08:00",
-  "xfin": 1,
-  "bmid": "no"
-},
-"dreev.commits.to/check_with_brady_re_guest_post/by/dec_31": {
-  "user": "dreev",
-  "slug": "check_with_brady_re_guest_post",
-  "note": "",
-  "tini": "2017-12-12T13:10:00-08:00",
-  "tdue": "2017-12-31T23:59:59-08:00",
-  "tfin": "2018-01-02T19:53:00-08:00",
-  "xfin": 1,
-  "bmid": "no"
-}
+    "slug": "ping_jacob",
+    "note": "",
+    "tini": "2017-11-30T00:00:00-08:00",
+    "tdue": "2017-12-03T13:00:00-08:00",
+    "tfin": "2017-12-03T13:00:00-08:00",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/send_all_buttons_owed/by/january": {
+    "user": "dreev",
+    "slug": "send_all_buttons_owed",
+    "note": "",
+    "tini": "2017-12-14T21:43:00-08:00",
+    "tdue": "2018-01-01T00:00:00-08:00",
+    "tfin": "",
+    "xfin": 0,
+    "bmid": "no"
+  },
+  "/move_psych_money_braden_thread": {
+    "user": "dreev",
+    "slug": "move_psych_money_braden_thread",
+    "note": "",
+    "tini": "2017-12-15T11:41:00-08:00",
+    "tdue": "",
+    "tfin": "",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/move_ifttt_button_bug_report": {
+    "user": "dreev",
+    "slug": "move_ifttt_button_bug_report",
+    "note": "",
+    "tini": "2017-12-15T11:47:00-08:00",
+    "tdue": "",
+    "tfin": "",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/reserve_car_for_tpk": {
+    "user": "dreev",
+    "slug": "reserve_car_for_tpk",
+    "note": "",
+    "tini": "2017-12-15T20:00:00-08:00",
+    "tdue": "",
+    "tfin": "2017-12-16T19:00:00-08:00",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/report_on_secret_book": {
+    "user": "dreev",
+    "slug": "report_on_secret_book",
+    "note": "",
+    "tini": "2017-12-17T12:00:00-08:00",
+    "tdue": "",
+    "tfin": "2017-12-17T15:00:00-08:00",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/report_back_on_holiday_hack_night": {
+    "user": "dreev",
+    "slug": "report_back_on_holiday_hack_night",
+    "note": "",
+    "tini": "2017-12-17T15:00:00-08:00",
+    "tdue": "",
+    "tfin": "2017-12-18T22:13:00-08:00",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/show_bee_graphiql": {
+    "user": "dreev",
+    "slug": "show_bee_graphiql",
+    "note": "",
+    "tini": "2017-12-18T15:00:00-08:00",
+    "tdue": "",
+    "tfin": "2017-12-19T23:59:00-08:00",
+    "xfin": 1,
+    "bmid": "yes"
+  },
+  "/call_car_rental": {
+    "user": "dreev",
+    "slug": "call_car_rental",
+    "note": "",
+    "tini": "2017-12-26T15:00:00-08:00",
+    "tdue": "2017-12-27T10:30:00-08:00",
+    "tfin": "2017-12-27T10:30:00-08:00",
+    "xfin": 1,
+    "bmid": "no"
+  },
+  "/fix_karmabot/by/wed_night": {
+    "user": "dreev",
+    "slug": "fix_karmabot",
+    "note": "",
+    "tini": "2017-12-24T15:00:00-08:00",
+    "tdue": "2017-12-27T22:00:00-08:00",
+    "tfin": "2017-12-28T03:55:00-08:00",
+    "xfin": 1,
+    "bmid": "no"
+  },
+  "/check_with_brady_re_guest_post/by/dec_31": {
+    "user": "dreev",
+    "slug": "check_with_brady_re_guest_post",
+    "note": "",
+    "tini": "2017-12-12T13:10:00-08:00",
+    "tdue": "2017-12-31T23:59:59-08:00",
+    "tfin": "2018-01-02T19:53:00-08:00",
+    "xfin": 1,
+    "bmid": "no"
+  },
+  "/tell_travis_who_our_movers_were/by/saturday": {
+    "user": "dreev",
+    "slug": "tell_travis_who_our_movers_were",
+    "note": "",
+    "tini": "2018-01-04T16:17:00-08:00",
+    "tdue": "2018-01-06T12:00:00-08:00",
+    "tfin": "2018-01-04T22:53:00-08:00",
+    "xfin": 1,
+    "bmid": "no"
+  }
 }

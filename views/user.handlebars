@@ -1,6 +1,6 @@
  <div class="user-promises-list blue-border">
   <h2 class="user-header {{creditColor reliability}}">
-    <a class="user-name" href="/{{user.username}}.{{__appDomain}}/">
+    <a class="user-name" href="{{userPath user}}">
       {{user.username}}
     </a>
     <span class="user-reliability">
@@ -9,7 +9,7 @@
   </h2>
   <ul class="promises-list">
     {{#each promises}}
-      <li>{{> card promise=this}}</li>
+      <li>{{> card promise=this user=user}}</li>
     {{/each}}
   </ul>
 </ul>

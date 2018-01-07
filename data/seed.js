@@ -67,19 +67,17 @@ export function importJson() {
 
       // ***FIXME refactor into method
       const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
-      const promise = {
-        id: user + key.toLowerCase(),
-        urtext: key,
-        username: user,
-        slug,
-        what: parseText(slug),
+
+      let promise = parsePromiseFromId({ id: user + key })
+      promise = _.extend(promise, {
         note,
         cred: tfin && tdue && parseCredit({ dueDate :tdue, finishDate: tfin }) || null,
         tini: tini && new Date(tini) || null,
         tdue: tdue && new Date(tdue) || null,
         tfin: tfin && new Date(tfin) || null,
         xfin
-      }
+      });
+
       log.info('import', key, data[key], promise)
 
       Users.findOne({

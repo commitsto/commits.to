@@ -22,12 +22,16 @@ var deletePromiseText = {
   cancelButtonText: 'No, cancel!'
 }
 
-var completePromise = function(username, slug) {
-  console.log('completePromise', slug, username)
+var apiPath = function(action, username, id) {
   var subdomainTest = new RegExp(/^([a-z]+\:\/{2})?([\w-]+\.[\w-]+\.\w+)$/)
   var isSubdomain = !!('window.location.hostname').match(subdomainTest)
 
-  var apiUrl = `${ isSubdomain ? '' : `/_s/${username}` }/promises/complete/${slug}`
+  return `${ isSubdomain ? '' : `/_s/${username}` }/promises/${action}/${id}`
+}
+
+var completePromise = function(username, id) {
+  console.log('completePromise', id, username)
+  var apiUrl = apiPath('complete', username, id)
 
   swal(completePromiseText).then(function() {
     fetch(apiUrl).then(function(response) {
@@ -51,10 +55,10 @@ var editPromise = function(id) {
   fetch('/promises/edit/${id}')
 }
 
-var deletePromise = function(username, slug) {
-  console.log('deletePromise', slug, username)
+var deletePromise = function(username, id) {
+  console.log('deletePromise', id, username)
 
-  var apiUrl = `/promises/remove/${slug}`
+  var apiUrl = apiPath('remove', username, id)
 
   swal(deletePromiseText).then(function() {
     fetch(apiUrl).then(function(response) {

@@ -17,12 +17,12 @@ const userQuery = (user) => ({
 
 // Actions
 
-app.get('/_s/:user/promises/remove/:slug(*)', (req, resp) => {
+app.get('/_s/:user/promises/remove/:id(*)', (req, resp) => {
   console.log('remove', req.params)
   // FIXME: refactor/secure this
   Promises.destroy({
     where: {
-      slug: req.params.slug
+      id: req.params.id
     },
     include: [userQuery(req.params.user)],
   }).then(function(deletedRows) {
@@ -40,10 +40,10 @@ app.get('/_s/:user/promises/remove', function(req, resp) {
   })
 })
 
-app.get('/_s/:user/promises/complete/:slug(*)', (req, resp) => {
+app.get('/_s/:user/promises/complete/:id(*)', (req, resp) => {
   Promises.findOne({
     where: {
-      slug: req.params.slug
+      id: req.params.id
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
@@ -57,12 +57,12 @@ app.get('/_s/:user/promises/complete/:slug(*)', (req, resp) => {
   })
 })
 
-app.post('/_s/:user/promises/edit/:slug(*)', (req, res) => {
-  console.log('edit promise', req.params.slug, req.body)
+app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
+  console.log('edit promise', req.params.id, req.body)
 
   Promises.find({
     where: {
-      slug: req.params.slug
+      id: req.params.id
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
@@ -72,8 +72,8 @@ app.post('/_s/:user/promises/edit/:slug(*)', (req, res) => {
     })
 
     console.log('edit promise', promise)
-    if (promise && req.params.slug) {
-      res.redirect(`/${req.params.slug}`)
+    if (promise && req.params.id) {
+      res.redirect(`/${req.params.id}`)
     } else {
       res.redirect('/')
     }

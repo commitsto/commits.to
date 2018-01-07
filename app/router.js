@@ -49,7 +49,7 @@ app.get('/_s/:user', (req, res) => {
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
   if (req.params.promise === 'favicon.ico') return next()
 
-  parsePromise({ username: req.user.username, slug: req.originalUrl, ip: req.ip }).then(parsedPromise => {
+  parsePromise({ username: req.user.username, urtext: req.originalUrl, ip: req.ip }).then(parsedPromise => {
     req.parsedPromise = parsedPromise // add to the request object that is passed along
 
     log.debug('promise middleware', req.originalUrl, req.ip, req.parsedPromise.id)
@@ -85,7 +85,7 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
 })
 
 // edit promise (this has to come before the show route, else it's ambiguous)
-app.get('/_s/:user/:slug*?/edit', (req, res) => {
+app.get('/_s/:user/:urtext*?/edit', (req, res) => {
   log.debug('edit promise', req.promise.dataValues)
   res.render('edit', {
     promise: req.promise
@@ -93,7 +93,7 @@ app.get('/_s/:user/:slug*?/edit', (req, res) => {
 })
 
 // show promise
-app.get('/_s/:user/:slug(*)', (req, res) => {
+app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise,

@@ -23,10 +23,15 @@ var deletePromiseText = {
 }
 
 var apiPath = function(action, username, id) {
-  var subdomainTest = new RegExp(/^([a-z]+\:\/{2})?([\w-]+\.[\w-]+\.\w+)$/)
-  var isSubdomain = !!('window.location.hostname').match(subdomainTest)
+  // var subdomainTest = new RegExp(/^([a-z]+\:\/{2})?([\w-]+\.[\w-]+\.\w+)$/)
+  var host = window.location.hostname.split('.')
 
-  return `${ isSubdomain ? '' : `/_s/${username}` }/promises/${action}/${id}`
+  var hasSubdomain = host[2] && host[0] != 'www';
+
+  var prefix = !hasSubdomain ? `/_s/${username}` : ''
+
+  console.log('apiPath', host, hasSubdomain, prefix)
+  return `${prefix}/promises/${action}/${id}`
 }
 
 var completePromise = function(username, id) {

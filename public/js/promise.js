@@ -68,13 +68,13 @@ var deletePromise = function(username, id) {
           'Deleted!',
           'Your promise has been deleted.',
           'success'
-        )
+        ).then(function(result) {
+          if (result) {
+            window.location.pathname = '/'
+          }
+        })
       }
       throw new Error('Network response was not ok.')
     })
-  }, function(dismiss) {
-    if (dismiss === 'close') {
-      window.location.pathname = '/'
-    }
   })
 }

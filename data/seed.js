@@ -104,7 +104,8 @@ export const users = [
   /* contributors */
   'chris', 'stephen', 'temujin9',
   /* invitees */
-  'pierre', 'chelsea', 'forrest'
+  'pierre', 'chelsea', 'forrest', 
+  'mike',
 ]
 
 // dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases

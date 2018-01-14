@@ -1,0 +1,26 @@
+{
+  "name": "commits.to",
+  "description": "Commitment logging and reliability tracking",
+  "website": "http://commits.to",
+  "repository": "https://github.com/beeminder/iwill",
+  "env": {
+    "ENV_NAME": "heroku-review",
+    "APP_DOMAIN": "commitsto-dev.review"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql"
+    }
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

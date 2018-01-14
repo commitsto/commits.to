@@ -104,7 +104,7 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
 // home
 app.get(['/?'], (req, res) => {
   Promises.findAll({
-    // where: { tfin: null }, // only show uncompleted
+    where: { tfin: null }, // only show uncompleted
     // limit: 30
     include: [{
       model: Users

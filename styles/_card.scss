@@ -8,7 +8,7 @@
   &-card {
     background-color: $blue;
     border-radius: $card-border-radius;
-    border: 1px solid $blue-border;
+    border: 1px groove $blue-border;
     cursor: pointer;
     overflow: hidden;
     padding-bottom: 3rem;

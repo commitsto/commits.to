@@ -1,6 +1,9 @@
+import _ from 'lodash'
+
 const env = process.env
 
-if (env.ENVIRONMENT !== 'production' && env.ENVIRONMENT !== 'staging') {
+// we need to load the .env file manually in development
+if (_.includs(['production', 'staging', 'review'], env.ENVIRONMENT)) {
   require('dotenv').config()
 }
 

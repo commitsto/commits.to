@@ -3,7 +3,7 @@ import expressHandlebars from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
 import subdomainHandler from 'express-subdomain-handler'
 
-import { APP_DOMAIN, APP_PATH, PORT } from '../data/config'
+import { APP_DOMAIN, PORT } from '../data/config'
 import log from '../lib/logger'
 import '../helpers/calculate'
 import '../helpers/colors'
@@ -13,8 +13,8 @@ import '../helpers/utils'
 const app = express()
 
 app.use(sassMiddleware({
-  src: `${APP_PATH}styles`,
-  dest: `${APP_PATH}public`,
+  src: 'styles',
+  dest: 'public',
   force: true, // FIXME: glitch needed this at one point?
   // debug: true,
   // outputStyle: 'compressed',
@@ -22,10 +22,10 @@ app.use(sassMiddleware({
 
 app.enable('trust proxy')
 
-app.use(express.static(`${APP_PATH}styles`))
-app.use(express.static(`${APP_PATH}public`))
+app.use(express.static('styles'))
+app.use(express.static('public'))
 
-app.engine('handlebars', expressHandlebars({defaultLayout: 'main'}))
+app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(express.json())

@@ -2,8 +2,8 @@ import Handlebars from 'handlebars'
 import moment from 'moment-timezone'
 import APP_DOMAIN from '../data/config'
 
-const pathForUser = (name) => `//${name}.${APP_DOMAIN}`
-const pathForPromise = (username, urtext) => `${pathForUser(username)}/${urtext}`
+const userPath = (name) => `//${name}.${APP_DOMAIN}`
+const promisePath = (username, urtext) => `${userPath(username)}/${urtext}`
 
 Handlebars.registerHelper('__appDomain', function() {
   return APP_DOMAIN
@@ -14,19 +14,19 @@ Handlebars.registerHelper('promiseDomain', function(domain) {
 })
 
 Handlebars.registerHelper('userPath', function({ username }) {
-  return pathForUser(username)
+  return userPath(username)
 })
 
 Handlebars.registerHelper('promisePath', function({ user: { username }, urtext }) {
-  return pathForPromise(username, urtext)
+  return promisePath(username, urtext)
 })
 
 Handlebars.registerHelper('editPromisePath', function({ user: { username }, urtext }) {
-  return `${pathForPromise(username, urtext)}/edit`
+  return `${promisePath(username, urtext)}/edit`
 })
 
 Handlebars.registerHelper('calendarUrl', function(promise) {
-  if (!promise) return
+  if (!promise) return null
 
   // FIXME timezone
   const isoDate = moment.tz(promise.tdue, 'America/New_York').format('YYYYMMDDTHHmmss')

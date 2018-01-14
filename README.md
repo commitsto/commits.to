@@ -3,18 +3,52 @@
 
 View the [Functional Spec](https://github.com/beeminder/iwill/wiki/).
 
-Dev environment setup
 
+## Development Setup
+
+This guide assumes you have `postgresql` running on `localhost:5432`
+
+#### Install Dependencies
+
+Install node packages with `npm install`
+
+
+#### Hosts File
+
+Add the following line to `etc/hosts` (with whatever subdomains you want to be available):
+
+```sh
+127.0.0.1	commits-to.js www.commits-to.js chris.commits-to.js dreev.commits-to.js
 ```
-Create a .env file like so:
 
-APP_PATH=
+#### Create `.env` File
 
-DB_USER=
-DB_PASS=
-DB_PATH=data
+Save the file in the root of the project directory
 
-ENV_NAME=chris.dev
-
+```sh
+ENV_NAME=<yourname>-dev
 PORT=8080
+APP_DOMAIN=commits-to.js:8080
+DATABASE_URL=postgres://iwill:iwill@localhost:5432/commitsto
+
+# Optional
+MAILGUN_KEY=
+MAILGUN_DOMAIN=
+MAILGUN_TO=
+MAILGUN_FROM=
 ```
+
+
+#### Run the Application
+
+Start the development server with `npm run start:dev`
+
+
+## Deployment
+
+Merges to the `master` branch will be automatically deployed to our Heroku staging tier at `http://commitsto.review`
+
+
+#### Pull Request Review App
+
+Heroku will create a review app for a new pull request, available at `http://commitsto-dev.review`

@@ -6,7 +6,8 @@
   "env": {
     "ENV_NAME": "heroku-review",
     "APP_DOMAIN": "commitsto-dev.review",
-    "ALLOW_ADMIN_ACTIONS": true
+    "ENVIRONMENT": "review",
+    "ALLOW_ADMIN_ACTIONS": "true"
   },
   "formation": {
     "web": {

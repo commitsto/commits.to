@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import mailself from '../lib/mail'
 import { cache, seed, setup, importJson } from '../data/seed'
-import { ALLOW_ADMIN_ACTIONS } from '../data/config'
+import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN } from '../data/config'
 
 import Promises, { sequelize } from '../models/promise'
 import { Users } from '../models/user'
@@ -139,6 +139,19 @@ app.get('/promises/:user', function(req, resp) {
     })
     resp.json(dbPromises)
   })
+})
+
+app.get('/users/create/:username', (req, res) => {
+  const { username } = req.params
+
+  if (username) {
+    Users.create({ username })
+      .then(() => {
+        res.redirect(`//${username}.${APP_DOMAIN}`)
+      })
+  } else {
+    res.redirect('/')
+  }
 })
 
 // calculate and store reliability for each user

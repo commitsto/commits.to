@@ -7,7 +7,7 @@ import { parsePromiseFromId } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 import parseText from '../lib/parse/text'
 
-import data from './promises.json'
+import data from './kimmits.json' // './promises.json'
 
 Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
 Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
@@ -51,7 +51,8 @@ export function cache() {
     users.forEach(user => {
       user.getPromises().then(promises => {
         const reliability = _.meanBy(promises, 'credit')
-        log.debug(`caching ${user.username}'s reliability:`, reliability, promises.length)
+        log.debug(`caching ${user.username}'s reliability:`, reliability, 
+                  promises.length)
 
         user.update({ score: reliability })
       })

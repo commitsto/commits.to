@@ -147,13 +147,6 @@ app.get('/cache', (req, resp) => {
   resp.redirect('/')
 })
 
-
-app.get('/kimmits', (req, resp) => {
-  importJson()
-  resp.redirect('/')
-})
-
-
 if (ALLOW_ADMIN_ACTIONS) {
   /* Utils */
 

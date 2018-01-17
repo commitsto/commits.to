@@ -7,7 +7,7 @@ import { parsePromiseFromId } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 import parseText from '../lib/parse/text'
 
-import data from './kimmits.json' // './promises.json'
+import data from './promises.json' // dreev's promises for initial import
 
 Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
 Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })

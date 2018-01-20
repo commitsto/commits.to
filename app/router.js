@@ -53,19 +53,20 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
+  const { ip, originalUrl, params, parsedPromise, user } = req
   // handle invalid requests by serving up a blank 404
-  const isAppleIcon = req.originalUrl.match(/\/apple\-touch\-icon.*/)
-  const isBot = _.includes(['favicon.ico', 'robots.txt'], req.params.promise)
+  const isAppleIcon = originalUrl.match(/\/apple\-touch\-icon.*/)
+  const isBot = _.includes(['favicon.ico', 'robots.txt'], params.promise)
   if (isBot || isAppleIcon) return res.status(404).send('Not Found.')
 
   parsePromise({
-    username: req.user.username,
-    urtext: req.originalUrl,
-    ip: req.ip
+    username: user.username,
+    urtext: originalUrl,
+    ip: ip
   }).then(parsedPromise => {
     req.parsedPromise = parsedPromise // add to the request object
 
-    log.debug('prom middleware', req.originalUrl, req.ip, req.parsedPromise.id)
+    log.debug('promise middleware', originalUrl, ip, parsedPromise.id)
 
     Promises.findOrCreate({
       where: {

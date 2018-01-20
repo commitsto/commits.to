@@ -8,6 +8,7 @@ import { Sequelize } from '../db/sequelize'
 import Promises from '../models/promise'
 import { Users } from '../models/user'
 
+import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 
 // validates all requests with a :user param
@@ -23,7 +24,7 @@ app.param('user', function(req, res, next, id) {
       req.user = user
       return next()
     }
-    return res.redirect('/sign-up')
+    return res.redirect(`//${APP_DOMAIN}/sign-up`)
   })
 })
 

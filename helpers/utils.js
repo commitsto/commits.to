@@ -31,7 +31,7 @@ Handlebars.registerHelper('calendarUrl', function(promise) {
   // FIXME timezone
   const isoDate = moment.tz(promise.tdue, 'America/New_York').format('YYYYMMDDTHHmmss')
   const baseUrl = 'https://calendar.google.com/calendar/event'
-  const query = `?action=TEMPLATE&text=${promise.user}%20${promise.domain}%20${promise.what}&dates=${isoDate}/${isoDate}&details=${promise.urtext}`
+  const query = `?action=TEMPLATE&text=${promise.user.username}%20${promise.domain}%20${promise.what}&dates=${isoDate}/${isoDate}&details=${promise.urtext}`
 
   // console.log('isoDate', date, isoDate)
   return baseUrl + query

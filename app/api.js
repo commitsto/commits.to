@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import mailself from '../lib/mail'
 import { cache, seed, setup, importJson } from '../data/seed'
-import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN } from '../data/config'
+import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../data/config'
 
 import Promises, { sequelize } from '../models/promise'
 import { Users } from '../models/user'
@@ -154,15 +154,15 @@ app.get('/users/create/:username', (req, res) => {
   }
 })
 
+/* Utils */
+
 // calculate and store reliability for each user
 app.get('/cache', (req, resp) => {
   cache()
   resp.redirect('/')
 })
 
-if (ALLOW_ADMIN_ACTIONS) {
-  /* Utils */
-
+if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
   // insert promises.json into db
   app.get('/import', (req, resp) => {
     importJson()

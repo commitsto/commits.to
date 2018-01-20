@@ -5,34 +5,19 @@ import Promises from '../models/promise'
 import { Users } from '../models/user'
 import { parsePromiseFromId } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
-import parseText from '../lib/parse/text'
 
 import data from './promises.json' // dreev's promises for initial import
 
 Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
 Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
 
-// create seed users
-export function seed() {
-  return Users.sync({ force: true }) // 'force: true' just drops the table if it exists
-    .then(function() {
-      users.forEach((key) => {
-        log.info('create user', key)
-        Users.create({username: key})
-      })
-    })
-    .then(() => setup())
-    .then(() => importJson())
-}
-
 // utility to populate table with hardcoded promises below
-export function setup() {
+export const setup = function() {
   return Promises.sync({ force: true }).then(function() {
     Object.keys(promises).forEach((key) => {
       let prom = parsePromiseFromId({ id: key })
       prom = _.extend(prom, promises[key])
-
-      console.log('setup parsed promise', prom);
+      log.debug('setup parsed promise', prom);
 
       Users.findOne({
         where: {
@@ -46,13 +31,12 @@ export function setup() {
   })
 }
 
-export function cache() {
+export const cache = function() {
   Users.findAll().then(users => {
     users.forEach(user => {
       user.getPromises().then(promises => {
         const reliability = _.meanBy(promises, 'credit')
-        log.debug(`caching ${user.username}'s reliability:`, reliability, 
-                  promises.length)
+        log.debug(`caching ${user.username}'s reliability:`, reliability, promises.length)
 
         user.update({ score: reliability })
       })
@@ -62,7 +46,7 @@ export function cache() {
 
 
 // FIXME refactor parsePromise to work for all imports
-export function importJson() {
+export const importJson = function() {
   return Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
 
@@ -72,7 +56,7 @@ export function importJson() {
       let promise = parsePromiseFromId({ id: user + key })
       promise = _.extend(promise, {
         note,
-        cred: tfin && tdue && parseCredit({ dueDate :tdue, finishDate: tfin }) || null,
+        cred: tfin && tdue && parseCredit({ dueDate: tdue, finishDate: tfin }) || null,
         tini: tini && new Date(tini) || null,
         tdue: tdue && new Date(tdue) || null,
         tfin: tfin && new Date(tfin) || null,
@@ -93,19 +77,33 @@ export function importJson() {
   })
 }
 
+// create seed users
+export const seed = function() {
+  return Users.sync({ force: true }) // drops the table if it exists
+    .then(function() {
+      users.forEach((key) => {
+        log.info('create user', key)
+        Users.create({username: key})
+      })
+    })
+    .then(() => setup())
+    .then(() => importJson())
+}
+
 export const users = [
   /* testing */
   'alice', 'bob', 'carol', 'deb',
   /* initial co-conspirators */
   'dreev', 'sergii', 'kim', 'bee', 'braden',
   /* daily beemail */
-  'byorgey', 'nick', 'josh', 'dehowell', 'caillu', 'mbork', 'roy', 'jennyli', 'owen',
+  'byorgey', 'nick', 'josh', 'dehowell', 'caillu',
+  'mbork', 'roy', 'jennyli', 'owen',
   /* weekly beemail */
   'samuel', 'cole', 'jessica', 'steven',
   /* contributors */
   'chris', 'stephen', 'temujin9',
   /* invitees */
-  'pierre', 'chelsea', 'forrest', 
+  'pierre', 'chelsea', 'forrest',
   'mike',
 ]
 
@@ -198,13 +196,13 @@ export const promises = {
   'bee/new-family-photo-to-yoko/by/tomorrow-night': {
     tini: '2017-9-8',
     tfin: '2017-9-9',
-    cred: .9
+    cred: 0.9
   },
   'bee/rest-of-paperwork-to-yoko-before-the-gym-tomorrow': {
     tini: '2017-9-17',
     tdue: '2017-9-18 9:59',
     tfin: '2017-9-18 11:59',
-    cred: .99,
+    cred: 0.99,
     note: '2 hours late'
   },
   'bee/email-sleep-as-android-for-specifics-about-sleep-length-measurement': {

@@ -41,7 +41,6 @@ export default sequelize.define("promises", { // sequelize needs the doublequote
 }, {
   indexes: [
     {
-      unique: true,
       fields: ['urtext']
     }
   ]

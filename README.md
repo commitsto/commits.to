@@ -38,10 +38,14 @@ MAILGUN_TO=
 MAILGUN_FROM=
 ```
 
-
-#### Run the Application
+#### Run the application
 
 Start the development server with `npm run start:dev`
+
+
+#### Seed the database
+
+Browse (or send a GET request) to `http://commits-to.js:8080/reset`, which drops all tables and inserts seed data from the `data/` folder
 
 
 ## Deployment

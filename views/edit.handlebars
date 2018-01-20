@@ -8,10 +8,10 @@
   </h1>
   <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
     <label for="user">Who</label>
-    <input name="user.username" type="text" value="{{promise.user.username}}">
+    <input disabled name="user.username" type="text" value="{{promise.user.username}}">
 
     <label for="slug">Slug</label>
-    <input name="slug" type="text" value="{{promise.slug}}">
+    <input disabled name="slug" type="text" value="{{promise.slug}}">
 
     <label for="void">void</label>
     <input name="void" type="text" value="{{promise.void}}">

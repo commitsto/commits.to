@@ -52,41 +52,50 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
-  if (req.params.promise === 'favicon.ico') return next()
+  // handle invalid requests by serving up a blank 404
+  const isAppleIcon = req.originalUrl.match(/\/apple\-touch\-icon.*/)
+  const isBot = _.includes(['favicon.ico', 'robots.txt'], req.params.promise)
+  if (isBot || isAppleIcon) return res.status(404).send('Not Found.')
 
-  parsePromise({ username: req.user.username, urtext: req.originalUrl, ip: req.ip }).then(parsedPromise => {
-    req.parsedPromise = parsedPromise // add to the request object that is passed along
+  parsePromise({
+    username: req.user.username,
+    urtext: req.originalUrl,
+    ip: req.ip
+  }).then(parsedPromise => {
+    req.parsedPromise = parsedPromise // add to the request object
 
-    log.debug('promise middleware', req.originalUrl, req.ip, req.parsedPromise.id)
+    log.debug('prom middleware', req.originalUrl, req.ip, req.parsedPromise.id)
 
     Promises.findOrCreate({
       where: {
         id: parsedPromise.id
       },
       defaults: parsedPromise
-    }).then((promise, created) => {
-      let toLog = { level: 'debug', state: 'exists' }
-
-      if (created) {
-        toLog = { level: 'info', state: 'created' }
-        mailself('PROMISE', promise[0].urtext) // send dreeves@ an email
-      }
-      log[toLog.level](`promise ${toLog.state}`, promise[0].dataValues)
-
-      // do our own JOIN
-      req.promise = promise[0]
-      req.promise.user = req.user
-      req.promise.setUser(req.user)
-
-      req.promise.increment(['clix'], { by: 1 }).then(promise => {
-        log.debug('clix incremented', promise.dataValues)
-        return next()
-      })
     })
-  }).catch((reason) => { // unparsable promise
-    log.error('promise parsing error', reason)
-    res.redirect('/')
+      .then((promise, created) => {
+        let toLog = { level: 'debug', state: 'exists' }
+
+        if (created) {
+          toLog = { level: 'info', state: 'created' }
+          mailself('PROMISE', promise[0].urtext) // send dreeves@ an email
+        }
+        log[toLog.level](`promise ${toLog.state}`, promise[0].dataValues)
+
+        // do our own JOIN
+        req.promise = promise[0]
+        req.promise.user = req.user
+        req.promise.setUser(req.user)
+
+        req.promise.increment(['clix'], { by: 1 }).then(prom => {
+          log.debug('clix incremented', prom.dataValues)
+          return next()
+        })
+      })
   })
+    .catch((reason) => { // unparsable promise
+      log.error('promise parsing error', reason)
+      return res.redirect('/')
+    })
 })
 
 // edit promise (this has to come before the show route, else it's ambiguous)

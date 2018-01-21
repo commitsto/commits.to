@@ -23,8 +23,8 @@ Handlebars.registerHelper('verbifyDomain', function(opts) {
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {
-  if (isNaN(credit))
-    return "pending"
-  else
+  if (credit)
     return Handlebars.helpers.prettyPercent(credit)
+  else
+    return "pending"
 })

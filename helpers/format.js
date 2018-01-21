@@ -21,3 +21,10 @@ Handlebars.registerHelper('verbifyDomain', function(opts) {
   // console.log('verbifyDomain', domain)
   return domain && domain.replace('.to', ' to')
 })
+
+Handlebars.registerHelper('prettyCredit', function(credit) {
+  if (isNaN(credit))
+    return "pending"
+  else
+    return Handlebars.helpers.prettyPercent(credit)
+})

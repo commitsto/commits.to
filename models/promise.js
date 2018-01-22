@@ -20,12 +20,11 @@ export default sequelize.define("promises", { // sequelize needs the doublequote
     type: Sequelize.VIRTUAL,
     get: function() {
       // TODO make parseCredit more robust
-      const cred = parseCredit({
+      const credit = parseCredit({
         dueDate: this.get('tdue'),
         finishDate: this.get('tfin')
       })
 
-      const credit = isNaN(cred) ? 1 : cred
       // console.log('virtual credit', credit)
       return credit
     }

@@ -23,8 +23,9 @@ Handlebars.registerHelper('verbifyDomain', function(opts) {
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {
-  if (credit)
+  if (credit) {
     return Handlebars.helpers.prettyPercent(credit)
-  else
+  } else {
     return "pending"
+  }
 })

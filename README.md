@@ -1,12 +1,23 @@
 # Commits.to
 ### a.k.a. [The I-Will System](https://github.com/beeminder/iwill/)
 
-View the [Functional Spec](https://github.com/beeminder/iwill/wiki/).
+Start with the [Functional Spec](https://github.com/beeminder/iwill/wiki/).
 
 
 ## Development Setup
 
-This guide assumes you have `postgresql` running on `localhost:5432`
+#### Database
+
+You'll need `postgresql` running on `localhost:5432`.
+
+For macOS, install Postgres with `brew install postgresql` and then start it running with either `brew services start postgresql` to have it as a background service that will restart if you reboot or `pg_ctl -D /usr/local/var/postgres start` to start it just once.
+
+Then run the following:
+
+```sh
+createuser -P iwill
+createdb -O iwill commitsto
+```
 
 #### Install Dependencies
 
@@ -18,7 +29,7 @@ Install node packages with `npm install`
 Add the following line to `etc/hosts` (with whatever subdomains you want to be available):
 
 ```sh
-127.0.0.1	commits-to.js www.commits-to.js chris.commits-to.js dreev.commits-to.js
+127.0.0.1	commits-to.js www.commits-to.js alice.commits-to.js bob.commits-to.js
 ```
 
 #### Create `.env` File

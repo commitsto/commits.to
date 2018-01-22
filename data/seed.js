@@ -115,7 +115,7 @@ export const promises = {
   // examples
   'alice/File_the_TPS_report/by/noon_mon': {},
   'bob/Send_vacation_photos/by/saturday': {},
-  'carol/Call_the_dentist/by/12am': {},
+  'bob/Call_the_dentist/by/12am': {},
 
   'chris/follow_up_on_that_support_thread': {
     tini: '2017-9-18'
@@ -137,16 +137,6 @@ export const promises = {
     tini: '2017-9-13'
   },
 
-  'byorgey/email_cut_property_summary/by/7pm': {
-    tini: '2017-9-22'
-  },
-  'byorgey/upload_new_factorization_cards/by/Oct_25': {
-    tini: '2017-0-18'
-  },
-  'byorgey/email_cut_property_summary': {
-    tini: '2017-0-18'
-  },
-
   'owen/adjust-the-shed/by/tonight_7pm': {
     tini: '2017-9-28'
   },
@@ -162,9 +152,6 @@ export const promises = {
     tini: '2017-1-15'
   },
 
-  'sergii/work_on_points_2_to_4/by/next_monday': {
-    tini: '2017-9-14'
-  },
   'jessica/let_bob_know_re_meeting/by/tomorrow_5pm': {
     tini: '2017-9-19'
   },

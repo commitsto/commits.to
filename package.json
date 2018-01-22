@@ -4,6 +4,7 @@
   "description": "Commitment tracker",
   "main": "app/express.js",
   "scripts": {
+    "eslint": "eslint ./",
     "start": "node babel.js",
     "start:dev": "DEBUG=sequelize* nodemon babel.js"
   },

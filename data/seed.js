@@ -17,7 +17,7 @@ export const setup = function() {
     Object.keys(promises).forEach((key) => {
       let prom = parsePromiseFromId({ id: key })
       prom = _.extend(prom, promises[key])
-      log.debug('setup parsed promise', prom);
+      log.debug('setup parsed promise', prom)
 
       Users.findOne({
         where: {
@@ -49,7 +49,6 @@ export const cache = function() {
 export const importJson = function() {
   return Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
-
       // ***FIXME refactor into method
       const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
 
@@ -61,7 +60,7 @@ export const importJson = function() {
         tdue: tdue && new Date(tdue) || null,
         tfin: tfin && new Date(tfin) || null,
         xfin
-      });
+      })
 
       log.info('import', key, data[key], promise)
 
@@ -83,7 +82,7 @@ export const seed = function() {
     .then(function() {
       users.forEach((key) => {
         log.info('create user', key)
-        Users.create({username: key})
+        Users.create({ username: key })
       })
     })
     .then(() => setup())

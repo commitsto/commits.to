@@ -49,7 +49,7 @@ app.get('/_s/:user/promises/complete/:id(*)', (req, resp) => {
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
     promise.update({
-      tfin: moment(), //.tz('America/New_York')  FIXME,
+      tfin: moment(), // .tz('America/New_York')  FIXME,
       cred: parseCredit({ dueDate: promise.tdue })
     })
 
@@ -107,7 +107,6 @@ app.get('/promise/:udp/:urtext', function(req, resp) {
     // resp.write(promise)
     resp.json(promise)
   })
-
 })
 
 app.get('/promises', function(req, resp) {

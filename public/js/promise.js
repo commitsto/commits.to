@@ -80,7 +80,7 @@ const completePromise = function(username, id) {
 const deletePromise = function(username, id) {
   console.log('deletePromise', id, username)
 
-  var apiUrl = apiPath('remove', username, id)
+  let apiUrl = apiPath('remove', username, id)
 
   swal(deletePromiseText).then(function() {
     fetch(apiUrl).then(function(response) {

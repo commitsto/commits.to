@@ -5,6 +5,7 @@
   "main": "app/express.js",
   "scripts": {
     "eslint": "eslint ./",
+    "eslint:fix": "eslint ./ --fix",
     "start": "node babel.js",
     "start:dev": "DEBUG=sequelize* nodemon babel.js"
   },

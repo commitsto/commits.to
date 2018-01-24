@@ -3,7 +3,7 @@ import { sequelize, Sequelize } from '../db/sequelize'
 import parseCredit from '../lib/parse/credit'
 
 /* eslint-disable max-len */
-export default sequelize.define("promises", { // sequelize needs the doublequotes here
+export default sequelize.define('promises', { // sequelize needs the doublequotes here
   id: { type: Sequelize.STRING, primaryKey: true }, // username + urtext
   bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
   urtext: { type: Sequelize.STRING }, // full original path the user typed to create the promise

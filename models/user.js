@@ -5,7 +5,7 @@ class users extends Sequelize.Model { }
 users.init({
   username: { type: Sequelize.STRING, unique: true },
   score: { type: Sequelize.DOUBLE, defaultValue: null },
-},{ sequelize })
+}, { sequelize })
 
 
 export { users as Users }

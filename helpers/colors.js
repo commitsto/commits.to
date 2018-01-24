@@ -4,18 +4,18 @@ const colorFromPercent = (score) => {
   let color = 'green'
 
   switch (true) {
-  case (score == null):
-    color = '' //FIXME
-    break
-  case (score < .5):
-    color = 'red'
-    break
-  case (score < .9):
-    color = 'orange'
-    break
-  case (score < 1):
-    color = 'blue'
-    break
+    case (score == null):
+      color = '' // FIXME
+      break
+    case (score < 0.5):
+      color = 'red'
+      break
+    case (score < 0.9):
+      color = 'orange'
+      break
+    case (score < 1):
+      color = 'blue'
+      break
   }
 
   return color
@@ -37,21 +37,21 @@ Handlebars.registerHelper('dueColor', function(diff) {
   let color = 'gray'
 
   switch (true) {
-  case(diff < -(24 * 5)):
-    color = 'green'
-    break
-  case(diff < -(24 * 2)):
-    color = 'blue'
-    break
-  case(diff < -24):
-    color = 'yellow'
-    break
+    case (diff < -(24 * 5)):
+      color = 'green'
+      break
+    case (diff < -(24 * 2)):
+      color = 'blue'
+      break
+    case (diff < -24):
+      color = 'yellow'
+      break
 
-  case(diff < 0):
-    color = 'orange'
-    break
-  case (diff > 0):
-    color = 'red'
+    case (diff < 0):
+      color = 'orange'
+      break
+    case (diff > 0):
+      color = 'red'
   }
 
   // console.log('dueColor', diff, color)

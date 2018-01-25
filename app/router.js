@@ -11,6 +11,8 @@ import { Users } from '../models/user'
 import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 
+import path from 'path'
+
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
   log.debug('user check', id)
@@ -51,13 +53,58 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
+var nein = (req, resp) =>
+  resp.status(404).sendFile(path.resolve(__dirname+'/../public/nein.html'))
+
+// The deal with routing:
+// 1. The subdomain handler turns URLs like 
+//    "alice.commits.to/foo_bar/baz" into 
+//    "/_s/alice/foo_bar/baz" 
+//    (the "_s" is a magic string. https://en.wikipedia.org/wiki/Magic_string )
+//    It's the "/_s/..." version that the router matches on.
+// 2. There are a million gotchas and bugs with trying to use Express's partial
+//    regex syntax -- eg, https://github.com/expressjs/express/issues/2495 -- so
+//    we want to use actual regexes as the first arg to app.get() instead of
+//    strings.
+// 3. The matched groups in the regex can be accessed as req.params[1] etc.
+// 4. If we wanted to use the string version, here's a handy route tester to see
+//    how things get matched: https://wesleytodd.github.io/express-route-tester
+
+// Paths to files we might want to serve but that don't currently exist
+// (any files in /public will automatically get served)
+app.get(/^\/_s\/(\w+)\/test\d*\.txt$/, nein) // eg test123.txt
+app.get(/^\/_s\/(\w+)\/favicon\.ico$/, nein)
+app.get(/^\/_s\/(\w+)\/apple-touch-icon.*\.png$/, nein)
+
+// Things rogue bots or pentesters have tried to GET
+app.get(/^\/_s\/(\w+)\/xmlrpc\.php$/, nein)
+app.get(/^\/_s\/(\w+)\/cms\/wp-includes\/wlwmanifest\.xml$/, nein)
+app.get(/^\/_s\/(\w+)\/hirevmcyvpgypnk\.html$/, nein)
+app.get(/^\/_s\/(\w+)\/blog\/wp-includes\/wlwmanifest\.xml$/, nein)
+app.get(/^\/_s\/(\w+)\/site\/wp-includes\/wlwmanifest\.xml$/, nein)
+app.get(/^\/_s\/(\w+)\/wordpress\/wp-includes\/wlwmanifest\.xml$/, nein)
+app.get(/^\/_s\/(\w+)\/wp-includes\/wlwmanifest\.xml$/, nein)
+app.get(/^\/_s\/(\w+)\/wp\/wp-includes\/wlwmanifest\.xml$/, nein)
+
+// Legacy redirects which I think eventually we need to provide a UI for so that
+// the user can create these to their heart's content whenever they, eg, give
+// out a URL with a typo or an old promise is subsumed by an new one or whatever
+app.get(/^\/_s\/alice\/old-url-for-testing\/?$/, (req, resp) => 
+  resp.redirect('/new-url')) // 
+app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, (req, resp) =>
+  resp.redirect('/finish_implementing_this_system/by/january'))
+app.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+// TODOBEE: add your other redirects here like above!
+
+// Here's where we reject URLs with bad characters but it would be better to
+// specify a big regex defining exactly what *does* count as a valid promise URL
+// and reject everything else. Currently just rejecting percents and bangs...
+app.get(/^\/_s\/(\w+)\/.*[\!\%].*$/, nein)
+
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
   const { ip, originalUrl, params, parsedPromise, user } = req
-  // handle invalid requests by serving up a blank 404
-  const isAppleIcon = originalUrl.match(/\/apple\-touch\-icon.*/)
-  const isBot = _.includes(['favicon.ico', 'robots.txt'], params.promise)
-  if (isBot || isAppleIcon) return res.status(404).send('Not Found.')
 
   parsePromise({
     username: user.username,
@@ -113,7 +160,7 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise,
-    user: req.user
+    user: req.user,
   })
 })
 
@@ -140,3 +187,5 @@ app.get('/sign-up', (req, res) => {
   log.debug('render sign up')
   res.render('signup')
 })
+
+app.get('*', (req, resp) => resp.status(404).send('404 Not Found'))

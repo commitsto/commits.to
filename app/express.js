@@ -36,7 +36,7 @@ app.use(express.urlencoded({
 app.use(subdomainHandler({
   baseUrl: APP_DOMAIN,
   prefix: '_s',
-  logger: true
+  logger: true,
 }))
 
 app.listen(PORT, () => {

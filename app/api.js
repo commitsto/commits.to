@@ -13,7 +13,7 @@ import parseCredit from '../lib/parse/credit'
 
 const userQuery = (user) => ({
   model: Users,
-  where: { username: user }
+  where: { username: user },
 })
 
 // Actions
@@ -170,12 +170,12 @@ if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
   })
 
   // drop db and repopulate
-  app.get('/reset', (req, resp) => {
+  app.get('/resetAndDestroyWholeDatabase', (req, resp) => {
     seed()
     resp.redirect('/')
   })
 
-  // removes all entries from the promises table
+  // remove all entries from the promises table
   app.get('/empty', (req, resp) => {
     Promises.destroy({ where: {} })
     resp.redirect('/')

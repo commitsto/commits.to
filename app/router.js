@@ -95,7 +95,24 @@ app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, (req, resp) =>
   resp.redirect('/finish_implementing_this_system/by/january'))
 app.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
   (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
-// TODOBEE: add your other redirects here like above!
+app.get(/^\/_s\/bee\/reping-one-with-heart\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/put-away-camping-gear-this-weekend\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/call_jacob_this_week\/by\/next_week\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/fill-out-metromile-feedback\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/read-hannas-emails\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/email-sleep-as-android-for-specifics-about-sleep-length-measurement\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/rest-of-paperwork-to-yoko-before-the-gym-tomorrow\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/new-family-photo-to-yoko\/by\/tomorrow-night\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/reply-to-hin\/by\/tuesday\/?$/,
+  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
 
 // Here's where we reject URLs with bad characters but it would be better to
 // specify a big regex defining exactly what *does* count as a valid promise URL

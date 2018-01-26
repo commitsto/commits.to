@@ -89,35 +89,39 @@ app.get(/^\/_s\/(\w+)\/wp\/wp-includes\/wlwmanifest\.xml$/, nein)
 // Legacy redirects which I think eventually we need to provide a UI for so that
 // the user can create these to their heart's content whenever they, eg, give
 // out a URL with a typo or an old promise is subsumed by an new one or whatever
-app.get(/^\/_s\/alice\/old-url-for-testing\/?$/, (req, resp) => 
-  resp.redirect('/new-url')) // 
-app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, (req, resp) =>
-  resp.redirect('/finish_implementing_this_system/by/january'))
+app.get(/^\/_s\/alice\/old-url-testing\/?$/, (q, r) => r.redirect('/new-url')) 
+app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, 
+  (q, r) => r.redirect('/finish_implementing_this_system/by/january'))
+app.get(/^\/_s\/dreev\/send_the_dang_belated_yearly_beemail\/by\/?$/, 
+  (q, r) => r.redirect('/send_the_dang_belated_yearly_beemail/by/next_week'))
 app.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/reping-one-with-heart\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/put-away-camping-gear-this-weekend\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/call_jacob_this_week\/by\/next_week\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/fill-out-metromile-feedback\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/read-hannas-emails\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/email-sleep-as-android-for-specifics-about-sleep-length-measurement\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/rest-of-paperwork-to-yoko-before-the-gym-tomorrow\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/new-family-photo-to-yoko\/by\/tomorrow-night\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/reply-to-hin\/by\/tuesday\/?$/,
-  (req, resp) => resp.redirect('/clean_up_old_commitments/by/9pm'))
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 
 // Here's where we reject URLs with bad characters but it would be better to
 // specify a big regex defining exactly what *does* count as a valid promise URL
-// and reject everything else. Currently just rejecting percents and bangs...
-app.get(/^\/_s\/(\w+)\/.*[\!\%].*$/, nein)
+// and reject everything else.
+// NB: Rejecting '#' is moot because we don't see them; the browser eats them.
+// Things we might want to reject but that at least one promise uses: @ & :
+app.get(/^\/_s\/(\w+)\/.*[\!\%\$\#\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\?\`\~].*$/, 
+  nein)
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {

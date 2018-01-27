@@ -40,7 +40,8 @@ app.get('/_s/:user', (req, res) => {
     }],
     order: [['tfin', 'DESC']],
   }).then(promises => {
-    const reliability = _.meanBy(promises, 'credit')
+    const c = _.filter(_.map(promises, x => x.credit), x => _.isFinite(x))
+    const reliability = _.mean(c)
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
     req.user.update({ score: reliability })
@@ -87,13 +88,15 @@ app.get(/^\/_s\/(\w+)\/wp-includes\/wlwmanifest\.xml$/, nein)
 app.get(/^\/_s\/(\w+)\/wp\/wp-includes\/wlwmanifest\.xml$/, nein)
 
 // Legacy redirects which I think eventually we need to provide a UI for so that
-// the user can create these to their heart's content whenever they, eg, give
+// the user can create these to their heart's delight whenever they, eg, give
 // out a URL with a typo or an old promise is subsumed by an new one or whatever
 app.get(/^\/_s\/alice\/old-url-testing\/?$/, (q, r) => r.redirect('/new-url')) 
+
 app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, 
   (q, r) => r.redirect('/finish_implementing_this_system/by/january'))
 app.get(/^\/_s\/dreev\/send_the_dang_belated_yearly_beemail\/by\/?$/, 
   (q, r) => r.redirect('/send_the_dang_belated_yearly_beemail/by/next_week'))
+
 app.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/reping-one-with-heart\/?$/,
@@ -119,9 +122,10 @@ app.get(/^\/_s\/bee\/reply-to-hin\/by\/tuesday\/?$/,
 // specify a big regex defining exactly what *does* count as a valid promise URL
 // and reject everything else.
 // NB: Rejecting '#' is moot because we don't see them; the browser eats them.
-// Things we might want to reject but that at least one promise uses: @ & :
-app.get(/^\/_s\/(\w+)\/.*[\!\%\$\#\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\?\`\~].*$/, 
-  nein)
+// Also this isn't matching on query string so rejecting '?' here doesn't help.
+// Things we might want to reject but that at least one existing promise 
+// in the database currently uses: @ & : (at, ampersand, colon)
+app.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~].*$/, nein)
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
@@ -209,4 +213,5 @@ app.get('/sign-up', (req, res) => {
   res.render('signup')
 })
 
-app.get('*', (req, resp) => resp.status(404).send('404 Not Found'))
+// Final catchall route -- shouldn't ever actually be reached
+app.get('*', (req, resp) => resp.status(404).send('404 Weirdly Not Found'))

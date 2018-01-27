@@ -16,7 +16,8 @@
     transition: background .25s ease-in-out;
 
     &:hover {
-      background-color: $dark-blue;
+      // original dark-blue was ambiguous with the blue for N days till due
+      background-color: $yellow;
     }
 
     &, a {

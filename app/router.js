@@ -46,6 +46,29 @@ app.get('/_s/:user', (req, res) => {
 
     req.user.update({ score: reliability })
 
+    promises.sort(function (a,b) {
+      // pending promises are sorted by due date (tdue) ascending
+      // completed promises are sorted by completion date (tfin) descending
+      // completed promises sort after pending promises
+
+      if ( a.tfin == null ) {
+        if ( b.tfin == null ) {
+          return a.tdue - b.tdue
+        }
+        else {
+          return -1
+        }
+      }
+      else {
+        if ( b.tfin == null ) {
+          return 1
+        }
+        else {
+          return b.tfin - a.tfin
+        }
+      }
+    })
+
     res.render('user', {
       promises,
       user: req.user,

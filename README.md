@@ -41,7 +41,14 @@ you should see
 
 #### 2. Install Dependencies
 
-Install Node packages with
+2.1 Install Node
+
+For macOS, we recommend
+`brew install npm`.
+(If you're not on macOS, please make a PR with instructions for your OS!)
+
+2.2 Install Node packages with
+
 `npm install`
 
 

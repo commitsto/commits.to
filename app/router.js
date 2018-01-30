@@ -119,6 +119,8 @@ app.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/,
   (q, r) => r.redirect('/finish_implementing_this_system/by/january'))
 app.get(/^\/_s\/dreev\/send_the_dang_belated_yearly_beemail\/by\/?$/, 
   (q, r) => r.redirect('/send_the_dang_belated_yearly_beemail/by/next_week'))
+app.get(/^\/_s\/dreev\/update_kenoubi_re_road_editor\/by\/?$/,
+  (q, r) => r.redirect('/update_kenoubi_re_road_editor/by/jan_18'))
 
 app.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
@@ -139,6 +141,8 @@ app.get(/^\/_s\/bee\/rest-of-paperwork-to-yoko-before-the-gym-tomorrow\/?$/,
 app.get(/^\/_s\/bee\/new-family-photo-to-yoko\/by\/tomorrow-night\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 app.get(/^\/_s\/bee\/reply-to-hin\/by\/tuesday\/?$/,
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
+app.get(/^\/_s\/bee\/reply_to_hin\/by\/tuesday\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 
 // Here's where we reject URLs with bad characters but it would be better to

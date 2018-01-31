@@ -72,6 +72,8 @@ z.get(/^\/_s\/bee\/reply-to-hin\/by\/tuesday\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 z.get(/^\/_s\/bee\/reply_to_hin\/by\/tuesday\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
+z.get(/^\/_s\/bee\/go_to_bed\/by\/11pm\/?$/,
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 
 
 module.exports = z

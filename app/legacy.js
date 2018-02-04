@@ -22,6 +22,10 @@ The deal with routing:
    how things get matched: https://wesleytodd.github.io/express-route-tester
 *******************************************************************************/
 
+/*******************************************************************************
+   Dots aren't allowed anymore so we don't have to individually route all these
+   paths with dots in them... #SCHDEL
+
 // Paths to files we might want to serve but that don't currently exist
 // (any files in /public will automatically get served)
 z.get(/^\/_s\/(\w+)\/test\d*\.txt$/, nein) // eg test123.txt
@@ -37,11 +41,20 @@ z.get(/^\/_s\/(\w+)\/site\/wp-includes\/wlwmanifest\.xml$/, nein)
 z.get(/^\/_s\/(\w+)\/wordpress\/wp-includes\/wlwmanifest\.xml$/, nein)
 z.get(/^\/_s\/(\w+)\/wp-includes\/wlwmanifest\.xml$/, nein)
 z.get(/^\/_s\/(\w+)\/wp\/wp-includes\/wlwmanifest\.xml$/, nein)
+*******************************************************************************/
 
 // Legacy redirects which I think eventually we need to provide a UI for so that
 // the user can create these to their heart's delight whenever they, eg, give
 // out a URL with a typo or an old promise is subsumed by an new one or whatever
 z.get(/^\/_s\/alice\/old-url-testing\/?$/, (q, r) => r.redirect('/new-url')) 
+
+z.get(/^\/_s\/sergii\/work_on_points_2_to_4\/by\/next_monday\/?$/, nein)
+
+z.get(/^\/_s\/philip\/implement-commits\.to-alfred-workflow\/by\/1-hour\/?$/,
+  (q, r) => r.redirect('/implement-commits-to-alfred-workflow/by/1-hour'))
+
+z.get(/^\/_s\/daniel\/make_a_commits.to_PR\/by\/march_1\/?$/,
+  (q, r) => r.redirect('make_a_commits-to_PR/by/march_1'))
 
 z.get(/^\/_s\/dreev\/finish_implementing_this_system\/?$/, 
   (q, r) => r.redirect('/finish_implementing_this_system/by/january'))
@@ -75,5 +88,13 @@ z.get(/^\/_s\/bee\/reply_to_hin\/by\/tuesday\/?$/,
 z.get(/^\/_s\/bee\/go_to_bed\/by\/11pm\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 
+// Here's where we reject URLs with bad characters but it would be better to
+// specify a big regex defining exactly what *does* count as a valid promise URL
+// and reject everything else.
+// NB: Rejecting '#' is moot because we don't see them; the browser eats them.
+// Also this isn't matching on query string so rejecting '?' here doesn't help.
+// Things we might want to reject but that at least one existing promise 
+// in the database currently uses: @ & : (at, ampersand, colon)
+z.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~\.].*$/, nein)
 
 module.exports = z

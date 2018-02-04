@@ -3,7 +3,7 @@ import { sequelize, Sequelize } from '../db/sequelize'
 import parseCredit from '../lib/parse/credit'
 
 /* eslint-disable max-len */
-export default sequelize.define("promises", { // sequelize needs the doublequotes here
+export default sequelize.define("promises", { // sequelize needs doublequotes here
   id: { type: Sequelize.STRING, primaryKey: true }, // username + urtext
   bmid: { type: Sequelize.STRING }, // the id of the Beeminder datapoint for this promise
   urtext: { type: Sequelize.STRING }, // full original path the user typed to create the promise
@@ -21,8 +21,8 @@ export default sequelize.define("promises", { // sequelize needs the doublequote
     get: function() {
       // TODO make parseCredit more robust
       const credit = parseCredit({
-        dueDate: this.get('tdue'),
-        finishDate: this.get('tfin')
+        dueDate:    this.get('tdue'),
+        finishDate: this.get('tfin'),
       })
 
       // console.log('virtual credit', credit)
@@ -31,9 +31,9 @@ export default sequelize.define("promises", { // sequelize needs the doublequote
   },
 
   tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
-  tdue: { type: Sequelize.DATE /* , defaultValue: Sequelize.NOW */ }, // unixtime that the promise is due
-  tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
-  xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
+  tdue: { type: Sequelize.DATE }, // unixtime that the promise is due
+  tfin: { type: Sequelize.DATE, defaultValue: null }, // when the promise was (fractionally) fulfilled (even if 0%)
+  xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled
 
   clix: { type: Sequelize.INTEGER, defaultValue: 0 }, // number of clicks a promise has gotten
   note: { type: Sequelize.STRING }, // optional additional notes or context for the promise

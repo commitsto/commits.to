@@ -7,5 +7,4 @@ users.init({
   score: { type: Sequelize.DOUBLE, defaultValue: null },
 },{ sequelize })
 
-
 export { users as Users }

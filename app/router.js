@@ -13,10 +13,6 @@ import parsePromise from '../lib/parse/promise'
 
 import path from 'path'
 
-// FIXME: this is repeated from legacy.js -- needs DRYing
-let nein = (req, resp) =>
-  resp.status(404).sendFile(path.resolve(__dirname+'/../public/nein.html'))
-
 app.use(require('./legacy'))
 
 // validates all requests with a :user param
@@ -82,15 +78,6 @@ app.get('/_s/:user', (req, res) => {
     })
   })
 })
-
-// Here's where we reject URLs with bad characters but it would be better to
-// specify a big regex defining exactly what *does* count as a valid promise URL
-// and reject everything else.
-// NB: Rejecting '#' is moot because we don't see them; the browser eats them.
-// Also this isn't matching on query string so rejecting '?' here doesn't help.
-// Things we might want to reject but that at least one existing promise 
-// in the database currently uses: @ & : (at, ampersand, colon)
-app.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~].*$/, nein)
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {

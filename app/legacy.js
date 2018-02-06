@@ -20,19 +20,22 @@ The deal with routing:
    want to use actual regexes as the thing to match on here instead of strings.
 3. If we wanted to use the string version, here's a handy route tester to see
    how things get matched: https://wesleytodd.github.io/express-route-tester
+4. This file is processed before the stuff in router.js and maybe after the 
+   stuff in api.js
+5. Dots aren't allowed anymore so we don't have to individually route various
+   things that rogue bots and things will try to GET, but in case we change our
+   mind about dots then we'll need those so they're here commented out.
+6. Any file in /public will automatically get served first before any of this
+   routing.
 *******************************************************************************/
 
 /*******************************************************************************
-   Dots aren't allowed anymore so we don't have to individually route all these
-   paths with dots in them... #SCHDEL
-
-// Paths to files we might want to serve but that don't currently exist
-// (any files in /public will automatically get served)
+// Things we might actually want to serve but don't currently serve:
 z.get(/^\/_s\/(\w+)\/test\d*\.txt$/, nein) // eg test123.txt
 z.get(/^\/_s\/(\w+)\/favicon\.ico$/, nein)
 z.get(/^\/_s\/(\w+)\/apple-touch-icon.*\.png$/, nein)
 
-// Things rogue bots or pentesters have tried to GET
+// Things rogue bots or pentesters have tried to GET:
 z.get(/^\/_s\/(\w+)\/xmlrpc\.php$/, nein)
 z.get(/^\/_s\/(\w+)\/cms\/wp-includes\/wlwmanifest\.xml$/, nein)
 z.get(/^\/_s\/(\w+)\/hirevmcyvpgypnk\.html$/, nein)
@@ -62,6 +65,11 @@ z.get(/^\/_s\/dreev\/send_the_dang_belated_yearly_beemail\/by\/?$/,
   (q, r) => r.redirect('/send_the_dang_belated_yearly_beemail/by/next_week'))
 z.get(/^\/_s\/dreev\/update_kenoubi_re_road_editor\/by\/?$/,
   (q, r) => r.redirect('/update_kenoubi_re_road_editor/by/jan_18'))
+
+z.get(/^\/_s\/kim\/ask_J\&B_about\/?$/,
+  (q, r) => r.redirect('/ask_J_and_B_about'))
+z.get(/^\/_s\/kim\/ask_joe\&bjorn_about\/?$/,
+  (q, r) => r.redirect('/ask_joe_and_bjorn_about'))
 
 z.get(/^\/_s\/bee\/schedule-planning-with-cantor\/by\/friday-night\/?$/, 
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
@@ -95,6 +103,7 @@ z.get(/^\/_s\/bee\/go_to_bed\/by\/11pm\/?$/,
 // Also this isn't matching on query string so rejecting '?' here doesn't help.
 // Things we might want to reject but that at least one existing promise 
 // in the database currently uses: @ & : (at, ampersand, colon)
-z.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~\.].*$/, nein)
+z.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~\.\&].*$/, 
+  nein)
 
 module.exports = z

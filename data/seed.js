@@ -117,9 +117,6 @@ export const promises = {
   'bob/Send_vacation_photos/by/saturday': {},
   'bob/Call_the_dentist/by/12am': {},
 
-  'chris/follow_up_on_that_support_thread': {
-    tini: '2017-9-18'
-  },
   'chris/build-out-a-promise-completion-interface/by/next-week': {
     tini: '2017-0-13'
   },
@@ -130,46 +127,6 @@ export const promises = {
     tini: '2017-1-02'
   },
 
-  'braden/help_with_javascript/by/5pm': {
-    tini: '2017-9-11'
-  },
-  'braden/outline_bite_counting_post/by/Sunday_11pm': {
-    tini: '2017-9-13'
-  },
-
-  'owen/adjust-the-shed/by/tonight_7pm': {
-    tini: '2017-9-28'
-  },
-  'owen/research_and_pseudocode_calendar_integration/by/oct_6': {
-    tini: '2017-9-9',
-    tdue: '2017-10-6'
-  },
-
-  'josh/get_realisies_running/by/september_30': {
-    tini: '2017-9-13'
-  },
-  'josh/get_realsies_payment_dashboard_up/by/2017_11_30': {
-    tini: '2017-1-15'
-  },
-
-  'jessica/let_bob_know_re_meeting/by/tomorrow_5pm': {
-    tini: '2017-9-19'
-  },
-  'samuel/finish_ch_23_problem_set/by/today_6_pm': {
-    tini: '2017-9-19'
-  },
-  'pierre/water_the_office_plant/by/Friday': {
-    tini: '2017-9-25'
-  },
-  'stephen/decide_upon_late_october_trip/by/saturday': {
-    tini: '2017-9-27'
-  },
-  'roy/sign_up_for_app': {
-    tini: '2017-9-27'
-  },
-  'jennyli/water_the_plants/by/sunday': {
-    tini: '2017-9-27'
-  },
   'cole/find_a_rep_for_dining_vendors': {
     tini: '2017-9-28'
   },

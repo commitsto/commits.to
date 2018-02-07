@@ -11,10 +11,6 @@ import { Users } from '../models/user'
 import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 
-import path from 'path'
-
-app.use(require('./legacy'))
-
 // validates all requests with a :user param
 app.param('user', (req, res, next, id) => {
   log.debug('user check', id)
@@ -165,5 +161,7 @@ app.get('/sign-up', (req, res) => {
   res.render('signup')
 })
 
-// Final catchall route -- shouldn't ever actually be reached
-app.get('*', (req, resp) => resp.status(404).send('404 Weirdly Not Found'))
+// Final catchall route. This is reached for paths on the root domain (no 
+// username specified) that don't match anything.
+app.get('*', (req, resp) => resp.status(404).send(
+  '404 Not Found - Did you forget the username in the URL?'))

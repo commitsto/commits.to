@@ -16,6 +16,8 @@ const userQuery = (user) => ({
   where: { username: user },
 })
 
+app.use(require('./legacy')) 
+
 // Actions
 
 app.get('/_s/:user/promises/remove/:id(*)', (req, resp) => {

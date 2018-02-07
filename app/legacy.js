@@ -81,9 +81,13 @@ z.get(/^\/_s\/bee\/call_jacob_this_week\/by\/next_week\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 z.get(/^\/_s\/bee\/fill-out-metromile-feedback\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
+z.get(/^\/_s\/bee\/fill_out_metromile_feedback\/?$/,
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 z.get(/^\/_s\/bee\/read-hannas-emails\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 z.get(/^\/_s\/bee\/email-sleep-as-android-for-specifics-about-sleep-length-measurement\/?$/,
+  (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
+z.get(/^\/_s\/bee\/experiment_with_manual_sleep_as_android\/by\/5pm\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
 z.get(/^\/_s\/bee\/rest-of-paperwork-to-yoko-before-the-gym-tomorrow\/?$/,
   (q, r) => r.redirect('/clean_up_old_commitments/by/9pm'))
@@ -101,8 +105,12 @@ z.get(/^\/_s\/bee\/go_to_bed\/by\/11pm\/?$/,
 // and reject everything else.
 // NB: Rejecting '#' is moot because we don't see them; the browser eats them.
 // Also this isn't matching on query string so rejecting '?' here doesn't help.
+// That might be pretty important to fix.
 // Things we might want to reject but that at least one existing promise 
-// in the database currently uses: @ & : (at, ampersand, colon)
+// in the database currently uses include:
+//   at (@) -- just 1 so far!
+//   colon (:) -- just 8 so far but pretty useful for times of day!
+//   slash (/) -- hundreds :(
 z.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~\.\&].*$/, 
   nein)
 

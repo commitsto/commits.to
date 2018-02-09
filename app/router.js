@@ -145,7 +145,8 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise,
-    user: req.user
+    user: req.user,
+    isNewPromise: req.promise.clix === 1,
   })
 })
 

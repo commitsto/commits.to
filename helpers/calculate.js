@@ -3,6 +3,8 @@ import _ from 'lodash'
 
 import { timeDiff } from '../lib/parse/time'
 
+const isNewPromise = ({ promise }) => promise.clix === 1
+
 Handlebars.registerHelper('dueStatus', (dueDate) => {
   if (!dueDate) return ''
 
@@ -13,7 +15,11 @@ Handlebars.registerHelper('dueStatus', (dueDate) => {
 Handlebars.registerHelper('cardClassesFor', (promise) => {
   if (!promise) return {}
 
-  const classes = _({ completed: promise.tfin, voided: promise.void })
+  const classes = _({
+    completed: promise.tfin,
+    voided: promise.void,
+    new: isNewPromise({ promise }),
+  })
     .pickBy()
     .keys()
     .join(' ')

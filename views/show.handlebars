@@ -5,7 +5,13 @@
     Edit
   </a>
 
-  <small>This promise has been viewed {{promise.clix}} times.</small>
+  <small>
+    {{#if isNewPromise}}
+      <b>This promise has just now been created because you clicked on the URL!</b>
+    {{else}}
+      This promise has been viewed {{promise.clix}} times.
+    {{/if}}
+  </small>
 
   <a style="float:right" target="_blank" href="{{calendarUrl promise}}">
     Add to GCal

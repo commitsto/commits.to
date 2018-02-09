@@ -1,11 +1,18 @@
-{{> card promise=promise user=user}}
+<div class="{{#equal promise.clix 1}}new-promise{{/equal}}">
+  {{> card promise=promise user=user}}
+</div>
 
 <div class="card-footer" style="text-align:center">
   <a style="float:left" href="{{editPromisePath promise}}">
     Edit
   </a>
 
-  <small>This promise has been clicked on {{splur promise.clix "time"}}.</small>
+  {{#equal promise.clix 1}}
+      <small>New Promise</small>
+  {{else}}
+      <small>This promise has been clicked on {{splur promise.clix "time"}}.</small>
+  {{/equal}}
+
 
   <a style="float:right" target="_blank" href="{{calendarUrl promise}}">
     Add to GCal

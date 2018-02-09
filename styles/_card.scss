@@ -3,10 +3,12 @@
   color: $light-gray;
 }
 
-.new-promise .promise-card{
-  background-color: $green;
-  border-color: $green-border;
+.new-promise {
+  padding: 20px;
+  margin: -20px;
+  background-color: $dark-gray;
 }
+
 
 .promise {
   &-card {

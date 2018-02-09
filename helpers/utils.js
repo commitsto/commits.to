@@ -36,3 +36,10 @@ Handlebars.registerHelper('calendarUrl', function(promise) {
   // console.log('isoDate', date, isoDate)
   return baseUrl + query
 })
+
+Handlebars.registerHelper('equal', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});

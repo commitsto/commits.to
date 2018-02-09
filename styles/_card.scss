@@ -1,7 +1,11 @@
 .card-footer {
   margin-top: 2rem;
   color: $light-gray;
+}
 
+.new-promise .promise-card{
+  background-color: $green;
+  border-color: $green-border;
 }
 
 .promise {

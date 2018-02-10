@@ -1,23 +1,22 @@
+<div class="{{#equal promise.clix 1}}new-promise{{/equal}}">
 
-    <div class="{{#equal promise.clix 1}}new-promise{{/equal}}">
-      {{> card promise=promise user=user}}
+{{> card promise=promise user=user}}
+        
+<div class="card-footer" style="text-align:center">
 
-        <div class="card-footer" style="text-align:center">
-            <a style="float:left" href="{{editPromisePath promise}}">
-                Edit
-            </a>
+<a style="float:left" href="{{editPromisePath promise}}">Edit</a>
 
-          {{#equal promise.clix 1}}
-              <small>New Promise</small>
-          {{else}}
-              <small>This promise has been clicked on {{splur promise.clix "time"}}.</small>
-          {{/equal}}
+{{#equal promise.clix 1}}
+  <b>This promise has just now been created because you clicked on the URL!</b>
+{{else}}
+  <small>This promise has been clicked on {{splur promise.clix "time"}}</small>
+{{/equal}}
+          
+          
+<a style="float:right" target="_blank" href="{{calendarUrl promise}}">
+  Add to GCal
+</a>
 
+</div>
 
-            <a style="float:right" target="_blank" href="{{calendarUrl promise}}">
-                Add to GCal
-            </a>
-        </div>
-
-    </div>
-
+</div>

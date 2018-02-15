@@ -6,5 +6,5 @@ Handlebars.registerHelper('dueStatus', function(dueDate) {
   if (!dueDate) return
   
   // console.log('dueStatus', dueDate)
-  return timeDiff({ dueDate, units: 'hours' })
+  return timeDiff({ dueDate, units: 'seconds' })
 })

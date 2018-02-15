@@ -37,13 +37,13 @@ Handlebars.registerHelper('dueColor', function(diff) {
   let color = 'gray'
 
   switch (true) {
-  case(diff < -(24 * 5)):
+  case(diff < -(24 * 5 * 3600)):
     color = 'green'
     break
-  case(diff < -(24 * 2)):
+  case(diff < -(24 * 2 * 3600)):
     color = 'blue'
     break
-  case(diff < -24):
+  case(diff < -24 * 3600):
     color = 'yellow'
     break
 

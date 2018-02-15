@@ -3,13 +3,6 @@
   color: $light-gray;
 }
 
-.new-promise {
-  padding: 20px;
-  margin: -20px;
-  background-color: #4B0082;
-}
-
-
 .promise {
   &-card {
     background-color: $blue;
@@ -22,8 +15,7 @@
     transition: background .25s ease-in-out;
 
     &:hover {
-      // original dark-blue was ambiguous with the blue for N days till due
-      background-color: $yellow;
+      border-color: $white;
     }
 
     &, a {
@@ -113,6 +105,7 @@
       position: absolute;
       text-align: right;
       width: 100%;
+      cursor: default;
 
       &, a {
         color: $dark-gray;
@@ -127,5 +120,21 @@
       color: $black;
       text-align: left;
     }
+
+    &--new {
+      padding: 20px;
+      margin: -20px;
+      background-color: #4B0082;
+    }
+
+    &-link {
+      padding: 3px 5px;
+
+      &:hover {
+        background-color: $dark-gray;
+        color:$white;
+      }
+    }
+
   }
 }

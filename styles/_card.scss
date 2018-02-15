@@ -28,12 +28,17 @@
     }
   }
 
+  &-new {
+    padding: 20px;
+    margin: -20px;
+    background-color: #4B0082;
+  }
+  
   &-credit {
     right: 0;
     padding: .5rem;
     position: absolute;
     top: 0;
-
   }
 
   &-slug {
@@ -119,12 +124,6 @@
     &--completed {
       color: $black;
       text-align: left;
-    }
-
-    &--new {
-      padding: 20px;
-      margin: -20px;
-      background-color: #4B0082;
     }
 
     &-link {

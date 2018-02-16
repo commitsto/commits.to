@@ -3,13 +3,13 @@ import Handlebars from 'handlebars'
 
 Handlebars.registerHelper('prettyDate', (date) => {
   if (!date) { return "???" }
-  var date = moment(date).format('MMMM Do YYYY h:mm:ss a');
-  return date;
+  //var date = moment(date).format('MMMM Do YYYY h:mm:ss a');
+  //return date;
 
-  //const pDate = moment.tz(date, 'America/New_York')
-  //  .format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)')
-  //
-  //return pDate
+  const pDate = moment.tz(date, 'America/New_York')
+    .format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)')
+
+  return pDate
 })
 
 Handlebars.registerHelper('prettyPercent', (number) => {

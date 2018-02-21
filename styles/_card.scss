@@ -99,9 +99,13 @@
     letter-spacing: .25px;
     margin-top: 1rem;
     opacity: .8;
-    padding: .5rem 1rem;
     text-align: left;
     text-transform: uppercase;
+
+    &-link, &-date {
+      display: block;
+      padding: .5rem 1rem;
+    }
 
     &--bottom {
       background-color: $white;

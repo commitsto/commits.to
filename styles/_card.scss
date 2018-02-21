@@ -13,10 +13,12 @@
     overflow: hidden;
     padding-bottom: 3rem;
     position: relative;
-    transition: background .25s ease-in-out;
+    transition: border .15s ease-out, opacity .3s ease-in-out;
+    opacity: .95;
 
     &:hover {
-      background-color: $dark-blue;
+      border-color: $white-gray;
+      opacity: 1;
     }
 
     &, a {
@@ -27,14 +29,25 @@
       background-color: transparent;
       border-color: $light-gray;
     }
+
+    &.voided {
+      background-color: transparent;
+      border-color: $light-gray;
+
+      .promise-bar-link {
+        display: none;
+      }
+    }
   }
 
   &-credit {
+    align-items: center;
+    display: flex;
+    height: 100%;
     right: 0;
-    padding: .5rem;
+    padding: .5rem 1rem .5rem .5rem;
     position: absolute;
     top: 0;
-
   }
 
   &-slug {
@@ -48,6 +61,7 @@
   &-header {
     background-color: $gray-blue;
     padding: 1rem;
+    position: relative;
 
     + .promise-bar {
       margin-top: 0;
@@ -94,9 +108,13 @@
     letter-spacing: .25px;
     margin-top: 1rem;
     opacity: .8;
-    padding: .5rem 1rem;
     text-align: left;
     text-transform: uppercase;
+
+    &-link, &-date {
+      display: block;
+      padding: .5rem 1rem;
+    }
 
     &--bottom {
       background-color: $white;

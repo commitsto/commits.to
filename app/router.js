@@ -43,7 +43,11 @@ app.get('/_s/:user', (req, res) => {
     }],
     order: [['tfin', 'DESC']],
   }).then(promises => {
-    const reliability = _.meanBy(promises, 'credit')
+    const reliability = _(promises)
+      .map((p) => p.credit)
+      .compact()
+      .mean()
+
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
     req.user.update({ score: reliability })

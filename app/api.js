@@ -1,6 +1,7 @@
 import app from './express'
 import moment from 'moment-timezone'
 import _ from 'lodash'
+import path from 'path'
 
 import mailself from '../lib/mail'
 import { cache, seed, setup, importJson } from '../data/seed'
@@ -15,6 +16,27 @@ const userQuery = (user) => ({
   model: Users,
   where: { username: user }
 })
+
+
+function nein(req, resp) {
+  let neinfile = path.resolve(__dirname+'/../public/nein.html')
+  return resp.status(404).sendFile(neinfile)
+}
+
+// Here's where we reject URLs with bad characters but it would be better to
+// specify a big regex defining exactly what *does* count as a valid promise URL
+// and reject everything else.
+// NB: Rejecting '#' is moot because we don't see them; the browser eats them.
+// Also this isn't matching on query string so rejecting '?' here doesn't help.
+// That might be pretty important to fix.
+// Things we might want to reject but that at least one existing promise 
+// in the database currently uses include:
+//   at (@) -- just 1 so far!
+//   colon (:) -- just 8 so far but pretty useful for times of day!
+//   slash (/) -- hundreds :(
+app.get(/^\/_s\/(\w+)\/.*[\!\%\$\^\*\(\)\[\]\=\+\{\}\\\|\;\'\"\`\~\.\&].*$/, 
+  nein)
+
 
 // Actions
 

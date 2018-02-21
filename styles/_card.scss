@@ -29,6 +29,15 @@
       background-color: transparent;
       border-color: $light-gray;
     }
+
+    &.voided {
+      background-color: transparent;
+      border-color: $light-gray;
+
+      .promise-bar-link {
+        display: none;
+      }
+    }
   }
 
   &-credit {

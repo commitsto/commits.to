@@ -33,12 +33,21 @@ app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
   req.user.getPromises({
+    where: {
+      void: {
+        [Sequelize.Op.not]: true
+      }
+    },
     include: [{
       model: Users
     }],
     order: [['tfin', 'DESC']],
   }).then(promises => {
-    const reliability = _.meanBy(promises, 'credit')
+    const reliability = _(promises)
+      .map((p) => p.credit)
+      .compact()
+      .mean()
+
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
     req.user.update({ score: reliability })
@@ -143,7 +152,12 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
 // home
 app.get(['/?'], (req, res) => {
   Promises.findAll({
-    where: { tfin: null }, // only show uncompleted
+    where: {
+      tfin: null,
+      void: {
+        [Sequelize.Op.not]: true
+      },
+    }, // only show uncompleted
     // limit: 30
     include: [{
       model: Users

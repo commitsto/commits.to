@@ -13,10 +13,12 @@
     overflow: hidden;
     padding-bottom: 3rem;
     position: relative;
-    transition: background .25s ease-in-out;
+    transition: border .15s ease-out, opacity .3s ease-in-out;
+    opacity: .95;
 
     &:hover {
-      background-color: $dark-blue;
+      border-color: $white-gray;
+      opacity: 1;
     }
 
     &, a {

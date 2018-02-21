@@ -1,9 +1,11 @@
 .config/
 *database.sqlite
 node_modules/
-public/main.css
-
 .babel.json
 .env
 .viminfo
 .v8flags*
+
+# css is compiled from scss in /styles
+public/main.css
+

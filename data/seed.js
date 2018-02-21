@@ -50,7 +50,7 @@ export const importJson = function() {
   return Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
       // ***FIXME refactor into method
-      const { user, slug, note, tini, tdue, tfin, xfin } = data[key]
+      const { user, note, tini, tdue, tfin, xfin } = data[key]
 
       let promise = parsePromiseFromId({ id: user + key })
       promise = _.extend(promise, {
@@ -116,9 +116,6 @@ export const promises = {
   'bob/Send_vacation_photos/by/saturday': {},
   'bob/Call_the_dentist/by/12am': {},
 
-  'chris/follow_up_on_that_support_thread': {
-    tini: '2017-9-18'
-  },
   'chris/build-out-a-promise-completion-interface/by/next-week': {
     tini: '2017-0-13'
   },
@@ -129,46 +126,6 @@ export const promises = {
     tini: '2017-1-02'
   },
 
-  'braden/help_with_javascript/by/5pm': {
-    tini: '2017-9-11'
-  },
-  'braden/outline_bite_counting_post/by/Sunday_11pm': {
-    tini: '2017-9-13'
-  },
-
-  'owen/adjust-the-shed/by/tonight_7pm': {
-    tini: '2017-9-28'
-  },
-  'owen/research_and_pseudocode_calendar_integration/by/oct_6': {
-    tini: '2017-9-9',
-    tdue: '2017-10-6'
-  },
-
-  'josh/get_realisies_running/by/september_30': {
-    tini: '2017-9-13'
-  },
-  'josh/get_realsies_payment_dashboard_up/by/2017_11_30': {
-    tini: '2017-1-15'
-  },
-
-  'jessica/let_bob_know_re_meeting/by/tomorrow_5pm': {
-    tini: '2017-9-19'
-  },
-  'samuel/finish_ch_23_problem_set/by/today_6_pm': {
-    tini: '2017-9-19'
-  },
-  'pierre/water_the_office_plant/by/Friday': {
-    tini: '2017-9-25'
-  },
-  'stephen/decide_upon_late_october_trip/by/saturday': {
-    tini: '2017-9-27'
-  },
-  'roy/sign_up_for_app': {
-    tini: '2017-9-27'
-  },
-  'jennyli/water_the_plants/by/sunday': {
-    tini: '2017-9-27'
-  },
   'cole/find_a_rep_for_dining_vendors': {
     tini: '2017-9-28'
   },
@@ -177,55 +134,6 @@ export const promises = {
   },
   'mbork/edit_tutorial_for_students/by/tomorrow_8am': {
     tini: '2017-0-06'
-  },
-
-  'bee/new-family-photo-to-yoko/by/tomorrow-night': {
-    tini: '2017-9-8',
-    tfin: '2017-9-9',
-    cred: 0.9
-  },
-  'bee/rest-of-paperwork-to-yoko-before-the-gym-tomorrow': {
-    tini: '2017-9-17',
-    tdue: '2017-9-18 9:59',
-    tfin: '2017-9-18 11:59',
-    cred: 0.99,
-    note: '2 hours late'
-  },
-  'bee/email-sleep-as-android-for-specifics-about-sleep-length-measurement': {
-    tini: '2017-9-19'
-  },
-  'bee/read-hannas-emails': {
-    tini: '2017-9-6',
-    tfin: '2017-9-6',
-    cred: 1
-  },
-  'bee/reping-one-with-heart': {
-    tini: '2017-9-26'
-  },
-  'bee/fill-out-metromile-feedback': {
-    tini: '2017-9-26'
-  },
-  'bee/schedule-planning-with-cantor/by/friday-night': {
-    tini: '2017-9-6',
-    tfin: '2017-9-6',
-    cred: 1
-  },
-  'bee/put-away-camping-gear-this-weekend': {
-    tini: '2017-9-29'
-  },
-  'bee/prettying_road_editor': {
-    tini: '2017-0-04'
-  },
-  'bee/go_to_bed/by/11pm': {
-    tini: '2017-0-20'
-  },
-  'bee/reply_to_hin/by/tuesday': {
-    tini: '2017-1-10'
-  },
-  'bee/call_jacob_this_week/by/next_week': {
-    tini: '2017-1-13'
-  },
-  'bee/answer_lau_on_klondikebar/by/5:05pm': {
-    tini: '2017-11-20'
   }
+
 }

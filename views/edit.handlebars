@@ -33,8 +33,10 @@
     <label for="tfin">Tfin</label>
     {{> datepicker id='tfin' value=promise.tfin}}
 
-    <label for="xfin">XFin</label>
+<!-- misleading to let people edit this until we support it
+    <label for="xfin">Fraction fulfilled</label>
     <input name="xfin" type="text" value="{{promise.xfin}}">
+-->
 
     <input type="submit" class="promise-button" value="Save">
   </form>

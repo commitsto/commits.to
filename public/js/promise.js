@@ -64,7 +64,12 @@ const completePromise = function(username, id) {
           'success'
         ).then(function(result) {
           if (result) {
-            window.location.href = promisePath(username, id)
+            if (parseHost()) {
+              window.location.reload()
+            } else {
+              window.location.href = promisePath(username, id)
+            }
+
           }
         })
       }
@@ -91,7 +96,7 @@ const deletePromise = function(username, id) {
           'success'
         ).then(function(result) {
           if (result) {
-            window.location.pathname = '/'
+            window.location.reload()
           }
         })
       }

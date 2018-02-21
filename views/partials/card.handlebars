@@ -1,9 +1,8 @@
 <section class="promise-card {{#if promise.tfin}}completed{{/if}} {{dueColor (dueStatus promise.tdue)}}">
-  <div class="promise-credit {{creditColor promise.credit}}">
-    {{prettyCredit promise.credit}}
-  </div>
-
   <div class="promise-header">
+    <div class="promise-credit {{creditColor promise.credit}}">
+      {{prettyCredit promise.credit}}
+    </div>
     <h2 class="promise-user">
       <a href="{{userPath user}}">
         {{promise.user.username}}
@@ -52,7 +51,7 @@
       {{else}}
         {{#if user}}
           <a class="promise-bar-link" href="#" onclick="completePromise('{{user.username}}', '{{promise.id}}')">
-            Mark Complete
+            Mark {{completeCredit promise.credit}} Complete
           </a>
         {{/if}}
       {{/if}}

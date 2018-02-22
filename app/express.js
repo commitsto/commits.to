@@ -8,6 +8,7 @@ import log from '../lib/logger'
 import '../helpers/calculate'
 import '../helpers/colors'
 import '../helpers/format'
+import '../helpers/path'
 import '../helpers/utils'
 
 const app = express()

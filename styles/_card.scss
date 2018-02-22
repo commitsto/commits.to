@@ -1,9 +1,3 @@
-.card-footer {
-  margin-top: 2rem;
-  color: $light-gray;
-
-}
-
 .promise {
   &-card {
     background-color: $blue;
@@ -22,12 +16,21 @@
     }
 
     &, a {
-      color: white;
+      color: $white;
     }
 
     &.completed {
       background-color: transparent;
       border-color: $light-gray;
+    }
+
+    &.new {
+      background-color: $white-gray;
+      border-color: $light-gray;
+
+      .promise-details a {
+        color: $black;
+      }
     }
 
     &.voided {
@@ -139,4 +142,9 @@
       text-align: left;
     }
   }
+}
+
+.card-footer {
+  margin-top: 2rem;
+  color: $light-gray;
 }

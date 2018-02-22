@@ -1,11 +1,11 @@
 import Handlebars from 'handlebars'
 
 const colorFromPercent = (score) => {
-  let color = 'green'
+  let color = ''
 
   switch (true) {
     case (score == null):
-      color = '' // FIXME
+      color = 'infinity'
       break
     case (score < 0.5):
       color = 'red'
@@ -16,8 +16,11 @@ const colorFromPercent = (score) => {
     case (score < 1):
       color = 'blue'
       break
+    default:
+      color = 'green'
   }
 
+  // console.log('colorFromPercent', score, color)
   return color
 }
 
@@ -34,7 +37,7 @@ Handlebars.registerHelper('creditColor', function(credit) {
 })
 
 Handlebars.registerHelper('dueColor', function(diff) {
-  let color = 'gray'
+  let color = ''
 
   switch (true) {
     case (diff < -(24 * 5)):
@@ -46,12 +49,14 @@ Handlebars.registerHelper('dueColor', function(diff) {
     case (diff < -24):
       color = 'yellow'
       break
-
     case (diff < 0):
       color = 'orange'
       break
-    case (diff > 0):
+    case (diff >= 0):
       color = 'red'
+      break
+    default:
+      color = 'gray'
   }
 
   // console.log('dueColor', diff, color)

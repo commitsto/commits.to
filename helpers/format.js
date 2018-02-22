@@ -3,10 +3,10 @@ import Handlebars from 'handlebars'
 
 Handlebars.registerHelper('prettyDate', function(date) {
   if (!date) return ''
-  // format('MMMM Do YYYY, h:mm:ss a')
+
   const pDate = moment
     .tz(date, 'America/New_York')
-    .format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)')
+    .format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)') // ('MMMM Do YYYY, h:mm:ss a')
 
   // console.log('prettyDate', date, pDate)
   return pDate
@@ -14,14 +14,9 @@ Handlebars.registerHelper('prettyDate', function(date) {
 
 Handlebars.registerHelper('prettyPercent', function(number, digits) {
   if (!number) return ''
-  return `${(number * 100).toFixed(digits !== undefined ? digits : 3)}%`
-})
 
-Handlebars.registerHelper('verbifyDomain', function(opts) {
-  const domain = opts.hash && opts.hash.domain
-
-  // console.log('verbifyDomain', domain)
-  return domain && domain.replace('.to', ' to')
+  // console.log('prettyPercent', number, digits)
+  return `${(number * 100).toFixed(Number.isInteger(digits) ? digits : 3)}%`
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {

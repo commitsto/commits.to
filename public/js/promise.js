@@ -96,7 +96,7 @@ const deletePromise = function(username, id) {
           'success'
         ).then(function(result) {
           if (result) {
-            window.location.reload()
+            window.location.href = '/' // redirect to subdomain root
           }
         })
       }

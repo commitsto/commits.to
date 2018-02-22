@@ -27,7 +27,7 @@ fieldset {
   padding: 0;
 }
 
-input {
+input, select {
   background: none;
   border: 1px dotted $dark-blue;
   border-radius: $input-border-radius;
@@ -42,6 +42,11 @@ input {
   &[disabled][type=text] {
     border: 1px solid $dark-gray;
   }
+}
+
+select {
+  height: 3.5rem;
+  text-indent: .5rem;
 }
 
 .blue-border {

@@ -1,4 +1,4 @@
-<section class="promise-card {{#if promise.tfin}}completed{{/if}} {{#if promise.void}}voided{{/if}} {{dueColor (dueStatus promise.tdue)}}">
+<section class="promise-card {{cardClassesFor promise}} {{dueColor (dueStatus promise.tdue)}}">
   <div class="promise-header">
     <div class="promise-credit {{creditColor promise.credit}}">
       {{prettyCredit promise.credit}}

@@ -14,7 +14,9 @@ Handlebars.registerHelper('prettyDate', function(date) {
 
 Handlebars.registerHelper('prettyPercent', function(number, digits) {
   if (!number) return ''
-  return `${(number * 100).toFixed(digits !== undefined ? digits : 3)}%`
+
+  // console.log('prettyPercent', number, digits)
+  return `${(number * 100).toFixed(Number.isInteger(digits) ? digits : 3)}%`
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {

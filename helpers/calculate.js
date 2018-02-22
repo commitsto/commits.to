@@ -28,6 +28,6 @@ Handlebars.registerHelper('cardClassesFor', (promise) => {
     .keys()
     .join(' ')
 
-  console.log('cardClassesFor', promise.id, classes)
+  // console.log('cardClassesFor', promise.id, classes)
   return classes
 })

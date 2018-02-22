@@ -33,9 +33,9 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
   tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
   tdue: { type: Sequelize.DATE /* , defaultValue: Sequelize.NOW */ }, // unixtime that the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
-  xfin: { type: Sequelize.DOUBLE, defaultValue: 0 }, // fraction fulfilled, default 0 (also {value} for bmndr datapoint)
+  xfin: { type: Sequelize.DOUBLE, defaultValue: 1 }, // fraction fulfilled, default 1 (also {value} for bmndr datapoint)
 
-  clix: { type: Sequelize.INTEGER, defaultValue: 0 }, // number of clicks a promise has gotten
+  clix: { type: Sequelize.INTEGER, defaultValue: 1 }, // number of clicks a promise has gotten
   note: { type: Sequelize.STRING }, // optional additional notes or context for the promise
 }, {
   indexes: [

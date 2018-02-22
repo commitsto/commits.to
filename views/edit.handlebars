@@ -5,37 +5,55 @@
   </a>
 
   <h1 class="promise-statement">
-    <span>{{promise.user.username}}</span> {{verbifyDomain domain=promise.domain}}
-    <span>{{promise.what}}</span>
-    by:
+    <span>{{promise.user.username}}</span> {{verbifyDomain}}
+    <span>{{promise.what}}</span> by:
     <span>{{prettyDate promise.tdue}}</span>
   </h1>
 
   <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
-    <label for="user">Who</label>
-    <input disabled name="user.username" type="text" value="{{promise.user.username}}">
+    <!-- <div class="form-group-wrapper">
+      <label for="user">Who</label>
+      <input disabled name="user.username" type="text" value="{{promise.user.username}}">
+    </div>
 
-    <label for="slug">Slug</label>
-    <input disabled name="slug" type="text" value="{{promise.slug}}">
+    <div class="form-group-wrapper">
+      <label for="slug">Slug</label>
+      <input disabled name="slug" type="text" value="{{promise.slug}}">
+    </div> -->
 
-    <label for="void">void</label>
-    <input name="void" type="text" value="{{promise.void}}">
+    <div class="form-group-wrapper">
+      <label for="note">Note</label>
+      <input name="note" type="text" value="{{promise.note}}">
+    </div>
 
-    <label for="note">Note</label>
-    <input name="note" type="text" value="{{promise.note}}">
+    <div class="form-group-wrapper">
+      <label for="void">void</label>
+      <select name="void">
+        <option value="false">false</option>
+        <option value="true" {{{selectedIfVoid promise}}}>true</option>
+      </select>
+    </div>
 
-    <label for="tini">Tini</label>
-    {{> datepicker id='tini' value=promise.tini}}
+    <div class="form-group-wrapper">
+      <label for="tini">Commitment made (tini)</label>
+      {{> datepicker id='tini' value=promise.tini}}
+    </div>
 
-    <label for="tdue">Tdue</label>
-    {{> datepicker id='tdue' value=promise.tdue}}
+    <div class="form-group-wrapper">
+      <label for="tdue">Commitment due (tdue)</label>
+      {{> datepicker id='tdue' value=promise.tdue}}
+    </div>
 
-    <label for="tfin">Tfin</label>
-    {{> datepicker id='tfin' value=promise.tfin}}
+    <div class="form-group-wrapper">
+      <label for="tfin">Commitment fulfilled (tfin)</label>
+      {{> datepicker id='tfin' value=promise.tfin}}
+    </div>
 
 <!-- misleading to let people edit this until we support it
-    <label for="xfin">Fraction fulfilled</label>
-    <input name="xfin" type="text" value="{{promise.xfin}}">
+    <div class="form-group-wrapper">
+      <label for="xfin">Fraction fulfilled</label>
+      <input name="xfin" type="text" value="{{promise.xfin}}">
+    </div>
 -->
 
     <input type="submit" class="promise-button" value="Save">

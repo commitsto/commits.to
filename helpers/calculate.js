@@ -12,6 +12,10 @@ Handlebars.registerHelper('dueStatus', (dueDate) => {
   return timeDiff({ dueDate, units: 'hours' })
 })
 
+Handlebars.registerHelper('selectedIfVoid', (promise) => {
+  return promise.void ? 'selected="selected"' : ''
+})
+
 Handlebars.registerHelper('cardClassesFor', (promise) => {
   if (!promise) return {}
 

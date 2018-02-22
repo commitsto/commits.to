@@ -10,6 +10,11 @@ Handlebars.registerHelper('promiseDomain', (domain) => {
   return domain || APP_DOMAIN
 })
 
+Handlebars.registerHelper('verbifyDomain', (domain) => {
+  // return Handlebars.helpers.promiseDomain().replace('.to', ' to')
+  return 'commits to'
+})
+
 Handlebars.registerHelper('calendarUrl', (promise) => {
   if (!promise) return null
 

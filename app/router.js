@@ -5,7 +5,7 @@ import log from '../lib/logger'
 import mailself from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
-import Promises from '../models/promise'
+import Promises, { promiseGallerySort } from '../models/promise'
 import { Users } from '../models/user'
 
 import { isNewPromise } from '../helpers/calculate'
@@ -55,28 +55,7 @@ app.get('/_s/:user', (req, res) => {
 
     req.user.update({ score: reliability })
 
-    promises.sort(function (a,b) {
-      // pending promises are sorted by due date (tdue) ascending
-      // completed promises are sorted by completion date (tfin) descending
-      // completed promises sort after pending promises
-
-      if ( a.tfin == null ) {
-        if ( b.tfin == null ) {
-          return a.tdue - b.tdue
-        }
-        else {
-          return -1
-        }
-      }
-      else {
-        if ( b.tfin == null ) {
-          return 1
-        }
-        else {
-          return b.tfin - a.tfin
-        }
-      }
-    })
+    promises.sort(promiseGallerySort)
 
     res.render('user', {
       promises,

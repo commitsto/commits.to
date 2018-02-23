@@ -8,6 +8,8 @@ import { Sequelize } from '../db/sequelize'
 import Promises from '../models/promise'
 import { Users } from '../models/user'
 
+import { isNewPromise } from '../helpers/calculate'
+
 import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 
@@ -107,6 +109,9 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
       defaults: parsedPromise
     })
       .then((promise, created) => {
+        // FIXME this is always undefiend... sequelize sucks
+        console.log('promise created?', created)
+
         let toLog = { level: 'debug', state: 'exists' }
 
         if (created) {
@@ -120,10 +125,7 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
         req.promise.user = req.user
         req.promise.setUser(req.user)
 
-        req.promise.increment(['clix'], { by: 1 }).then(prom => {
-          log.debug('clix incremented', prom.dataValues)
-          return next()
-        })
+        return next()
       })
   })
     .catch((reason) => { // unparsable promise
@@ -146,7 +148,14 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   res.render('show', {
     promise: req.promise,
     user: req.user,
-    isNewPromise: req.promise.clix === 1,
+    isNewPromise: isNewPromise({ promise: req.promise })
+  })
+
+  // update click after route has rendered
+  res.on('finish', () => {
+    req.promise.increment(['clix'], { by: 1 }).then(prom => {
+      log.debug('clix incremented', prom.dataValues)
+    })
   })
 })
 

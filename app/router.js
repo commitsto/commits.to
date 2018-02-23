@@ -12,6 +12,7 @@ import { isNewPromise } from '../helpers/calculate'
 
 import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
+import isValidUrl from '../lib/parse/url'
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, id) {
@@ -89,9 +90,9 @@ app.get('/_s/:user', (req, res) => {
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
   const { ip, originalUrl, params, parsedPromise, user } = req
   // handle invalid requests by serving up a blank 404
-  const isAppleIcon = originalUrl.match(/\/apple\-touch\-icon.*/)
-  const isBot = _.includes(['favicon.ico', 'robots.txt'], params.promise)
-  if (isBot || isAppleIcon) return res.status(404).send('Not Found.')
+  if (!isValidUrl({ url: originalUrl, promise: params.promise })) {
+    return res.status(404).send('Sorry, that doesn\'t look like a valid url...')
+  }
 
   parsePromise({
     username: user.username,

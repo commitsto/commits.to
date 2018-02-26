@@ -18,14 +18,14 @@ Handlebars.registerHelper('prettyPercent', function(number, digits) {
   } else if (number === 1) {
     return '100%'
   }
-  
+
   const places = Number.isInteger(digits) ? digits : 3
   // console.log('prettyPercent', number, digits)
   return `${(number * 100).toFixed(places)}%`
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {
-  if (!credit) return '∞'
+  if (!credit) return '' // '∞' is cooler!
   return Handlebars.helpers.prettyPercent(credit)
 })
 

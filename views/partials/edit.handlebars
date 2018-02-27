@@ -10,7 +10,7 @@
     <span>{{prettyDate promise.tdue}}</span>
   </h1>
 
-  <form action="/promises/edit/{{promise.id}}" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
+  <form action="/promises/edit" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
     <!-- <div class="form-group-wrapper">
       <label for="user">Who</label>
       <input disabled name="user.username" type="text" value="{{promise.user.username}}">
@@ -55,7 +55,7 @@
       <input name="xfin" type="text" value="{{promise.xfin}}">
     </div>
 -->
-
+    <input type="hidden" name="id" value="{{promise.id}}">
     <input type="submit" class="promise-button" value="Save">
   </form>
 </div>

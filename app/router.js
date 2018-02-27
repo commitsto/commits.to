@@ -67,13 +67,13 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing middleware
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
-  const { ip, originalUrl, params, parsedPromise, user } = req
+  const { ip, originalUrl, params, user } = req
   // handle invalid requests by serving up a blank 404
   if (!isValidUrl({ url: originalUrl, promise: params.promise })) {
     return res.status(404).send('Sorry, that doesn\'t look like a valid url...')
   }
 
-  parsePromise({
+  return parsePromise({
     username: user.username,
     urtext: originalUrl,
     ip: ip

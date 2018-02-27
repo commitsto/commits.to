@@ -31,7 +31,7 @@ const parseHost = function() {
   return hasSubdomain
 }
 
-const promisePath = function(username, id) {
+const promisePath = function({ username, id }) {
   const hasSubdomain = parseHost()
   let path = '/'
 
@@ -47,18 +47,29 @@ const promisePath = function(username, id) {
   return path
 }
 
-const apiPath = function(action, username, id) {
+const apiPath = function({ action, username }) {
   const hasSubdomain = parseHost()
   const prefix = !hasSubdomain ? `/_s/${username}` : ''
-  return `${prefix}/promises/${action}/${id}`
+  return `${prefix}/promises/${action}`
 }
+
+const fetchById = ({ action, id, username }) => fetch(
+  apiPath({ action, username }),
+  {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  }
+)
+
 
 const completePromise = function(username, id) {
   console.log('completePromise', id, username)
-  const apiUrl = apiPath('complete', username, id)
 
   swal(completePromiseText).then(function() {
-    fetch(apiUrl).then(function(response) {
+    fetchById({ action: 'complete', id, username }).then(function(response) {
       if (response.ok) {
         return swal(
           'Completed!',
@@ -69,9 +80,8 @@ const completePromise = function(username, id) {
             if (parseHost()) {
               window.location.reload()
             } else {
-              window.location.href = promisePath(username, id)
+              window.location.replace(promisePath({ username, id }))
             }
-
           }
         })
       }
@@ -83,10 +93,8 @@ const completePromise = function(username, id) {
 const deletePromise = function(username, id) {
   console.log('deletePromise', id, username)
 
-  let apiUrl = apiPath('remove', username, id)
-
   swal(deletePromiseText).then(function() {
-    fetch(apiUrl).then(function(response) {
+    fetchById({ action: 'remove', id, username }).then(function(response) {
       if (response.ok) {
         swal(
           'Deleted!',

@@ -41,20 +41,18 @@ app.get('/_s/:user/promises/remove', function(req, resp) {
   })
 })
 
-app.get('/_s/:user/promises/complete/:id(*)', (req, resp) => {
+app.post('/_s/:user/promises/complete/', (req, resp) => {
   Promises.findOne({
     where: {
-      id: req.params.id
-    },
-    include: [userQuery(req.params.user)],
+      id: req.body.id
+    }
   }).then(function(promise) {
     promise.update({
       tfin: moment(), // .tz('America/New_York')  FIXME,
       cred: parseCredit({ dueDate: promise.tdue })
     })
-
-    console.log('complete promise', promise.dataValues)
-    resp.redirect('/')
+    // console.log('complete promise', req.body, promise.dataValues)
+    resp.send(202)
   })
 })
 

@@ -50,15 +50,21 @@ const promisePath = function(username, id) {
 const apiPath = function(action, username, id) {
   const hasSubdomain = parseHost()
   const prefix = !hasSubdomain ? `/_s/${username}` : ''
-  return `${prefix}/promises/${action}/${id}`
+  return `${prefix}/promises/${action}/`
 }
 
 const completePromise = function(username, id) {
   console.log('completePromise', id, username)
-  const apiUrl = apiPath('complete', username, id)
+  const apiUrl = apiPath('complete', username)
 
   swal(completePromiseText).then(function() {
-    fetch(apiUrl).then(function(response) {
+    fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ id: id }),
+    }).then(function(response) {
       if (response.ok) {
         return swal(
           'Completed!',

@@ -6,7 +6,7 @@ import log from '../lib/logger'
 import { cache, seed, importJson } from '../data/seed'
 import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../data/config'
 
-import Promises, { sequelize } from '../models/promise'
+import Promises from '../models/promise'
 import { Users } from '../models/user'
 import parseCredit from '../lib/parse/credit'
 
@@ -15,7 +15,24 @@ const userQuery = (user) => ({
   where: { username: user }
 })
 
-// Actions
+
+// Global endpoints
+
+app.get('/users/create/:username', (req, res) => {
+  const { username } = req.params
+
+  if (username) {
+    Users.create({ username })
+      .then(() => {
+        res.redirect(`//${username}.${APP_DOMAIN}`)
+      })
+  } else {
+    res.redirect('/')
+  }
+})
+
+
+// User-scoped actions
 
 app.post('/_s/:user/promises/complete', (req, resp) => {
   Promises.findOne({
@@ -86,62 +103,8 @@ app.post('/_s/:user/promises/edit', (req, res) => {
 //   })
 // })
 
-// Endpoints
 
-app.get('/promise/:udp/:urtext', function(req, resp) {
-  let urtext = req.originalUrl.substr(9)
-  Promises.findOne({ where: { urtext } }).then(function(promise) {
-    console.log('single promise', urtext, promise)
-    // resp.write(promise)
-    resp.json(promise)
-  })
-})
-
-app.get('/promises', function(req, resp) {
-  let dbPromises = {}
-  Promises.findAll({ order: sequelize.literal('tdue DESC') }).then(function(promises) {
-    // console.log('all promises', promises)
-    // create nested array of promises by user:
-    promises.forEach(function(promise) {
-      dbPromises[promise.user] = dbPromises[promise.user] || []
-      dbPromises[promise.user].push(promise)
-    })
-    resp.json(dbPromises)
-  })
-})
-
-app.get('/promises/:user', function(req, resp) {
-  let dbPromises = {}
-  Promises.findAll({
-    where: {
-      user: req.params.user
-    },
-    order: sequelize.literal('tdue DESC')
-  }).then(function(promises) {
-    console.log('user promises', promises)
-    promises.forEach(function(promise) {
-      console.log(promise.tfin)
-      dbPromises[promise.user] = dbPromises[promise.user] || []
-      dbPromises[promise.user].push(promise)
-    })
-    resp.json(dbPromises)
-  })
-})
-
-app.get('/users/create/:username', (req, res) => {
-  const { username } = req.params
-
-  if (username) {
-    Users.create({ username })
-      .then(() => {
-        res.redirect(`//${username}.${APP_DOMAIN}`)
-      })
-  } else {
-    res.redirect('/')
-  }
-})
-
-/* Utils */
+// Utils
 
 // calculate and store reliability for each user
 app.get('/cache', (req, resp) => {
@@ -173,7 +136,7 @@ if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
     Promises.destroy({
       include: [userQuery(req.params.user)],
     }).then(function(deletedRows) {
-      console.log('user promises removed', deletedRows)
+      log.warn('user promises removed', deletedRows)
       resp.redirect('/')
     })
   })

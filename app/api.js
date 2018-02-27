@@ -2,13 +2,12 @@ import app from './express'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
-import mailself from '../lib/mail'
-import { cache, seed, setup, importJson } from '../data/seed'
+import log from '../lib/logger'
+import { cache, seed, importJson } from '../data/seed'
 import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../data/config'
 
 import Promises, { sequelize } from '../models/promise'
 import { Users } from '../models/user'
-import parsePromise from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 
 const userQuery = (user) => ({
@@ -18,41 +17,30 @@ const userQuery = (user) => ({
 
 // Actions
 
-app.get('/_s/:user/promises/remove/:id(*)', (req, resp) => {
-  console.log('remove', req.params)
-  // FIXME: refactor/secure this
-  Promises.destroy({
-    where: {
-      id: req.params.id
-    },
-    include: [userQuery(req.params.user)],
-  }).then(function(deletedRows) {
-    console.log('promise removed', deletedRows)
-    resp.redirect('/')
-  })
-})
-
-app.get('/_s/:user/promises/remove', function(req, resp) {
-  Promises.destroy({
-    include: [userQuery(req.params.user)],
-  }).then(function(deletedRows) {
-    console.log('user promises removed', deletedRows)
-    resp.redirect('/')
-  })
-})
-
-app.post('/_s/:user/promises/complete/', (req, resp) => {
+app.post('/_s/:user/promises/complete', (req, resp) => {
   Promises.findOne({
     where: {
       id: req.body.id
-    }
+    },
+    include: [userQuery(req.params.user)],
   }).then(function(promise) {
     promise.update({
       tfin: moment(), // .tz('America/New_York')  FIXME,
       cred: parseCredit({ dueDate: promise.tdue })
     })
-    // console.log('complete promise', req.body, promise.dataValues)
-    resp.send(202)
+    log.info('promise completed', req.body, promise.dataValues)
+    resp.send(200)
+  })
+})
+
+app.post('/_s/:user/promises/remove', (req, resp) => {
+  Promises.destroy({
+    where: {
+      id: req.body.id
+    },
+  }).then(function(deletedRows) {
+    log.info('promise removed', req.body, deletedRows)
+    resp.send(200)
   })
 })
 
@@ -61,7 +49,7 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
   const data = _.mapValues(req.body, (value) =>
     _.includes(['Invalid date', ''], value) ? null : value)
 
-  console.log('edit promise**', req.params.id, data, req.body)
+  log.info('edit promise', req.params.id, data)
 
   Promises.find({
     where: {
@@ -73,7 +61,8 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      console.log('promise updated', req.body)
+      log.debug('promise updated', req.body)
+
       if (promise) {
         res.redirect(`/${prom.urtext}`)
       } else {
@@ -83,11 +72,12 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
   })
 })
 
-// Deprecated because we no longer use /create - FIXME: delete?
+// TODO implement a /create POST endpoint
 //
 // app.get('/promises/create/:urtext(*)', (req, resp) => {
 //   console.log('create', req.params)
-//   parsePromise({urtext: req.params.urtext, ip: req.ip}).then((parsedPromise) => {
+//   parsePromise({urtext: req.params.urtext, ip: req.ip})
+//   .then((parsedPromise) => {
 //     Promises.create(parsedPromise).then(function(promise) {
 //       console.log('promise created', promise.dataValues)
 //       mailself('PROMISE', promise.urtext) // send dreeves@ an email
@@ -176,5 +166,15 @@ if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
   app.get('/empty', (req, resp) => {
     Promises.destroy({ where: {} })
     resp.redirect('/')
+  })
+
+  // removes all promises for a given user
+  app.get('/_s/:user/promises/remove', function(req, resp) {
+    Promises.destroy({
+      include: [userQuery(req.params.user)],
+    }).then(function(deletedRows) {
+      console.log('user promises removed', deletedRows)
+      resp.redirect('/')
+    })
   })
 }

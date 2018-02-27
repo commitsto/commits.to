@@ -34,37 +34,13 @@ app.get('/users/create/:username', (req, res) => {
 
 // User-scoped actions
 
-app.post('/_s/:user/promises/complete', (req, resp) => {
-  Promises.findOne({
-    where: {
-      id: req.body.id
-    },
-    include: [userQuery(req.params.user)],
-  }).then(function(promise) {
-    promise.update({
-      tfin: moment(), // .tz('America/New_York')  FIXME,
-      cred: parseCredit({ dueDate: promise.tdue })
-    })
-    log.info('promise completed', req.body, promise.dataValues)
-    resp.send(200)
-  })
-})
-
-app.post('/_s/:user/promises/remove', (req, resp) => {
-  Promises.destroy({
-    where: {
-      id: req.body.id
-    },
-  }).then(function(deletedRows) {
-    log.info('promise removed', req.body, deletedRows)
-    resp.send(200)
-  })
-})
+// TODO implement a /create POST endpoint
+// app.post('/promises/create/', (req, resp) => {})
 
 app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
-  const data = _.mapValues(req.body, (value) =>
-    _.includes(['Invalid date', ''], value) ? null : value)
+  const valOrNull = _.includes(['Invalid date', ''], val) ? null : val
+  const data = _.mapValues(req.body, valOrNull(value))
 
   log.info('edit promise', req.params.id, data)
 
@@ -89,19 +65,32 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   })
 })
 
-// TODO implement a /create POST endpoint
-//
-// app.get('/promises/create/:urtext(*)', (req, resp) => {
-//   console.log('create', req.params)
-//   parsePromise({urtext: req.params.urtext, ip: req.ip})
-//   .then((parsedPromise) => {
-//     Promises.create(parsedPromise).then(function(promise) {
-//       console.log('promise created', promise.dataValues)
-//       mailself('PROMISE', promise.urtext) // send dreeves@ an email
-//       resp.redirect(`/${req.params.urtext}`)
-//     })
-//   })
-// })
+app.post('/_s/:user/promises/complete', (req, resp) => {
+  Promises.findOne({
+    where: {
+      id: req.body.id
+    },
+    include: [userQuery(req.params.user)],
+  }).then(function(promise) {
+    promise.update({
+      tfin: moment(), // FIXME this should be handled consistently,
+      cred: parseCredit({ dueDate: promise.tdue })
+    })
+    log.info('promise completed', req.body, promise.dataValues)
+    resp.send(200)
+  })
+})
+
+app.post('/_s/:user/promises/remove', (req, resp) => {
+  Promises.destroy({
+    where: {
+      id: req.body.id
+    },
+  }).then(function(deletedRows) {
+    log.info('promise removed', req.body, deletedRows)
+    resp.send(200)
+  })
+})
 
 
 // Utils

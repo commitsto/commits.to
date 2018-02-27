@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import app from './express'
 import log from '../lib/logger'
 import mailself from '../lib/mail'
@@ -12,6 +10,7 @@ import { isNewPromise } from '../helpers/calculate'
 
 import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
+import { calculateReliability } from '../lib/parse/credit'
 import isValidUrl from '../lib/parse/url'
 
 // validates all requests with a :user param
@@ -46,10 +45,7 @@ app.get('/_s/:user', (req, res) => {
     }],
     order: [['tfin', 'DESC']],
   }).then(promises => {
-    const reliability = _(promises)
-      .map((p) => p.credit)
-      .compact()
-      .mean()
+    const reliability = calculateReliability(promises)
 
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 

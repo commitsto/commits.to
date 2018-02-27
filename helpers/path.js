@@ -13,5 +13,5 @@ Handlebars.registerHelper('promisePath', ({ user: { username }, urtext }) => {
 })
 
 Handlebars.registerHelper('editPromisePath', ({ user: { username }, urtext }) => {
-  return `${promisePath(username, urtext)}/edit`
+  return `${promisePath(username, urtext)}#edit`
 })

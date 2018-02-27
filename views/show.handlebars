@@ -1,9 +1,9 @@
 {{> card promise=promise user=user}}
 
-<div class="card-footer" style="text-align:center">
-  <a style="float:left" href="{{editPromisePath promise}}">
+<div class="card-footer">
+  <!-- <a style="float:left" href="{{editPromisePath promise}}">
     Edit
-  </a>
+  </a> -->
 
   <small>
     {{#if isNewPromise}}
@@ -16,4 +16,8 @@
   <a style="float:right" target="_blank" href="{{calendarUrl promise}}">
     Add to GCal
   </a>
+</div>
+
+<div class="edit-wrapper">
+  {{> edit}}
 </div>

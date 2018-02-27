@@ -19,7 +19,8 @@ const deletePromiseText = {
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!'
+  cancelButtonText: 'No, cancel!',
+  useRejections: true,
 }
 
 const parseHost = function() {
@@ -75,10 +76,6 @@ const completePromise = function(username, id) {
       }
       throw new Error('Network response was not ok.')
     })
-  }, function(dismiss) {
-    // dismiss can be 'cancel', 'overlay',
-    // 'close', and 'timer'
-    // if (dismiss === 'cancel') {}
   })
 }
 
@@ -90,14 +87,12 @@ const deletePromise = function(username, id) {
   swal(deletePromiseText).then(function() {
     fetch(apiUrl).then(function(response) {
       if (response.ok) {
-        return swal(
+        swal(
           'Deleted!',
           'Your promise has been deleted.',
-          'success'
-        ).then(function(result) {
-          if (result) {
-            window.location.href = '/' // redirect to subdomain root
-          }
+          'success',
+        ).then(function() {
+          window.location.href = '/' // redirect to subdomain root
         })
       }
       throw new Error('Network response was not ok.')

@@ -114,14 +114,6 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
     })
 })
 
-// edit promise (this has to come before the show route, else it's ambiguous)
-app.get('/_s/:user/:urtext*?/edit', (req, res) => {
-  log.debug('edit promise', req.promise.dataValues)
-  res.render('edit', {
-    promise: req.promise
-  })
-})
-
 // show promise
 app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)

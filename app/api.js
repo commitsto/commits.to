@@ -39,8 +39,8 @@ app.get('/users/create/:username', (req, res) => {
 
 app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
-  const valOrNull = _.includes(['Invalid date', ''], val) ? null : val
-  const data = _.mapValues(req.body, valOrNull(value))
+  const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
+  const data = _.mapValues(req.body, (val) => valOrNull(val))
 
   log.info('edit promise', req.params.id, data)
 

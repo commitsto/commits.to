@@ -8,7 +8,8 @@ const completePromiseText = {
   confirmButtonColor: '#3085d6',
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, complete it!',
-  cancelButtonText: 'No, cancel!'
+  cancelButtonText: 'No, cancel!',
+  useRejections: true,
 }
 
 const deletePromiseText = {

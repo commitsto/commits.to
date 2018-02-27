@@ -4,6 +4,7 @@ import _ from 'lodash'
 import Promises from '../models/promise'
 import { Users } from '../models/user'
 import { parsePromiseFromId } from '../lib/parse/promise'
+import { calculateReliability } from '../lib/parse/credit'
 import parseCredit from '../lib/parse/credit'
 
 import data from './promises.json' // dreev's promises for initial import
@@ -35,10 +36,10 @@ export const cache = function() {
   Users.findAll().then(users => {
     users.forEach(user => {
       user.getPromises().then(promises => {
-        const reliability = _.meanBy(promises, 'credit')
-        log.debug(`caching ${user.username}'s reliability:`, reliability, promises.length)
+        const score = calculateReliability(promises)
+        log.debug(`caching ${user.username}'s score:`, score, promises.length)
 
-        user.update({ score: reliability })
+        user.update({ score })
       })
     })
   })

@@ -44,7 +44,7 @@ app.post('/_s/:user/promises/remove', (req, resp) => {
   })
 })
 
-app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
+app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
   const data = _.mapValues(req.body, (value) =>
     _.includes(['Invalid date', ''], value) ? null : value)
@@ -53,7 +53,7 @@ app.post('/_s/:user/promises/edit/:id(*)', (req, res) => {
 
   Promises.find({
     where: {
-      id: req.params.id
+      id: req.body.id
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {

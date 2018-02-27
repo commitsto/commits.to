@@ -31,7 +31,7 @@ const parseHost = function() {
   return hasSubdomain
 }
 
-const promisePath = function(username, id) {
+const promisePath = function({ username, id }) {
   const hasSubdomain = parseHost()
   let path = '/'
 
@@ -60,7 +60,7 @@ const fetchById = ({ action, id, username }) => fetch(
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify({ id: id }),
+    body: JSON.stringify({ id }),
   }
 )
 
@@ -80,7 +80,7 @@ const completePromise = function(username, id) {
             if (parseHost()) {
               window.location.reload()
             } else {
-              window.location.href = promisePath(username, id)
+              window.location.replace(promisePath({ username, id }))
             }
           }
         })

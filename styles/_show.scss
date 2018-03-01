@@ -5,3 +5,14 @@
 .card-footer, .edit-wrapper {
   margin-top: 2rem;
 }
+
+.delete-promise {
+  margin-top: 2rem;
+  &-button {
+    font-size: 12px;
+
+    &:hover {
+      color: $red;
+    }
+  }
+}

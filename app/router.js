@@ -84,20 +84,17 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
       },
       defaults: parsedPromise
     })
-      .then((promise, created) => {
-        // FIXME this is always undefiend... sequelize sucks
-        console.log('promise created?', created)
-
+      .spread((promise, created) => {
         let toLog = { level: 'debug', state: 'exists' }
 
         if (created) {
           toLog = { level: 'info', state: 'created' }
-          mailself('PROMISE', promise[0].urtext) // send dreeves@ an email
+          mailself('PROMISE', promise.urtext) // send dreeves@ an email
         }
-        log[toLog.level](`promise ${toLog.state}`, promise[0].dataValues)
+        log[toLog.level](`promise ${toLog.state}`, promise.dataValues)
 
         // do our own JOIN
-        req.promise = promise[0]
+        req.promise = promise
         req.promise.user = req.user
         req.promise.setUser(req.user)
 

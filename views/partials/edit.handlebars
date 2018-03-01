@@ -1,9 +1,4 @@
 <div class="create-promise blue-border">
-  <!-- <h1>{{promise.urtext}}</h1> -->
-  <a style="float:right; color:red;" href="#" onclick="deletePromise('{{user.username}}', '{{promise.id}}')">
-    Delete
-  </a>
-
   <h1 class="promise-statement">
     <span>{{promise.user.username}}</span> {{verbifyDomain}}
     <span>{{promise.what}}</span> by:
@@ -11,16 +6,6 @@
   </h1>
 
   <form action="/promises/edit" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
-    <!-- <div class="form-group-wrapper">
-      <label for="user">Who</label>
-      <input disabled name="user.username" type="text" value="{{promise.user.username}}">
-    </div>
-
-    <div class="form-group-wrapper">
-      <label for="slug">Slug</label>
-      <input disabled name="slug" type="text" value="{{promise.slug}}">
-    </div> -->
-
     <div class="form-group-wrapper">
       <label for="note">Note</label>
       <input name="note" type="text" value="{{promise.note}}">
@@ -58,4 +43,10 @@
     <input type="hidden" name="id" value="{{promise.id}}">
     <input type="submit" class="promise-button" value="Save">
   </form>
+</div>
+
+<div class="delete-promise">
+  <a class="delete-promise-button" href="#" onclick="deletePromise('{{user.username}}', '{{promise.id}}')">
+    DELETE
+  </a>
 </div>

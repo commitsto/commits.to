@@ -12,23 +12,6 @@ import parsePromise from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
 import isValidUrl from '../lib/parse/url'
 
-// validates all requests with a :user param
-app.param('user', function(req, res, next, id) {
-  log.debug('user check', id)
-
-  Users.findOne({
-    where: {
-      username: req.params.user,
-    }
-  }).then(user => {
-    if (user) {
-      req.user = user
-      return next()
-    }
-    return res.redirect(`//${APP_DOMAIN}/sign-up`)
-  })
-})
-
 // user promises list
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)

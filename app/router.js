@@ -1,14 +1,13 @@
 import app from './express'
+import { APP_DOMAIN } from '../app/config'
 import log from '../lib/logger'
-import mailself from '../lib/mail'
+import sendMail from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
-import Promises, { promiseGallerySort } from '../models/promise'
-import { Users } from '../models/user'
+import { promiseGallerySort } from '../models/promise'
+import { Promises, Users } from '../models'
 
 import { isNewPromise } from '../helpers/calculate'
-
-import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
 import isValidUrl from '../lib/parse/url'

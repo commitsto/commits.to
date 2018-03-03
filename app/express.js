@@ -3,7 +3,7 @@ import expressHandlebars from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
 import subdomainHandler from 'express-subdomain-handler'
 
-import { APP_DOMAIN, PORT } from '../data/config'
+import { APP_DOMAIN, PORT } from '../app/config'
 import log from '../lib/logger'
 import '../helpers/calculate'
 import '../helpers/colors'

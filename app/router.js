@@ -33,17 +33,7 @@ app.param('user', function(req, res, next, id) {
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
-  req.user.getPromises({
-    where: {
-      void: {
-        [Sequelize.Op.not]: true
-      }
-    },
-    include: [{
-      model: Users
-    }],
-    order: [['tfin', 'DESC']],
-  }).then(promises => {
+  req.user.getValidPromises().then(promises => {
     const reliability = calculateReliability(promises)
 
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)

@@ -1,14 +1,15 @@
-import app from './express'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
+import app from './express'
 import log from '../lib/logger'
-import { cache, seed, importJson } from '../data/seed'
-import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../data/config'
 
-import Promises from '../models/promise'
-import { Users } from '../models/user'
+import { seed, importJson } from '../db/seed'
+import cache from '../db/cache'
+import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
 import parseCredit from '../lib/parse/credit'
+
+import { Promises, Users } from '../models/'
 
 const userQuery = (user) => ({
   model: Users,

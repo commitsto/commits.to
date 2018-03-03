@@ -1,14 +1,13 @@
 import app from './express'
+import { APP_DOMAIN } from '../app/config'
 import log from '../lib/logger'
-import mailself from '../lib/mail'
+import sendMail from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
-import Promises, { promiseGallerySort } from '../models/promise'
-import { Users } from '../models/user'
+import { promiseGallerySort } from '../models/promise'
+import { Promises, Users } from '../models'
 
 import { isNewPromise } from '../helpers/calculate'
-
-import { APP_DOMAIN } from '../data/config'
 import parsePromise from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
 import isValidUrl from '../lib/parse/url'
@@ -34,17 +33,7 @@ app.param('user', function(req, res, next, id) {
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
-  req.user.getPromises({
-    where: {
-      void: {
-        [Sequelize.Op.not]: true
-      }
-    },
-    include: [{
-      model: Users
-    }],
-    order: [['tfin', 'DESC']],
-  }).then(promises => {
+  req.user.getValidPromises().then(promises => {
     const reliability = calculateReliability(promises)
 
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
@@ -89,7 +78,12 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
 
         if (created) {
           toLog = { level: 'info', state: 'created' }
-          mailself('PROMISE', promise.urtext) // send dreeves@ an email
+          // send @dreev an email
+          sendMail({
+            To: 'dreeves@gmail.com',
+            Subject: 'PROMISE',
+            TextBody: promise.id
+          })
         }
         log[toLog.level](`promise ${toLog.state}`, promise.dataValues)
 

@@ -33,6 +33,17 @@ app.get('/users/create/:username', (req, res) => {
   }
 })
 
+app.get('/users/:user/promises', (req, res) => {
+  req.user.getValidPromises({ order: [['tini']] }).then(promises => {
+    // TODO return (scoped?) reliability also?
+    // const reliability = calculateReliability(promises)
+
+    log.debug(`/users/${req.user.username}/promises`, promises.length)
+
+    return res.json({ promises })
+  })
+})
+
 
 // User-scoped actions
 

@@ -78,7 +78,12 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
 
         if (created) {
           toLog = { level: 'info', state: 'created' }
-          mailself('PROMISE', promise.urtext) // send dreeves@ an email
+          // send @dreev an email
+          sendMail({
+            To: 'dreeves@gmail.com',
+            Subject: 'PROMISE',
+            TextBody: promise.id
+          })
         }
         log[toLog.level](`promise ${toLog.state}`, promise.dataValues)
 

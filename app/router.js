@@ -1,79 +1,28 @@
-import _ from 'lodash'
-
 import app from './express'
+import { APP_DOMAIN } from '../app/config'
 import log from '../lib/logger'
-import mailself from '../lib/mail'
+import sendMail from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
-import Promises from '../models/promise'
-import { Users } from '../models/user'
+import { promiseGallerySort } from '../models/promise'
+import { Promises, Users } from '../models'
 
-import { APP_DOMAIN } from '../data/config'
+import { isNewPromise } from '../helpers/calculate'
 import parsePromise from '../lib/parse/promise'
-
-// validates all requests with a :user param
-app.param('user', function(req, res, next, id) {
-  log.debug('user check', id)
-
-  Users.findOne({
-    where: {
-      username: req.params.user,
-    }
-  }).then(user => {
-    if (user) {
-      req.user = user
-      return next()
-    }
-    return res.redirect(`//${APP_DOMAIN}/sign-up`)
-  })
-})
+import { calculateReliability } from '../lib/parse/credit'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
-  req.user.getPromises({
-    where: {
-      void: {
-        [Sequelize.Op.not]: true
-      }
-    },
-    include: [{
-      model: Users
-    }],
-    order: [['tfin', 'DESC']],
-  }).then(promises => {
-    const reliability = _(promises)
-      .map((p) => p.credit)
-      .compact()
-      .mean()
+  req.user.getValidPromises().then(promises => {
+    const reliability = calculateReliability(promises)
 
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
     req.user.update({ score: reliability })
 
-    promises.sort(function (a,b) {
-      // pending promises are sorted by due date (tdue) ascending
-      // completed promises are sorted by completion date (tfin) descending
-      // completed promises sort after pending promises
-
-      if ( a.tfin == null ) {
-        if ( b.tfin == null ) {
-          return a.tdue - b.tdue
-        }
-        else {
-          return -1
-        }
-      }
-      else {
-        if ( b.tfin == null ) {
-          return 1
-        }
-        else {
-          return b.tfin - a.tfin
-        }
-      }
-    })
+    promises.sort(promiseGallerySort)
 
     res.render('user', {
       promises,
@@ -83,15 +32,11 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
-// promise parsing middleware
+// promise parsing
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
-  const { ip, originalUrl, params, parsedPromise, user } = req
-  // handle invalid requests by serving up a blank 404
-  const isAppleIcon = originalUrl.match(/\/apple\-touch\-icon.*/)
-  const isBot = _.includes(['favicon.ico', 'robots.txt'], params.promise)
-  if (isBot || isAppleIcon) return res.status(404).send('Not Found.')
+  const { ip, originalUrl, user } = req
 
-  parsePromise({
+  return parsePromise({
     username: user.username,
     urtext: originalUrl,
     ip: ip
@@ -106,24 +51,26 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
       },
       defaults: parsedPromise
     })
-      .then((promise, created) => {
+      .spread((promise, created) => {
         let toLog = { level: 'debug', state: 'exists' }
 
         if (created) {
           toLog = { level: 'info', state: 'created' }
-          mailself('PROMISE', promise[0].urtext) // send dreeves@ an email
+          // send @dreev an email
+          sendMail({
+            To: 'dreeves@gmail.com',
+            Subject: 'PROMISE',
+            TextBody: promise.id
+          })
         }
-        log[toLog.level](`promise ${toLog.state}`, promise[0].dataValues)
+        log[toLog.level](`promise ${toLog.state}`, promise.dataValues)
 
         // do our own JOIN
-        req.promise = promise[0]
+        req.promise = promise
         req.promise.user = req.user
         req.promise.setUser(req.user)
 
-        req.promise.increment(['clix'], { by: 1 }).then(prom => {
-          log.debug('clix incremented', prom.dataValues)
-          return next()
-        })
+        return next()
       })
   })
     .catch((reason) => { // unparsable promise
@@ -132,21 +79,20 @@ app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
     })
 })
 
-// edit promise (this has to come before the show route, else it's ambiguous)
-app.get('/_s/:user/:urtext*?/edit', (req, res) => {
-  log.debug('edit promise', req.promise.dataValues)
-  res.render('edit', {
-    promise: req.promise
-  })
-})
-
 // show promise
 app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', req.promise.dataValues)
   res.render('show', {
     promise: req.promise,
     user: req.user,
-    isNewPromise: req.promise.clix === 1,
+    isNewPromise: isNewPromise({ promise: req.promise })
+  })
+
+  // update click after route has rendered
+  res.on('finish', () => {
+    req.promise.increment(['clix'], { by: 1 }).then(prom => {
+      log.debug('clix incremented', prom.dataValues)
+    })
   })
 })
 

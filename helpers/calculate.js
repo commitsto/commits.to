@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 import { timeDiff } from '../lib/parse/time'
 
-const isNewPromise = ({ promise }) => promise.clix === 1
+export const isNewPromise = ({ promise }) => promise.clix === 1
 
 Handlebars.registerHelper('dueStatus', (dueDate) => {
   if (!dueDate) return ''

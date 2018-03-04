@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import moment from 'moment-timezone'
 import Handlebars from 'handlebars'
 
@@ -13,14 +14,19 @@ Handlebars.registerHelper('prettyDate', function(date) {
 })
 
 Handlebars.registerHelper('prettyPercent', function(number, digits) {
-  if (!number) return ''
+  if (!number) {
+    return ''
+  } else if (number === 1) {
+    return '100%'
+  }
 
+  const places = Number.isInteger(digits) ? digits : 3
   // console.log('prettyPercent', number, digits)
-  return `${(number * 100).toFixed(Number.isInteger(digits) ? digits : 3)}%`
+  return `${_.floor(number * 100, places)}%`
 })
 
 Handlebars.registerHelper('prettyCredit', function(credit) {
-  if (!credit) return '∞'
+  if (!credit) return '' // '∞' is cooler!
   return Handlebars.helpers.prettyPercent(credit)
 })
 

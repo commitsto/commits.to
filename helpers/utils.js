@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars'
 import moment from 'moment-timezone'
-import APP_DOMAIN from '../data/config'
+import APP_DOMAIN from '../app/config'
 
 Handlebars.registerHelper('__appDomain', () => {
   return APP_DOMAIN

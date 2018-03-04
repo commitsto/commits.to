@@ -1,15 +1,12 @@
-import log from '../lib/logger'
 import _ from 'lodash'
 
-import Promises from '../models/promise'
-import { Users } from '../models/user'
+import log from '../lib/logger'
+
+import { Promises, Users } from '../models'
 import { parsePromiseFromId } from '../lib/parse/promise'
 import parseCredit from '../lib/parse/credit'
 
-import data from './promises.json' // dreev's promises for initial import
-
-Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
-Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
+import data from '../data/promises.json' // dreev's promises for initial import
 
 // utility to populate table with hardcoded promises below
 export const setup = function() {
@@ -30,20 +27,6 @@ export const setup = function() {
     })
   })
 }
-
-export const cache = function() {
-  Users.findAll().then(users => {
-    users.forEach(user => {
-      user.getPromises().then(promises => {
-        const reliability = _.meanBy(promises, 'credit')
-        log.debug(`caching ${user.username}'s reliability:`, reliability, promises.length)
-
-        user.update({ score: reliability })
-      })
-    })
-  })
-}
-
 
 // FIXME refactor parsePromise to work for all imports
 export const importJson = function() {

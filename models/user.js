@@ -1,11 +1,28 @@
 import { Sequelize, sequelize } from '../db/sequelize'
 
-class users extends Sequelize.Model { }
+const Users = sequelize.define('users', {
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+  },
+  score: {
+    type: Sequelize.DOUBLE,
+    defaultValue: null,
+  },
+})
 
-users.init({
-  username: { type: Sequelize.STRING, unique: true },
-  score: { type: Sequelize.DOUBLE, defaultValue: null },
-}, { sequelize })
+Users.prototype.getValidPromises = function({ order = [['tfin', 'DESC']] } = {}) {
+  return this.getPromises({
+    where: {
+      void: {
+        [Sequelize.Op.not]: true
+      }
+    },
+    include: [{
+      model: Users
+    }],
+    order
+  })
+}
 
-
-export { users as Users }
+export default Users

@@ -1,0 +1,17 @@
+{
+  "name": "iwill",
+  "version": "1.0.0",
+  "description": "commits.to",
+  "author": "Chris Butler <chris@platformthirteen.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "eslint": "eslint ./",
+    "eslint:fix": "eslint ./ --fix",
+    "start:api": "cd api && npm run start:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beeminder/iwill.git"
+  }
+}

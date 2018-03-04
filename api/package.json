@@ -9,8 +9,6 @@
   },
   "main": "app/index.js",
   "scripts": {
-    "eslint": "eslint ./",
-    "eslint:fix": "eslint ./ --fix",
     "start": "node babel.js",
     "start:dev": "nodemon babel.js",
     "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",

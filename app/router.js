@@ -10,7 +10,6 @@ import { Promises, Users } from '../models'
 import { isNewPromise } from '../helpers/calculate'
 import parsePromise from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
-import isValidUrl from '../lib/parse/url'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
@@ -33,13 +32,9 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
-// promise parsing middleware
+// promise parsing
 app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
-  const { ip, originalUrl, params, user } = req
-  // handle invalid requests with a 404
-  if (!isValidUrl({ url: originalUrl, promise: params.promise })) {
-    return res.status(404).send('Sorry, that doesn\'t look like a valid url...')
-  }
+  const { ip, originalUrl, user } = req
 
   return parsePromise({
     username: user.username,

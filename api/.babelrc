@@ -1,0 +1,15 @@
+{
+  "presets": [
+    "es2015-node6",
+    "stage-1"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-decorators-legacy",
+    "transform-function-bind",
+    "syntax-async-functions",
+    "transform-async-to-generator",
+    "transform-regenerator"
+  ]
+}

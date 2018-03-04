@@ -1,12 +1,13 @@
 {
-  "name": "promises",
-  "version": "0.9.0",
-  "description": "Commitment tracker",
+  "name": "@iwill/api",
+  "version": "2.0.0",
+  "description": "Backend API for commits.to",
   "repository": "commitsto/commits.to",
-  "main": "app/express.js",
+  "license": "MIT",
   "engines": {
     "node": "8.11.1"
   },
+  "main": "app/index.js",
   "scripts": {
     "eslint": "eslint ./",
     "eslint:fix": "eslint ./ --fix",

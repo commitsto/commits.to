@@ -1,0 +1,19 @@
+{
+  "name": "@iwill/client",
+  "version": "1.0.0",
+  "description": "React front-end for commits.to",
+  "author": "Chris Butler <chris@platformthirteen.com>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack --config config/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beeminder/iwill.git"
+  },
+  "devDependencies": {
+    "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10"
+  }
+}

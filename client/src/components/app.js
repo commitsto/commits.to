@@ -2,10 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 
+import '../styles/app.scss'
+
 const App = () => {
   return (
     <main>
-      <h1>commits.to</h1>
+      <h1>commits.to!</h1>
     </main>
   )
 }

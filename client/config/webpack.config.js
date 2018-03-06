@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 const contentPath = path.resolve(__dirname, '../build')
@@ -41,8 +42,9 @@ module.exports = {
     path: contentPath,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new DashboardPlugin(),
     new CleanWebpackPlugin(['build']),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../src/templates/index.html'),
       filename: './index.html',

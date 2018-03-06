@@ -1,3 +1,1 @@
-const logger = (msg) => console.log(msg)
-
-logger('entrypoint!')
+import app from './components/app'

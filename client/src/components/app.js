@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { hot } from 'react-hot-loader'
 
 const App = () => {
   return (
     <main>
-      <h1>commits.to - version: react</h1>
+      <h1>commits.to</h1>
     </main>
   )
 }
 
-export default App
+export default hot(module)(App)
 
 ReactDOM.render(<App />, document.getElementById('root'))

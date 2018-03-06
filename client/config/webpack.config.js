@@ -1,7 +1,20 @@
 const path = require('path')
+const webpack = require('webpack')
+
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
+const contentPath = path.resolve(__dirname, '../build')
+
 module.exports = {
+  devServer: {
+    contentBase: contentPath,
+    hot: true,
+    port: 5500,
+  },
+  entry: {
+    app: './src/index.js',
+  },
   mode: 'development',
   module: {
     rules: [
@@ -24,10 +37,12 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, '../build'),
+    filename: '[name].bundle.js',
+    path: contentPath,
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['build']),
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../src/templates/index.html'),
       filename: './index.html',

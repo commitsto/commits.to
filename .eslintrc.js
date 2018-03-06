@@ -145,6 +145,7 @@ module.exports = {
     "camelcase": [2, {               // http://eslint.org/docs/rules/camelcase
       "properties": "never"
     }],
+    "comma-dangle": ["error", "always-multiline"], // http://eslint.org/docs/rules/comma-dangle
     "comma-spacing": [2, {           // http://eslint.org/docs/rules/comma-spacing
       "before": false,
       "after": true

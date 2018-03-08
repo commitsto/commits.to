@@ -3,7 +3,7 @@ import _ from 'lodash'
 import log from '../lib/logger'
 
 import { Promises, Users } from '../models'
-import { parsePromise, parsePromiseFromId } from '../lib/parse/promise'
+import { parsePromise } from '../lib/parse/promise'
 
 import data from '../data/promises.json' // dreev's promises for initial import
 

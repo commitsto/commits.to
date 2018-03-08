@@ -1,78 +1,14 @@
-import _ from 'lodash'
-
 import log from '../lib/logger'
 
 import { Promises, Users } from '../models'
-import { parsePromiseFromId } from '../lib/parse/promise'
-import parseCredit from '../lib/parse/credit'
+import { parsePromise } from '../lib/parse/promise'
 
 import data from '../data/promises.json' // dreev's promises for initial import
 
-// utility to populate table with hardcoded promises below
-export const setup = function() {
-  return Promises.sync({ force: true }).then(function() {
-    Object.keys(promises).forEach((key) => {
-      let prom = parsePromiseFromId({ id: key })
-      prom = _.extend(prom, promises[key])
-      log.debug('setup parsed promise', prom)
+// dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases
+// usernames to disallow: 'www', 'admin',
 
-      Users.findOne({
-        where: {
-          username: prom.username
-        }
-      }).then((user) => {
-        const p = user && user.createPromise(prom)
-        log.info('creating promise for', user && user.dataValues, p)
-      })
-    })
-  })
-}
-
-// FIXME refactor parsePromise to work for all imports
-export const importJson = function() {
-  return Promises.sync().then(function() {
-    Object.keys(data).forEach((key) => {
-      // ***FIXME refactor into method
-      const { user, note, tini, tdue, tfin, xfin } = data[key]
-
-      let promise = parsePromiseFromId({ id: user + key })
-      promise = _.extend(promise, {
-        note,
-        cred: tfin && tdue && parseCredit({ dueDate: tdue, finishDate: tfin }) || null,
-        tini: tini && new Date(tini) || null,
-        tdue: tdue && new Date(tdue) || null,
-        tfin: tfin && new Date(tfin) || null,
-        xfin
-      })
-
-      log.info('import', key, data[key], promise)
-
-      Users.findOne({
-        where: {
-          username: user
-        }
-      }).then((u) => {
-        const p = u && u.createPromise(promise)
-        log.info('creating imported promise for', u.username, promise, p)
-      })
-    })
-  })
-}
-
-// create seed users
-export const seed = function() {
-  return Users.sync({ force: true }) // drops the table if it exists
-    .then(function() {
-      users.forEach((key) => {
-        log.info('create user', key)
-        Users.create({ username: key })
-      })
-    })
-    .then(() => setup())
-    .then(() => importJson())
-}
-
-export const users = [
+const USERS = [
   /* testing */
   'alice', 'bob', 'carol', 'deb',
   /* initial co-conspirators */
@@ -89,34 +25,40 @@ export const users = [
   'mike',
 ]
 
-// dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases
-// usernames to disallow: 'www', 'admin',
+// utility to populate table with hardcoded promises below
+export const importJson = function() {
+  return Promises.sync().then(function() {
+    Object.keys(data).forEach((key) => {
+      const { user: username, ...promise } = data[key]
+      const parsedPromise = parsePromise({ promise, username, urtext: key })
 
-// Initial promise list hardcoded so don't have to worry about blowing db away
-export const promises = {
-  // examples
-  'alice/File_the_TPS_report/by/noon_mon': {},
-  'bob/Send_vacation_photos/by/saturday': {},
-  'bob/Call_the_dentist/by/12am': {},
+      log.info('importing promise', key, data[key], parsedPromise)
 
-  'chris/build-out-a-promise-completion-interface/by/next-week': {
-    tini: '2017-0-13'
-  },
-  'chris/finish-the-datepicker-feature/by/tomorrow': {
-    tini: '2017-0-28'
-  },
-  'chris/finish-the-latest-pr/by/tonight': {
-    tini: '2017-1-02'
-  },
+      Users.findOne({
+        where: {
+          username
+        }
+      })
+        .then((u) => {
+          const p = u && u.createPromise(parsedPromise)
+          log.info('creating imported promise for', u.username, parsedPromise, p)
+        })
+        .catch((err) => console.log('import error', err))
+    })
+  })
+}
 
-  'cole/find_a_rep_for_dining_vendors': {
-    tini: '2017-9-28'
-  },
-  'caillu/test_trying_out_time/by/2017-09-30_20:42': {
-    tini: '2017-9-30'
-  },
-  'mbork/edit_tutorial_for_students/by/tomorrow_8am': {
-    tini: '2017-0-06'
-  }
-
+// drop db, create seed users, import test data
+export const seed = function() {
+  return Users.sync({ force: true }) // drops the table if it exists
+    .then(function() {
+      USERS.forEach((key) => {
+        log.info('create user', key)
+        Users.create({ username: key })
+      })
+    })
+    .then(() => {
+      Promises.sync({ force: true }).then(() => importJson())
+    })
+    .catch((err) => console.log('import error', err))
 }

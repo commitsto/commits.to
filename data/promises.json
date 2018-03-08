@@ -9,6 +9,10 @@
     "xfin": 1,
     "bmid": "yes"
   },
+  "/File_the_TPS_report/by/noon_mon": {
+    "slug": "File_the_TPS_report",
+    "user": "alice"
+  },
   "/do_the_thing/by/saturday": {
     "user": "bob",
     "slug": "do_the_thing",
@@ -18,5 +22,43 @@
     "tfin": "",
     "xfin": 0,
     "bmid": "no"
+  },
+  "/end_vacation_photos/by/saturday": {
+    "slug": "end_vacation_photos",
+    "user": "bob"
+  },
+  "/all_the_dentist/by/12am": {
+    "slug": "all_the_dentist",
+    "user": "bob"
+  },
+  "/uild-out-a-promise-completion-interface/by/next-week": {
+    "slug": "uild-out-a-promise-completion-interface",
+    "tini": "2017-1-13",
+    "user": "chris"
+  },
+  "/finish-the-datepicker-feature/by/tomorrow": {
+    "slug": "finish-the-datepicker-feature",
+    "tini": "2017-1-28",
+    "user": "chris"
+  },
+  "/finish-the-latest-pr/by/tonight": {
+    "slug": "finish-the-latest-pr",
+    "tini": "2017-1-02",
+    "user": "chris"
+  },
+  "/find_a_rep_for_dining_vendors": {
+    "slug": "find_a_rep_for_dining_vendors",
+    "tini": "2017-9-28",
+    "user": "cole"
+  },
+  "/test_trying_out_time/by/2017-09-30_20:42": {
+    "slug": "test_trying_out_time",
+    "tini": "2017-9-30",
+    "user": "caillu"
+  },
+  "/edit_tutorial_for_students/by/tomorrow_8am": {
+    "slug": "edit_tutorial_for_students",
+    "tini": "2017-1-06",
+    "user": "mbork"
   }
 }

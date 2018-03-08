@@ -1,5 +1,4 @@
 import app from './express'
-import { APP_DOMAIN } from '../app/config'
 import log from '../lib/logger'
 import sendMail from '../lib/mail'
 

@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import log from '../lib/logger'
 
 import { Promises, Users } from '../models'

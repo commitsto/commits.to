@@ -33,7 +33,7 @@ app.get('/_s/:user', (req, res) => {
 })
 
 // promise parsing
-app.get('/_s/:user/:promise/:modifier?/:date*?', (req, res, next) => {
+app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   const { ip, originalUrl, user } = req
 
   return parsePromise({

@@ -1,6 +1,8 @@
 import Handlebars from 'handlebars'
 import moment from 'moment-timezone'
+
 import APP_DOMAIN from '../app/config'
+import { promisePath } from './path'
 
 Handlebars.registerHelper('__appDomain', () => {
   return APP_DOMAIN
@@ -18,11 +20,18 @@ Handlebars.registerHelper('verbifyDomain', (domain) => {
 Handlebars.registerHelper('calendarUrl', (promise) => {
   if (!promise) return null
 
-  // FIXME timezone
-  const isoDate = moment.tz(promise.tdue, 'America/New_York').format('YYYYMMDDTHHmmss')
-  const baseUrl = 'https://calendar.google.com/calendar/event'
-  const query = `?action=TEMPLATE&text=${promise.user.username}%20${promise.domain}%20${promise.what}&dates=${isoDate}/${isoDate}&details=${promise.urtext}`
+  const { tdue, user: { username }, urtext, what } = promise
 
-  // console.log('isoDate', date, isoDate)
+  const baseUrl = 'https://calendar.google.com/calendar/event'
+  const promiseUrl = 'http:' + promisePath({ username, urtext })
+  const text = `?action=TEMPLATE&text=${username}`
+  const details = `%20commits%20to%20${what}&details=${promiseUrl}`
+
+  // add Z to make GCal parse the date as UTC
+  const isoDate = moment.utc(tdue).format('YYYYMMDDTHHmmss') + 'Z'
+  const dates = `&dates=${isoDate}/${isoDate}`
+  const query = text + details + dates
+
+  console.log('calendarUrl', tdue, isoDate, query)
   return baseUrl + query
 })

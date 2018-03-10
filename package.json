@@ -7,7 +7,8 @@
     "eslint": "eslint ./",
     "eslint:fix": "eslint ./ --fix",
     "start": "node babel.js",
-    "start:dev": "DEBUG=sequelize* nodemon babel.js"
+    "start:dev": "nodemon babel.js",
+    "start:dev:debug": "DEBUG=sequelize* nodemon babel.js"
   },
   "dependencies": {
     "chrono-node": "^1.3.5",

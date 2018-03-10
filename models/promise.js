@@ -32,7 +32,7 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
   },
 
   tini: { type: Sequelize.DATE, defaultValue: moment().toString() }, // when the was promise was made
-  tdue: { type: Sequelize.DATE, defaultValue: moment().add(7, 'days').toString() }, // whenthe promise is due
+  tdue: { type: Sequelize.DATE, defaultValue: moment().add(7, 'days').toString() }, // when the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 1 }, // fraction fulfilled, default 1 (also {value} for bmndr datapoint)
 

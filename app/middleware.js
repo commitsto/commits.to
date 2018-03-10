@@ -31,7 +31,7 @@ app.param('user', function(req, res, next, id) {
   })
 })
 
-app.param('promise', function(req, res, next, id) {
+app.param('urtext', function(req, res, next, id) {
   log.debug('url check', id)
   // handle invalid requests with a 404
   if (!isValidUrl({ url: req.originalUrl, promise: req.params.promise })) {

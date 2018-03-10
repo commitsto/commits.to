@@ -18,11 +18,15 @@ Handlebars.registerHelper('verbifyDomain', (domain) => {
 Handlebars.registerHelper('calendarUrl', (promise) => {
   if (!promise) return null
 
-  // FIXME timezone
-  const isoDate = moment.tz(promise.tdue, 'America/New_York').format('YYYYMMDDTHHmmss')
   const baseUrl = 'https://calendar.google.com/calendar/event'
-  const query = `?action=TEMPLATE&text=${promise.user.username}%20${promise.domain}%20${promise.what}&dates=${isoDate}/${isoDate}&details=${promise.urtext}`
+  const text = `?action=TEMPLATE&text=${promise.user.username}`
+  const details = `%20commits%20to%20${promise.what}&details=${promise.urtext}`
 
-  // console.log('isoDate', date, isoDate)
+  // add Z to make GCal parse the date as UTC
+  const isoDate = moment.utc(promise.tdue).format('YYYYMMDDTHHmmss') + 'Z'
+  const dates = `&dates=${isoDate}/${isoDate}`
+  const query = text + details + dates
+
+  console.log('calendarUrl', promise.tdue, isoDate, query)
   return baseUrl + query
 })

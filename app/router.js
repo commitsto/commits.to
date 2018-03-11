@@ -78,7 +78,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   })
     .catch((reason) => { // couldn't handle this promise
       log.error('promise finding error', reason)
-      // return res.render('404') // FIXME?
+      return res.render('404') // FIXME?
     })
 })
 

@@ -53,3 +53,12 @@ select {
   border: 1px solid $blue;
   padding: 1rem;
 }
+
+.momentable {
+  opacity: 0;
+  transition: .25s opacity ease-in;
+
+  &--visible {
+    opacity: 1;
+  }
+}

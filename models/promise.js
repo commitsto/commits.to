@@ -1,5 +1,6 @@
-import { sequelize, Sequelize } from '../db/sequelize'
+import moment from 'moment'
 
+import { sequelize, Sequelize } from '../db/sequelize'
 import parseCredit from '../lib/parse/credit'
 
 /* eslint-disable max-len */
@@ -30,8 +31,8 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
     }
   },
 
-  tini: { type: Sequelize.DATE, defaultValue: Sequelize.NOW }, // when the was promise was made
-  tdue: { type: Sequelize.DATE /* , defaultValue: Sequelize.NOW */ }, // unixtime that the promise is due
+  tini: { type: Sequelize.DATE, defaultValue: () => moment().toDate() }, // when the was promise was made
+  tdue: { type: Sequelize.DATE, defaultValue: () =>  moment().add(7, 'days').toDate() }, // when the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 1 }, // fraction fulfilled, default 1 (also {value} for bmndr datapoint)
 
@@ -54,16 +55,9 @@ export const promiseGallerySort = (a, b) => {
     if ( b.tfin == null ) {
       return a.tdue - b.tdue
     }
-    else {
-      return -1
-    }
+    return -1
+  } else if ( b.tfin == null ) {
+    return 1
   }
-  else {
-    if ( b.tfin == null ) {
-      return 1
-    }
-    else {
-      return b.tfin - a.tfin
-    }
-  }
+  return b.tfin - a.tfin
 }

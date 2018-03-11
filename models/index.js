@@ -1,7 +1,10 @@
+import { sequelize } from '../db/sequelize'
 import Promises from './promise'
 import Users from './user'
 
-Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
-Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
+sequelize.sync().then(function() {
+  Users.hasMany(Promises, { foreignKey: 'userId', targetKey: 'username' })
+  Promises.belongsTo(Users, { foreignKey: 'userId', source: 'username' })
+})
 
 export { Promises, Users }

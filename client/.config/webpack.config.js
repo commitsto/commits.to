@@ -13,6 +13,7 @@ module.exports = {
     hot: true,
     port: 5500,
   },
+  devtool: 'inline-source-map',
   entry: {
     app: './src/index.js',
   },
@@ -25,15 +26,6 @@ module.exports = {
         use: {
           loader: 'babel-loader',
         },
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: { minimize: true },
-          },
-        ],
       },
       {
         test: /\.scss$/,
@@ -64,6 +56,13 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, '../src/templates/index.html'),
       filename: './index.html',
+      title: 'commits.to | the i-will system',
     }),
   ],
+  // TODO
+  // resolve: {
+  //   alias: {
+  //
+  //   }
+  // },
 }

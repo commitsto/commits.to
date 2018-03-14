@@ -1,8 +1,10 @@
-.config/
+dist/
+build/
 node_modules/
 .env
 .viminfo
 .nyc_output/
+.DS_Store
 
 # css is compiled from scss in /styles
 public/main.css

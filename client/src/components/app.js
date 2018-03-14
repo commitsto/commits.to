@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { hot } from 'react-hot-loader'
 
-import '../styles/app.scss'
+import '../styles/main.scss'
 
 const App = () => {
   return (

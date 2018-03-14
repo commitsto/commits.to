@@ -5,11 +5,6 @@ import useragent from 'express-useragent'
 
 import { PORT } from './config'
 import log from '../lib/logger'
-import '../helpers/calculate'
-import '../helpers/colors'
-import '../helpers/format'
-import '../helpers/path'
-import '../helpers/utils'
 
 const app = express()
 
@@ -25,15 +20,11 @@ app.use(sassMiddleware({
 
 app.enable('trust proxy')
 
-app.use(express.static('styles'))
 app.use(express.static('public'))
-
-app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }))
-app.set('view engine', 'handlebars')
 
 app.use(express.json())
 app.use(express.urlencoded({
-  extended: false
+  extended: false,
 }))
 
 app.listen(PORT, () => {

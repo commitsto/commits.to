@@ -8,6 +8,7 @@ const App = () => {
   return (
     <main>
       <h1>commits.to!</h1>
+      <p>the iwill system</p>
     </main>
   )
 }

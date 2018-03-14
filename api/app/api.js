@@ -3,35 +3,70 @@ import _ from 'lodash'
 
 import app from './express'
 import log from '../lib/logger'
+import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
 
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
-import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
-import parseCredit from '../lib/parse/credit'
 
+import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models/'
+
+import isNewPromise from '../lib/calculate'
+import parseCredit, { calculateReliability } from '../lib/parse/credit'
+import { promiseGallerySort } from '../models/promise'
 
 const userQuery = (user) => ({
   model: Users,
   where: { username: user }
 })
 
+// Endpoints
 
-// Global endpoints
 
-app.get('/users/create/:username', (req, res) => {
-  const { username } = req.params
+// GET Promises
 
-  if (username) {
-    Users.create({ username })
-      .then(() => {
-        log.info('user created', username)
-        res.redirect(`//${username}.${APP_DOMAIN}`)
-      })
-  } else {
-    res.redirect('/')
-  }
+app.get(['/promises/incomplete'], (req, res) => {
+  Promises.findAll({
+    where: {
+      tfin: null,
+      void: {
+        [Sequelize.Op.not]: true
+      },
+    }, // only show uncompleted
+    // limit: 30
+    include: [{
+      model: Users
+    }],
+    order: Sequelize.literal('tini DESC'),
+  }).then(function(promises) {
+    log.debug('home promises', promises.length)
+
+    res.json({ promises })
+  })
 })
+
+// user promises list
+// app.get('/_s/:user', (req, res) => {
+//   log.debug('user promises', req.params.user)
+//
+//   req.user.getValidPromises().then(promises => {
+//     const reliability = calculateReliability(promises)
+//
+//     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
+//
+//     req.user.update({ score: reliability })
+//
+//     promises.sort(promiseGallerySort)
+//
+//     res.json({
+//       promises,
+//       user: req.user,
+//       reliability
+//     })
+//   })
+// })
+
+// GET User Promises
 
 app.get('/users/:user/promises', (req, res) => {
   req.user.getValidPromises({ order: [['tini']] }).then(promises => {
@@ -44,11 +79,58 @@ app.get('/users/:user/promises', (req, res) => {
   })
 })
 
+// GET Promise
 
-// User-scoped actions
+app.get('/_s/:user/:urtext(*)', (req, res) => {
+  log.debug('show promise', req.promise.dataValues)
+  res.json({
+    promise: req.promise,
+    user: req.user,
+    isNewPromise: isNewPromise({ promise: req.promise }),
+  })
+
+  // update click after route has rendered
+  res.on('finish', () => {
+    req.promise.increment(['clix'], { by: 1 }).then(prom => {
+      log.debug('clix incremented', prom.dataValues)
+    })
+  })
+})
+
+
+// Actions
 
 // TODO implement a /create POST endpoint
 // app.post('/promises/create/', (req, resp) => {})
+
+app.post('/users/create/', (req, resp) => {
+  const { body: { username } } = req
+  if (username) {
+    Users.create({ username })
+      .then(() => {
+        log.info('user created', username)
+        res.redirect(`//${username}.${APP_DOMAIN}`)
+      })
+  } else {
+    res.redirect('/')
+  }
+})
+
+// DELETE Promise
+
+// FIXME make these REST-ful (and consistent)
+app.delete('/promises/:id', (req, resp) => {
+  Promises.destroy({
+    where: {
+      id: req.params.id
+    },
+  }).then(function(deletedRows) {
+    log.info('promise removed', req.body, deletedRows)
+    resp.send(200)
+  })
+})
+
+// POST Edit Promise
 
 app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
@@ -78,6 +160,8 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   })
 })
 
+// POST Complete Promise
+
 app.post('/_s/:user/promises/complete', (req, resp) => {
   Promises.findOne({
     where: {
@@ -90,17 +174,6 @@ app.post('/_s/:user/promises/complete', (req, resp) => {
       cred: parseCredit({ dueDate: promise.tdue })
     })
     log.info('promise completed', req.body, promise.id)
-    resp.send(200)
-  })
-})
-
-app.post('/_s/:user/promises/remove', (req, resp) => {
-  Promises.destroy({
-    where: {
-      id: req.body.id
-    },
-  }).then(function(deletedRows) {
-    log.info('promise removed', req.body, deletedRows)
     resp.send(200)
   })
 })

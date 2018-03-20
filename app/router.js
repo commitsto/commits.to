@@ -59,7 +59,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
           sendMail({
             to: 'dreeves@gmail.com',
             subject: promise.id,
-            text: `${promise.user.username} created promise: ${promise.urtext}`,
+            text: `New promise created by: ${user.username}: ${promise.urtext}`,
           })
         }
         log[toLog.level](`promise ${toLog.state}`, promise.dataValues)

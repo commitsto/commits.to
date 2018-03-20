@@ -19,5 +19,6 @@ export const DATABASE_URL = env.DATABASE_URL
 
 export const POSTMARK_KEY = env.POSTMARK_KEY
 export const MAIL_FROM = env.MAIL_FROM
+export const MAILGUN_KEY = env.MAILGUN_KEY
 
 export default (APP_DOMAIN || 'commits.to') // default domain

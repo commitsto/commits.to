@@ -17,6 +17,7 @@
     "express-subdomain-handler": "^0.1.0",
     "ipapi.co": "^0.2.3",
     "lodash": "^4.17.5",
+    "mailgun-js": "^0.16.0",
     "moment": "^2.21.0",
     "moment-timezone": "^0.5.14",
     "mysql": "^2.15.0",

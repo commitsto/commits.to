@@ -57,9 +57,9 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
           toLog = { level: 'info', state: 'created' }
           // send @dreev an email
           sendMail({
-            To: 'dreeves@gmail.com',
-            Subject: 'PROMISE',
-            TextBody: promise.id
+            to: 'dreeves@gmail.com',
+            subject: promise.id,
+            text: `${promise.user.username} created promise: ${promise.urtext}`,
           })
         }
         log[toLog.level](`promise ${toLog.state}`, promise.dataValues)

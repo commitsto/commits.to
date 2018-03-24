@@ -41,9 +41,9 @@ export const importJson = function() {
       })
         .then((u) => {
           const p = u && u.createPromise(parsedPromise)
-          log.info('creating imported promise for', u.username, parsedPromise, p)
+          log.info('creating imported promise:', u.username, parsedPromise, p)
         })
-        .catch((err) => console.log('import error', err))
+        .catch((err) => console.error('import error', err))
     })
   })
 }
@@ -60,5 +60,5 @@ export const seed = function() {
     .then(() => {
       Promises.sync({ force: true }).then(() => importJson())
     })
-    .catch((err) => console.log('import error', err))
+    .catch((err) => console.error('import error', err))
 }

@@ -7,7 +7,7 @@ import { promiseGallerySort } from '../models/promise'
 import { Promises, Users } from '../models'
 
 import { isNewPromise } from '../helpers/calculate'
-import parsePromise from '../lib/parse/promise'
+import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
 
 // user promises list
@@ -33,48 +33,52 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing
 app.get('/_s/:user/:urtext(*)', (req, res, next) => {
-  const { ip, originalUrl, user } = req
+  const { ip, originalUrl: urtext, user: { username } = {} } = req
 
-  return parsePromise({
-    username: user.username,
-    urtext: originalUrl,
-    ip: ip
-  }).then(parsedPromise => {
-    req.parsedPromise = parsedPromise // add to the request object
+  let parsedPromise = parsePromise({ username, urtext })
 
-    log.debug('promise middleware', originalUrl, ip, parsedPromise.id)
+  return Promises.find({
+    where: {
+      id: parsedPromise.id
+    },
+  }).then(async(foundPromise) => {
+    let toLog = { level: 'debug', state: 'exists' }
 
-    Promises.findOrCreate({
-      where: {
-        id: parsedPromise.id
-      },
-      defaults: parsedPromise
-    })
-      .spread((promise, created) => {
-        let toLog = { level: 'debug', state: 'exists' }
+    if (!foundPromise) {
+      parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
+        .catch((reason) => { // unparsable promise
+          log.error('promise parsing error', reason)
+          return res.render('404') // FIXME?
+        })
 
-        if (created) {
-          toLog = { level: 'info', state: 'created' }
-          // send @dreev an email
-          sendMail({
-            to: 'dreeves@gmail.com',
-            subject: promise.id,
-            text: `New promise created by: ${user.username}: ${promise.urtext}`,
+      if (parsedPromise) {
+        foundPromise = await Promises.create({ ...parsedPromise })
+          .catch((reason) => { // creating promise failed
+            log.error('promise creation error', reason)
+            return res.render('404') // FIXME?
           })
-        }
-        log[toLog.level](`promise ${toLog.state}`, promise.dataValues)
+        toLog = { level: 'info', state: 'created' }
+        // send @dreev an email
+        sendMail({
+          to: 'dreeves@gmail.com',
+          subject: foundPromise.id,
+          text: `New promise created by: ${username}: ${foundPromise.urtext}`,
+        })
+      }
+    }
 
-        // do our own JOIN
-        req.promise = promise
-        req.promise.user = req.user
-        req.promise.setUser(req.user)
+    log[toLog.level](`promise ${toLog.state}`, foundPromise.dataValues)
+    req.parsedPromise = parsedPromise // add to the request object
+    // do our own JOIN
+    req.promise = foundPromise
+    req.promise.user = req.user
+    req.promise.setUser(req.user)
 
-        return next()
-      })
+    return next()
   })
-    .catch((reason) => { // unparsable promise
-      log.error('promise parsing error', reason)
-      return res.redirect('/')
+    .catch((reason) => { // couldn't handle this promise
+      log.error('promise finding error', reason)
+      // return res.render('404') // FIXME?
     })
 })
 

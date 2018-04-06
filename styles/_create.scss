@@ -85,6 +85,16 @@
       }
     }
 
+    .text-input {
+      &.invalid {
+        border-color: $red;
+        color: $red;
+        &:focus {
+          outline-color: $red-border;
+        }
+      }
+    }
+
     .time-input {
       position: absolute;
       right: 1em;

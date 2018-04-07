@@ -15,6 +15,7 @@
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "express-subdomain-handler": "^0.1.0",
+    "express-useragent": "^1.0.12",
     "ipapi.co": "^0.2.3",
     "lodash": "^4.17.5",
     "mailgun-js": "^0.16.0",

@@ -1,6 +1,7 @@
 import express from 'express'
 import expressHandlebars from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
+import useragent from 'express-useragent'
 
 import { PORT } from './config'
 import log from '../lib/logger'
@@ -11,6 +12,8 @@ import '../helpers/path'
 import '../helpers/utils'
 
 const app = express()
+
+app.use(useragent.express())
 
 app.use(sassMiddleware({
   src: 'styles',

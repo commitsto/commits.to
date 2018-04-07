@@ -4,11 +4,7 @@ import Handlebars from 'handlebars'
 
 Handlebars.registerHelper('prettyDate', function(date) {
   if (!date) return ''
-
-  const pDate = moment
-    .tz(date, 'America/New_York')
-    .format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)') // ('MMMM Do YYYY, h:mm:ss a')
-
+  const pDate = moment(date).format('YYYY-MM-DD HH:mm:ss ddd (UTCZZ)')
   // console.log('prettyDate', date, pDate)
   return pDate
 })

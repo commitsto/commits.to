@@ -124,6 +124,6 @@ app.get(['/?'], (req, res) => {
 
 // placeholder
 app.get('/sign-up', (req, res) => {
-  log.debug('render sign up')
+  log.info('render sign up')
   res.render('signup')
 })

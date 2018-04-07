@@ -1,8 +1,8 @@
+import _ from 'lodash'
+
 import app from './express'
 import log from '../lib/logger'
 import sendMail from '../lib/mail'
-
-import _ from 'lodash'
 
 import { Sequelize } from '../db/sequelize'
 import { promiseGallerySort } from '../models/promise'
@@ -132,4 +132,11 @@ app.get(['/?'], (req, res) => {
 app.get('/sign-up', (req, res) => {
   log.info('render sign up')
   res.render('signup')
+})
+
+
+// catch-all
+app.get('*', (req, res) => {
+  log.info('render 404')
+  res.render('404')
 })

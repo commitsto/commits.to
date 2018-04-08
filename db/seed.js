@@ -32,7 +32,7 @@ export const importJson = function() {
       const { user: username, ...promise } = data[key]
       const parsedPromise = parsePromise({ promise, username, urtext: key })
 
-      log.info('importing promise', key, data[key], parsedPromise)
+      log.debug('importing promise', key, data[key], parsedPromise)
 
       Users.findOne({
         where: {
@@ -41,7 +41,7 @@ export const importJson = function() {
       })
         .then((u) => {
           const p = u && u.createPromise(parsedPromise)
-          log.info('creating imported promise:', u.username, parsedPromise, p)
+          log.debug('creating imported promise:', u.username, parsedPromise, p)
         })
         .catch((err) => console.error('import error', err))
     })
@@ -53,7 +53,7 @@ export const seed = function() {
   return Users.sync({ force: true }) // drops the table if it exists
     .then(function() {
       USERS.forEach((key) => {
-        log.info('create user', key)
+        log.debug('create user', key)
         Users.create({ username: key })
       })
     })

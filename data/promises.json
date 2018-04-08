@@ -23,16 +23,16 @@
     "xfin": 0,
     "bmid": "no"
   },
-  "/end_vacation_photos/by/saturday": {
-    "slug": "end_vacation_photos",
+  "/send_vacation_photos/by/saturday": {
+    "slug": "send_vacation_photos",
     "user": "bob"
   },
-  "/all_the_dentist/by/12am": {
-    "slug": "all_the_dentist",
+  "/call_the_dentist/by/12am": {
+    "slug": "call_the_dentist",
     "user": "bob"
   },
-  "/uild-out-a-promise-completion-interface/by/next-week": {
-    "slug": "uild-out-a-promise-completion-interface",
+  "/build-out-a-promise-completion-interface/by/next-week": {
+    "slug": "build-out-a-promise-completion-interface",
     "tini": "2017-1-13",
     "user": "chris"
   },

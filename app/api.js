@@ -25,6 +25,7 @@ app.get('/users/create/:username', (req, res) => {
   if (username) {
     Users.create({ username })
       .then(() => {
+        log.info('user created', username)
         res.redirect(`//${username}.${APP_DOMAIN}`)
       })
   } else {
@@ -55,7 +56,7 @@ app.post('/_s/:user/promises/edit', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      log.debug('promise updated', req.body)
+      log.info('promise updated', req.body)
 
       if (promise) {
         res.redirect(`/${prom.urtext}`)

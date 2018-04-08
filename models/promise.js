@@ -38,6 +38,10 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
 
   clix: { type: Sequelize.INTEGER, defaultValue: 1 }, // number of clicks a promise has gotten
   note: { type: Sequelize.STRING }, // optional additional notes or context for the promise
+
+  ip: { type: Sequelize.STRING, defaultValue: null }, //
+  timezone: { type: Sequelize.STRING }, //
+  useragent: { type: Sequelize.JSON }, //
 }, {
   indexes: [
     {

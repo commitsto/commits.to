@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import app from './express'
 import log from '../lib/logger'
 import sendMail from '../lib/mail'
@@ -36,12 +38,14 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
 
   let parsedPromise = parsePromise({ username, urtext })
+  let foundPromise = undefined
 
   return Promises.find({
     where: {
       id: parsedPromise.id
     },
-  }).then(async(foundPromise) => {
+  }).then(async(p) => {
+    foundPromise = p
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
@@ -52,7 +56,9 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
         })
 
       if (parsedPromise) {
-        foundPromise = await Promises.create({ ...parsedPromise })
+        const useragent = JSON.stringify(_.pickBy(req.useragent))
+        foundPromise = await Promises
+          .create({ ...parsedPromise, ip, useragent })
           .catch((reason) => { // creating promise failed
             log.error('promise creation error', reason)
             return res.render('404') // FIXME?
@@ -76,7 +82,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
 
     return next()
   })
-    .catch((reason) => { // couldn't handle this promise
+    .catch((...reason) => { // couldn't handle this promise
       log.error('promise finding error', reason)
       return res.render('404') // FIXME?
     })
@@ -124,6 +130,13 @@ app.get(['/?'], (req, res) => {
 
 // placeholder
 app.get('/sign-up', (req, res) => {
-  log.debug('render sign up')
+  log.info('render sign up')
   res.render('signup')
+})
+
+
+// catch-all
+app.get('*', (req, res) => {
+  log.info('render 404')
+  res.render('404')
 })

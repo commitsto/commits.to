@@ -27,7 +27,7 @@ fieldset {
   padding: 0;
 }
 
-input, select {
+input, select, textarea {
   background: none;
   border: 1px dotted $dark-blue;
   border-radius: $input-border-radius;

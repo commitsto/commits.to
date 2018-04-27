@@ -102,7 +102,6 @@ and you should be able to do everything you can do at the production version run
 
 Merges to the `master` branch will be automatically deployed to our Heroku staging tier at
 `http://commitsto.review`
-(UPDATE: This staging server is not up at the moment. We're not sure how much Heroku charges for these things.)
 
 
 #### Pull Request Review App

@@ -1,4 +1,5 @@
 import subdomainHandler from 'express-subdomain-handler'
+import _ from 'lodash'
 
 import app from './express'
 import { APP_DOMAIN } from '../app/config'
@@ -32,9 +33,11 @@ app.param('user', function(req, res, next, id) {
 })
 
 app.param('urtext', function(req, res, next, id) {
+  const { originalUrl: url, params: { promise }, useragent } = req
   log.debug('url check', id)
   // handle invalid requests with a 404
-  if (!isValidUrl({ url: req.originalUrl, promise: req.params.promise })) {
+  if (!isValidUrl({ url, promise })) {
+    log.info('invalid url', url, _.pickBy(useragent))
     return res.render('404')
   }
   return next()

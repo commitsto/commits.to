@@ -13,7 +13,7 @@
     </h2>
     <div class="promise-slug">
       <a href="{{promisePath promise}}">
-        {{promise.slug}}
+        {{promise.urtext}}
       </a>
     </div>
   </div>
@@ -39,7 +39,7 @@
 
       {{#if promise.note}}
         <small>
-          ({{promise.note}})
+          {{promise.note}}
         </small>
       {{/if}}
     </a>
@@ -50,13 +50,13 @@
       {{#if promise.tfin}}
         <span class="promise-bar-date" style="opacity:.75">
           <div class="momentable" data-date="{{promise.tfin}}">
-            Completed 
+            Completed
             <span><noscript>{{prettyDate promise.tfin}}</noscript></span>
           </div>
         </span>
       {{else}}
         {{#if user}}
-          <a class="promise-bar-link" href="#" onclick="completePromise('{{user.username}}', '{{promise.id}}')">
+          <a class="promise-bar-link" href="#" onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
             Mark {{completeCredit promise.credit}} Complete
           </a>
         {{/if}}

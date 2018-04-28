@@ -7,13 +7,13 @@
 
   <form action="/promises/edit" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
     <div class="form-group-wrapper">
-      <label for="what">What</label>
+      <label for="what">Title</label>
       <input name="what" type="text" value="{{promise.what}}">
     </div>
 
     <div class="form-group-wrapper">
-      <label for="note">Note</label>
-      <input name="note" type="text" value="{{promise.note}}">
+      <label for="note">Details</label>
+      <textarea name="note" type="text">{{promise.note}}</textarea>
     </div>
 
     <div class="form-group-wrapper">
@@ -51,7 +51,7 @@
 </div>
 
 <div class="delete-promise">
-  <a class="delete-promise-button" href="#" onclick="deletePromise('{{user.username}}', '{{promise.id}}')">
+  <a class="delete-promise-button" href="#" onclick='deletePromise("{{user.username}}", "{{promise.id}}")'>
     DELETE
   </a>
 </div>

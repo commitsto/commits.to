@@ -78,7 +78,7 @@ app.post('/_s/:user/promises/complete', (req, resp) => {
       tfin: moment(), // FIXME this should be handled consistently,
       cred: parseCredit({ dueDate: promise.tdue })
     })
-    log.info('promise completed', req.body, promise.dataValues)
+    log.info('promise completed', req.body, promise.id)
     resp.send(200)
   })
 })

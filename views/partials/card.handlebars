@@ -56,7 +56,7 @@
         </span>
       {{else}}
         {{#if user}}
-          <a class="promise-bar-link" href="#" onclick="completePromise('{{user.username}}', '{{promise.id}}')">
+          <a class="promise-bar-link" href="#" onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
             Mark {{completeCredit promise.credit}} Complete
           </a>
         {{/if}}

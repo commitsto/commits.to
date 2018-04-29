@@ -4,8 +4,12 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
+const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
+const templatePath = path.resolve(__dirname, '../src/templates/index.html')
 const contentPath = path.resolve(__dirname, '../build')
+const tsconfigPath = path.resolve(__dirname, 'tsconfig.json')
+const tslintPath = path.resolve(__dirname, 'tslint.json')
 
 module.exports = {
   devServer: {
@@ -15,13 +19,24 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   entry: {
-    app: './src/index.js',
+    app: './src/index',
   },
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'ts-loader',
+          options: {
+            configFile: tsconfigPath,
+            transpileOnly: true,
+          },
+        }],
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -50,19 +65,25 @@ module.exports = {
     path: contentPath,
   },
   plugins: [
+    new ForkTsCheckerPlugin({
+      checkSyntacticErrors: true,
+      tsconfig: tsconfigPath,
+      tslint: tslintPath,
+      excludeWarnings: true,
+    }),
     new DashboardPlugin(),
     new CleanWebpackPlugin(['build']),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, '../src/templates/index.html'),
+      template: templatePath,
       filename: './index.html',
       title: 'commits.to | the i-will system',
     }),
   ],
-  // TODO
-  // resolve: {
-  //   alias: {
-  //
-  //   }
-  // },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+    // alias: {
+    // TODO
+    // }
+  },
 }

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es2015",
+    "module": "es2015",
+    "sourceMap": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "../src/**/*"
+  ]
+}

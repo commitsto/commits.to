@@ -36,7 +36,8 @@ app.get('/_s/:user', (req, res) => {
 // promise parsing
 app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
-  const isBot = _.get(req, 'useragent.isBot', false)
+  const isAuthoritative = _.get(req, 'useragent.isAuthoritative', false)
+  const isBot = isAuthoritative && _.get(req, 'useragent.isBot', false)
 
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined

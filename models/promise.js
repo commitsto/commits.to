@@ -37,7 +37,7 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
   xfin: { type: Sequelize.DOUBLE, defaultValue: 1 }, // fraction fulfilled, default 1 (also {value} for bmndr datapoint)
 
   clix: { type: Sequelize.INTEGER, defaultValue: 1 }, // number of clicks a promise has gotten
-  note: { type: Sequelize.STRING }, // optional additional notes or context for the promise
+  note: { type: Sequelize.TEXT }, // optional additional notes or context for the promise
 
   ip: { type: Sequelize.STRING, defaultValue: null }, //
   timezone: { type: Sequelize.STRING }, //

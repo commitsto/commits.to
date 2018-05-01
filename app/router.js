@@ -36,6 +36,8 @@ app.get('/_s/:user', (req, res) => {
 // promise parsing
 app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
+  const isAuthoritative = _.get(req, 'useragent.isAuthoritative', false)
+  const isBot = isAuthoritative && _.get(req, 'useragent.isBot', false)
 
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
@@ -49,6 +51,11 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
+      if (isBot && isBot !== curl) { // allow @philip to create promises
+        log.error('bot creation attempt', username, urtext, isBot)
+        return res.render('404') // FIXME?
+      }
+
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
         .catch((reason) => { // unparsable promise
           log.error('promise parsing error', reason)

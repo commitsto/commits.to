@@ -51,10 +51,10 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
-       if(isBot !== curl) { // don't prevent @philip from creating a promise
-         log.error('bot creation attempt', username, urtext, isBot)
-         return res.render('404') // FIXME?
-       }
+      if (isBot && isBot !== curl) { // allow @philip to create promises
+        log.error('bot creation attempt', username, urtext, isBot)
+        return res.render('404') // FIXME?
+      }
 
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
         .catch((reason) => { // unparsable promise

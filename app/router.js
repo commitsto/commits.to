@@ -35,7 +35,8 @@ app.get('/_s/:user', (req, res) => {
 
 // promise parsing
 app.get('/_s/:user/:urtext(*)', (req, res, next) => {
-  const { ip, originalUrl: urtext, user: { username } = {}, useragent } = req
+  const { ip, originalUrl: urtext, user: { username } = {} } = req
+  const isBot = _.get(req, 'useragent.isBot', false)
 
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
@@ -49,8 +50,8 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
-       if(useragent.isBot) {
-         log.error('bot creation attempt', username, urtext, useragent.isBot)
+       if(isBot !== curl) { // don't prevent @philip from creating a promise
+         log.error('bot creation attempt', username, urtext, isBot)
          return res.render('404') // FIXME?
        }
 

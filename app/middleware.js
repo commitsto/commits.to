@@ -38,7 +38,7 @@ app.param('urtext', function(req, res, next, id) {
   // handle invalid requests with a 404
   if (!isValidUrl({ url, promise })) {
     log.info('invalid url', url, _.pickBy(useragent))
-    return res.render('404')
+    return res.status(404).render('404')
   }
   return next()
 })

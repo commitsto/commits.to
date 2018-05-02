@@ -51,7 +51,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
-      if (isBot && isBot !== curl) { // allow @philip to create promises
+      if (isBot && isBot !== 'curl') { // allow @philip to create promises
         log.error('bot creation attempt', username, urtext, isBot)
         return res.render('404') // FIXME?
       }

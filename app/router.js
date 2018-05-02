@@ -53,7 +53,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     if (!foundPromise) {
       if (isBot && isBot !== 'curl') { // allow @philip to create promises
         log.error('bot creation attempt', username, urtext, isBot)
-        return res.render('404') // FIXME?
+        return res.status(404).render('404')
       }
 
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })

@@ -98,12 +98,7 @@ Just surf to
 and you should be able to do everything you can do at the production version running at
 [commits.to](http://commits.to).
 
-## Deployment
+## Staging
 
-Merges to the `master` branch will be automatically deployed to our Heroku staging tier at
+Pushes to the `develop` branch will be automatically deployed to our Heroku staging tier at
 `http://commitsto.review`
-
-
-#### Pull Request Review App
-
-Heroku will create a review app for a new pull request, available at `http://commitsto-dev.review`

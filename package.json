@@ -3,6 +3,9 @@
   "version": "0.9.0",
   "description": "Commitment tracker",
   "main": "app/express.js",
+  "engines": {
+    "node": "8.11.1"
+  },
   "scripts": {
     "eslint": "eslint ./",
     "eslint:fix": "eslint ./ --fix",

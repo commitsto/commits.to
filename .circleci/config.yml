@@ -5,6 +5,7 @@ jobs:
       - image: commitsto/express
     environment:
       CODECOV_TOKEN: 0ee7c721-5f5c-48e3-985d-8f2bd8f30d7f
+      CC_TEST_REPORTER_ID: 2cae1126a494f974f522d3e593770358bbe46e34ac57b12b6aa46a85b410b844
     working_directory: ~/commitsto
     steps:
       - checkout
@@ -19,3 +20,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: npm test
       - run: npm run test:coverage
+      - run: npx codecov
+      - run:
+          name: CodeClimate
+          command: |
+            cc-test-reporter format-coverage --input-type=lcov coverage.lcov
+            cc-test-reporter upload-coverage

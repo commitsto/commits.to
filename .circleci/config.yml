@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: commitsto/express
+    environment:
+      CODECOV_TOKEN: 0ee7c721-5f5c-48e3-985d-8f2bd8f30d7f
     working_directory: ~/commitsto
     steps:
       - checkout

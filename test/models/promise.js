@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { promiseGallerySort } from '../../models/promise'
 
 describe('promiseGallerySort', () => {
-  let promises = [{
+  const promises = [{
     tfin: 1,
   }, {
     tfin: null,
@@ -14,7 +14,7 @@ describe('promiseGallerySort', () => {
   })
 
   context('when both promises are pending', () => {
-    promises = [{
+    const promises = [{
       tfin: null,
       tdue: 10,
     }, {
@@ -28,7 +28,7 @@ describe('promiseGallerySort', () => {
   })
 
   context('when both promises are completed', () => {
-    promises = [{
+    const promises = [{
       tfin: 20,
     }, {
       tfin: 40,

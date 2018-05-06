@@ -1,9 +1,13 @@
-
 import Sequelize from 'sequelize'
 
-let match = process.env.DATABASE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/)
+import { DATABASE_URL } from '../app/config'
+import log from '../lib/logger'
 
-const sequelize = new Sequelize(match[5], match[1], match[2], {
+const postgresRegex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/
+let match = DATABASE_URL.match(postgresRegex)
+let sequelize = {}
+
+sequelize = new Sequelize(match[5], match[1], match[2], {
   dialect: 'postgres',
   protocol: 'postgres',
   port: match[4],
@@ -11,12 +15,14 @@ const sequelize = new Sequelize(match[5], match[1], match[2], {
   logging: true // false
 })
 
-sequelize.authenticate()
-  .then(function() {
-    console.log('Database connection established')
-  })
-  .catch(function(err) {
-    console.log('Database connection error: ', err)
-  })
+if (process.env.NODE_ENV !== 'test') { // will hang on mocha exiting
+  sequelize.authenticate()
+    .then(function() {
+      log.info('Database connection established')
+    })
+    .catch(function(err) {
+      log.error('Database connection error: ', err)
+    })
+}
 
 export { Sequelize, sequelize }

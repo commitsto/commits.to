@@ -2,6 +2,7 @@
   "name": "promises",
   "version": "0.9.0",
   "description": "Commitment tracker",
+  "repository": "commitsto/commits.to",
   "main": "app/express.js",
   "engines": {
     "node": "8.11.1"
@@ -12,7 +13,7 @@
     "start": "node babel.js",
     "start:dev": "nodemon babel.js",
     "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",
-    "test": "echo $NODE_ENV"
+    "test": "NODE_ENV=test nyc mocha test/**/*.js"
   },
   "dependencies": {
     "chrono-node": "^1.3.5",
@@ -37,6 +38,33 @@
     "winston-console-formatter": "^1.0.0-beta.3",
     "winston-papertrail": "^1.0.5"
   },
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.3",
+    "nyc": "^11.7.1",
+    "sinon": "^5.0.4",
+    "sinon-chai": "^3.0.0"
+  },
   "babel": {
     "presets": [
       "es2015-node6",
@@ -50,35 +78,21 @@
       "syntax-async-functions",
       "transform-async-to-generator",
       "transform-regenerator"
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "istanbul"
+        ]
+      }
+    }
+  },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false,
+    "require": [
+      "babel-core/register"
     ]
   },
-  "keywords": [
-    "handlebars",
-    "express",
-    "commits.to",
-    "promises.to"
-  ],
-  "license": "MIT",
-  "repository": "glitch/iwill",
-  "devDependencies": {
-    "babel-plugin-syntax-async-functions": "^6.13.0",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-plugin-transform-function-bind": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-regenerator": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015-node6": "^0.4.0",
-    "babel-preset-stage-1": "^6.24.1",
-    "babel-register": "^6.26.0",
-    "babel-eslint": "^8.2.3",
-    "dotenv": "^5.0.1",
-    "eslint": "^4.19.1",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-node": "^6.0.1",
-    "eslint-plugin-promise": "^3.7.0",
-    "eslint-plugin-standard": "^3.1.0",
-    "nodemon": "^1.17.3"
-  }
+  "license": "MIT"
 }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "React front-end for commits.to",
   "author": "Chris Butler <chris@platformthirteen.com>",
+  "repository": "commitsto/commits.to",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {

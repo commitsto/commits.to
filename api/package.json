@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "Backend API for commits.to",
   "repository": "commitsto/commits.to",
-  "license": "MIT",
   "engines": {
     "node": "8.11.1"
   },
@@ -13,7 +12,7 @@
     "start:dev": "nodemon babel.js",
     "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",
     "test": "NODE_ENV=test nyc mocha test/**/*.js",
-    "test:coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "report:coverage": "nyc report --reporter=text-lcov > coverage.lcov"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -91,5 +90,6 @@
     "require": [
       "babel-core/register"
     ]
-  }
+  },
+  "license": "MIT"
 }

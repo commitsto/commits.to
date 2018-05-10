@@ -8,18 +8,47 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
-      - run: npm install
+          - commitsto-dependencies-{{ checksum "package-lock.json" }}
+          - commitsto-dependencies-
+      - run:
+          command: npm install
+          working_directory: ~/commitsto/api
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
-      - run: npm run test:coverage
-      - run: npx codecov
+            - api/node_modules
+          key: commitsto-dependencies-{{ checksum "package-lock.json" }}
+
+  test-api:
+    docker:
+      - image: commitsto/express
+    working_directory: ~/commitsto
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - commitsto-dependencies-{{ checksum "package-lock.json" }}
+          - commitsto-dependencies-
+      - run:
+          command: npm test
+          working_directory: ~/commitsto/api
+      - run:
+          command: npm run report:coverage
+          working_directory: ~/commitsto/api
+      - run:
+          command: npx codecov
+          working_directory: ~/commitsto/api
       - run:
           name: CodeClimate
           command: |
             cc-test-reporter format-coverage --input-type=lcov coverage.lcov
             cc-test-reporter upload-coverage
+          working_directory: ~/commitsto/api
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test-api:
+          requires:
+            - build

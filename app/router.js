@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 import app from './express'
-import log from '../lib/logger'
+import log, { deSequelize } from '../lib/logger'
 import sendMail from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
@@ -80,7 +80,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
       }
     }
 
-    log[toLog.level](`promise ${toLog.state}`, foundPromise.dataValues)
+    log[toLog.level](`promise ${toLog.state}`, deSequelize(foundPromise))
     req.parsedPromise = parsedPromise // add to the request object
     // do our own JOIN
     req.promise = foundPromise
@@ -97,7 +97,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
 
 // show promise
 app.get('/_s/:user/:urtext(*)', (req, res) => {
-  log.debug('show promise', req.promise.dataValues)
+  log.debug('show promise', deSequelize(req.promise))
   res.render('show', {
     promise: req.promise,
     user: req.user,
@@ -107,7 +107,7 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   // update click after route has rendered
   res.on('finish', () => {
     req.promise.increment(['clix'], { by: 1 }).then(prom => {
-      log.debug('clix incremented', prom.dataValues)
+      log.debug('clix incremented', deSequelize(prom))
     })
   })
 })

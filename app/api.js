@@ -2,7 +2,7 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import app from './express'
-import log from '../lib/logger'
+import log, { deSequelize } from '../lib/logger'
 
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
@@ -44,7 +44,7 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
   const data = _.mapValues(req.body, (val) => valOrNull(val))
 
-  log.info('edit promise', req.params.id, data)
+  log.info('edit promise form data', data)
 
   Promises.find({
     where: {
@@ -52,11 +52,14 @@ app.post('/_s/:user/promises/edit', (req, res) => {
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
+    log.info('promise to be updated', deSequelize(promise))
+    const originalValues = _.values(deSequelize(promise))
     promise.update({
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      log.info('promise updated', req.body)
+      const updatedValues = _.values(deSequelize(prom))
+      log.info('promise updated', _.difference(originalValues, updatedValues))
 
       if (promise) {
         res.redirect(`/${prom.urtext}`)

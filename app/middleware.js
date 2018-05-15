@@ -33,10 +33,10 @@ app.param('user', function(req, res, next, id) {
 })
 
 app.param('urtext', function(req, res, next, id) {
-  const { originalUrl: url, params: { promise }, useragent } = req
+  const { originalUrl: url, useragent } = req
   log.debug('url check', id)
   // handle invalid requests with a 404
-  if (!isValidUrl({ url, promise })) {
+  if (!isValidUrl({ url })) {
     log.info('invalid url', url, _.pickBy(useragent))
     return res.status(404).render('404')
   }

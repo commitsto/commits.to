@@ -90,6 +90,7 @@
     }
   },
   "nyc": {
+    "all": true,
     "sourceMap": false,
     "instrument": false,
     "require": [

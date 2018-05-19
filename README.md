@@ -15,20 +15,40 @@ or you need to do additional steps to get up and running!
 1.1 Install Postgres
 
 For macOS, we recommend `brew install postgresql`.
-(If you're not on macOS, please make a PR with instructions for your OS!)
+
+For Ubuntu you can run `sudo apt install postgresql`.
+
+(If you're not on macOS or Ubuntu, please make a PR with instructions for your OS!)
 
 1.2 Start Postgres  
 
-For macOS, start it running with either `brew services start postgresql`
+For macOS, start it with running either `brew services start postgresql`
 to have it as a background service that will restart if you reboot or
 `pg_ctl -D /usr/local/var/postgres start` to start it just once.
 
-1.3 Run the following to create a user and a database:
+On Ubuntu, start it with the command `sudo service postgresql start`
+to have it run as a background service that will restart if you reboot or
+`sudo -u postgres /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start`
+which runs the script as the automatically created PostgreSQL user account to
+start it just once.
+
+1.3 Run the following to create a user and a database. If prompted for a
+password, use the password `iwill`.
+
+On macOS:
 
 ```sh
 createuser -P iwill
 createdb -O iwill commitsto
 ```
+
+On Ubuntu:
+
+```sh
+sudo -u postgres createuser -P iwill
+sudo -u postgres createdb -O iwill commitsto
+```
+
 
 1.4 Confirm that `postgresql` is running on `localhost:5432`
 
@@ -36,7 +56,8 @@ If you run `pg_isready` you should see `/tmp:5432 - accepting connections`.
 
 #### 2. Install Dependencies
 
-2.1 [Install Node](https://nodejs.org/en/download/) 8.x LTS
+2.1 [Install Node](https://nodejs.org/en/download/) 8.x LTS with the binary
+or installer or by using a [package manager](https://nodejs.org/en/download/package-manager).
 
 2.2 Install Node packages with `npm install`
 

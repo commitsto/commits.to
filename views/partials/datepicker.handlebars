@@ -1,5 +1,7 @@
 <script>
   $(document).ready(function() {
+    var timeMatch = /^((0?[1-9]|1[012])(:[0-5]\d){0,2}(\s?[AP]M))$|^([01]\d|2[0-3])(:[0-5]\d){0,2}$/i
+
     var $inputDate = $('#input_date-{{id}}').pickadate();
     var datePicker = $inputDate.pickadate('picker');
 
@@ -33,10 +35,10 @@
         // timePicker.close();
         console.log('blur')
         const inputDataValue = $('#input_time_text-{{id}}').val();
-        if (inputDataValue.match(/^(1[0-2]|0?[1-9]):([0-5]?[0-9])(\s[AP]M)?$/)) {
+        if (inputDataValue && inputDataValue.trim().match(timeMatch)) {
           console.log('valid',  inputDataValue)
           $inputTextTime.removeClass('invalid');
-          $inputTextTime.attr('data-value', inputDataValue);
+          $inputTextTime.attr('data-value', inputDataValue.toUpperCase());
           setDate();
         } else {
           $inputTextTime.addClass('invalid');

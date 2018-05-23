@@ -31,7 +31,7 @@ describe('parsePromise', () => {
       id: 'testuser/do-the-thing/by/jan-1-2020',
       slug: 'do-the-thing',
       timezone: 'etc/UTC',
-      what: 'Do the thing',
+      what: 'Do the thing by jan 1 2020',
       urtext: 'do-the-thing/by/jan-1-2020',
     }))
 
@@ -46,7 +46,7 @@ describe('parsePromise', () => {
         id: 'testuser/do-the-thing-before-leaving-work-by-1800',
         slug: 'do-the-thing-before-leaving-work',
         timezone: 'etc/UTC',
-        what: 'Do the thing before leaving work',
+        what: 'Do the thing before leaving work by 1800',
         urtext: 'do-the-thing-before-leaving-work-by-1800',
       }))
 

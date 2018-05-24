@@ -49,6 +49,19 @@ Add the following line to `/etc/hosts` with whatever subdomains you want to be a
 127.0.0.1	commits-to.js www.commits-to.js alice.commits-to.js bob.commits-to.js
 ```
 
+You should also add any subdomain you will to use to create test
+commits to the list `USERS` in the file `db/seed.js` , e.g.:
+
+```js
+const USERS = [
+  /* testing */
+  'alice', 'bob', 'carol', 'deb', 'my_new_username',
+]
+```
+
+Make sure to re-seed the database if you make changes here (See instructions in
+step 6).
+
 
 #### 4. Create Environment File
 

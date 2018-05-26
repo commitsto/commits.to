@@ -19,7 +19,7 @@ const USERS = [
   /* weekly beemail */
   'samuel', 'cole', 'jessica', 'steven',
   /* contributors */
-  'chris', 'stephen', 'temujin9',
+  'chris', 'stephen', 'temujin9', 'jordan',
   /* invitees */
   'pierre', 'chelsea', 'forrest',
   'mike',

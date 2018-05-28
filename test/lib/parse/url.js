@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import isValidUrl, { isValidUserAgent } from '../../../lib/parse/url'
+import isValidUrl, { isBotFromUserAgent } from '../../../lib/parse/url'
 
 describe('isValidUrl', () => {
   def('url', () => '/go_for_a_run/by/2:30pm')
@@ -35,7 +35,7 @@ describe('isValidUrl', () => {
   })
 })
 
-describe('isValidUserAgent', () => {
+describe('isBotFromUserAgent', () => {
   def('useragent', () => ({
     useragent: {
       isAuthoritative: true,
@@ -43,10 +43,24 @@ describe('isValidUserAgent', () => {
       browser: 'chrome',
     },
   }))
-  def('isValidAgent', () => isValidUserAgent({ req: $useragent }))
+  def('isBot', () => isBotFromUserAgent({ req: $useragent }))
 
   it('allows any valid useragent that is not recognized as a bot', () => {
-    expect($isValidAgent).to.be.true
+    expect($isBot).to.be.false
+  })
+
+  context('when there is a cURL request', () => {
+    def('useragent', () => ({
+      useragent: {
+        isAuthoritative: true,
+        browser: 'curl',
+        isBot: 'curl',
+      },
+    }))
+
+    it('allows cURL as a valid isBot entry', () => {
+      expect($isBot).to.be.false
+    })
   })
 
   context('when the useragent is recognized as a bot', () => {
@@ -58,7 +72,7 @@ describe('isValidUserAgent', () => {
     }))
 
     it('rejects anything identified as a bot', () => {
-      expect($isValidAgent).to.be.false
+      expect($isBot).to.be.true
     })
   })
 
@@ -71,7 +85,7 @@ describe('isValidUserAgent', () => {
     }))
 
     it('rejects any useragent without a valid browser string', () => {
-      expect($isValidAgent).to.be.false
+      expect($isBot).to.be.true
     })
   })
 })

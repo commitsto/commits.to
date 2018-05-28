@@ -11,7 +11,7 @@ import { Promises, Users } from '../models'
 import { isNewPromise } from '../helpers/calculate'
 import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
-import { isValidUserAgent } from '../lib/parse/url'
+import { isBotFromUserAgent } from '../lib/parse/url'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
@@ -38,7 +38,7 @@ app.get('/_s/:user', (req, res) => {
 app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
 
-  const isBot = isValidUserAgent({ req })
+  const isBot = isBotFromUserAgent({ req })
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
 
@@ -51,7 +51,7 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     let toLog = { level: 'debug', state: 'exists' }
 
     if (!foundPromise) {
-      if (isBot && isBot !== 'curl') { // allow @philip to create promises
+      if (isBot) {
         log.error('bot creation attempt', username, urtext, isBot)
         return res.status(404).render('404')
       }

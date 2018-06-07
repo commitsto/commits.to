@@ -118,7 +118,6 @@ and inserts seed data from the `data/` folder
 Just surf to [commits-to.js:8080](http://commits-to.js:8080) and you should be able to do
 everything you can do at the production version running at [commits.to](http://commits.to).
 
-## Staging
+## Environments
 
-Pushes to the `develop` branch will be automatically deployed to our Heroku staging tier at
-`http://commitsto.review`
+Merges to the `master` branch will be automatically deployed to our Heroku staging tier at `http://commitsto.review`. Merges to the `production` branch are automatically deployed to `http://commits.to`

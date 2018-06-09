@@ -13,6 +13,11 @@ import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
 import { isBotFromUserAgent } from '../lib/parse/url'
 
+const renderErrorPage = ({ message, reason = '', res }) => {
+  log.error(message, reason)
+  return res.status(404).render('404')
+}
+
 // user promises list
 app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
@@ -42,6 +47,10 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
 
+  if (!parsedPromise) {
+    return renderErrorPage({ message: 'unparseable promise', res })
+  }
+
   return Promises.find({
     where: {
       id: parsedPromise.id
@@ -52,27 +61,23 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
 
     if (!foundPromise) {
       if (isBot) {
-        log.error('bot creation attempt', username, urtext, isBot)
-        return res.status(404).render('404')
+        const reason = { username, urtext, isBot }
+        return renderErrorPage({ message: 'bot creation attempt', reason, res })
       }
 
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
-        .catch((reason) => { // unparsable promise
-          log.error('promise parsing error', reason)
-          return res.render('404') // FIXME?
-        })
+        .catch((reason) =>
+          renderErrorPage({ message: 'promise parsing error', reason, res }))
 
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
         foundPromise = await Promises
           .create({ ...parsedPromise, ip, useragent })
-          .catch((reason) => { // creating promise failed
-            log.error('promise creation error', reason)
-            return res.render('404') // FIXME?
-          })
+          .catch((reason) =>
+            renderErrorPage({ message: 'promise creation error', reason, res }))
+
         toLog = { level: 'info', state: 'created' }
-        // send @dreev an email
-        sendMail({
+        sendMail({ // send @dreev an email
           to: 'dreeves@gmail.com',
           subject: foundPromise.id,
           text: `New promise created by: ${username}: ${foundPromise.urtext}`,
@@ -88,11 +93,9 @@ app.get('/_s/:user/:urtext(*)', (req, res, next) => {
     req.promise.setUser(req.user)
 
     return next()
-  })
-    .catch((...reason) => { // couldn't handle this promise
-      log.error('promise finding error', reason)
-      return res.render('404') // FIXME?
-    })
+  }) // couldn't handle this promise
+    .catch((reason) =>
+      renderErrorPage({ message: 'promise finding error', reason, res }))
 })
 
 // show promise

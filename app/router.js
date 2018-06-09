@@ -1,22 +1,11 @@
-import _ from 'lodash'
-
 import app from './express'
 import log, { deSequelize } from '../lib/logger'
-import sendMail from '../lib/mail'
 
 import { Sequelize } from '../db/sequelize'
-import { promiseGallerySort } from '../models/promise'
 import { Promises, Users } from '../models'
-
+import { promiseGallerySort } from '../models/promise'
 import { isNewPromise } from '../helpers/calculate'
-import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { calculateReliability } from '../lib/parse/credit'
-import { isBotFromUserAgent } from '../lib/parse/url'
-
-const renderErrorPage = ({ message, reason = '', res }) => {
-  log.error(message, reason)
-  return res.status(404).render('404')
-}
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
@@ -39,66 +28,7 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
-// promise parsing
-app.get('/_s/:user/:urtext(*)', (req, res, next) => {
-  const { ip, originalUrl: urtext, user: { username } = {} } = req
-
-  const isBot = isBotFromUserAgent({ req })
-  let parsedPromise = parsePromise({ username, urtext })
-  let foundPromise = undefined
-
-  if (!parsedPromise) {
-    return renderErrorPage({ message: 'unparseable promise', res })
-  }
-
-  return Promises.find({
-    where: {
-      id: parsedPromise.id
-    },
-  }).then(async(p) => {
-    foundPromise = p
-    let toLog = { level: 'debug', state: 'exists' }
-
-    if (!foundPromise) {
-      if (isBot) {
-        const reason = { username, urtext, isBot }
-        return renderErrorPage({ message: 'bot creation attempt', reason, res })
-      }
-
-      parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
-        .catch((reason) =>
-          renderErrorPage({ message: 'promise parsing error', reason, res }))
-
-      if (parsedPromise) {
-        const useragent = JSON.stringify(_.pickBy(req.useragent))
-        foundPromise = await Promises
-          .create({ ...parsedPromise, ip, useragent })
-          .catch((reason) =>
-            renderErrorPage({ message: 'promise creation error', reason, res }))
-
-        toLog = { level: 'info', state: 'created' }
-        sendMail({ // send @dreev an email
-          to: 'dreeves@gmail.com',
-          subject: foundPromise.id,
-          text: `New promise created by: ${username}: ${foundPromise.urtext}`,
-        })
-      }
-    }
-
-    log[toLog.level](`promise ${toLog.state}`, deSequelize(foundPromise))
-    req.parsedPromise = parsedPromise // add to the request object
-    // do our own JOIN
-    req.promise = foundPromise
-    req.promise.user = req.user
-    req.promise.setUser(req.user)
-
-    return next()
-  }) // couldn't handle this promise
-    .catch((reason) =>
-      renderErrorPage({ message: 'promise finding error', reason, res }))
-})
-
-// show promise
+// show promise, or create it via middlware
 app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', deSequelize(req.promise))
   res.render('show', {

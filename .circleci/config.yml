@@ -21,5 +21,7 @@ jobs:
       - run:
           name: CodeClimate
           command: |
-            cc-test-reporter format-coverage --input-type=lcov coverage.lcov
+            cc-test-reporter format-coverage --input-type=lcov tmp/test-results/coverage.lcov
             cc-test-reporter upload-coverage
+      - store_test_results:
+          path: tmp/test-results

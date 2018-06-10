@@ -1,4 +1,8 @@
 # Commits.to &mdash; a.k.a. [The I-Will System](https://github.com/beeminder/iwill/)
+[![CircleCI](https://circleci.com/gh/commitsto/commits.to.svg?style=svg)](https://circleci.com/gh/commitsto/commits.to)
+[![codecov](https://codecov.io/gh/commitsto/commits.to/branch/master/graph/badge.svg)](https://codecov.io/gh/commitsto/commits.to)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8e0ffae4691a439960df/maintainability)](https://codeclimate.com/github/commitsto/commits.to/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8e0ffae4691a439960df/test_coverage)](https://codeclimate.com/github/commitsto/commits.to/test_coverage)
 
 Start with the
 [Functional Spec](https://github.com/beeminder/iwill/wiki/)

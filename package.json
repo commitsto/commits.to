@@ -14,6 +14,7 @@
     "start:dev": "nodemon babel.js",
     "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",
     "test": "MOCHA_FILE=tmp/test-results/mocha/results.xml NODE_ENV=test nyc mocha -u bdd-lazy-var/global -R mocha-multi --reporter-options dot=-,mocha-junit-reporter=- test/**/**/*.js",
+    "test:watch": "npm test -- --watch",
     "test:coverage": "nyc report --reporter=text-lcov > tmp/test-results/coverage.lcov"
   },
   "dependencies": {

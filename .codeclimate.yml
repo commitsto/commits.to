@@ -33,14 +33,13 @@ checks:
     config:
       threshold: 4
 plugins:
- eslint:
-  enabled: true
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
 exclude_patterns:
 - "data/"
 - "**/node_modules/"
 - "script/"
-- "**/spec/"
-- "**/test/"
-- "**/tests/"
 - "**/vendor/"
 - "**/*.d.ts"

@@ -13,8 +13,9 @@
     "start": "node babel.js",
     "start:dev": "nodemon babel.js",
     "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",
-    "test": "NODE_ENV=test nyc mocha -u bdd-lazy-var/global test/**/**/*.js",
-    "test:coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    "test": "MOCHA_FILE=tmp/test-results/mocha/results.xml NODE_ENV=test nyc mocha -u bdd-lazy-var/global -R mocha-multi --reporter-options dot=-,mocha-junit-reporter=- test/**/**/*.js",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "nyc report --reporter=text-lcov > tmp/test-results/coverage.lcov"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -63,6 +64,8 @@
     "eslint-plugin-standard": "^3.1.0",
     "given2": "^2.1.5",
     "mocha": "^5.1.1",
+    "mocha-junit-reporter": "^1.17.0",
+    "mocha-multi": "^1.0.1",
     "nodemon": "^1.17.3",
     "nyc": "^11.7.1",
     "sinon": "^5.0.4",

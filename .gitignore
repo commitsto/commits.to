@@ -6,6 +6,7 @@ node_modules/
 .viminfo
 .v8flags*
 .nyc_output/
+tmp/
 
 # css is compiled from scss in /styles
 public/main.css

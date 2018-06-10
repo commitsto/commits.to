@@ -39,6 +39,30 @@ describe('parsePromise', () => {
     })
   })
 
+  context('when the promise text contains a comparator keyword and a military time', () => {
+    def('urtext', () => '/do-the-thing-before-leaving-work-by-1800')
+
+    it('correctly parses the deadline from the promise text', () => {
+      const promise = {
+        id: 'testuser/do-the-thing-before-leaving-work-by-1800',
+        slug: 'do-the-thing-before-leaving-work',
+        timezone: 'etc/UTC',
+        what: 'Do the thing before leaving work',
+        urtext: 'do-the-thing-before-leaving-work-by-1800',
+      }
+      const tdue = moment($parsedPromise.tdue).toISOString()
+      const expectedDate = moment
+        .utc({ hour:18 }) // FIXME
+        .add(0 + (moment.utc().hours() >= 18), 'days') // if past 1800 already
+        .toISOString()
+
+      expect($parsedPromise).to.include(promise)
+      // the due date is 1800 UTC on the current UTC date
+      expect(tdue).to.eq(expectedDate)
+      // expect(tdue.split('T')[1]).to.eq('18:00:00.000Z')
+    })
+  })
+
   context('when the path is just a double-slash (//)', () => {
     def('urtext', () => '//')
 

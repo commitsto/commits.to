@@ -26,11 +26,13 @@ or you need to do additional steps to get up and running!
 
 #### Start Postgres  
 
-For macOS, start it with running either `brew services start postgresql`
+##### macOS
+Start it with running either `brew services start postgresql`
 to have it as a background service that will restart if you reboot or
 `pg_ctl -D /usr/local/var/postgres start` to start it just once.
 
-On Ubuntu, start it with the command `sudo service postgresql start`
+##### Ubuntu
+Start it with the command `sudo service postgresql start`
 to have it run as a background service that will restart if you reboot or
 `sudo -u postgres /usr/lib/postgresql/10/bin/pg_ctl -D /var/lib/postgresql/10/main -l logfile start`
 which runs the script as the automatically created PostgreSQL user account to
@@ -44,14 +46,14 @@ should see `/tmp:5432 - accepting connections`.
 Run the following to create a user and a database. If prompted for a
 password, use the password `iwill`.
 
-On macOS:
+##### macOS
 
 ```sh
 createuser -P iwill
 createdb -O iwill commitsto
 ```
 
-On Ubuntu:
+##### Ubuntu
 
 ```sh
 sudo -u postgres createuser -P iwill
@@ -107,7 +109,7 @@ MAILGUN_FROM=
 
 ### Run The Application
 
-- If you're running the app for the first time, or recently pulled changes, you should run
+- If you are running the app for the first time, or have recently pulled changes, you should run
 `npm install`
 - Start the development server with `npm run start:dev`
 
@@ -120,6 +122,20 @@ Just navigate to [commits-to.js:8080](http://commits-to.js:8080) (the `ENV_DOMAI
 
 Browse (or send a GET request) to `http://commits-to.js:8080/reset` which drops all tables
 and inserts seed data from the `data/` folder
+
+## Testing
+
+Run [Mocha](https://mochajs.org/) tests with `npm test`.
+
+### Writing tests
+
+We're using the [Chai](http://www.chaijs.com/) assertion library and [Sinon](http://sinonjs.org/) for spying/stubbing.
+You can run tests in watch mode to get results nearly instantly on save with `npm run test:watch`
+
+### Structuring tests
+
+The structure and naming inside the `test/` folder should mirror the root structure and file names.
+Writing code with well-contained classes or functions will be the most straightforward to unit test.
 
 ## Deployments
 

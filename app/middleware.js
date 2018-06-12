@@ -70,10 +70,16 @@ app.param('urtext', function(req, res, next) {
     foundPromise = p
     let toLog = { level: 'debug', state: 'exists' }
 
-    if (!foundPromise) {
-      if (isBot) {
+    if (!foundPromise || !foundPromise.urtext) {
+      if (isBot && !foundPromise) { // hasn't been captcha validated
         const reason = { username, urtext, isBot }
-        return renderErrorPage({ message: 'bot creation attempt', reason, res })
+
+        return renderErrorPage({ // FIXME
+          captcha: true,
+          message: 'bot creation attempt',
+          reason,
+          res
+        })
       }
 
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
@@ -83,27 +89,34 @@ app.param('urtext', function(req, res, next) {
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
         foundPromise = await Promises
-          .create({ ...parsedPromise, ip, useragent })
+          .upsert({ ...parsedPromise, ip, useragent })
           .catch((reason) =>
             renderErrorPage({ message: 'promise creation error', reason, res }))
+
 
         toLog = { level: 'info', state: 'created' }
         sendMail({ // send @dreev an email
           to: 'dreeves@gmail.com',
           subject: foundPromise.id,
-          text: `New promise created by: ${username}: ${foundPromise.urtext}`,
+          text: `New promise created by: ${username}: ${foundPromise.id}`,
         })
       }
     }
 
-    log[toLog.level](`promise ${toLog.state}`, deSequelize(foundPromise))
-    req.parsedPromise = parsedPromise // add to the request object
-    // do our own JOIN
-    req.promise = foundPromise
-    req.promise.user = req.user
-    req.promise.setUser(req.user)
+    return Promises.findOne({
+      where: {
+        id: parsedPromise.id,
+      },
+    }).then((promise) => {
+      log[toLog.level](`promise ${toLog.state}`, deSequelize(promise))
+      req.parsedPromise = parsedPromise // add to the request object
+      // do our own JOIN
+      req.promise = promise
+      req.promise.user = req.user
+      req.promise.setUser(req.user)
 
-    return next()
+      return next()
+    })
   }) // couldn't handle this promise
     .catch((reason) =>
       renderErrorPage({ message: 'promise finding error', reason, res }))

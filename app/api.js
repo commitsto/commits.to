@@ -98,6 +98,16 @@ app.post('/_s/:user/promises/remove', (req, resp) => {
 })
 
 
+// captcha
+app.post('/_s/:user/promises/validate', (req, resp) => {
+  Promises.upsert({ id: req.body.id })
+    .then(function(promise) {
+      log.info('promise validated', req.body, promise)
+      resp.send(200)
+    })
+})
+
+
 // Utils
 
 // calculate and store reliability for each user

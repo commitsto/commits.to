@@ -1,0 +1,48 @@
+<script>
+  $(document).ready(function() {
+
+    const parseHost = function() {
+      const host = window.location.hostname.split('.')
+      const hasSubdomain = host[2] && host[0] !== 'www'
+      console.log('parseHost', host, hasSubdomain)
+      return hasSubdomain
+    }
+
+    const apiPath = function({ action, username }) {
+      const hasSubdomain = parseHost()
+      const prefix = !hasSubdomain ? `/_s/${username}` : ''
+      return `${prefix}/promises/${action}`
+    }
+
+    const fetchById = ({ action, id, username }) => fetch(
+      apiPath({ action, username }),
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      }
+    )
+
+    $('.real-button').on('click', function() {
+      const username = '{{username}}'
+      const id = username + '{{urtext}}'
+      fetchById({ action: 'validate', id, username }).then(function(response) {
+        if (response.status === 200) window.location.reload()
+      })
+    })
+  });
+</script>
+
+<main>
+  <h2>
+    Whoops, did you mean to create a promise?
+  </h2>
+  <p>
+    We just want to make sure this is a legitimate request, and not spam, bots, etc.
+  </p>
+  <div>
+    <span class="real-button button">I'm a real person!</span>
+  </div>
+</main>

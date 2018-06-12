@@ -11,9 +11,9 @@ import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { isBotFromUserAgent } from '../lib/parse/url'
 import isValidUrl from '../lib/parse/url'
 
-const renderErrorPage = ({ message, reason = '', res }) => {
+const renderErrorPage = ({ message, reason = '', res, captcha = false }) => {
   log.error(message, reason)
-  return res.status(404).render('404')
+  return res.status(404).render(captcha ? 'captcha' : '404', { ...reason })
 }
 
 app.use(subdomainHandler({
@@ -45,7 +45,7 @@ app.param('urtext', function(req, res, next, param) {
   // handle invalid requests with a 404
   if (!isValidUrl({ url })) {
     log.info('invalid url', url, _.pickBy(useragent))
-    return res.status(404).render('404')
+    return res.status(404).render('captcha') // FIXME
   }
   return next()
 })

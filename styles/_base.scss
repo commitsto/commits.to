@@ -49,6 +49,23 @@ select {
   text-indent: .5rem;
 }
 
+.button {
+  color: $white;
+  padding: .4rem 1rem;
+  font-size: .75rem;
+  border-radius: $element-border-radius;
+  background-color: $dark-gray;
+  border: 1px solid $gray;
+  box-shadow: 2px 2px $black;
+  cursor: pointer;
+  &:hover {
+    background-color: $blue;
+  }
+  &:active {
+    box-shadow: none;
+  }
+}
+
 .blue-border {
   border: 1px solid $blue;
   padding: 1rem;

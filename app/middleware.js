@@ -11,10 +11,15 @@ import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
 import { isBotFromUserAgent } from '../lib/parse/url'
 import isValidUrl from '../lib/parse/url'
 
-const renderErrorPage = ({ message, reason = '', res, captcha = false }) => {
+const pageWithStatus = ({
+  message, reason = {}, res = {}, template, status
+}) => {
   log.error(message, reason)
-  return res.status(404).render(captcha ? 'captcha' : '404', { ...reason })
+  return res.status(status).render(template, { ...reason })
 }
+
+const renderErrorPage = (opts) =>
+  pageWithStatus({ status: 404, template: '404', ...opts })
 
 app.use(subdomainHandler({
   baseUrl: APP_DOMAIN,
@@ -44,8 +49,8 @@ app.param('urtext', function(req, res, next, param) {
   log.debug('url check', param)
   // handle invalid requests with a 404
   if (!isValidUrl({ url })) {
-    log.info('invalid url', url, _.pickBy(useragent))
-    return res.status(404).render('captcha') // FIXME
+    const reason = { url, useragent: _.pickBy(useragent) }
+    return renderErrorPage({ message: 'invalid url', reason, res })
   }
   return next()
 })
@@ -74,8 +79,9 @@ app.param('urtext', function(req, res, next) {
       if (isBot && !foundPromise) { // hasn't been captcha validated
         const reason = { username, urtext, isBot }
 
-        return renderErrorPage({ // FIXME
-          captcha: true,
+        return pageWithStatus({
+          template: 'captcha',
+          status: 404,
           message: 'bot creation attempt',
           reason,
           res

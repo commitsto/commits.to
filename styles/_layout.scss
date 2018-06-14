@@ -7,25 +7,9 @@ header {
   h1 {
     margin: 0 auto 0 0;
   }
-  a {
-    &.button {
-      float: right;
-      color: $white;
-      margin-left: .75rem;
-      padding: .4rem 1rem;
-      font-size: .75rem;
-      border-radius: $element-border-radius;
-      background-color: $dark-gray;
-      border: 1px solid $gray;
-      box-shadow: 2px 2px $black;
-      cursor: pointer;
-      &:hover {
-        background-color: $blue;
-      }
-      &:active {
-        box-shadow: none;
-      }  
-    }
+  a.button {
+    float: right;
+    margin-left: .75rem;
   }
 }
 

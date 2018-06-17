@@ -2,14 +2,14 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import app from './express'
+import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
+import { Promises, Users } from '../models/'
 import log, { deSequelize } from '../lib/logger'
-
+import actionNotifier from '../lib/notify'
+import parseCredit from '../lib/parse/credit'
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
-import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
-import parseCredit from '../lib/parse/credit'
 
-import { Promises, Users } from '../models/'
 
 const userQuery = (user) => ({
   model: Users,
@@ -93,6 +93,11 @@ app.post('/_s/:user/promises/remove', (req, resp) => {
     },
   }).then(function(deletedRows) {
     log.info('promise removed', req.body, deletedRows)
+    actionNotifier({
+      resource: 'promise',
+      action: 'deleted',
+      identifier: req.body.id,
+    })
     resp.send(200)
   })
 })

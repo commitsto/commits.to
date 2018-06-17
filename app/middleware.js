@@ -3,8 +3,8 @@ import _ from 'lodash'
 
 import app from './express'
 import { APP_DOMAIN } from '../app/config'
-import sendMail from '../lib/mail'
 import log, { deSequelize } from '../lib/logger'
+import actionNotifier from '../lib/notify'
 import { Promises, Users } from '../models'
 
 import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
@@ -107,13 +107,14 @@ app.param('urtext', function(req, res, next) {
         id: parsedPromise.id,
       },
     }).then((promise) => {
+      // send @dreev an email
       if (wasPromiseCreated) {
         toLog = { level: 'info', state: 'created' }
-        let text = `New promise created by: ${username}: ${promise.urtext}`
-        sendMail({ // send @dreev an email
-          to: 'dreeves@gmail.com',
-          subject: promise.id,
-          text,
+        actionNotifier({
+          resource: 'promise',
+          action: 'created',
+          identifier: promise.id,
+          meta: deSequelize(promise),
         })
       }
 

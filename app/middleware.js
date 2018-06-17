@@ -62,6 +62,7 @@ app.param('urtext', function(req, res, next) {
   const isBot = isBotFromUserAgent({ req })
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
+  let wasPromiseCreated = false
 
   if (!parsedPromise) {
     return renderErrorPage({ message: 'unparseable promise', res })
@@ -94,18 +95,10 @@ app.param('urtext', function(req, res, next) {
 
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
-        foundPromise = await Promises
+        wasPromiseCreated = await Promises
           .upsert({ ...parsedPromise, ip, useragent })
           .catch((reason) =>
             renderErrorPage({ message: 'promise creation error', reason, res }))
-
-
-        toLog = { level: 'info', state: 'created' }
-        sendMail({ // send @dreev an email
-          to: 'dreeves@gmail.com',
-          subject: foundPromise.id,
-          text: `New promise created by: ${username}: ${foundPromise.id}`,
-        })
       }
     }
 
@@ -114,6 +107,16 @@ app.param('urtext', function(req, res, next) {
         id: parsedPromise.id,
       },
     }).then((promise) => {
+      if (wasPromiseCreated) {
+        toLog = { level: 'info', state: 'created' }
+        let text = `New promise created by: ${username}: ${promise.urtext}`
+        sendMail({ // send @dreev an email
+          to: 'dreeves@gmail.com',
+          subject: promise.id,
+          text,
+        })
+      }
+
       log[toLog.level](`promise ${toLog.state}`, deSequelize(promise))
       req.parsedPromise = parsedPromise // add to the request object
       // do our own JOIN

@@ -2,29 +2,34 @@ import { expect } from 'chai'
 
 import { promiseGallerySort } from '../../models/promise'
 
-const x = new Date()
-const y = new Date()
-y.setTime(y.getTime() + 7*86400*1000) // make y later than x
-
 describe('promiseGallerySort', () => {
-  const promises = [{
-    tfin: x,
+  def('lastWeek', () => moment().subtract(1, 'weeks'))
+  def('yesterday', () => moment().subtract(1, 'days'))
+  def('tomorrow', () => moment().add(1, 'days'))
+  def('nextWeek', () => moment($tomorrow).add(7, 'days')) // create, not modify
+
+  def('promises', () => [{
+    tini: $lastWeek,
+    tfin: $yesterday,
   }, {
+    tini: x,
     tfin: null,
-  }]
+  }])
 
   it('sorts completed promises after pending promises', () => {
-    expect(promiseGallerySort(...promises) > 0).to.be.true
+    expect(promiseGallerySort(...$promises) > 0).to.be.true
   })
 
   context('when both promises are pending', () => {
-    const promises = [{
-      tfin: null,
-      tdue: x,
-    }, {
-      tfin: null,
+    def('promises', () => [{
+      tini: x,
       tdue: y,
-    }]
+      tfin: null,
+    }, {
+      tini: $lastWeek,
+      tdue: $nextWeek,
+      tfin: null,
+    }])
 
     it('sorts the promises by due date (tdue) ascending', () => {
       expect(promiseGallerySort(...promises) < 0).to.be.true
@@ -32,11 +37,13 @@ describe('promiseGallerySort', () => {
   })
 
   context('when both promises are completed', () => {
-    const promises = [{
-      tfin: x,
-    }, {
+    def('promises', () => [{
+      tini: x,
       tfin: y,
-    }]
+    }, {
+      tini: x,
+      tfin: z,
+    }])
 
     it('sorts the promises by completion date (tfin) descending', () => {
       expect(promiseGallerySort(...promises) > 0).to.be.true

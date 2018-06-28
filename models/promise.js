@@ -84,7 +84,7 @@ export const promiseGallerySort = (a, b) => {
     const now = Date.now()/1000
     const a_tdue = a.tdue === null ? null : a.tdue.getTime()/1000
     const b_tdue = b.tdue === null ? null : b.tdue.getTime()/1000
-    return sheldist(now, a_tdue) - sheldist(now, b_tdue)
+    return scheldist(now, a_tdue) - scheldist(now, b_tdue)
     // Or the nice simple thing to do would be to always sort in plain old
     // due date order like so:
     // return a_tdue - b_tdue

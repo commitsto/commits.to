@@ -2,9 +2,13 @@ import { expect } from 'chai'
 
 import { promiseGallerySort } from '../../models/promise'
 
+const x = new Date()
+const y = new Date()
+y.setTime(y.getTime() + 7*86400*1000) // make y later than x
+
 describe('promiseGallerySort', () => {
   const promises = [{
-    tfin: 1,
+    tfin: x,
   }, {
     tfin: null,
   }]
@@ -16,10 +20,10 @@ describe('promiseGallerySort', () => {
   context('when both promises are pending', () => {
     const promises = [{
       tfin: null,
-      tdue: 10,
+      tdue: x,
     }, {
       tfin: null,
-      tdue: 50,
+      tdue: y,
     }]
 
     it('sorts the promises by due date (tdue) ascending', () => {
@@ -29,9 +33,9 @@ describe('promiseGallerySort', () => {
 
   context('when both promises are completed', () => {
     const promises = [{
-      tfin: 20,
+      tfin: x,
     }, {
-      tfin: 40,
+      tfin: y,
     }]
 
     it('sorts the promises by completion date (tfin) descending', () => {

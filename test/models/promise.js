@@ -1,4 +1,5 @@
 import { expect } from 'chai'
+import moment from 'moment'
 
 import { promiseGallerySort } from '../../models/promise'
 
@@ -12,7 +13,7 @@ describe('promiseGallerySort', () => {
     tini: $lastWeek,
     tfin: $yesterday,
   }, {
-    tini: x,
+    tini: $lastWeek,
     tfin: null,
   }])
 
@@ -22,31 +23,31 @@ describe('promiseGallerySort', () => {
 
   context('when both promises are pending', () => {
     def('promises', () => [{
-      tini: x,
-      tdue: y,
+      tini: $lastWeek,
+      tdue: $tomorrow,
       tfin: null,
     }, {
       tini: $lastWeek,
-      tdue: $nextWeek,
+      tdue: $weekFromTomorrow,
       tfin: null,
     }])
 
     it('sorts the promises by due date (tdue) ascending', () => {
-      expect(promiseGallerySort(...promises) < 0).to.be.true
+      expect(promiseGallerySort(...$promises) < 0).to.be.true
     })
   })
 
   context('when both promises are completed', () => {
     def('promises', () => [{
-      tini: x,
-      tfin: y,
+      tini: $lastWeek,
+      tfin: $lastWeek,
     }, {
-      tini: x,
-      tfin: z,
+      tini: $lastWeek,
+      tfin: $yesterday,
     }])
 
     it('sorts the promises by completion date (tfin) descending', () => {
-      expect(promiseGallerySort(...promises) > 0).to.be.true
+      expect(promiseGallerySort(...$promises) > 0).to.be.true
     })
   })
 })

@@ -35,6 +35,23 @@ describe('isValidUrl', () => {
   })
 })
 
+describe('isQueryString', () => {
+  def('url', () => '/go_running?by=2:30pm')
+  def('isValid', () => isValidUrl({ url: $url }))
+
+  it('rejects any url that has a "valid" querystring', () => {
+    expect($isValid).to.be.false
+  })
+
+  context('when the "?" is followed by a "/"', () => {
+    def('url', () => 'go_running?/by/2:30pm')
+
+    it('does not consider the url to have a querystring', () => {
+      expect($isValid).to.be.true
+    })
+  })
+})
+
 describe('isBotFromUserAgent', () => {
   def('useragent', () => ({
     useragent: {

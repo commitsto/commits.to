@@ -3,7 +3,7 @@ import log, { deSequelize } from '../lib/logger'
 
 import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models'
-import { promiseGallerySort } from '../models/promise'
+import promiseGallerySort from '../lib/sort'
 import { isNewPromise } from '../helpers/calculate'
 import { calculateReliability } from '../lib/parse/credit'
 

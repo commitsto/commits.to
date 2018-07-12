@@ -9,6 +9,13 @@ Handlebars.registerHelper('prettyDate', function(date) {
   return pDate
 })
 
+Handlebars.registerHelper('relativeDate', function(date) {
+  if (!date) return ''
+  const pDate = moment(date).fromNow()
+  // console.log('relativeDate', date, pDate)
+  return pDate
+})
+
 Handlebars.registerHelper('prettyPercent', function(number, digits) {
   if (!number) {
     return ''

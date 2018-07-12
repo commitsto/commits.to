@@ -122,6 +122,18 @@
       padding: .5rem 1rem;
     }
 
+    &-date {
+      align-items: center;
+      display: flex;
+
+      .relative-date {
+        font-size: 85%;
+        font-weight: 300;
+        margin-left: auto;
+        opacity: .7;
+      }
+    }
+
     &--bottom {
       background-color: $white;
       bottom: 0;

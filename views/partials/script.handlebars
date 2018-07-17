@@ -103,6 +103,14 @@
     })
   }
 
+  // the "action" field of the edit form is left blank until submission to
+  // protect against spam bot submissions
+  const editPromise = function() {
+    console.log('editPromise')
+    $('.edit-promise').attr('action', '/promises/edit')
+    $('.edit-promise').submit()
+  }
+
   const deletePromise = function(username, id) {
     console.log('deletePromise', id, username)
 

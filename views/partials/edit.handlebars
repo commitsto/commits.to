@@ -5,7 +5,7 @@
     <span>{{prettyDate promise.tdue}}</span>
   </h1>
 
-  <form action="/promises/edit" method="post" accept-charset="UTF-8" id="edit_{{promise.id}}">
+  <form action="" method="post" accept-charset="UTF-8" class="edit-promise" id="edit_{{promise.id}}">
     <div class="form-group-wrapper">
       <label for="what">Title</label>
       <input name="what" type="text" value="{{promise.what}}">
@@ -46,7 +46,7 @@
     </div>
 -->
     <input type="hidden" name="id" value="{{promise.id}}">
-    <input type="submit" class="promise-button" value="Save">
+    <input type="submit" class="promise-button" value="Save" onclick='editPromise()'>
   </form>
 </div>
 

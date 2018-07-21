@@ -59,7 +59,14 @@ app.post('/_s/:user/promises/edit', (req, res) => {
       ...data
     }).then(function(prom) {
       const updatedValues = _.values(deSequelize(prom))
-      log.info('promise updated', _.difference(originalValues, updatedValues))
+      const difference = _.difference(originalValues, updatedValues)
+      log.info('promise updated', difference)
+      actionNotifier({
+        resource: 'promise',
+        action: 'edited',
+        identifier: req.body.id,
+        meta: difference,
+      })
 
       if (promise) {
         res.redirect(`/${prom.urtext}`)

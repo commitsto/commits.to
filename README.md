@@ -123,6 +123,24 @@ Just navigate to [commits-to.js:8080](http://commits-to.js:8080) (the `ENV_DOMAI
 Browse (or send a GET request) to `http://commits-to.js:8080/reset` which drops all tables
 and inserts seed data from the `data/` folder
 
+### Troubleshooting
+
+If you have problems connecting to the application via your browser, check that you have
+made the necessary changes to the `/etc/hosts` file for the subdomain you are using.  
+You may also need to flush the DNS cache to ensure those changes are recognized.  
+
+##### Ubuntu
+
+On Ubuntu, you can use the [name service cache daemon (nscd)](https://www.systutorials.com/docs/linux/man/8-nscd/) to flush the DNS cache.
+
+```sh
+sudo apt-get install nscd
+sudo service nscd restart
+```
+##### Mac
+
+On MacOS, the command to flush the DNS cache will depend on your exact OS level. See [How To Clear Your DNS Cache](https://documentation.cpanel.net/display/CKB/How+To+Clear+Your+DNS+Cache) for detailed
+recommendations by OS version.
 ## Testing
 
 Run [Mocha](https://mochajs.org/) tests with `npm test`.

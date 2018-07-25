@@ -43,7 +43,6 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
   const data = _.mapValues(req.body, (val) => valOrNull(val))
-
   log.info('edit promise form data', data)
 
   Promises.find({
@@ -52,14 +51,18 @@ app.post('/_s/:user/promises/edit', (req, res) => {
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
-    log.info('promise to be updated', deSequelize(promise))
-    const originalValues = _.values(deSequelize(promise))
+    const oldPromise = deSequelize(promise)
+    log.info('promise to be updated', oldPromise)
+
     promise.update({
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      const updatedValues = _.values(deSequelize(prom))
-      const difference = _.difference(originalValues, updatedValues)
+      const difference = _.compact(_.map(oldPromise, (value, key) => {
+        const newValue = deSequelize(prom)[key]
+        return _.isEqual(value, newValue) ? undefined : { [key]: newValue }
+      }))
+
       log.info('promise updated', difference)
       actionNotifier({
         resource: 'promise',

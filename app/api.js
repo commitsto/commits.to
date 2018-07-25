@@ -63,13 +63,15 @@ app.post('/_s/:user/promises/edit', (req, res) => {
         return _.isEqual(value, newValue) ? undefined : { [key]: newValue }
       }))
 
-      log.info('promise updated', difference)
-      actionNotifier({
-        resource: 'promise',
-        action: 'edited',
-        identifier: req.body.id,
-        meta: difference,
-      })
+      if (difference.length) {
+        log.info('promise updated', difference)
+        actionNotifier({
+          resource: 'promise',
+          action: 'edited',
+          identifier: req.body.id,
+          meta: difference,
+        })
+      }
 
       if (promise) {
         res.redirect(`/${prom.urtext}`)

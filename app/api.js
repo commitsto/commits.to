@@ -5,6 +5,7 @@ import app from './express'
 import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
 import { Promises, Users } from '../models/'
 import log, { deSequelize } from '../lib/logger'
+import { diffPromises } from '../lib/parse/promise'
 import actionNotifier from '../lib/notify'
 import parseCredit from '../lib/parse/credit'
 import { seed, importJson } from '../db/seed'
@@ -58,10 +59,7 @@ app.post('/_s/:user/promises/edit', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      const difference = _.compact(_.map(oldPromise, (value, key) => {
-        const newValue = deSequelize(prom)[key]
-        return _.isEqual(value, newValue) ? undefined : { [key]: newValue }
-      }))
+      const difference = diffPromises(oldPromise, deSequelize(prom))
 
       if (difference.length) {
         log.info('promise updated', difference)

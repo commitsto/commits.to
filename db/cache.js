@@ -13,7 +13,6 @@ export default () => {
         log.debug(`caching ${user.username}'s score:`, score, doneOrDueCount)
         user.update({ score })
         user.update({ doneOrDueCount })
-        print("user, score, doneOrDueCount",user.username, score, doneOrDueCount)
       })
     })
   })

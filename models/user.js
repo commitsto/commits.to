@@ -9,6 +9,10 @@ const Users = sequelize.define('users', {
     type: Sequelize.DOUBLE,
     defaultValue: null,
   },
+  doneOrDueCount: {
+    type: Sequelize.INTEGER,
+    defaultValue: null,
+  },
 })
 
 Users.prototype.getValidPromises = function({ order = [['tfin', 'DESC']] } = {}) {

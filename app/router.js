@@ -5,7 +5,7 @@ import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models'
 import promiseGallerySort from '../lib/sort'
 import { isNewPromise } from '../helpers/calculate'
-import { calculateReliability } from '../lib/parse/credit'
+import { calculateReliability, promisesIncluded } from '../lib/parse/credit'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
@@ -13,6 +13,7 @@ app.get('/_s/:user', (req, res) => {
 
   req.user.getValidPromises().then(promises => {
     const reliability = calculateReliability(promises)
+    const usedPromiseCount = promisesIncluded(promises)
 
     log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
 
@@ -23,7 +24,8 @@ app.get('/_s/:user', (req, res) => {
     res.render('user', {
       promises,
       user: req.user,
-      reliability
+      reliability,
+      usedPromiseCount
     })
   })
 })

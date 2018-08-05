@@ -5,6 +5,7 @@ import app from './express'
 import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
 import { Promises, Users } from '../models/'
 import log, { deSequelize } from '../lib/logger'
+import { diffPromises } from '../lib/parse/promise'
 import actionNotifier from '../lib/notify'
 import parseCredit from '../lib/parse/credit'
 import { seed, importJson } from '../db/seed'
@@ -43,7 +44,6 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
   const data = _.mapValues(req.body, (val) => valOrNull(val))
-
   log.info('edit promise form data', data)
 
   Promises.find({
@@ -52,21 +52,25 @@ app.post('/_s/:user/promises/edit', (req, res) => {
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
-    log.info('promise to be updated', deSequelize(promise))
-    const originalValues = _.values(deSequelize(promise))
+    const oldPromise = deSequelize(promise)
+    log.info('promise to be updated', oldPromise)
+
     promise.update({
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function(prom) {
-      const updatedValues = _.values(deSequelize(prom))
-      const difference = _.difference(originalValues, updatedValues)
-      log.info('promise updated', difference)
-      actionNotifier({
-        resource: 'promise',
-        action: 'edited',
-        identifier: req.body.id,
-        meta: difference,
-      })
+      const difference = diffPromises(oldPromise, deSequelize(prom))
+
+      if (!_.isEmpty(difference)) {
+        log.info('promise updated', difference)
+
+        actionNotifier({
+          resource: 'promise',
+          action: 'edited',
+          identifier: req.body.id,
+          meta: difference,
+        })
+      }
 
       if (promise) {
         res.redirect(`/${prom.urtext}`)

@@ -61,8 +61,9 @@ app.post('/_s/:user/promises/edit', (req, res) => {
     }).then(function(prom) {
       const difference = diffPromises(oldPromise, deSequelize(prom))
 
-      if (difference.length) {
+      if (!_.isEmpty(difference)) {
         log.info('promise updated', difference)
+
         actionNotifier({
           resource: 'promise',
           action: 'edited',

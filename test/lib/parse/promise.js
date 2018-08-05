@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import { parsePromise } from '../../../lib/parse/promise'
+import { parsePromise, diffPromises } from '../../../lib/parse/promise'
 
 describe('parsePromise', () => {
   subject('parsedPromise', () =>
@@ -67,6 +67,45 @@ describe('parsePromise', () => {
 
     it('rejects the urtext and returns false', () => {
       expect($parsedPromise).to.be.false
+    })
+  })
+})
+
+describe('diffPromises', () => {
+  subject('difference', () => diffPromises($promiseOne, $promiseTwo))
+
+  def('promise', () => ({
+    id: 'testuser/a-valid-promise',
+    slug: 'a-valid-promise',
+    timezone: 'etc/UTC',
+    what: 'A valid promise',
+    urtext: 'a-valid-promise',
+    note: 'This is a note',
+  }))
+
+  def('promiseOne', () => ({ ...$promise }))
+  def('promiseTwo', () => ({ ...$promise, note: 'This is a different note' }))
+
+  it('parses the promise correctly', () => {
+    expect($difference).to.have.keys('note')
+    expect($difference.note).to.eq('This is a different note')
+  })
+
+  context('when an ignored field has changed', () => {
+    def('promiseOne', () => ({ ...$promise, updatedAt: new Date() }))
+    def('promiseTwo', () => ({ ...$promise }))
+
+    it('detects no changes and returns an empty object', () => {
+      expect($difference).to.deep.equal({})
+    })
+  })
+
+  context('when the promises are identical', () => {
+    def('promiseOne', () => ({ ...$promise }))
+    def('promiseTwo', () => ({ ...$promise }))
+
+    it('returns an empty object', () => {
+      expect($difference).to.deep.equal({})
     })
   })
 })

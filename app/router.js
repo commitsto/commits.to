@@ -5,7 +5,7 @@ import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models'
 import promiseGallerySort from '../lib/sort'
 import { isNewPromise } from '../helpers/calculate'
-import { calculateReliability, promisesIncluded } from '../lib/parse/credit'
+import { calculateReliability } from '../lib/parse/credit'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {

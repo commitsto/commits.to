@@ -1,7 +1,7 @@
 import { Users } from '../models'
 import log from '../lib/logger'
 
-import { calculateReliability, promisesIncluded } from '../lib/parse/credit'
+import { calculateReliability } from '../lib/parse/credit'
 
 export default () => {
   Users.findAll().then(users => {

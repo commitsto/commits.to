@@ -12,12 +12,13 @@ app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
   req.user.getValidPromises().then(promises => {
-    const reliability = calculateReliability(promises)
-    const usedPromiseCount = promisesIncluded(promises)
+    const rel = calculateReliability(promises)
+    const reliability = rel.score
+    const usedPromiseCount = rel.counted
 
-    log.debug(`${req.params.user}'s promises:`, reliability, promises.length)
+    log.debug(`${req.params.user}'s promises:`, rel.score, promises.length)
 
-    req.user.update({ score: reliability })
+    req.user.update({ score: rel.score, counted: rel.counted })
 
     promises.sort(promiseGallerySort)
 

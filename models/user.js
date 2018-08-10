@@ -9,7 +9,7 @@ const Users = sequelize.define('users', {
     type: Sequelize.DOUBLE,
     defaultValue: null,
   },
-  doneOrDueCount: {
+  counted: {
     type: Sequelize.INTEGER,
     defaultValue: null,
   },

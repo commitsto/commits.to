@@ -8,11 +8,11 @@ export default () => {
     log.info(`caching promises for ${users.length} users`)
     users.forEach(user => {
       user.getValidPromises().then(promises => {
-        const score = calculateReliability(promises)
-        const doneOrDueCount = promisesIncluded(promises)
-        log.debug(`caching ${user.username}'s score:`, score, doneOrDueCount)
-        user.update({ score })
-        user.update({ doneOrDueCount })
+        const rel = calculateReliability(promises)
+        const score = rel.score
+        const counted = rel.counted
+        log.debug(`caching ${user.username}'s score:`, score, counted)
+        user.update({ score, counted })
       })
     })
   })

@@ -12,7 +12,7 @@ app.get('/_s/:user', (req, res) => {
   log.debug('user promises', req.params.user)
 
   req.user.getValidPromises().then(promises => {
-    const {score, counted} = calculateReliability(promises)
+    const { score, counted } = calculateReliability(promises)
 
     log.debug(`${req.params.user}'s promises:`, score, promises.length)
 

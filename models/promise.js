@@ -3,6 +3,11 @@ import moment from 'moment'
 import { sequelize, Sequelize } from '../db/sequelize'
 import parseCredit from '../lib/parse/credit'
 
+const currentMinute = () =>
+  moment()
+    .seconds(0)
+    .milliseconds(0)
+
 /* eslint-disable max-len */
 export default sequelize.define('promises', { // sequelize needs the doublequotes here
   id: { type: Sequelize.STRING, primaryKey: true }, // username + urtext
@@ -31,8 +36,8 @@ export default sequelize.define('promises', { // sequelize needs the doublequote
     }
   },
 
-  tini: { type: Sequelize.DATE, defaultValue: () => moment().toDate() }, // when the was promise was made
-  tdue: { type: Sequelize.DATE, defaultValue: () =>  moment().add(7, 'days').toDate() }, // when the promise is due
+  tini: { type: Sequelize.DATE, defaultValue: () => currentMinute().toDate() }, // when the was promise was made
+  tdue: { type: Sequelize.DATE, defaultValue: () => currentMinute().add(7, 'days').toDate() }, // when the promise is due
   tfin: { type: Sequelize.DATE, defaultValue: null }, // When the promise was (fractionally) fulfilled (even if 0%)
   xfin: { type: Sequelize.DOUBLE, defaultValue: 1 }, // fraction fulfilled, default 1 (also {value} for bmndr datapoint)
 

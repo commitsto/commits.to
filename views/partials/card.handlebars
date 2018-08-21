@@ -8,7 +8,8 @@
         {{promise.user.username}}
       </a>
       <span class="{{scoreColor promise.user.score}}">
-        {{prettyPercent promise.user.score 2}} ({{promise.user.counted}} counted)
+        {{prettyPercent promise.user.score 2}}
+        <span>[{{promise.user.counted}}]</span>
       </span>
     </h2>
     <div class="promise-slug">

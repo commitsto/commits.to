@@ -1,25 +1,38 @@
-.user-promises-list {
-  .user-header {
+.user {
+  &-promises-list {
+    .promise-card {
+      .promise-user {
+        display: none;
+      }
+    }
+  }
+
+  &-header {
+    align-items: center;
+    display: flex;
     margin: -1rem -1rem 1rem;
-    padding: 2rem;
+    padding: 1rem;
     background-color: $blue;
-    
-    .user-name {
-      color: $white;
-      text-transform: capitalize;
-    }
-    
-    .user-reliability {
-      font-weight: 300;
-      float: right; //FIXME flex?
+  }
+
+  &-name {
+    color: $white;
+    text-transform: capitalize;
+  }
+
+  &-reliability {
+    font-weight: 300;
+    margin-left: auto;
+
+    span {
+      display: block;
+      font-size: 75%;
+      letter-spacing: .25rem;
+      opacity: .5;
+      text-align: right;
     }
   }
-  
-  .promise-card {
-    .promise-user {
-      display: none;
-    }
-  }
+
 }
 
 .promises-list {
@@ -28,7 +41,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  
+
   > li {
     margin: .5rem;
     padding: 0;

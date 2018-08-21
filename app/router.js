@@ -21,10 +21,10 @@ app.get('/_s/:user', (req, res) => {
     promises.sort(promiseGallerySort)
 
     res.render('user', {
-      promises,
       user: req.user,
       reliability: score,
-      usedPromiseCount: counted
+      promises,
+      counted,
     })
   })
 })

@@ -1,68 +1,68 @@
-<section class="promise-card {{cardClassesFor promise}} {{dueColor (dueStatus promise.tdue)}}">
-  <div class="promise-header">
-    <div class="promise-credit {{creditColor promise.credit}}">
-      {{prettyCredit promise.credit}}
-    </div>
-    <h2 class="promise-user">
-      <a href="{{userPath user}}">
-        {{promise.user.username}}
-      </a>
-      <span class="{{scoreColor promise.user.score}}">
-        {{prettyPercent promise.user.score 2}}
-        <span>[{{promise.user.counted}}]</span>
-      </span>
-    </h2>
-    <div class="promise-slug">
-      <a href="{{promisePath promise}}">
-        {{promise.urtext}}
-      </a>
-    </div>
-  </div>
-
-  {{#if promise.tdue}}
-    <div class="promise-bar promise-bar--due">
-      <span class="promise-bar-date" style="opacity:.75">
-        <div class="momentable" data-date="{{promise.tdue}}">
-          By
-          <span><noscript>{{prettyDate promise.tdue}}</noscript></span>
-        </div>
-        <div class="relative-date">
-          {{relativeDate promise.tdue}}
-        </div>
-      </span>
-    </div>
-  {{/if}}
-
-  <div class="promise-details">
-    <a href="{{promisePath promise}}">
-      <div class="promise-domain">
-        {{promiseDomain promise.domain}}
+<section class="promise">
+  <div class="promise-card {{cardClassesFor promise}} {{dueColor (dueStatus promise.tdue)}}">
+    <div class="promise-header">
+      <h2 class="promise-user">
+        <a href="{{userPath user}}">
+          {{promise.user.username}}
+        </a>
+      </h2>
+      <div class="promise-user-score {{scoreColor promise.user.score}}">
+        <span>{{prettyPercent promise.user.score 2}}</span>
       </div>
+      <div class="counted-promises">{{promise.user.counted}}</div>
+    </div>
 
-      {{> promise promise=promise}}
+    <div class="promise-info">
+      <div class="promise-details">
+        <a href="{{promisePath promise}}">
+          <div class="promise-domain">
+            {{promiseDomain promise.domain}}
+          </div>
 
-      {{#if promise.note}}
-        <small>
-          {{promise.note}}
-        </small>
-      {{/if}}
-    </a>
+          {{> promise promise=promise}}
+
+          {{#if promise.note}}
+            <small>
+              {{promise.note}}
+            </small>
+          {{/if}}
+        </a>
+      </div>
+    </div>
+
+    {{#if promise.tdue}}
+      <div class="promise-bar promise-bar--due">
+        <div class="promise-bar-date" style="opacity:.75">
+          <div class="momentable" data-date="{{promise.tdue}}">
+            By
+            <span><noscript>{{prettyDate promise.tdue}}</noscript></span>
+          </div>
+          <div class="relative-date">
+            {{relativeDate promise.tdue}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
   </div>
 
-  <div class="promise-bar promise-bar--bottom {{#if promise.tfin}}promise-bar--completed{{/if}}">
-    <div class="bar-button-action">
-      {{#if promise.tfin}}
-        <span class="promise-bar-date" style="opacity:.75">
-          <div class="momentable" data-date="{{promise.tfin}}">
-            Completed
-            <span><noscript>{{prettyDate promise.tfin}}</noscript></span>
+  <div class="promise-footer">
+    <div style="width: {{completeCredit promise.credit}}" >
+      {{#unless promise.tfin}}
+        <div class="promise-bar promise-bar--bottom">
+          <div class="bar-button-action">
+            {{#if user}}
+              <a class="promise-bar-link" href="#" onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
+                Mark {{completeCredit promise.credit}} Complete
+              </a>
+            {{/if}}
           </div>
-        </span>
-      {{else}}
-        {{#if user}}
-          <a class="promise-bar-link" href="#" onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
-            Mark {{completeCredit promise.credit}} Complete
-          </a>
+        </div>
+      {{/unless}}
+      {{#if promise.cred}}
+        {{#if promise.tfin}}
+          <div class="credit-status {{creditColor promise.cred}}">
+            <span class="promise-credit">{{prettyCredit promise.cred}}</span>
+          </div>
         {{/if}}
       {{/if}}
     </div>

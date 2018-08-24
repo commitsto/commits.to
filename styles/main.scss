@@ -57,18 +57,18 @@ $element-border-radius: 3px;
 
 .credit--status {
   &-green {
-    background: linear-gradient(to right, $gray-blue -10%, $green);
+    background: linear-gradient(to left, $gray-blue -15%, $green);
   }
   &-blue {
-    background: linear-gradient(to right, $gray-blue -10%, $blue);
+    background: linear-gradient(to left, $gray-blue -15%, $blue);
   }
   &-orange {
-    background: linear-gradient(to right, $gray-blue -10%, $orange);
+    background: linear-gradient(to left, $gray-blue -15%, $orange);
   }
   &-red {
-    background: linear-gradient(to right, $gray-blue -10%, $red);
+    background: linear-gradient(to left, $gray-blue -15%, $red);
   }
   &-gray {
-    background: linear-gradient(to right, $gray-blue -10%, $gray);
+    background: linear-gradient(to left, $gray-blue -15%, $gray);
   }
 }

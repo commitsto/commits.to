@@ -1,7 +1,7 @@
 .user {
   &-promises-list {
     .promise-card {
-      .promise-user {
+      .promise-header {
         display: none;
       }
     }
@@ -27,7 +27,7 @@
     span {
       display: block;
       font-size: 75%;
-      letter-spacing: .25rem;
+      letter-spacing: .1875em;
       opacity: .5;
       text-align: right;
     }

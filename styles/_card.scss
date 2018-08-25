@@ -52,11 +52,7 @@
     display: flex;
     font-size: .9rem;
     height: 100%;
-    right: 0;
-    left: 0;
     padding: .5rem 1rem;
-    position: absolute;
-    top: 0;
   }
 
   &-slug {
@@ -86,9 +82,8 @@
 
   &-footer {
     background: $black;
-    border-top: 1px solid $header-border;
-    display: flex;
-    position: relative;
+    border: 1px solid $header-border;
+    border-top: none;
 
     a {
       color: $light-gray;
@@ -96,11 +91,6 @@
 
     .promise-credit {
       z-index: 1;
-    }
-
-    .credit-status {
-      height: 100%;
-      padding: 1rem;
     }
 
     .promise-slug {
@@ -161,6 +151,12 @@
       padding: .5rem 1rem;
     }
 
+    &-link {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
     &-date {
       text-align: right;
 
@@ -174,17 +170,18 @@
 
     &--bottom {
       background-color: $white;
-      opacity: .25;
+      opacity: .75;
       text-align: right;
       width: 100%;
 
       &, a {
-        color: $dark-gray;
+        color: $black;
       }
     }
 
     &--due {
-      background-color: $black;
+      background-color: transparentize($black, .35);
+      margin-left: auto;
     }
 
     &--completed {

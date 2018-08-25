@@ -25,6 +25,7 @@ app.get('/_s/:user', (req, res) => {
       reliability: score,
       promises,
       counted,
+      pending: promises.length - counted,
     })
   })
 })

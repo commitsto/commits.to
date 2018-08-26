@@ -28,7 +28,6 @@
     background-color: $blue;
     border-radius: $card-border-radius;
     border: 1px groove $blue-border;
-    cursor: pointer;
     overflow: hidden;
     position: relative;
     opacity: .95;
@@ -129,15 +128,24 @@
   }
 
   &-details {
-    padding: 1rem;
+
+    &,
+    & a {
+      height: 100%;
+    }
 
     a {
+      padding: 1rem;
       display: block;
     }
 
     small {
       opacity: .75;
     }
+  }
+
+  &-info {
+    width: 100%;
   }
 
   &-domain {
@@ -202,7 +210,7 @@
 
     &--due {
       background-color: transparentize($black, .35);
-      margin-left: auto;
+      // margin-left: auto;
       max-width: 25%;
     }
 

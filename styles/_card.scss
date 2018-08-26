@@ -1,30 +1,44 @@
 .promise {
-  flex: 1 1 25%;
+  flex: 1 1 auto;
   margin: .5rem;
 
-  &-card {
-    display: flex; // FIXME
+  &,
+  &-card,
+  &-footer {
+    transition: border .5s ease-out, opacity .3s ease-in-out;
+  }
 
+  &:hover {
+    .promise-footer {
+      border-color: $gray;
+    }
+
+    .promise-card {
+      border-color: $white-gray;
+      opacity: 1;
+    }
+
+    .promise-bar--bottom .promise-bar-link {
+      background: $white-gray;
+    }
+  }
+
+  &-card {
+    display: flex;
     background-color: $blue;
     border-radius: $card-border-radius;
     border: 1px groove $blue-border;
     cursor: pointer;
     overflow: hidden;
     position: relative;
-    transition: border .15s ease-out, opacity .3s ease-in-out;
     opacity: .95;
-
-    &:hover {
-      border-color: $white-gray;
-      opacity: 1;
-    }
 
     &, a {
       color: $white;
     }
 
     &.completed {
-      background-color: transparent;
+      background-color: #FFFFFF0d;
       border-color: $light-gray;
     }
 
@@ -56,6 +70,7 @@
   }
 
   &-slug {
+    border-top: 1px solid $header-border;
     font-size: .75rem;
     font-weight: 300;
     letter-spacing: 1px;
@@ -67,7 +82,6 @@
     background-color: $gray-blue;
     padding: .75rem 1rem;
     position: relative;
-    text-align: right;
 
     + .promise-bar {
       margin-top: 0;
@@ -135,6 +149,7 @@
 
   &-text {
     font-size: 1.1rem;
+    letter-spacing: 0.025rem;
     margin-top: .25rem;
   }
 
@@ -153,8 +168,14 @@
 
     &-link {
       overflow: hidden;
+      position: relative;
       text-overflow: ellipsis;
+      transition: .35s ease-in;
       white-space: nowrap;
+
+      &::before {
+        @include gradient-shadow;
+      }
     }
 
     &-date {
@@ -182,6 +203,7 @@
     &--due {
       background-color: transparentize($black, .35);
       margin-left: auto;
+      max-width: 25%;
     }
 
     &--completed {

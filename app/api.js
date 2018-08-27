@@ -88,9 +88,10 @@ app.post('/_s/:user/promises/complete', (req, resp) => {
     },
     include: [userQuery(req.params.user)],
   }).then(function(promise) {
+    const tfin = moment().toDate()
     promise.update({
-      tfin: moment(), // FIXME this should be handled consistently,
-      cred: parseCredit({ dueDate: promise.tdue })
+      tfin,
+      cred: parseCredit({ dueDate: promise.tdue, finishDate: tfin })
     })
     log.info('promise completed', req.body, promise.id)
     resp.send(200)

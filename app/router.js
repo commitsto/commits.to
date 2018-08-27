@@ -55,6 +55,9 @@ app.get(['/?'], (req, res) => {
       void: {
         [Sequelize.Op.not]: true
       },
+      urtext: {
+        [Sequelize.Op.not]: null
+      },
     }, // only show uncompleted
     // limit: 30
     include: [{

@@ -13,6 +13,10 @@ const Users = sequelize.define('users', {
     type: Sequelize.INTEGER,
     defaultValue: null,
   },
+  pending: {
+    type: Sequelize.INTEGER,
+    defaultValue: null,
+  },
 })
 
 Users.prototype.getValidPromises = function({ order = [['tfin', 'DESC']] } = {}) {

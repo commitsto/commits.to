@@ -9,7 +9,10 @@
       <div class="promise-user-score {{scoreColor promise.user.score}}">
         <span>{{prettyPercent promise.user.score 2}}</span>
       </div>
-      <div class="counted-promises">{{promise.user.counted}}</div>
+      <div class="counted-promises">
+        {{promise.user.counted}}
+        <span class="pending" >[+{{promise.user.pending}}]</span>
+      </div>
     </div>
 
     <div class="promise-info">

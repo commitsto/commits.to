@@ -5,8 +5,10 @@
     </a>
     <span class="user-reliability">
       {{prettyPercent reliability}}
-      <!-- <span>{{counted}}/{{promises.length}}</span> -->
-      <span>{{counted}} [+{{pending}}]</span>
+      <span>
+        {{counted}}
+        <span class="pending" >[+{{pending}}]</span>
+      </span>
     </span>
   </h2>
   <ul class="promises-list">

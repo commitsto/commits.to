@@ -65,6 +65,7 @@ $element-border-radius: 3px;
 
 .credit--status {
   position: relative;
+  z-index: 1;
 
   &::before {
     @include gradient-shadow;

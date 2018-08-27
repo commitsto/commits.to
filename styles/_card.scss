@@ -90,6 +90,14 @@
     .counted-promises {
       font-weight: bold;
       color: $light-gray;
+      letter-spacing: .05em;
+      line-height: .85em;
+
+      .pending {
+        font-size: 75%;
+        font-weight: 300;
+        vertical-align: text-top;
+      }
     }
   }
 
@@ -103,6 +111,9 @@
     }
 
     .promise-credit {
+      color: $white;
+      display: block;
+      text-align: right;
       z-index: 1;
     }
 
@@ -123,7 +134,7 @@
       font-size: 1.25rem;
       font-weight: normal;
       letter-spacing: .5px;
-      opacity: .75;
+      opacity: .85;
     }
   }
 
@@ -169,17 +180,24 @@
     text-align: left;
     text-transform: uppercase;
 
-    &-link, &-date {
-      display: block;
-      padding: .5rem 1rem;
+    &-date {
+      
+      padding: 1rem;
     }
 
     &-link {
+      display: block;
       overflow: hidden;
-      position: relative;
+      padding: .5rem 1rem;
       text-overflow: ellipsis;
       transition: .35s ease-in;
       white-space: nowrap;
+
+      &,
+      & span {
+        position: relative;
+        z-index: 1;
+      }
 
       &::before {
         @include gradient-shadow;
@@ -187,12 +205,13 @@
     }
 
     &-date {
+      height: 100%;
       text-align: right;
 
       .relative-date {
         font-size: 85%;
         font-weight: 300;
-        margin-top: .5rem;
+        margin-bottom: .5rem;
         opacity: .7;
       }
     }
@@ -204,7 +223,7 @@
       width: 100%;
 
       &, a {
-        color: $black;
+        color: $white;
       }
     }
 

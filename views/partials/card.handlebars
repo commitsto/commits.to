@@ -33,12 +33,11 @@
     {{#if promise.tdue}}
       <div class="promise-bar promise-bar--due">
         <div class="promise-bar-date" style="opacity:.75">
-          <div class="momentable" data-date="{{promise.tdue}}">
-            By
-            <span><noscript>{{prettyDate promise.tdue}}</noscript></span>
-          </div>
           <div class="relative-date">
             {{relativeDate promise.tdue}}
+          </div>
+          <div class="momentable" data-date="{{promise.tdue}}">
+            <span><noscript>{{prettyDate promise.tdue}}</noscript></span>
           </div>
         </div>
       </div>
@@ -51,8 +50,10 @@
         <div class="promise-bar promise-bar--bottom">
           <div class="bar-button-action">
             {{#if user}}
-              <a class="promise-bar-link {{dueColor (dueStatus promise.tdue)}}" href="#" onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
-                Mark {{completeCredit promise.credit}} Complete
+              <a href="#"
+                class="promise-bar-link {{dueColor (dueStatus promise.tdue)}}"
+                onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
+                <span>Mark {{completeCredit promise.credit}} Complete</span>
               </a>
             {{/if}}
           </div>

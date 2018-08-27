@@ -1,9 +1,10 @@
 @mixin gradient-shadow {
-  content: '';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
   background: linear-gradient(to bottom, #0000007a -15%, #0000);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
 }

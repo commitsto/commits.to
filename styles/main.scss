@@ -8,6 +8,7 @@ $element-border-radius: 3px;
 @import 'base';
 @import 'mixins';
 @import 'layout';
+@import 'progress';
 
 @import 'card';
 @import 'user';
@@ -15,6 +16,13 @@ $element-border-radius: 3px;
 @import 'home';
 @import 'create';
 @import 'show';
+
+.auto-captcha {
+  margin: 5%;
+}
+.progress-bar-wrapper {
+  margin: 3rem 0;
+}
 
 .promise--status {
   &-green {

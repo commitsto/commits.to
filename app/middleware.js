@@ -58,8 +58,8 @@ app.param('urtext', function(req, res, next, param) {
 // promise parsing
 app.param('urtext', function(req, res, next) {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
-
   const isBot = isBotFromUserAgent({ req })
+
   let parsedPromise = parsePromise({ username, urtext })
   let foundPromise = undefined
   let wasPromiseCreated = false
@@ -76,8 +76,8 @@ app.param('urtext', function(req, res, next) {
     foundPromise = p
     let toLog = { level: 'debug', state: 'exists' }
 
-    if (!foundPromise || !foundPromise.urtext) {
-      if (isBot && !foundPromise) { // hasn't been captcha validated
+    if (!foundPromise) { // hasn't been captcha validated
+      if (isBot) {
         const reason = { username, urtext, isBot }
 
         return pageWithStatus({
@@ -89,12 +89,23 @@ app.param('urtext', function(req, res, next) {
         })
       }
 
+      return pageWithStatus({
+        template: 'autocaptcha',
+        status: 404,
+        message: 'executing ajax request',
+        reason: { username, urtext },
+        res
+      })
+    }
+
+    if (!foundPromise.urtext) { // exists with only 'id' field
       parsedPromise = await parsePromiseWithIp({ username, urtext, ip })
         .catch((reason) =>
           renderErrorPage({ message: 'promise parsing error', reason, res }))
 
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
+
         wasPromiseCreated = await Promises
           .upsert({ ...parsedPromise, ip, useragent })
           .catch((reason) =>

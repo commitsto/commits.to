@@ -58,9 +58,11 @@ select {
   border: 1px solid $gray;
   box-shadow: 2px 2px $black;
   cursor: pointer;
+
   &:hover {
     background-color: $blue;
   }
+
   &:active {
     box-shadow: none;
   }

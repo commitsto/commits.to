@@ -6,7 +6,9 @@ $element-border-radius: 3px;
 
 @import 'colors';
 @import 'base';
+@import 'mixins';
 @import 'layout';
+@import 'progress';
 
 @import 'card';
 @import 'user';
@@ -14,6 +16,13 @@ $element-border-radius: 3px;
 @import 'home';
 @import 'create';
 @import 'show';
+
+.auto-captcha {
+  margin: 5%;
+}
+.progress-bar-wrapper {
+  margin: 3rem 0;
+}
 
 .promise--status {
   &-green {
@@ -31,6 +40,10 @@ $element-border-radius: 3px;
     background-color: $red;
     border-color: $red-border;
   }
+  &-yellow {
+    background-color: $yellow;
+    border-color: $yellow-border;
+  }
   &-gray {
     background-color: $gray;
     border-color: $gray-border;
@@ -44,6 +57,9 @@ $element-border-radius: 3px;
   &-blue {
     color: $blue;
   }
+  &-yellow {
+    color: $yellow;
+  }
   &-orange {
     color: $orange;
   }
@@ -56,19 +72,35 @@ $element-border-radius: 3px;
 }
 
 .credit--status {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    @include gradient-shadow;
+  }
+
   &-green {
-    background: linear-gradient(to right, $gray-blue -10%, $green);
+    // background: linear-gradient(to left, $gray-blue -15%, $green);
+    background: $green;
   }
   &-blue {
-    background: linear-gradient(to right, $gray-blue -10%, $blue);
+    // background: linear-gradient(to left, $gray-blue -15%, $blue);
+    background: $blue;
+  }
+  &-yellow {
+    // background: linear-gradient(to left, $gray-yellow -15%, $yellow);
+    background: $yellow;
   }
   &-orange {
-    background: linear-gradient(to right, $gray-blue -10%, $orange);
+    // background: linear-gradient(to left, $gray-blue -15%, $orange);
+    background: $orange;
   }
   &-red {
-    background: linear-gradient(to right, $gray-blue -10%, $red);
+    // background: linear-gradient(to left, $gray-blue -15%, $red);
+    background: $red;
   }
   &-gray {
-    background: linear-gradient(to right, $gray-blue -10%, $gray);
+    // background: linear-gradient(to left, $gray-blue -15%, $gray);
+    background: $gray;
   }
 }

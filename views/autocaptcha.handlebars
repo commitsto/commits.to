@@ -1,0 +1,30 @@
+<script>
+  $(document).ready(function() {
+    const username = '{{username}}'
+    const id = username + '{{urtext}}'
+    fetchById({ action: 'validate', id, username }).then(function(response) {
+      if (response.status === 200) {
+        $('.progress-bar').addClass('complete')
+        window.location.reload()
+      } else {
+        $('.progress-bar').addClass('started')
+      }
+    })
+  });
+</script>
+
+<main>
+  <div class="auto-captcha">
+    <h2>
+      Creating your promise...
+    </h2>
+    <p>
+      Just give us a second to confirm that this is a legitimate request!
+    </p>
+    <div class="progress-bar-wrapper">
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
+  </div>
+</main>

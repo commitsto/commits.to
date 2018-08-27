@@ -16,7 +16,7 @@ app.get('/_s/:user', (req, res) => {
 
     log.debug(`${req.params.user}'s promises:`, score, promises.length)
 
-    req.user.update({ score, counted })
+    req.user.update({ score, counted, pending: promises.length - counted })
 
     promises.sort(promiseGallerySort)
 
@@ -25,6 +25,7 @@ app.get('/_s/:user', (req, res) => {
       reliability: score,
       promises,
       counted,
+      pending: promises.length - counted,
     })
   })
 })

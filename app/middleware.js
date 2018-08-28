@@ -1,5 +1,6 @@
 import subdomainHandler from 'express-subdomain-handler'
 import _ from 'lodash'
+import moment from 'moment-business-days'
 
 import app from './express'
 import { APP_DOMAIN } from '../app/config'
@@ -107,8 +108,17 @@ app.param('urtext', function(req, res, next) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
 
         if (!parsedPromise.tdue) {
-          console.log('NO DUE DATE')
-          // TODO set to 5pm next business day
+          const now = moment(moment.tz.zone(parsedPromise.timezone))
+          const noon = moment(now).hours(12)
+          const closeOfBusiness = moment(now)
+            .nextBusinessDay()
+            .hours(17)
+
+          if (now.isBusinessDay() && now.isBefore(noon)) {
+            parsedPromise.tdue = moment({ hours: 17 }).startOf('hour')
+          } else {
+            parsedPromise.tdue = closeOfBusiness
+          }
         }
 
         wasPromiseCreated = await Promises

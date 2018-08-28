@@ -106,6 +106,11 @@ app.param('urtext', function(req, res, next) {
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
 
+        if (!parsedPromise.tdue) {
+          console.log('NO DUE DATE')
+          // TODO set to 5pm next business day
+        }
+
         wasPromiseCreated = await Promises
           .upsert({ ...parsedPromise, ip, useragent })
           .catch((reason) =>

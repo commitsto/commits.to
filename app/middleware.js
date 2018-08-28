@@ -1,5 +1,6 @@
 import subdomainHandler from 'express-subdomain-handler'
 import _ from 'lodash'
+import moment from 'moment-business-days'
 
 import app from './express'
 import { APP_DOMAIN } from '../app/config'
@@ -105,6 +106,20 @@ app.param('urtext', function(req, res, next) {
 
       if (parsedPromise) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
+
+        if (!parsedPromise.tdue) {
+          const now = moment(moment.tz.zone(parsedPromise.timezone))
+          const noon = moment(now).hours(12)
+          const closeOfBusiness = moment(now)
+            .nextBusinessDay()
+            .hours(17)
+
+          if (now.isBusinessDay() && now.isBefore(noon)) {
+            parsedPromise.tdue = moment({ hours: 17 }).startOf('hour')
+          } else {
+            parsedPromise.tdue = closeOfBusiness
+          }
+        }
 
         wasPromiseCreated = await Promises
           .upsert({ ...parsedPromise, ip, useragent })

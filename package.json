@@ -27,6 +27,7 @@
     "lodash": "^4.17.10",
     "mailgun-js": "^0.18.0",
     "moment": "^2.22.1",
+    "moment-business-days": "^1.0.6",
     "moment-timezone": "^0.5.16",
     "mysql": "^2.15.0",
     "node-sass-middleware": "^0.11.0",

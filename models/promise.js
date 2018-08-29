@@ -3,11 +3,6 @@ import moment from 'moment'
 import { sequelize, Sequelize } from '../db/sequelize'
 import parseCredit from '../lib/parse/credit'
 
-const currentMinute = () =>
-  moment()
-    .seconds(0)
-    .milliseconds(0)
-
 /* eslint-disable max-len */
 export default sequelize.define('promises', {
   id: { // username + urtext
@@ -17,9 +12,6 @@ export default sequelize.define('promises', {
     type: Sequelize.STRING
   },
   urtext: { // full original path the user typed to create the promise
-    type: Sequelize.STRING
-  },
-  userId: { // who's making the promise, parsed as the subdomain in the urtext
     type: Sequelize.STRING
   },
   slug: { // promise text, parsed from the urtext path
@@ -43,7 +35,6 @@ export default sequelize.define('promises', {
   credit: {
     type: Sequelize.VIRTUAL,
     get: function() {
-      // TODO make parseCredit more robust
       const credit = parseCredit({
         dueDate: this.get('tdue'),
         finishDate: this.get('tfin')
@@ -54,14 +45,16 @@ export default sequelize.define('promises', {
   },
   tini: { // when the was promise was made
     type: Sequelize.DATE,
-    defaultValue: () => currentMinute().toDate(),
+    defaultValue: () => moment()
+      .startOf('minute')
+      .toDate(),
   },
   tdue: { // when the promise is due
     type: Sequelize.DATE,
-    defaultValue: () => // 24 hours from now
-      currentMinute()
-        .add(1, 'day')
-        .toDate(),
+    defaultValue: () => moment()
+      .startOf('minute')
+      .add(1, 'day')
+      .toDate(),
   },
   tfin: { // When the promise was (fractionally) fulfilled (even if 0%)
     type: Sequelize.DATE,

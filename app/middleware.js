@@ -108,16 +108,16 @@ app.param('urtext', function(req, res, next) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
 
         if (!parsedPromise.tdue) {
-          const now = moment(moment.tz.zone(parsedPromise.timezone))
+          const now = moment().tz(parsedPromise.timezone)
           const noon = moment(now).hours(12)
           const closeOfBusiness = moment(now)
-            .nextBusinessDay()
             .hours(17)
+            .startOf('hour')
 
           if (now.isBusinessDay() && now.isBefore(noon)) {
-            parsedPromise.tdue = moment({ hours: 17 }).startOf('hour')
+            parsedPromise.tdue = closeOfBusiness.toDate()
           } else {
-            parsedPromise.tdue = closeOfBusiness
+            parsedPromise.tdue = closeOfBusiness.nextBusinessDay().toDate()
           }
         }
 

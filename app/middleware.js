@@ -1,6 +1,5 @@
 import subdomainHandler from 'express-subdomain-handler'
 import _ from 'lodash'
-import moment from 'moment-business-days'
 
 import app from './express'
 import { APP_DOMAIN } from '../app/config'
@@ -9,8 +8,8 @@ import actionNotifier from '../lib/notify'
 import { Promises, Users } from '../models'
 
 import { parsePromise, parsePromiseWithIp } from '../lib/parse/promise'
-import { isBotFromUserAgent } from '../lib/parse/url'
-import isValidUrl from '../lib/parse/url'
+import isValidUrl, { isBotFromUserAgent } from '../lib/parse/url'
+import { nextCloseOfBusiness } from '../lib/parse/time'
 
 const pageWithStatus = ({
   message, reason = {}, res = {}, template, status
@@ -108,17 +107,7 @@ app.param('urtext', function(req, res, next) {
         const useragent = JSON.stringify(_.pickBy(req.useragent))
 
         if (!parsedPromise.tdue) {
-          const now = moment().tz(parsedPromise.timezone)
-          const noon = moment(now).hours(12)
-          const closeOfBusiness = moment(now)
-            .hours(17)
-            .startOf('hour')
-
-          if (now.isBusinessDay() && now.isBefore(noon)) {
-            parsedPromise.tdue = closeOfBusiness.toDate()
-          } else {
-            parsedPromise.tdue = closeOfBusiness.nextBusinessDay().toDate()
-          }
+          parsedPromise.tdue = nextCloseOfBusiness(parsedPromise)
         }
 
         wasPromiseCreated = await Promises

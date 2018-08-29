@@ -19,9 +19,6 @@ export default sequelize.define('promises', {
   urtext: { // full original path the user typed to create the promise
     type: Sequelize.STRING
   },
-  userId: { // who's making the promise, parsed as the subdomain in the urtext
-    type: Sequelize.STRING
-  },
   slug: { // promise text, parsed from the urtext path
     type: Sequelize.STRING
   },

@@ -110,7 +110,9 @@ app.param('urtext', function(req, res, next) {
           parsedPromise.tdue = nextCloseOfBusiness(parsedPromise)
         }
 
-        wasPromiseCreated = await Promises
+        wasPromiseCreated = true // ensure creation is logged and email is sent
+
+        await Promises
           .upsert({ ...parsedPromise, ip, useragent })
           .catch((reason) =>
             renderErrorPage({ message: 'promise creation error', reason, res }))

@@ -53,7 +53,7 @@ describe('parseCredit', () => {
         finishDate: moment().subtract(1, 'day'),
       }))
 
-      it('returns null', () => {
+      it('returns the value as 1, or 100%', () => {
         expect($credit).to.eq(1)
       })
     })

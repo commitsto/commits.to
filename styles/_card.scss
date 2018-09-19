@@ -181,15 +181,13 @@
     text-transform: uppercase;
 
     &-date {
-      
+
       padding: 1rem;
     }
 
     &-link {
       display: block;
-      overflow: hidden;
       padding: .5rem 1rem;
-      text-overflow: ellipsis;
       transition: .35s ease-in;
       white-space: nowrap;
 

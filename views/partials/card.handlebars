@@ -55,7 +55,8 @@
             {{#if user}}
               <a href="#"
                 class="promise-bar-link {{dueColor (dueStatus promise.tdue)}}"
-                onclick='completePromise("{{user.username}}", "{{promise.id}}")'>
+                onclick='completePromise("{{user.username}}", "{{promise.id}}")'
+                title="Mark {{completeCredit promise.credit}} Complete">
                 <span>Mark {{completeCredit promise.credit}} Complete</span>
               </a>
             {{/if}}

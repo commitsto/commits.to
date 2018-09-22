@@ -91,8 +91,8 @@ app.param('urtext', function(req, res, next) {
 
       return pageWithStatus({
         template: 'autocaptcha',
-        status: 404,
-        message: 'executing ajax request',
+        status: 401, // send unauthorized instead of not found
+        message: 'promise has not been validated',
         reason: { username, urtext },
         res
       })

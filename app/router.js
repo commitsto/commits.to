@@ -30,7 +30,7 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
-// show promise, or create it via middlware
+// show promise
 app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', deSequelize(req.promise))
   res.render('show', {
@@ -47,7 +47,7 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   })
 })
 
-// home
+// all promises
 app.get(['/?'], (req, res) => {
   Promises.findAll({
     where: {
@@ -78,7 +78,6 @@ app.get('/sign-up', (req, res) => {
   log.info('render sign up')
   res.render('signup')
 })
-
 
 // catch-all
 app.get('*', (req, res) => {

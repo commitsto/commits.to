@@ -5,12 +5,13 @@ import app from './express'
 import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
 import { Promises, Users } from '../models/'
 import log, { deSequelize } from '../lib/logger'
-import { diffPromises } from '../lib/parse/promise'
+import { diffPromises, parsePromise } from '../lib/parse/promise'
 import actionNotifier from '../lib/notify'
 import parseCredit from '../lib/parse/credit'
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
 
+// TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
 
 const userQuery = (user) => ({
   model: Users,
@@ -34,11 +35,55 @@ app.get('/users/create/:username', (req, res) => {
   }
 })
 
+app.post('/promises/parse/', (req, res) => {
+  const {
+    promise = {},
+    urtext,
+    username,
+    timezone,
+  } = req.body
+
+  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+
+  if (!parsedPromise) {
+    resp.send(400)
+  } else {
+    res.send(parsedPromise)
+  }
+})
+
 
 // User-scoped actions
 
-// TODO implement a /create POST endpoint
-// app.post('/promises/create/', (req, resp) => {})
+app.post('/_s/:user/promises/create/', (req, res) => {
+  const {
+    promise = {},
+    urtext,
+    username,
+    timezone,
+  } = req.body
+
+  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+
+  if (!parsedPromise || req.params.user !== username) {
+    res.send(400)
+  } else {
+    Users.findOne({
+      where: {
+        username,
+      }
+    }).then(user => {
+      if (user) {
+        user.createPromise(parsedPromise)
+          .then(function(prom) {
+            log.info('promise created', prom)
+            res.status(201).send(prom)
+          })
+          .catch((reason) => res.status(400).send(reason))
+      }
+    })
+  }
+})
 
 app.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields

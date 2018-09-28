@@ -1,11 +1,11 @@
 import app from './express'
-import log, { deSequelize } from '../lib/logger'
+import log, { deSequelize } from '../../lib/logger'
 
 import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models'
-import promiseGallerySort from '../lib/sort'
-import { isNewPromise } from '../helpers/calculate'
-import { calculateReliability } from '../lib/parse/credit'
+import promiseGallerySort from '../../lib/sort'
+import { isNewPromise } from '../models/promise'
+import { calculateReliability } from '../../lib/parse/credit'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {

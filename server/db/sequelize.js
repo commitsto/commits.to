@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize'
 
 import { DATABASE_URL } from '../app/config'
-import log from '../lib/logger'
+import log from '../../lib/logger'
 
 const postgresRegex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/
 let sequelize = { define: () => {} } // stub

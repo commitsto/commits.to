@@ -1,7 +1,7 @@
 import { Users } from '../models'
-import log from '../lib/logger'
+import log from '../../lib/logger'
 
-import { calculateReliability } from '../lib/parse/credit'
+import { calculateReliability } from '../../lib/parse/credit'
 
 // FIXME get rid of this whole concept
 

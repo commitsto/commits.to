@@ -4,13 +4,18 @@ import { Promises } from '../models/'
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
 
+import FrontendApi from '../api/v1/frontend'
 import PromiseApi from '../api/v1/promises'
 import UserApi from '../api/v1/users'
 
 // TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
 
-app.use(PromiseApi)
-app.use(UserApi)
+// Client-side/browser API
+app.use('/', FrontendApi)
+
+// "REST" endpoints
+app.use('/_s/api/v1', PromiseApi)
+app.use('/_s/api/v1', UserApi)
 
 // Utils
 

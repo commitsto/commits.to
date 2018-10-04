@@ -2,8 +2,7 @@ import Handlebars from 'handlebars'
 import _ from 'lodash'
 
 import { timeDiff } from '../lib/parse/time'
-
-export const isNewPromise = ({ promise }) => promise.clix === 1
+import { isNewPromise } from '../server/models/promise'
 
 Handlebars.registerHelper('dueStatus', (dueDate) => {
   if (!dueDate) return ''

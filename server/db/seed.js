@@ -1,9 +1,9 @@
-import log from '../lib/logger'
+import log from '../../lib/logger'
 
 import { Promises, Users } from '../models'
-import { parsePromise } from '../lib/parse/promise'
+import { parsePromise } from '../../lib/parse/promise'
 
-import data from '../data/promises.json' // dreev's promises for initial import
+import data from './data/promises.json' // dreev's promises for initial import
 
 // dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases
 // usernames to disallow: 'www', 'admin',

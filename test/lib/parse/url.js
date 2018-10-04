@@ -17,12 +17,19 @@ describe('isValidUrl', () => {
       expect($isValid).to.be.false
     })
 
+    context('when the url ends in abby', () => {
+      def('url', () => '/test/this/thing/for/abby')
+
+      it('rejects the url', () => {
+        expect($isValid).to.be.true
+      })
+    })
+
     context('when the url ends in /by', () => {
       def('url', () => '/test/this/thing/by')
 
-      // This was an invalid URL before, anti-bot measure no longer needed
-      it('does not reject the url anymore', () => {
-        expect($isValid).to.be.true
+      it('rejects the url', () => {
+        expect($isValid).to.be.false
       })
     })
 

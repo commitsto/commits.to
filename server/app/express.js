@@ -3,13 +3,11 @@ import expressHandlebars from 'express-handlebars'
 import sassMiddleware from 'node-sass-middleware'
 import useragent from 'express-useragent'
 
+import '../../helpers'
+
 import { PORT } from './config'
-import log from '../lib/logger'
-import '../helpers/calculate'
-import '../helpers/colors'
-import '../helpers/format'
-import '../helpers/path'
-import '../helpers/utils'
+import log from '../../lib/logger'
+
 
 const app = express()
 

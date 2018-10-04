@@ -48,26 +48,28 @@
   </div>
 
   <div class="promise-footer">
-    <div style="width: {{completeCredit promise.credit}}" >
-      {{#unless promise.tfin}}
-        <div class="promise-bar promise-bar--bottom">
-          <div class="bar-button-action">
-            {{#if user}}
-              <a href="#"
-                class="promise-bar-link {{dueColor (dueStatus promise.tdue)}}"
-                onclick='completePromise("{{user.username}}", "{{promise.id}}")'
-                title="Mark {{completeCredit promise.credit}} Complete">
-                <span>Mark {{completeCredit promise.credit}} Complete</span>
-              </a>
-            {{/if}}
+    <div class="promise-bar-wrapper">
+      <div style="width: {{completeCredit promise.credit}}" >
+        {{#unless promise.tfin}}
+          <div class="promise-bar promise-bar--bottom">
+            <div class="bar-button-action">
+              {{#if user}}
+                <a href="#"
+                  class="promise-bar-link {{dueColor (dueStatus promise.tdue)}}"
+                  onclick='completePromise("{{user.username}}", "{{promise.id}}")'
+                  title="Mark {{completeCredit promise.credit}} Complete">
+                  <span>Mark {{completeCredit promise.credit}} Complete</span>
+                </a>
+              {{/if}}
+            </div>
           </div>
-        </div>
-      {{/unless}}
-      {{#if promise.tfin}}
-        <div class="credit--status {{creditColor promise.credit}}">
-          <span class="promise-credit">{{prettyCredit promise.credit}}</span>
-        </div>
-      {{/if}}
+        {{/unless}}
+        {{#if promise.tfin}}
+          <div class="credit--status {{creditColor promise.credit}}">
+            <span class="promise-credit">{{prettyCredit promise.credit}}</span>
+          </div>
+        {{/if}}
+      </div>
     </div>
     <div class="promise-slug">
       <a href="{{promisePath promise}}">

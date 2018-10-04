@@ -17,6 +17,14 @@ describe('isValidUrl', () => {
       expect($isValid).to.be.false
     })
 
+    context('when the url ends in abby', () => {
+      def('url', () => '/test/this/thing/for/abby')
+
+      it('does not reject the url', () => {
+        expect($isValid).to.be.true
+      })
+    })
+
     context('when the url ends in /by', () => {
       def('url', () => '/test/this/thing/by')
 

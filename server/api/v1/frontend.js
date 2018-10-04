@@ -1,46 +1,21 @@
 import moment from 'moment-timezone'
 import _ from 'lodash'
+import { Router } from 'express'
 
-import app from './express'
-import { ALLOW_ADMIN_ACTIONS, APP_DOMAIN, ENVIRONMENT } from '../app/config'
-import { Promises, Users } from '../models/'
-import log, { deSequelize } from '../lib/logger'
-import { diffPromises } from '../lib/parse/promise'
-import actionNotifier from '../lib/notify'
-import parseCredit from '../lib/parse/credit'
-import { seed, importJson } from '../db/seed'
-import cache from '../db/cache'
-
+import { Promises, Users } from '../../models/'
+import log, { deSequelize } from '../../../lib/logger'
+import actionNotifier from '../../../lib/notify'
+import parseCredit from '../../../lib/parse/credit'
+import { diffPromises } from '../../../lib/parse/promise'
 
 const userQuery = (user) => ({
   model: Users,
   where: { username: user }
 })
 
+const api = Router()
 
-// Global endpoints
-
-app.get('/users/create/:username', (req, res) => {
-  const { username } = req.params
-
-  if (username) {
-    Users.create({ username })
-      .then(() => {
-        log.info('user created', username)
-        res.redirect(`//${username}.${APP_DOMAIN}`)
-      })
-  } else {
-    res.redirect('/')
-  }
-})
-
-
-// User-scoped actions
-
-// TODO implement a /create POST endpoint
-// app.post('/promises/create/', (req, resp) => {})
-
-app.post('/_s/:user/promises/edit', (req, res) => {
+api.post('/_s/:user/promises/edit', (req, res) => {
   // invalid dates/empty string values should unset db fields
   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
   const data = _.mapValues(req.body, (val) => valOrNull(val))
@@ -81,7 +56,7 @@ app.post('/_s/:user/promises/edit', (req, res) => {
   })
 })
 
-app.post('/_s/:user/promises/complete', (req, resp) => {
+api.post('/_s/:user/promises/complete', (req, resp) => {
   Promises.findOne({
     where: {
       id: req.body.id
@@ -98,7 +73,7 @@ app.post('/_s/:user/promises/complete', (req, resp) => {
   })
 })
 
-app.post('/_s/:user/promises/remove', (req, resp) => {
+api.post('/_s/:user/promises/remove', (req, resp) => {
   Promises.destroy({
     where: {
       id: req.body.id
@@ -114,9 +89,8 @@ app.post('/_s/:user/promises/remove', (req, resp) => {
   })
 })
 
-
 // captcha
-app.post('/_s/:user/promises/validate', ({ body: { id } = {} }, resp) => {
+api.post('/_s/:user/promises/validate', ({ body: { id } = {} }, resp) => {
   if (!id) {
     resp.send(404)
   } else {
@@ -128,41 +102,4 @@ app.post('/_s/:user/promises/validate', ({ body: { id } = {} }, resp) => {
   }
 })
 
-
-// Utils
-
-// calculate and store reliability for each user
-app.get('/cache', (req, resp) => {
-  cache()
-  resp.redirect('/')
-})
-
-if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
-  // insert promises.json into db
-  app.get('/import', (req, resp) => {
-    importJson()
-    resp.redirect('/')
-  })
-
-  // drop db and repopulate
-  app.get('/reset', (req, resp) => {
-    seed()
-    resp.redirect('/')
-  })
-
-  // removes all entries from the promises table
-  app.get('/empty', (req, resp) => {
-    Promises.destroy({ where: {} })
-    resp.redirect('/')
-  })
-
-  // removes all promises for a given user
-  app.get('/_s/:user/promises/remove', function(req, resp) {
-    Promises.destroy({
-      include: [userQuery(req.params.user)],
-    }).then(function(deletedRows) {
-      log.warn('user promises removed', deletedRows)
-      resp.redirect('/')
-    })
-  })
-}
+export default api

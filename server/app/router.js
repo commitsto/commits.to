@@ -1,11 +1,11 @@
 import app from './express'
-import log, { deSequelize } from '../lib/logger'
+import log, { deSequelize } from '../../lib/logger'
 
 import { Sequelize } from '../db/sequelize'
 import { Promises, Users } from '../models'
-import promiseGallerySort from '../lib/sort'
-import { isNewPromise } from '../helpers/calculate'
-import { calculateReliability } from '../lib/parse/credit'
+import promiseGallerySort from '../../lib/sort'
+import { isNewPromise } from '../models/promise'
+import { calculateReliability } from '../../lib/parse/credit'
 
 // user promises list
 app.get('/_s/:user', (req, res) => {
@@ -30,7 +30,7 @@ app.get('/_s/:user', (req, res) => {
   })
 })
 
-// show promise, or create it via middlware
+// show promise
 app.get('/_s/:user/:urtext(*)', (req, res) => {
   log.debug('show promise', deSequelize(req.promise))
   res.render('show', {
@@ -47,7 +47,7 @@ app.get('/_s/:user/:urtext(*)', (req, res) => {
   })
 })
 
-// home
+// all promises
 app.get(['/?'], (req, res) => {
   Promises.findAll({
     where: {
@@ -78,7 +78,6 @@ app.get('/sign-up', (req, res) => {
   log.info('render sign up')
   res.render('signup')
 })
-
 
 // catch-all
 app.get('*', (req, res) => {

@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars'
-import APP_DOMAIN from '../app/config'
+import APP_DOMAIN from '../server/app/config'
 
 const userPath = (name) => `//${name}.${APP_DOMAIN}`
 export const promisePath = ({ username, urtext }) =>

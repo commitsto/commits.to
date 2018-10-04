@@ -1,7 +1,9 @@
 import moment from 'moment'
 
 import { sequelize, Sequelize } from '../db/sequelize'
-import parseCredit from '../lib/parse/credit'
+import parseCredit from '../../lib/parse/credit'
+
+export const isNewPromise = ({ promise }) => promise.clix === 1
 
 /* eslint-disable max-len */
 export default sequelize.define('promises', {

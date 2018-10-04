@@ -119,7 +119,7 @@
 
     .promise-slug {
       margin-right: auto;
-      padding: .5rem 1rem;
+      padding: .4rem 1rem;
       z-index: 1;
     }
 
@@ -180,8 +180,11 @@
     text-align: left;
     text-transform: uppercase;
 
-    &-date {
+    &-wrapper {
+      background-color: $gray-blue;
+    }
 
+    &-date {
       padding: 1rem;
     }
 

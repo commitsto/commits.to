@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars'
 import moment from 'moment-timezone'
 
-import APP_DOMAIN from '../app/config'
+import APP_DOMAIN from '../server/app/config'
 import { promisePath } from './path'
 
 Handlebars.registerHelper('__appDomain', () => {

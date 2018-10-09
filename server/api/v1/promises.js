@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 import { Users } from '../../models/'
-import log from '../../../lib/logger'
+import log, { deSequelize } from '../../../lib/logger'
 import { parsePromise, parsePromiseWithIp } from '../../../lib/parse/promise'
 
 const api = Router()
@@ -44,7 +44,7 @@ api.post('/promises/create/', (req, res) => {
       if (user) {
         user.createPromise(parsedPromise)
           .then(function(prom) {
-            log.info('promise created via POST', prom, req.body)
+            log.info('promise created via POST', deSequelize(prom), req.body)
             res.status(201).send(prom)
           })
           .catch((reason) => res.status(400).send(reason))
@@ -70,7 +70,7 @@ api.put('/promises/:username/:urtext', ({ ip, ...req }, res) => {
       if (parsedPromise) {
         user.createPromise(parsedPromise)
           .then(function(prom) {
-            log.info('promise created via PUT', prom)
+            log.info('promise created via PUT', deSequelize(prom))
             return res.status(201).send(prom)
           })
           .catch((reason) => res.status(400).send(reason))

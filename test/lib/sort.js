@@ -50,4 +50,18 @@ describe('promiseGallerySort', () => {
       expect(promiseGallerySort(...$promises) > 0).to.be.true
     })
   })
+
+  context('when a promise is pending and tini is null', () => {
+    def('promises', () => [{
+      tini: null,
+      tfin: null,
+    }, {
+      tini: null,
+      tfin: $yesterday,
+    }])
+
+    it('sorts the pending promise before the completed promise', () => {
+      expect(promiseGallerySort(...$promises) < 0).to.be.true
+    })
+  })
 })

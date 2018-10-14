@@ -81,6 +81,6 @@ app.get('/sign-up', (req, res) => {
 
 // catch-all
 app.get('*', (req, res) => {
-  log.info('render 404')
-  res.render('404', req.originalUrl)
+  log.info('render 404', req.originalUrl)
+  res.render('404')
 })

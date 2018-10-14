@@ -16,9 +16,6 @@ app.use(useragent.express())
 app.use(sassMiddleware({
   src: 'styles',
   dest: 'public',
-  force: true, // FIXME: glitch needed this at one point?
-  // debug: true,
-  // outputStyle: 'compressed',
 }))
 
 app.enable('trust proxy')

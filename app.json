@@ -2,7 +2,7 @@
   "name": "commits.to",
   "description": "Commitment logging and reliability tracking",
   "website": "http://commits.to",
-  "repository": "https://github.com/beeminder/iwill",
+  "repository": "https://github.com/commitsto/commits.to",
   "env": {
     "ENV_NAME": "heroku-review",
     "APP_DOMAIN": "commitsto-dev.review",

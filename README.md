@@ -147,7 +147,7 @@ Run [Mocha](https://mochajs.org/) tests with `npm test`.
 
 ### Writing tests
 
-We're using the [Chai](http://www.chaijs.com/) assertion library and [Sinon](http://sinonjs.org/) for spying/stubbing.
+We're using the [Chai](https://www.chaijs.com/) assertion library and [Sinon](https://sinonjs.org/) for spying/stubbing.
 You can run tests in watch mode to get results nearly instantly on save with `npm run test:watch`
 
 ### Structuring tests

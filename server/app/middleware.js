@@ -48,9 +48,11 @@ app.param('urtext', function(req, res, next, param) {
   const { originalUrl: url, useragent } = req
   log.debug('url check', param)
   // handle invalid requests with a 404
-  if (!isValidUrl({ url })) {
-    const reason = { url, useragent: _.pickBy(useragent) }
-    return renderErrorPage({ message: 'invalid url', reason, res })
+  const errorMessages = isValidUrl({ url })
+  if (errorMessages.length) {
+    const message = errorMessages.join(', ')
+    const reason = { message, url, useragent: _.pickBy(useragent) }
+    return renderErrorPage({ message, reason, res })
   }
   return next()
 })

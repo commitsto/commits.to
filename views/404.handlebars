@@ -5,6 +5,14 @@
     <h3>
         Were you trying to create a commitment?
     </h3>
+    {{#if message}}
+      <p class="error--active">
+        <strong>
+          Error:&nbsp;
+        </strong>
+        {{message}}
+      </p>
+    {{/if}}
     <p>
         Right now the preferred format is like
         <tt>alice.commits.to/do_the_thing</tt>

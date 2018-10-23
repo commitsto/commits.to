@@ -4,58 +4,66 @@ import isValidUrl, { isBotFromUserAgent } from '../../../lib/parse/url'
 
 describe('isValidUrl', () => {
   def('url', () => '/go_for_a_run/by/2:30pm')
-  def('isValid', () => isValidUrl({ url: $url }))
+  subject(() => isValidUrl({ url: $url }))
 
   it('allows any url that has no invalid characters', () => {
-    expect($isValid).to.be.true
+    expect($subject).to.have.length(0)
+  })
+
+  context('when the url contains a % sign', () => {
+    def('url', () => '/space%20here')
+
+    it('rejects the url', () => {
+      expect($subject).to.have.length(1)
+    })
   })
 
   context('when the url has a file extension', () => {
     def('url', () => '/awekjad.txt')
 
     it('rejects the url', () => {
-      expect($isValid).to.be.false
+      expect($subject).to.have.length(1)
     })
+  })
 
-    context('when the url ends in abby', () => {
-      def('url', () => '/test/this/thing/for/abby')
+  context('when the url ends in abby', () => {
+    def('url', () => '/test/this/thing/for/abby')
 
-      it('does not reject the url', () => {
-        expect($isValid).to.be.true
-      })
+    it('does not reject the url', () => {
+      expect($subject).to.have.length(0)
     })
+  })
 
-    context('when the url ends in /by', () => {
-      def('url', () => '/test/this/thing/by')
+  context('when the url ends in /by', () => {
+    def('url', () => '/test/this/thing/by')
 
-      it('rejects the url', () => {
-        expect($isValid).to.be.false
-      })
+    it('rejects the url', () => {
+      expect($subject).to.have.length(1)
     })
+  })
 
-    context('when the url repeats the username and domain', () => {
-      def('url', () => '/tester.commits.to/test/the/things')
+  context('when the url repeats the username and domain', () => {
+    def('url', () => '/tester.commits.to/test/the/things')
 
-      it('rejects the url', () => {
-        expect($isValid).to.be.false
-      })
+    it('rejects the url', () => {
+      expect($subject).to.have.length(1)
     })
   })
 })
 
 describe('isQueryString', () => {
   def('url', () => '/go_running?by=2:30pm')
-  def('isValid', () => isValidUrl({ url: $url }))
+  subject(() => isValidUrl({ url: $url }))
 
   it('rejects any url that has a "valid" querystring', () => {
-    expect($isValid).to.be.false
+    expect($subject).to.have.length(1)
   })
 
   context('when the "?" is followed by a "/"', () => {
     def('url', () => 'go_running?/by/2:30pm')
 
     it('does not consider the url to have a querystring', () => {
-      expect($isValid).to.be.true
+      expect($subject).to.have.length(0)
     })
   })
 })

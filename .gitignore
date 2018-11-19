@@ -10,3 +10,4 @@ tmp/
 
 # css is compiled from scss in /styles
 public/main.css
+package-lock.json

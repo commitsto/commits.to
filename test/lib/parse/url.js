@@ -13,7 +13,15 @@ describe('isValidUrl', () => {
   context('when the url contains a % sign', () => {
     def('url', () => '/space%20here')
 
-    it('rejects the url', () => {
+    it('rejects the % sign', () => {
+      expect($subject).to.have.length(1)
+    })
+  })
+
+  context('when the url contains an apostrophe', () => {
+    def('url', () => '/for-it\'s-test')
+
+    it('rejects the apostrophe', () => {
       expect($subject).to.have.length(1)
     })
   })
@@ -21,7 +29,7 @@ describe('isValidUrl', () => {
   context('when the url has a file extension', () => {
     def('url', () => '/awekjad.txt')
 
-    it('rejects the url', () => {
+    it('rejects the file extension', () => {
       expect($subject).to.have.length(1)
     })
   })
@@ -37,7 +45,7 @@ describe('isValidUrl', () => {
   context('when the url ends in /by', () => {
     def('url', () => '/test/this/thing/by')
 
-    it('rejects the url', () => {
+    it('rejects the /by', () => {
       expect($subject).to.have.length(1)
     })
   })

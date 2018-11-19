@@ -24,6 +24,10 @@ $element-border-radius: 3px;
   margin: 3rem 0;
 }
 
+.error--active {
+  color: $red;
+}
+
 .promise--status {
   &-green {
     background-color: $green;

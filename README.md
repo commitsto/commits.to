@@ -147,7 +147,7 @@ Run [Mocha](https://mochajs.org/) tests with `npm test`.
 
 ### Writing tests
 
-We're using the [Chai](http://www.chaijs.com/) assertion library and [Sinon](http://sinonjs.org/) for spying/stubbing.
+We're using the [Chai](https://www.chaijs.com/) assertion library and [Sinon](https://sinonjs.org/) for spying/stubbing.
 You can run tests in watch mode to get results nearly instantly on save with `npm run test:watch`
 
 ### Structuring tests
@@ -163,3 +163,32 @@ Writing code with well-contained classes or functions will be the most straightf
 | ----------- | ------------ | ----------------------- |
 | Staging     | `master`     | http://commitsto.review |
 | Production  | `production` | http://commits.to       |
+
+## Issue Tracking
+
+Issue tracking labels follow the [Beeminder Label Ontology](https://blog.beeminder.com/buglabels/). The following abbreviations, acronyms, and amusing shorthands are employed in service of bug zapping and feature enhancing:
+
+### Open Labels
+
+| Label       | Meaning                                                                         |
+| ----------- | ------------                                                                    |
+| BUG         | Opposite of feature                                                             |
+| RFE         | Request For Enhancement, aka feature request                                    |
+| UVI         | User-Visible Improvement                                                        |
+| STY         | Style/polish/CSS, or think of it as in pigsty or an eyesore                     |
+| MEN         | Mendoza = need to resolve before accepting more beta users                      |
+| PEA         | Easy-peasy                                                                      |
+| SKY         | Pie in the sky (would be awesome but not necessarily worth the effort)          |
+| ABC         | Non-technical, like prose or webcopy tweaks                                     |
+| ADO         | Consensus needed on what to Actually Do (or "much ado about ∅"), AKA question |
+
+### Closed Issues
+
+| Label       | Meaning                                                                       |
+| ----------- | ------------                                                                  |
+| aok         | Feature, by design                                                            |
+| cnr         | Could not reproduce                                                           |
+| dup         | Duplicate                                                                     |
+| nix         | Won't fix or invalid                                                          |
+| zap         | fixed                                                                         |
+| zzz         | postponed                                                                     |

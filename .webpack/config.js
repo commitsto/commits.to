@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
 
-// const appPath = path.resolve(__dirname, '../server/app/index')
+// const serverPath = path.resolve(__dirname, '../server/app/index') TODO
 // const templatePath = path.resolve(__dirname, '../src/templates/index.html')
 const rootPath = path.resolve(__dirname, '../');
 const contentPath = path.resolve(__dirname, '../build')
@@ -47,6 +47,7 @@ module.exports = {
               '@babel/preset-react',
             ],
             plugins: [
+              'babel-plugin-styled-components',
               ['@babel/plugin-proposal-class-properties', { loose: true }],
               'react-hot-loader/babel',
             ],
@@ -61,28 +62,6 @@ module.exports = {
     },
     runtimeChunk: true,
   },
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.tsx?$/,
-  //       exclude: /node_modules/,
-  //       use: [{
-  //         loader: 'ts-loader',
-  //         options: {
-  //           configFile: tsconfigPath,
-  //           transpileOnly: true,
-  //         },
-  //       }],
-  //     },
-  //     {
-  //       test: /\.jsx?$/,
-  //       exclude: /node_modules/,
-  //       use: {
-  //         loader: 'babel-loader',
-  //       },
-  //     },
-  //   ],
-  // },
   output: {
     filename: '[name].bundle.js',
     path: contentPath,

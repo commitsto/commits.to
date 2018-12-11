@@ -1,13 +1,9 @@
-.config/
-build/
-*database.sqlite
-node_modules/
 .babel.json
 .env
 .viminfo
-.v8flags*
-.nyc_output/
-tmp/
 
-# css is compiled from scss in /styles
-public/main.css
+.nyc_output/
+
+build/
+node_modules/
+tmp/

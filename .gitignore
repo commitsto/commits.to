@@ -1,4 +1,5 @@
 .config/
+build/
 *database.sqlite
 node_modules/
 .babel.json

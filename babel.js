@@ -1,3 +1,4 @@
-require('babel-register')
-require('babel-polyfill')
+// TODO
+require('@babel/register')
+require('@babel/polyfill')
 require('./server/app/index')

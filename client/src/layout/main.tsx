@@ -34,14 +34,12 @@ const MainContainer = styled.main`
   padding: 2rem;
 `;
 
-const MainLayout = () => (
+const MainLayout = ({ children }) => (
   <div>
     <DarkBackground />
     <Header title='commits.to' />
     <MainContainer>
-      <h3 className='sub-heading'>
-        a.k.a. The I-Will System
-        </h3>
+      { children }
     </MainContainer>
     <Footer />
   </div>

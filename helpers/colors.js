@@ -1,64 +1,62 @@
-import Handlebars from 'handlebars'
-
 const colorFromPercent = (score) => {
-  let color = ''
+  let color = '';
 
   switch (true) {
     case (score == null):
-      color = 'infinity'
-      break
+      color = 'infinity';
+      break;
     case (score < 0.5):
-      color = 'red'
-      break
+      color = 'red';
+      break;
     case (score < 0.9):
-      color = 'orange'
-      break
+      color = 'orange';
+      break;
     case (score < 1):
-      color = 'blue'
-      break
+      color = 'blue';
+      break;
     default:
-      color = 'green'
+      color = 'green';
   }
 
   // console.log('colorFromPercent', score, color)
-  return color
-}
+  return color;
+};
 
-Handlebars.registerHelper('scoreColor', function(score) {
-  const color = colorFromPercent(score)
-  // console.log('scoreColor', credit, color)
-  return `reliability--status-${color}`
-})
+export const scoreColor = (score) => {
+  const color = colorFromPercent(score);
+  console.log('scoreColor', score, color);
+  return colorList[color];
+};
 
-Handlebars.registerHelper('creditColor', function(credit) {
-  const color = colorFromPercent(credit)
+export const creditColor = (credit) => {
+  const color = colorFromPercent(credit);
   // console.log('creditColor', credit, color)
-  return `credit--status-${color}`
-})
+  return `credit--status-${color}`;
+};
 
-Handlebars.registerHelper('dueColor', function(diff) {
-  let color = ''
+export const dueColor = (diff) => {
+  let color = '';
 
   switch (true) {
     case (diff < -(24 * 5)):
-      color = 'green'
-      break
+      color = 'green';
+      break;
     case (diff < -(24 * 2)):
-      color = 'blue'
-      break
+      color = 'blue';
+      break;
     case (diff < -24):
-      color = 'yellow'
-      break
+      color = 'yellow';
+      break;
     case (diff < 0):
-      color = 'orange'
-      break
+      color = 'orange';
+      break;
     case (diff >= 0):
-      color = 'red'
-      break
+      color = 'red';
+      break;
     default:
-      color = 'gray'
+      color = 'gray';
   }
 
   // console.log('dueColor', diff, color)
-  return `promise--status-${color}`
-})
+  return `promise--status-${color}`;
+};

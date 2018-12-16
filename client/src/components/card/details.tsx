@@ -37,7 +37,7 @@ const CardDetails = () => (
         </div>
       </div>
       {{/if}}
-    </div>    
+    </div>
   </section>
 );
 

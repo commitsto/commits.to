@@ -17,7 +17,13 @@
     ],
     "max-line-length": false,
     "quotemark": false,
-    "semicolon": false,
-    "trailing-comma": false
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "trailing-comma": [
+      true,
+      "always"
+    ]
   }
 }

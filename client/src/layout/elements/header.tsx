@@ -3,12 +3,6 @@ import styled from 'styled-components';
 
 import { headerBg, headerBorder } from 'src/theme/colors';
 
-interface IHeaderProps {
-  link?: string;
-  title: string;
-  showNav?: boolean;
-}
-
 const DarkHeader = styled.header`
   background-color: ${headerBg};
   border-bottom: 1px ridge ${headerBorder};
@@ -16,6 +10,7 @@ const DarkHeader = styled.header`
   align-items: center;
   padding: .5rem 2rem;
 
+  // FIXME
   h1 {
     margin: 0 auto 0 0;
   }
@@ -25,6 +20,12 @@ const DarkHeader = styled.header`
     margin-left: 1.5rem;
   }
 `;
+
+interface IHeaderProps {
+  link?: string;
+  title: string;
+  showNav?: boolean;
+}
 
 const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
   <DarkHeader>

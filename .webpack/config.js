@@ -87,7 +87,8 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      src: rootPath + '/client/src',
+      src: `${rootPath}/client/src`,
+      lib: `${rootPath}/lib`,
     }
   },
 }

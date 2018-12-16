@@ -77,30 +77,6 @@
     word-break: break-all;
   }
 
-  &-header {
-    background-color: $gray-blue;
-    padding: .75rem 1rem;
-    position: relative;
-
-    + .promise-bar {
-      margin-top: 0;
-      opacity: .5;
-    }
-
-    .counted-promises {
-      font-weight: bold;
-      color: $light-gray;
-      letter-spacing: .05em;
-      line-height: .85em;
-
-      .pending {
-        font-size: 75%;
-        font-weight: 300;
-        vertical-align: text-top;
-      }
-    }
-  }
-
   &-footer {
     background: $black;
     border: 1px solid $header-border;
@@ -121,20 +97,6 @@
       margin-right: auto;
       padding: .4rem 1rem;
       z-index: 1;
-    }
-
-  }
-
-  &-user {
-    letter-spacing: 1px;
-    margin: 0;
-    text-transform: capitalize;
-
-    &-score {
-      font-size: 1.25rem;
-      font-weight: normal;
-      letter-spacing: .5px;
-      opacity: .85;
     }
   }
 

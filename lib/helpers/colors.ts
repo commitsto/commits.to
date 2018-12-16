@@ -1,3 +1,5 @@
+import colorList from 'src/theme/colors';
+
 const colorFromPercent = (score) => {
   let color = '';
 

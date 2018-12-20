@@ -32,8 +32,8 @@ export const scoreColor = (score) => {
 
 export const creditColor = (credit) => {
   const color = colorFromPercent(credit);
-  // console.log('creditColor', credit, color)
-  return `credit--status-${color}`;
+  console.log('creditColor', credit, color);
+  return colorList[color];
 };
 
 export const dueColor = (diff) => {

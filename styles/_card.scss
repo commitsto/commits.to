@@ -68,34 +68,11 @@
     padding: .5rem 1rem;
   }
 
-  &-slug {
-    border-top: 1px solid $header-border;
-    font-size: .75rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    opacity: .75;
-    word-break: break-all;
-  }
-
   &-footer {
-    background: $black;
-    border: 1px solid $header-border;
-    border-top: none;
-
-    a {
-      color: $light-gray;
-    }
-
     .promise-credit {
       color: $white;
       display: block;
       text-align: right;
-      z-index: 1;
-    }
-
-    .promise-slug {
-      margin-right: auto;
-      padding: .4rem 1rem;
       z-index: 1;
     }
   }
@@ -141,10 +118,6 @@
     opacity: .8;
     text-align: left;
     text-transform: uppercase;
-
-    &-wrapper {
-      background-color: $gray-blue;
-    }
 
     &-date {
       padding: 1rem;

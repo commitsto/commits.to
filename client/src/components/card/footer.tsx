@@ -1,36 +1,64 @@
 import * as React from 'react';
+import styled from 'styled-components';
 
-const CardFooter = () => (
-  <div className='promise-footer'>
-    <div className='promise-bar-wrapper'>
-      <div style='width: {{completeCredit promise.credit}}' >
-        { !promise.tfin &&
-          <div className='promise-bar promise-bar--bottom'>
-            <div className='bar-button-action'>
-              { user &&
-                <a href='#'
-                  className='promise-bar-link {{dueColor (dueStatus promise.tdue)}}'
-                  onclick='completePromise('{{user.username}}', '{{promise.id}}')'
-                  title='Mark {{completeCredit promise.credit}} Complete'>
-                  <span>Mark { completeCredit promise.credit } Complete</span>
-                </a>
-              }
-            </div>
-          </div>
-        }
-        { promise.tfin &&
-          <div className='credit--status {{creditColor promise.credit}}'>
-            <span className='promise-credit'>{ prettyCredit promise.credit }</span>
-          </div>
-        }
-      </div>
-    </div>
-    <div className='promise-slug'>
-      <a href='{{promisePath promise}}'>
+import CreditBar from 'src/components/bar/credit';
+import { black, grayBlue, headerBorder, lightGray } from 'src/theme/colors';
+
+const FooterWrapper = styled.div`
+  background: ${black};
+  border: 1px solid ${headerBorder};
+  border-top: none;
+`;
+
+const FooterLink = styled.a`
+  color: ${lightGray};
+  text-decoration: none;
+`;
+
+const FooterPromiseBar = styled.div`
+  background: ${grayBlue};
+`;
+
+const PromiseSlug = styled.div`
+  border-top: 1px solid ${headerBorder};
+  font-size: .75rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-right: auto;
+  opacity: .75;
+  padding: .4rem 1rem;
+  word-break: break-all;
+  z-index: 1;
+`;
+
+interface ICardFooterProps {
+  completePromise: ({ }) => void;
+  promise: {
+    credit?: number;
+    id: string;
+    tfin?: Date;
+    urtext: string;
+    username: string;
+  };
+}
+
+const CardFooter: React.SFC<ICardFooterProps> = ({
+  completePromise, promise
+}) => (
+  <FooterWrapper>
+    <FooterPromiseBar>
+      <CreditBar promise={promise} completePromise={completePromise} />
+    </FooterPromiseBar>
+    <PromiseSlug>
+      <FooterLink href='{{promisePath promise}}'>
         { promise.urtext }
-      </a>
-    </div>
-  </div>
+      </FooterLink>
+    </PromiseSlug>
+  </FooterWrapper>
 );
+
+CardFooter.defaultProps = {
+  completePromise: () => ({}),
+};
 
 export default CardFooter;

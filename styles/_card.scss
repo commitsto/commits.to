@@ -2,27 +2,6 @@
   flex: 1 1 auto;
   margin: .5rem;
 
-  &,
-  &-card,
-  &-footer {
-    transition: border .5s ease-out, opacity .3s ease-in-out;
-  }
-
-  &:hover {
-    .promise-footer {
-      border-color: $gray;
-    }
-
-    .promise-card {
-      border-color: $white-gray;
-      opacity: 1;
-    }
-
-    .promise-bar--bottom .promise-bar-link {
-      background: $white-gray;
-    }
-  }
-
   &-card {
     display: flex;
     background-color: $blue;
@@ -60,23 +39,6 @@
     }
   }
 
-  &-credit {
-    align-items: center;
-    display: flex;
-    font-size: .9rem;
-    height: 100%;
-    padding: .5rem 1rem;
-  }
-
-  &-footer {
-    .promise-credit {
-      color: $white;
-      display: block;
-      text-align: right;
-      z-index: 1;
-    }
-  }
-
   &-details {
 
     &,
@@ -94,10 +56,6 @@
     }
   }
 
-  &-info {
-    width: 100%;
-  }
-
   &-domain {
     display: none;
     font-style: italic;
@@ -112,36 +70,9 @@
   }
 
   &-bar {
-    font-size: .75rem;
-    font-weight: normal;
-    letter-spacing: .25px;
-    opacity: .8;
-    text-align: left;
-    text-transform: uppercase;
-
-    &-date {
-      padding: 1rem;
-    }
-
-    &-link {
-      display: block;
-      padding: .5rem 1rem;
-      transition: .35s ease-in;
-      white-space: nowrap;
-
-      &,
-      & span {
-        position: relative;
-        z-index: 1;
-      }
-
-      &::before {
-        @include gradient-shadow;
-      }
-    }
-
     &-date {
       height: 100%;
+      padding: 1rem;
       text-align: right;
 
       .relative-date {
@@ -149,17 +80,6 @@
         font-weight: 300;
         margin-bottom: .5rem;
         opacity: .7;
-      }
-    }
-
-    &--bottom {
-      background-color: $white;
-      opacity: .75;
-      text-align: right;
-      width: 100%;
-
-      &, a {
-        color: $white;
       }
     }
 

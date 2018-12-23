@@ -1,13 +1,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { completeCredit } from 'lib/helpers/format';
+
 import CreditBar from 'src/components/bar/credit';
-import { black, grayBlue, headerBorder, lightGray } from 'src/theme/colors';
+import { black, grayBlue, headerBorder, lightGray, white } from 'src/theme/colors';
 
 const FooterWrapper = styled.div`
   background: ${black};
   border: 1px solid ${headerBorder};
   border-top: none;
+`;
+
+const BarLink = styled.a`
+  color: ${white};
+  text-decoration: none;
+  text-transform: uppercase;
+      transition: .35s ease-in;
+      white-space: nowrap;
 `;
 
 const FooterLink = styled.a`
@@ -47,7 +57,13 @@ const CardFooter: React.SFC<ICardFooterProps> = ({
 }) => (
   <FooterWrapper>
     <FooterPromiseBar>
-      <CreditBar promise={promise} completePromise={completePromise} />
+      <CreditBar promise={promise}>
+        <BarLink href='#'
+          onClick={completePromise({ username: promise.username, id: promise.id })}
+          title={`Mark ${completeCredit(promise.credit)} Complete`}>
+          <span>Mark {completeCredit(promise.credit)} Complete</span>
+        </BarLink>
+      </CreditBar>
     </FooterPromiseBar>
     <PromiseSlug>
       <FooterLink href='{{promisePath promise}}'>

@@ -12,7 +12,7 @@ const CardDetails = ({ what, note, tdue, username, urtext }) => (
             commits.to
           </div>
           <div className='promise-text'>
-            {{ what }}
+            { what }
           </div>
           { note &&
             <small>

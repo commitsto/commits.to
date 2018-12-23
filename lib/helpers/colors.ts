@@ -19,8 +19,7 @@ const colorFromPercent = (score) => {
     default:
       color = 'green';
   }
-
-  // console.log('colorFromPercent', score, color)
+  console.log('colorFromPercent', score, color);
   return color;
 };
 
@@ -58,7 +57,6 @@ export const dueColor = (diff) => {
     default:
       color = 'gray';
   }
-
-  // console.log('dueColor', diff, color)
-  return `promise--status-${color}`;
+  console.log('dueColor', diff, color);
+  return colorList[color];
 };

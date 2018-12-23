@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { completeCredit } from 'lib/helpers/format';
+import { completeCredit, prettyCredit } from 'lib/helpers/format';
+import { promisePath } from 'lib/helpers/path';
 
 import CreditBar from 'src/components/bar/credit';
 import { black, grayBlue, headerBorder, lightGray, white } from 'src/theme/colors';
@@ -10,17 +12,18 @@ const FooterWrapper = styled.div`
   background: ${black};
   border: 1px solid ${headerBorder};
   border-top: none;
+  flex-basis: 100%;
 `;
 
-const BarLink = styled.a`
+const BarLink = styled(Link)`
   color: ${white};
   text-decoration: none;
   text-transform: uppercase;
-      transition: .35s ease-in;
-      white-space: nowrap;
+  transition: .35s ease-in;
+  white-space: nowrap;
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled(Link)`
   color: ${lightGray};
   text-decoration: none;
 `;
@@ -43,31 +46,31 @@ const PromiseSlug = styled.div`
 
 interface ICardFooterProps {
   completePromise: ({ }) => void;
-  promise: {
-    credit?: number;
-    id: string;
-    tfin?: Date;
-    urtext: string;
-    username: string;
-  };
+  credit?: number;
+  id: string;
+  tfin?: Date;
+  urtext: string;
+  username: string;
 }
 
 const CardFooter: React.SFC<ICardFooterProps> = ({
-  completePromise, promise
+  completePromise, credit, id, tfin, urtext, username,
 }) => (
   <FooterWrapper>
     <FooterPromiseBar>
-      <CreditBar promise={promise}>
-        <BarLink href='#'
-          onClick={completePromise({ username: promise.username, id: promise.id })}
-          title={`Mark ${completeCredit(promise.credit)} Complete`}>
-          <span>Mark {completeCredit(promise.credit)} Complete</span>
-        </BarLink>
+      <CreditBar credit={credit}>
+        { tfin ?
+          prettyCredit(credit)
+          :
+          <BarLink to={completePromise({ username, id })}>
+            <span>Mark {completeCredit(credit)} Complete</span>
+          </BarLink>
+        }
       </CreditBar>
     </FooterPromiseBar>
     <PromiseSlug>
-      <FooterLink href='{{promisePath promise}}'>
-        { promise.urtext }
+      <FooterLink to={promisePath({ username, urtext })}>
+        { urtext }
       </FooterLink>
     </PromiseSlug>
   </FooterWrapper>

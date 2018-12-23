@@ -10,6 +10,12 @@ import CardFooter from 'src/components/card/footer';
 
 import { black } from 'src/theme/colors';
 
+const hostContainer = {
+  align: 'middle',
+  backdrop: black,
+  width: '75vw',
+};
+
 const user = {
   username: 'testuser',
   score: .986437,
@@ -18,33 +24,28 @@ const user = {
 };
 
 const promise = {
-  id: 'testuser/promise-urtext',
+  id: 'testuser/this-is-a-test-promise',
   username: 'testuser',
-  urtext: 'promise-urtext',
+  urtext: 'this-is-a-test-promise',
   credit: .98672,
+  what: 'This is a test promise',
+  note: 'some extra details about the promise go here',
+  tdue: new Date(),
   // tfin: new Date(),
 }
 
 storiesOf('Card/Sections', module)
   .addDecorator(
-    host({
-      align: 'top',
-      backdrop: black,
-      width: '50vw',
-    }),
+    host(hostContainer),
   )
   .addDecorator(StoryRouter())
   .add('Header', () => (<CardHeader {...user} />))
-  .add('Details', () => (<CardDetails {...user} />))
-  .add('Footer', () => (<CardFooter promise={promise} />));
+  .add('Details', () => (<CardDetails {...promise} />))
+  .add('Footer', () => (<CardFooter {...promise} />));
 
   storiesOf('Card', module)
   .addDecorator(
-    host({
-      align: 'top',
-      backdrop: black,
-      width: '50vw',
-    }),
+    host(hostContainer),
   )
   .addDecorator(StoryRouter())
   .add('Card', () => (<Card user={user} promise={promise} />));

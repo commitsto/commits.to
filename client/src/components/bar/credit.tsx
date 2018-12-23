@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { creditColor } from 'lib/helpers/colors';
-import { completeCredit, prettyCredit } from 'lib/helpers/format';
+import { completeCredit } from 'lib/helpers/format';
 
 import { white } from 'src/theme/colors';
 
@@ -39,25 +39,12 @@ const ColoredBar = styled.div`
 
 interface ICreditBarProps {
   children?: JSX.Element;
-  promise: {
-    credit?: number;
-    id: string;
-    tfin?: Date;
-    urtext: string;
-    username: string;
-  };
+  credit: number;
 }
 
-const CreditBar: React.SFC<ICreditBarProps> = ({
-  children, promise: { credit, tfin, username, id }
-}) => (
+const CreditBar: React.SFC<ICreditBarProps> = ({ children, credit }) => (
   <ColoredBar credit={credit}>
-    { !tfin &&
-      children
-    }
-    { tfin &&
-      prettyCredit(credit)
-    }
+    { children }
   </ColoredBar>
 );
 

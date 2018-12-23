@@ -1,20 +1,5 @@
 .promise {
-  flex: 1 1 auto;
-  margin: .5rem;
-
   &-card {
-    display: flex;
-    background-color: $blue;
-    border-radius: $card-border-radius;
-    border: 1px groove $blue-border;
-    overflow: hidden;
-    position: relative;
-    opacity: .95;
-
-    &, a {
-      color: $white;
-    }
-
     &.completed {
       background-color: #FFFFFF0d;
       border-color: $light-gray;
@@ -36,62 +21,6 @@
       .promise-bar-link {
         display: none;
       }
-    }
-  }
-
-  &-details {
-
-    &,
-    & a {
-      height: 100%;
-    }
-
-    a {
-      padding: 1rem;
-      display: block;
-    }
-
-    small {
-      opacity: .75;
-    }
-  }
-
-  &-domain {
-    display: none;
-    font-style: italic;
-    font-weight: 300;
-    opacity: .5;
-  }
-
-  &-text {
-    font-size: 1.1rem;
-    letter-spacing: 0.025rem;
-    margin-top: .25rem;
-  }
-
-  &-bar {
-    &-date {
-      height: 100%;
-      padding: 1rem;
-      text-align: right;
-
-      .relative-date {
-        font-size: 85%;
-        font-weight: 300;
-        margin-bottom: .5rem;
-        opacity: .7;
-      }
-    }
-
-    &--due {
-      background-color: transparentize($black, .35);
-      // margin-left: auto;
-      max-width: 25%;
-    }
-
-    &--completed {
-      color: $black;
-      text-align: left;
     }
   }
 }

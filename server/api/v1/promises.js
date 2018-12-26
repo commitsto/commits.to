@@ -4,7 +4,30 @@ import { Users } from '../../models/'
 import log, { deSequelize } from '../../../lib/logger'
 import { parsePromise, parsePromiseWithIp } from '../../../lib/parse/promise'
 
+import addIdParser from '../id';
+
 const api = Router()
+
+addIdParser(api);
+
+// show promise
+api.get('/:id(*)', (req, res) => {
+  console.log('GET promise', req.params)
+  res.json({
+    promise: req.promise,
+    user: req.user,
+    // isNewPromise: isNewPromise({ promise: req.promise })
+  })
+
+  // log.debug('show promise', deSequelize(req.promise))
+
+  // update click after route has rendered
+  // res.on('finish', () => {
+  //   req.promise.increment(['clix'], { by: 1 }).then(prom => {
+  //     log.debug('clix incremented', deSequelize(prom))
+  //   })
+  // })
+})
 
 api.post('/promises/parse/', (req, res) => {
   const {

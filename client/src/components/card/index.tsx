@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { cardClassesFor } from 'lib/helpers/calculate';
+
 import CardDetails from 'src/components/card/details';
 import CardFooter from 'src/components/card/footer';
 import CardHeader from 'src/components/card/header';
@@ -22,12 +24,36 @@ const CardWrapper = styled.div`
     border-color: ${whiteGray};
     opacity: 1;
   }
+
+  /* FIXME */
+  &.completed {
+    background-color: #FFFFFF0d;
+    border-color: $light-gray;
+  }
+
+  &.new {
+    background-color: $white-gray;
+    border-color: $light-gray;
+
+    .promise-details a {
+      color: $black;
+    }
+  }
+
+  &.voided {
+    background-color: transparent;
+    border-color: $light-gray;
+
+    .promise-bar-link {
+      display: none;
+    }
+  }
 `;
 
-// <div className='promise-card {{cardClassesFor promise}} {{dueColor (dueStatus promise.tdue)}}'>
+// <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
 const Card = ({ user, promise }) => (
-  <CardWrapper>
+  <CardWrapper className={cardClassesFor(promise)}>
     <CardHeader {...user} />
     <CardDetails {...promise} />
     <CardFooter {...promise} />

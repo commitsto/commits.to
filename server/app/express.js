@@ -1,5 +1,4 @@
 import express from 'express'
-import sassMiddleware from 'node-sass-middleware'
 import useragent from 'express-useragent'
 
 import { PORT } from './config'
@@ -10,15 +9,9 @@ const app = express()
 
 app.use(useragent.express())
 
-app.use(sassMiddleware({
-  src: 'styles',
-  dest: 'public',
-}))
-
 app.enable('trust proxy')
 
-app.use(express.static('styles'))
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
 app.use(express.json())
 app.use(express.urlencoded({
@@ -28,5 +21,11 @@ app.use(express.urlencoded({
 app.listen(PORT, () => {
   log.info(`The commits.to app is running on port ${PORT}`)
 })
+
+// catch-all
+// app.get('*', (req, res) => {
+//   log.info('render 401', req.originalUrl)
+//   res.send(401)
+// })
 
 export default app

@@ -1,4 +1,4 @@
-// TODO
+// FIXME webpack
 require('@babel/register')
 require('@babel/polyfill')
-require('./server/app/index')
+require('./server/app/api')

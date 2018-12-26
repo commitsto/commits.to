@@ -13,9 +13,9 @@ import UserApi from '../api/v1/users'
 // Client-side/browser API
 app.use('/', FrontendApi)
 
-// "REST" endpoints
-app.use('/_s/api/v1', PromiseApi)
-app.use('/_s/api/v1', UserApi)
+// REST endpoints
+app.use('/api/v1', PromiseApi)
+app.use('/api/v1', UserApi)
 
 // Utils
 

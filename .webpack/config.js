@@ -19,7 +19,10 @@ module.exports = {
     contentBase: contentPath,
     hot: true,
     port: 8080,
-    disableHostCheck: true, // use aliased host/domain names
+    disableHostCheck: true, // use aliased host/domain names,
+    proxy: {
+      '/api/v1': 'http://localhost:8020',
+    }
   },
   devtool: 'cheap-module-eval-source-map',
   entry: {

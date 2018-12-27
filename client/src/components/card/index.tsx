@@ -2,14 +2,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { cardClassesFor } from 'lib/helpers/calculate';
+import { creditColor } from 'lib/helpers/colors';
 
 import CardDetails from 'src/components/card/details';
 import CardFooter from 'src/components/card/footer';
 import CardHeader from 'src/components/card/header';
-import { blue, blueBorder, whiteGray } from 'src/theme/colors';
+import { blueBorder, lightGray, whiteGray} from 'src/theme/colors';
 
 const CardWrapper = styled.div`
-  background-color: ${blue};
+  background: ${({ credit }) => creditColor(credit)};
   border: 1px groove ${blueBorder};
   display: flex;
   flex: 1 1 auto;
@@ -28,21 +29,12 @@ const CardWrapper = styled.div`
   /* FIXME */
   &.completed {
     background-color: #FFFFFF0d;
-    border-color: $light-gray;
-  }
-
-  &.new {
-    background-color: $white-gray;
-    border-color: $light-gray;
-
-    .promise-details a {
-      color: $black;
-    }
+    border-color: ${lightGray};
   }
 
   &.voided {
     background-color: transparent;
-    border-color: $light-gray;
+    border-color: ${lightGray};
 
     .promise-bar-link {
       display: none;
@@ -53,7 +45,7 @@ const CardWrapper = styled.div`
 // <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
 const Card = ({ user, promise }) => (
-  <CardWrapper className={cardClassesFor(promise)}>
+  <CardWrapper className={cardClassesFor(promise)} credit={promise.clix === 1 ? -1 : promise.credit}>
     <CardHeader {...user} />
     <CardDetails {...promise} />
     <CardFooter {...promise} />

@@ -11,8 +11,6 @@ app.use(useragent.express())
 
 app.enable('trust proxy')
 
-// app.use(express.static('public'))
-
 app.use(express.json())
 app.use(express.urlencoded({
   extended: false

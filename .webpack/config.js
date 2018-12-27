@@ -20,6 +20,7 @@ module.exports = {
     hot: true,
     port: 8080,
     disableHostCheck: true, // use aliased host/domain names,
+    historyApiFallback: true, // for react-router-dom
     proxy: {
       '/api/v1': 'http://localhost:8020',
     }

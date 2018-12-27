@@ -43,30 +43,4 @@ api.get('/users/create/:username', (req, res) => {
 //   })
 // })
 
-// // all promises
-// app.get(['/?'], (req, res) => {
-//   Promises.findAll({
-//     where: {
-//       tfin: null,
-//       void: {
-//         [Sequelize.Op.not]: true
-//       },
-//       urtext: {
-//         [Sequelize.Op.not]: null
-//       },
-//     }, // only show uncompleted
-//     // limit: 30
-//     include: [{
-//       model: Users
-//     }],
-//     order: Sequelize.literal('tini DESC'),
-//   }).then(function(promises) {
-//     log.debug('home promises', promises.length)
-
-//     res.render('home', {
-//       promises
-//     })
-//   })
-// })
-
 export default api

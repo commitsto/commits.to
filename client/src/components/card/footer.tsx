@@ -60,7 +60,7 @@ const CardFooter: React.SFC<ICardFooterProps> = ({
     <FooterPromiseBar>
       <CreditBar credit={credit}>
         { tfin ?
-          prettyCredit(credit)
+            <span>{ prettyCredit(credit) }</span>
           :
           <BarLink to={completePromise({ username, id })}>
             <span>Mark {completeCredit(credit)} Complete</span>

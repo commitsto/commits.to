@@ -1,11 +1,13 @@
 import colorList from 'src/theme/colors';
 
 const colorFromPercent = (score) => {
-  let color = '';
+  let color = 'green'; // default
 
   switch (true) {
     case (score == null):
-      color = 'infinity';
+      break;
+    case (score === -1):
+      color = 'whiteGray';
       break;
     case (score < 0.5):
       color = 'red';
@@ -16,22 +18,20 @@ const colorFromPercent = (score) => {
     case (score < 1):
       color = 'blue';
       break;
-    default:
-      color = 'green';
   }
-  console.log('colorFromPercent', score, color);
+  // console.log('colorFromPercent', score, color);
   return color;
 };
 
 export const scoreColor = (score) => {
   const color = colorFromPercent(score);
-  console.log('scoreColor', score, color);
+  // console.log('scoreColor', score, color);
   return colorList[color];
 };
 
 export const creditColor = (credit) => {
   const color = colorFromPercent(credit);
-  console.log('creditColor', credit, color);
+  // console.log('creditColor', credit, color);
   return colorList[color];
 };
 
@@ -57,6 +57,6 @@ export const dueColor = (diff) => {
     default:
       color = 'gray';
   }
-  console.log('dueColor', diff, color);
+  // console.log('dueColor', diff, color);
   return colorList[color];
 };

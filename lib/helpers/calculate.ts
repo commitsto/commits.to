@@ -1,15 +1,16 @@
 import _ from 'lodash';
 
-import { timeDiff } from 'lib/parse/time';
+// import { timeDiff } from 'lib/parse/time';
+
 // import { isNewPromise } from 'server/models/promise';
-const isNewPromise = ({ promise }) => promise.clix === 1; // FIXME
+const isNewPromise = ({ clix }) => clix === 1; // FIXME
 
-export const dueStatus = (dueDate) => {
-  if (!dueDate) { return ''; }
+// export const dueStatus = (dueDate) => {
+//   if (!dueDate) { return ''; }
 
-  console.log('dueStatus', dueDate);
-  return timeDiff({ dueDate, units: 'hours' });
-};
+//   console.log('dueStatus', dueDate);
+//   return timeDiff({ dueDate, units: 'hours' });
+// };
 
 // FIXME
 export const selectedIfVoid = (promise) => {
@@ -19,15 +20,12 @@ export const selectedIfVoid = (promise) => {
 export const cardClassesFor = (promise) => {
   if (!promise) { return {}; }
 
-  const classes = _({
+  const classes = {
     completed: promise.tfin,
-    new: isNewPromise({ promise }),
+    new: isNewPromise(promise),
     voided: promise.void,
-  })
-    .pickBy()
-    .keys()
-    .join(' ');
+  };
 
-  console.log('cardClassesFor', promise.id, classes);
-  return classes;
+  // console.log('cardClassesFor', promise, classes);
+  return _(classes).pickBy().keys().value().join(' ');
 };

@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import moment from 'moment-timezone';
 
-export const prettyPercent = (num: number, digits: number) => {
+export const prettyPercent = (num: number, digits?: number) => {
   if (!num) {
     return '';
   } else if (num === 1) {
@@ -9,7 +9,7 @@ export const prettyPercent = (num: number, digits: number) => {
   }
 
   const places = Number.isInteger(digits) ? digits : 3;
-  console.log('prettyPercent', num, digits);
+  // console.log('prettyPercent', num, digits);
   return `${_.floor(num * 100, places)}%`;
 };
 

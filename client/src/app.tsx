@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import MainLayout from 'src/layout/main';
 
-import Signup from 'src/views/signup';
+import Home from 'src/views/home';
 
 const App = () => (
   <MainLayout>
-    <Signup />
+    <BrowserRouter>
+      <Route exact path='/' component={Home} />
+    </BrowserRouter>
   </MainLayout>
 );
 

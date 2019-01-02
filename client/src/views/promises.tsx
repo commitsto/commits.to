@@ -9,11 +9,11 @@ class Promise extends React.Component {
   };
 
   public componentDidMount() {
-    fetch('http://commits-to.js:8080/api/v1/promises/incomplete')
+    fetch('/api/v1/promise/incomplete')
       .then((response) => {
         response.json()
           .then(({ promises }) => {
-            console.log('data', promises);
+            // console.log('data', promises);
             this.setState({ promises });
           });
       });

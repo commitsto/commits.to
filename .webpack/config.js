@@ -13,8 +13,8 @@ const tsconfigPath = path.resolve(__dirname, '../tsconfig.json')
 const tslintPath = path.resolve(__dirname, '../tslint.json')
 
 module.exports = {
-  mode: 'development',
-  watch: true,
+  // mode: 'development',
+  // watch: true,
   devServer: {
     contentBase: contentPath,
     hot: true,
@@ -60,12 +60,13 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-    runtimeChunk: true,
-  },
+    // TODO: dev only
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: 'all',
+    //   },
+    //   runtimeChunk: true,
+    // },
   output: {
     filename: '[name].bundle.js',
     path: contentPath,
@@ -73,7 +74,7 @@ module.exports = {
     publicPath: '/', // sets base url
   },
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(['build'], { root: rootPath }),
     new ForkTsCheckerPlugin({
       checkSyntacticErrors: true,
       tsconfig: tsconfigPath,

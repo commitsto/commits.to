@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize'
 
-import { DATABASE_URL } from '../app/config'
+import { DATABASE_URL } from '../../lib/config'
 import log from '../../lib/logger'
 
 const postgresRegex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/

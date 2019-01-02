@@ -1,27 +1,26 @@
 import { Router } from 'express'
 
-import { Users } from '../../models/'
+import { Users } from '../../models'
 import log from '../../../lib/logger'
-import { APP_DOMAIN } from '../../app/config'
 
 const api = Router()
 
-api.get('/users/create/:username', (req, res) => {
-  const { username } = req.params
+api.post('/create', (req, res) => {
+  const { username } = req.body
 
   if (username) {
     Users.create({ username })
       .then(() => {
         log.info('user created', username)
-        res.redirect(`//${username}.${APP_DOMAIN}`)
+        res.send(200)
       })
   } else {
-    res.redirect('/')
+    res.send(400)
   }
 })
 
 // // user promises list
-// app.get('/_s/:user', (req, res) => {
+// app.get('/promises', (req, res) => {
 //   log.debug('user promises', req.params.user)
 
 //   req.user.getValidPromises().then(promises => {

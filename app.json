@@ -3,11 +3,14 @@
   "description": "Commitment logging and reliability tracking",
   "website": "http://commits.to",
   "repository": "https://github.com/commitsto/commits.to",
-  "env": {
-    "ENV_NAME": "heroku-review",
-    "APP_DOMAIN": "commitsto-dev.review",
-    "ENVIRONMENT": "review",
-    "ALLOW_ADMIN_ACTIONS": "true"
+  "environments": {
+    "staging": {
+      "env": {
+        "ENV_NAME": "heroku-staging",
+        "API_DOMAIN": "commitstew.com",
+        "ENVIRONMENT": "review"
+      }
+    }
   },
   "formation": {
     "web": {

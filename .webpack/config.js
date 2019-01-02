@@ -74,7 +74,7 @@ module.exports = {
     publicPath: '/', // sets base url
   },
   plugins: [
-    new CleanWebpackPlugin(['build'], { root: rootPath }),
+    new CleanWebpackPlugin(['build'], { root: rootPath }), // TODO dev only
     new ForkTsCheckerPlugin({
       checkSyntacticErrors: true,
       tsconfig: tsconfigPath,

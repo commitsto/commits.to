@@ -7,7 +7,7 @@ interface IPromisePathArgs {
   username: string;
 }
 
-export const userPath = ({ username }: IUserPathArgs) => `//${username}.commits.to`;
+export const userPath = ({ username }: IUserPathArgs) => `/${username}`;
 
 export const promisePath = ({ username, urtext }: IPromisePathArgs) =>
   `${userPath({ username })}/${urtext}`;

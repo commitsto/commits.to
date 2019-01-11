@@ -23,24 +23,18 @@ addIdParser(api);
 
 // TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
 
-// // show promise
-// api.get('/:id(*)', (req, res) => {
-//   console.log('GET promise', req.params)
-//   res.json({
-//     promise: req.promise,
-//     user: req.user,
-//     // isNewPromise: isNewPromise({ promise: req.promise })
-//   })
-
-//   // log.debug('show promise', deSequelize(req.promise))
-
-//   // update click after route has rendered
-//   // res.on('finish', () => {
-//   //   req.promise.increment(['clix'], { by: 1 }).then(prom => {
-//   //     log.debug('clix incremented', deSequelize(prom))
-//   //   })
-//   // })
-// })
+// show promise
+api.get('/', (req, res) => {
+  log.info('GET promise', req.query);
+  const { username, urtext } = req.query;
+  Promises.find({
+    where: { id: `${username}/${urtext}` }, // FIXME method on promise model
+    include: [userQuery(username)],
+  }).then(function(promise) {
+    res.json({ promise })
+    log.debug('show promise', deSequelize(promise))
+  });
+})
 
 // incomplete promises
 api.get(['/incomplete'], (req, res) => {
@@ -60,11 +54,8 @@ api.get(['/incomplete'], (req, res) => {
     }],
     order: Sequelize.literal('tini DESC'),
   }).then(function(promises) {
-    log.debug('home promises', promises.length)
-
-    res.json({
-      promises
-    })
+    res.json({ promises })
+    log.debug('incomplete promises', promises.length)
   })
 })
 

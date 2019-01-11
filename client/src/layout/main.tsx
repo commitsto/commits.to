@@ -37,7 +37,7 @@ const MainContainer = styled.main`
 const MainLayout = ({ children }) => (
   <div>
     <DarkBackground />
-    <Header title='commits.to' />
+    <Header title='commits.to' link='/' />
     <MainContainer>
       { children }
     </MainContainer>

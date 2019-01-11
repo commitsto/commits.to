@@ -44,10 +44,10 @@ const CardWrapper = styled.div`
 
 // <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
-const Card = ({ user, promise }) => (
+const Card = ({ user = {}, promise }) => (
   <CardWrapper className={cardClassesFor(promise)} credit={promise.clix === 1 ? -1 : promise.credit}>
     <CardHeader {...user} />
-    <CardDetails {...promise} />
+    <CardDetails {...promise} username={user.username} />
     <CardFooter {...promise} />
   </CardWrapper>
 );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { headerBg, headerBorder } from 'src/theme/colors';
@@ -30,9 +31,9 @@ interface IHeaderProps {
 const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
   <DarkHeader>
     <h1>
-      <a href={link}>
+      <Link to={link}>
         {title}
-      </a>
+      </Link>
     </h1>
     {showNav &&
       <nav>

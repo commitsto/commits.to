@@ -3,6 +3,8 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import Card from 'src/components/card';
+import { IPromise } from 'src/components/card/index';
+import LoadableContainer from 'src/components/loading/loadable';
 
 // FIXME method on Promise model
 const parseId = ({ id = '' }) => {
@@ -28,11 +30,13 @@ class Promise extends React.Component {
   }
 
   public render() {
-    const { promise } = this.state;
+    const { promise: { user, ...promise } } = this.state;
     return (
-      <Card key={promise.id} promise={promise} user={promise.user} />
+      <LoadableContainer isLoaded={!_.isEmpty(promise)}>
+        <Card key={promise.id} promise={promise} user={user} />
+      </LoadableContainer>
     );
   }
 }
 
-export default withRouter(Promise);
+export default withRouter(PromiseView);

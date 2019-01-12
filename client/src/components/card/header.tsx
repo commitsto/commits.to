@@ -41,13 +41,6 @@ const UserPending = styled.span`
   vertical-align: text-top;
 `;
 
-interface ICardHeaderProps {
-  counted: number;
-  pending: number;
-  score: number;
-  username: string;
-}
-
 const CardHeader = ({ username, score, counted, pending }) => (
   <HeaderWrapper>
     <UserHeading>

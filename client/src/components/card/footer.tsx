@@ -45,7 +45,7 @@ const PromiseSlug = styled.div`
 `;
 
 interface ICardFooterProps {
-  completePromise: ({ }) => void;
+  completePromise?: ({ }) => void;
   credit?: number;
   id: string;
   tfin?: Date;

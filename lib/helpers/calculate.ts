@@ -12,18 +12,17 @@ const isNewPromise = ({ clix }) => clix === 1; // FIXME
 //   return timeDiff({ dueDate, units: 'hours' });
 // };
 
-// FIXME
+// FIXME remove
 export const selectedIfVoid = (promise) => {
   return promise.void ? 'selected="selected"' : '';
 };
 
-export const cardClassesFor = (promise) => {
-  if (!promise) { return {}; }
-
+// FIXME void -> voided
+export const cardClassesFor = ({ tfin, clix, voided = false }) => {
   const classes = {
-    completed: promise.tfin,
-    new: isNewPromise(promise),
-    voided: promise.void,
+    completed: tfin,
+    new: isNewPromise({ clix }),
+    voided,
   };
 
   // console.log('cardClassesFor', promise, classes);

@@ -44,11 +44,39 @@ const CardWrapper = styled.div`
 
 // <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
-const Card = ({ user = {}, promise }) => (
-  <CardWrapper className={cardClassesFor(promise)} credit={promise.clix === 1 ? -1 : promise.credit}>
-    <CardHeader {...user} />
-    <CardDetails {...promise} username={user.username} />
-    <CardFooter {...promise} />
+export interface IUser {
+  counted?: number;
+  pending?: number;
+  score?: number;
+  username?: string;
+}
+
+export interface IPromise {
+  id?: string;
+  clix?: number;
+  credit?: number;
+  what?: string;
+  note?: string;
+  tdue?: Date;
+  tfin?: Date;
+  username?: string;
+  urtext?: string;
+  user?: {};
+}
+
+interface ICardProps {
+  user: IUser;
+  promise: IPromise;
+}
+
+const Card: React.SFC<ICardProps> = ({
+  user: { counted = 0, pending = 0, score = 0, username = '' } = {},
+  promise: { id, clix, credit, tfin, what, note, tdue, urtext },
+}) => (
+  <CardWrapper className={cardClassesFor({ tfin, clix })} credit={clix === 1 ? -1 : credit}>
+    <CardHeader counted={counted} pending={pending} score={score} username={username} />
+      <CardDetails what={what} note={note} tdue={tdue} username={username} urtext={urtext} />
+      <CardFooter credit={credit} id={id} tfin={tfin} urtext={urtext} username={username} />
   </CardWrapper>
 );
 

@@ -12,14 +12,24 @@ const parseId = ({ id = '' }) => {
   return { username, urtext: urtext.join('/') };
 };
 
-class Promise extends React.Component {
-  public state = {
+interface IPromiseViewProps {
+  location: { pathname?: string };
+}
+
+interface IPromiseViewState {
+  promise?: IPromise;
+}
+
+class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> {
+  public readonly state: Readonly<IPromiseViewState> = {
     promise: {},
   };
 
   public componentDidMount() {
-    const { location: { pathname } = {} } = this.props;
+    const { location = {} } = this.props;
+    const { pathname } = location;
     const { username, urtext } = parseId({ id: pathname });
+
     fetch(`/api/v1/promise/?username=${username}&urtext=${urtext}`)
       .then((response) => {
         response.json()

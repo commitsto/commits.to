@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { creditColor } from 'lib/helpers/colors';
 import { completeCredit } from 'lib/helpers/format';
 
-import { white } from 'src/theme/colors';
+import { white } from 'lib/theme/colors';
 
 const ColoredBar = styled.div`
   background: ${({ credit }) => creditColor(credit)};

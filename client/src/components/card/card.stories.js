@@ -8,7 +8,7 @@ import CardHeader from 'src/components/card/header';
 import CardDetails from 'src/components/card/details';
 import CardFooter from 'src/components/card/footer';
 
-import { black } from 'src/theme/colors';
+import { black } from 'lib/theme/colors';
 
 const hostContainer = {
   align: 'middle',

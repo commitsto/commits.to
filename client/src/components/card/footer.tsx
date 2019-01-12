@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 import { completeCredit, prettyCredit } from 'lib/helpers/format';
 import { promisePath } from 'lib/helpers/path';
+import { black, grayBlue, headerBorder, lightGray, white } from 'lib/theme/colors';
 
 import CreditBar from 'src/components/bar/credit';
-import { black, grayBlue, headerBorder, lightGray, white } from 'src/theme/colors';
 
 const FooterWrapper = styled.div`
   background: ${black};

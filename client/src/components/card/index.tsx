@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import { cardClassesFor } from 'lib/helpers/calculate';
 import { creditColor } from 'lib/helpers/colors';
 
+import { blueBorder, lightGray, whiteGray} from 'lib/theme/colors';
 import CardDetails from 'src/components/card/details';
 import CardFooter from 'src/components/card/footer';
 import CardHeader from 'src/components/card/header';
-import { blueBorder, lightGray, whiteGray} from 'src/theme/colors';
 
 const CardWrapper = styled.div`
   background: ${({ credit }) => creditColor(credit)};

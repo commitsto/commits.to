@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { headerBg, headerBorder } from 'src/theme/colors';
+import { headerBg, headerBorder } from 'lib/theme/colors';
 
 const DarkHeader = styled.header`
   background-color: ${headerBg};

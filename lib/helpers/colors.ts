@@ -1,4 +1,4 @@
-import colorList from 'src/theme/colors';
+import colorList from 'lib/theme/colors';
 
 const colorFromPercent = (score) => {
   let color = 'green'; // default

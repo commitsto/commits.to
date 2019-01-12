@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { gray, white } from 'src/theme/colors';
+import { gray, white } from 'lib/theme/colors';
 
 const DarkFooter = styled.footer`
   color: ${white};

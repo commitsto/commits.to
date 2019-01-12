@@ -7,7 +7,7 @@ import StyledLink from 'src/components/styled/link';
 import { scoreColor } from 'lib/helpers/colors';
 import { prettyPercent } from 'lib/helpers/format';
 
-import { grayBlue, lightGray } from 'src/theme/colors';
+import { grayBlue, lightGray } from 'lib/theme/colors';
 
 const HeaderWrapper = styled.div`
   background-color: ${grayBlue};

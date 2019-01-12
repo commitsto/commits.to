@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Footer from 'src/layout/elements/footer';
 import Header from 'src/layout/elements/header';
 
-import ThemeColors from 'src/theme/colors';
+import ThemeColors from 'lib/theme/colors';
 
 const { black, white, blue } = ThemeColors;
 

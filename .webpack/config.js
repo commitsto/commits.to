@@ -5,16 +5,13 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
 
-// const serverPath = path.resolve(__dirname, '../server/app/index') TODO
 // const templatePath = path.resolve(__dirname, '../src/templates/index.html')
 const rootPath = path.resolve(__dirname, '../');
-const contentPath = path.resolve(__dirname, '../build')
-const tsconfigPath = path.resolve(__dirname, '../tsconfig.json')
+const contentPath = path.resolve(__dirname, '../build/client')
+const tsconfigPath = path.resolve(__dirname, '../client/tsconfig.json')
 const tslintPath = path.resolve(__dirname, '../tslint.json')
 
 module.exports = {
-  // mode: 'development',
-  // watch: true,
   devServer: {
     contentBase: contentPath,
     hot: true,
@@ -74,7 +71,7 @@ module.exports = {
     publicPath: '/', // sets base url
   },
   plugins: [
-    new CleanWebpackPlugin(['build'], { root: rootPath }), // TODO dev only
+    new CleanWebpackPlugin(['build/client'], { root: rootPath }), // TODO dev only
     new ForkTsCheckerPlugin({
       checkSyntacticErrors: true,
       tsconfig: tsconfigPath,

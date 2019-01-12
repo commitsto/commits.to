@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "./",
-    "jsx": "react",
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
-    "skipLibCheck": true,
-    "outDir": "./build/",
+    "outDir": "./build/server",
     "paths": {
-      "src/*": ["client/src/*"],
+      "server/*": ["server/*"],
       "lib/*": ["lib/*"]
     }
   },
+  "include": [
+    "lib/**/*",
+    "server/**/*"
+  ],
 }

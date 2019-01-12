@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { prettyDate, relativeDate } from 'lib/helpers/format';
 import { promisePath } from 'lib/helpers/path';
 
-import { black, white } from 'src/theme/colors';
+import { black, white } from 'lib/theme/colors';
 
 const DetailDate = styled.div`
   color: ${white};

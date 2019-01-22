@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import latePenalty from '../../lib/latepenalty'
+import latePenalty from 'lib/latepenalty'
 
 describe('latePenalty', () => {
   def('seconds', () => moment.duration($lateness).asSeconds())

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import { parsePromise, diffPromises } from '../../../lib/parse/promise'
+import { parsePromise, diffPromises } from 'lib/parse/promise'
 
 describe('parsePromise', () => {
   subject('parsedPromise', () =>

@@ -2,17 +2,15 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": "./",
-    "target": "es6",
-    "module": "commonjs",
     "sourceMap": true,
-    "outDir": "./build/server",
+    "outDir": "./build",
     "paths": {
-      "server/*": ["server/*"],
-      "lib/*": ["lib/*"]
+      "lib/*": ["lib/*"],
+      "server/*": ["server/*"]
     }
   },
   "include": [
-    "lib/**/*",
-    "server/**/*"
+    "./lib/**/*",
+    "./server/**/*"
   ],
 }

@@ -1,22 +1,22 @@
 {
   "name": "commits.to",
   "version": "2.0.0",
-  "description": "Commitment tracker",
   "repository": "commitsto/commits.to",
-  "main": "app/express.js",
   "engines": {
     "node": "10.12.0"
   },
   "scripts": {
     "eslint": "eslint ./",
     "eslint:fix": "eslint ./ --fix",
-    "build": "webpack --config .webpack/config.js --mode=production",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "webpack --config .webpack/config.js --mode=production",
+    "build:server": "babel ./ --only lib,server --extensions '.ts,.js' --out-dir ./build",
+    "build:server:watch": "npm run build:server -- --watch",
     "heroku-postbuild": "npm run build",
-    "start:dev:webpack": "webpack-dev-server --config .webpack/config.js --watch --mode=development",
-    "start": "node babel.js",
-    "start:dev": "nodemon babel.js",
-    "start:dev:debug": "DEBUG=sequelize* nodemon babel.js",
-    "start:dev:vscode": "nodemon --nolazy --inspect-brk=9229 babel.js",
+    "start": "node ./build/server/app",
+    "start:dev:client": "webpack-dev-server --config .webpack/config.js --watch --mode=development",
+    "start:dev:server": "nodemon ./build/server/app",
+    "start:dev::server:vscode": "nodemon --nolazy --inspect-brk=9229 ./build/server/app",
     "storybook": "start-storybook -p 9001",
     "storybook:deploy": "storybook-to-ghpages",
     "test": "MOCHA_FILE=tmp/test-results/mocha/results.xml NODE_ENV=test nyc mocha -u bdd-lazy-var/global -R mocha-multi --reporter-options dot=-,mocha-junit-reporter=- ./test/**/*",
@@ -24,6 +24,7 @@
     "test:coverage": "nyc report --reporter=text-lcov > tmp/test-results/coverage.lcov"
   },
   "dependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/polyfill": "^7.0.0",
@@ -34,13 +35,14 @@
     "@types/react": "^16.7.13",
     "@types/react-dom": "^16.0.11",
     "babel-loader": "^8.0.4",
+    "babel-plugin-module-resolver": "^3.1.3",
     "babel-plugin-styled-components": "^1.9.3",
     "clean-webpack-plugin": "^1.0.0",
-    "fork-ts-checker-webpack-plugin": "^0.5.0",
-    "html-webpack-plugin": "^3.2.0",
     "express": "^4.16.3",
     "express-subdomain-handler": "^0.1.0",
     "express-useragent": "^1.0.12",
+    "fork-ts-checker-webpack-plugin": "^0.5.0",
+    "html-webpack-plugin": "^3.2.0",
     "ipapi.co": "^0.2.3",
     "lodash": "^4.17.10",
     "mailgun-js": "^0.18.0",
@@ -91,31 +93,6 @@
     "sinon-chai": "^3.0.0",
     "storybook-host": "^5.0.3",
     "storybook-react-router": "^1.0.2"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
-  },
-  "nyc": {
-    "all": true,
-    "exclude": ["client", "public"],
-    "include": ["server", "lib"],
-    "sourceMap": false,
-    "instrument": false,
-    "require": [
-      "@babel/register"
-    ]
   },
   "storybook-deployer": {
     "gitUsername": "chrisbutler",

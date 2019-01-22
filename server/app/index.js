@@ -6,6 +6,8 @@ import { PORT } from '../../lib/config'
 import log from '../../lib/logger'
 import apiRouter from './api';
 
+const clientBuildDir = '../../client';
+
 const app = express()
 
 app.use(useragent.express())
@@ -17,7 +19,7 @@ app.use(express.urlencoded({
   extended: false
 }))
 
-app.use(express.static(path.join(__dirname, '../../build')));
+app.use(express.static(path.join(__dirname, clientBuildDir)))
 
 app.listen(PORT, () => {
   log.info(`The commits.to app is running on port ${PORT}`)
@@ -28,7 +30,7 @@ app.use('/api/v1', apiRouter);
 // catch-all
 app.get('*', (req, res) => {
   log.info('render front-end', req.originalUrl)
-  res.sendFile(path.join(`${__dirname}/../../build/index.html`))
+  res.sendFile(path.join(__dirname, clientBuildDir, 'index.html'))
 })
 
 export default app

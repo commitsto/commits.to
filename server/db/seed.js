@@ -3,8 +3,6 @@ import log from '../../lib/logger'
 import { Promises, Users } from '../models'
 import { parsePromise } from '../../lib/parse/promise'
 
-import data from './data/promises.json' // dreev's promises for initial import
-
 // dreev calls dibs on 'danny', 'dan', & 'd' in case we implement aliases
 // usernames to disallow: 'www', 'admin',
 
@@ -26,7 +24,7 @@ const USERS = [
 ]
 
 // utility to populate table with hardcoded promises below
-export const importJson = function() {
+export const importJson = function(data) {
   return Promises.sync().then(function() {
     Object.keys(data).forEach((key) => {
       const { user: username, ...promise } = data[key]

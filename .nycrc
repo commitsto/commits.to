@@ -1,0 +1,16 @@
+{
+  "all": true,
+  "exclude": [
+    "build",
+    "client"
+  ],
+  "include": [
+    "server",
+    "lib"
+  ],
+  "sourceMap": false,
+  "instrument": false,
+  "require": [
+    "@babel/register"
+  ]
+}

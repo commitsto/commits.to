@@ -54,6 +54,7 @@
     "polished": "^2.3.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-ga": "^2.5.6",
     "react-hot-loader": "^4.3.12",
     "react-router-dom": "^4.3.1",
     "sequelize": "^4.37.6",

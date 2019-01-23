@@ -6,15 +6,15 @@ import MainLayout from 'src/layout/main';
 
 import Home from 'src/views/home';
 import View from 'src/views/promise';
-// import User from 'src/views/user';
+import User from 'src/views/user';
 
 const App = () => (
   <BrowserRouter>
     <MainLayout>
       <Switch>
         <Route exact path='/' component={Home} />
-        {/* <Route path='/:user' component={User} /> */}
         <Route path='/:user/:id' component={View} />
+        <Route path='/:user' component={User} />
       </Switch>
     </MainLayout>
   </BrowserRouter>

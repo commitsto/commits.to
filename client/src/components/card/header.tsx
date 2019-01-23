@@ -6,6 +6,7 @@ import StyledLink from 'src/components/styled/link';
 
 import { scoreColor } from 'lib/helpers/colors';
 import { prettyPercent } from 'lib/helpers/format';
+import { userPath } from 'lib/helpers/path';
 
 import { grayBlue, lightGray } from 'lib/theme/colors';
 
@@ -44,7 +45,7 @@ const UserPending = styled.span`
 const CardHeader = ({ username, score, counted, pending }) => (
   <HeaderWrapper>
     <UserHeading>
-      <StyledLink to='#userPath'>
+      <StyledLink to={userPath({ username })}>
         { username }
       </StyledLink>
     </UserHeading>

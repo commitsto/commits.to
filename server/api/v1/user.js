@@ -1,7 +1,9 @@
 import { Router } from 'express'
 
-import { Users } from '../../models'
-import log from '../../../lib/logger'
+import { Users } from 'server/models'
+import log from 'lib/logger'
+import { calculateReliability } from 'lib/parse/credit'
+import promiseGallerySort from 'lib/sort'
 
 const api = Router()
 
@@ -19,27 +21,38 @@ api.post('/create', (req, res) => {
   }
 })
 
-// // user promises list
-// app.get('/promises', (req, res) => {
-//   log.debug('user promises', req.params.user)
+// user promises list
+api.get('/promises', (req, res) => {
+  log.debug('GET user/promises', req.query);
 
-//   req.user.getValidPromises().then(promises => {
-//     const { score, counted } = calculateReliability(promises)
+  const { username } = req.query;
 
-//     log.debug(`${req.params.user}'s promises:`, score, promises.length)
+  Users.findOne({
+    where: {
+      username,
+    }
+  }).then((user) => {
+    if (user) {
+      return user.getValidPromises().then(promises => {
+        const { score, counted } = calculateReliability(promises)
 
-//     req.user.update({ score, counted, pending: promises.length - counted })
+        log.debug(`${username}'s promises:`, score, promises.length)
 
-//     promises.sort(promiseGallerySort)
+        user.update({ score, counted, pending: promises.length - counted })
 
-//     res.render('user', {
-//       user: req.user,
-//       reliability: score,
-//       promises,
-//       counted,
-//       pending: promises.length - counted,
-//     })
-//   })
-// })
+        promises.sort(promiseGallerySort)
+
+        res.send({
+          counted,
+          pending: promises.length - counted,
+          promises,
+          reliability: score,
+          user,
+        })
+      })
+    }
+    return res.send(404)
+  })
+})
 
 export default api

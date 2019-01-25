@@ -13,11 +13,9 @@ const CardWrapper = styled.div`
   background: ${({ credit }) => creditColor(credit)};
   border: 1px groove ${blueBorder};
   display: flex;
-  flex: 1 1 auto;
   flex-wrap: wrap;
   overflow: hidden;
   position: relative;
-  margin: .5rem;
   opacity: .95;
   transition: border .5s ease-out, opacity .3s ease-in-out;
 
@@ -65,18 +63,22 @@ export interface IPromise {
 }
 
 interface ICardProps {
-  user: IUser;
   promise: IPromise;
+  user: IUser;
+  withHeader?: boolean;
 }
 
 const Card: React.SFC<ICardProps> = ({
-  user: { counted = 0, pending = 0, score = 0, username = '' } = {},
   promise: { id, clix, credit, tfin, what, note, tdue, urtext },
+  user: { counted = 0, pending = 0, score = 0, username = '' } = {},
+  withHeader,
 }) => (
   <CardWrapper className={cardClassesFor({ tfin, clix })} credit={clix === 1 ? -1 : credit}>
-    <CardHeader counted={counted} pending={pending} score={score} username={username} />
-      <CardDetails what={what} note={note} tdue={tdue} username={username} urtext={urtext} />
-      <CardFooter credit={credit} id={id} tfin={tfin} urtext={urtext} username={username} />
+    { withHeader &&
+      <CardHeader counted={counted} pending={pending} score={score} username={username} />
+    }
+    <CardDetails what={what} note={note} tdue={tdue} username={username} urtext={urtext} />
+    <CardFooter credit={credit} id={id} tfin={tfin} urtext={urtext} username={username} />
   </CardWrapper>
 );
 

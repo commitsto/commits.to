@@ -1,20 +1,28 @@
-/* styles/main.scss compiles to public/main.css -- don't edit the latter! */
-
 $input-border-radius: .25rem;
 $element-border-radius: 3px;
 
-@import 'colors';
 @import 'base';
-@import 'mixins';
-@import 'layout';
 @import 'progress';
-
-@import 'card';
-@import 'user';
-
-@import 'home';
 @import 'create';
-@import 'show';
+
+.card-footer {
+  color: $light-gray;
+}
+
+.card-footer, .edit-wrapper {
+  margin-top: 2rem;
+}
+
+.delete-promise {
+  margin-top: 2rem;
+  &-button {
+    font-size: 12px;
+
+    &:hover {
+      color: $red;
+    }
+  }
+}
 
 .auto-captcha {
   margin: 5%;
@@ -27,83 +35,81 @@ $element-border-radius: 3px;
   color: $red;
 }
 
-.promise--status {
-  &-green {
-    background-color: $green;
-    border-color: $green-border;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: helvetica, arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  background-color: $black;
+}
+
+h1, .bold {
+  font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, p {
+  color: white;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+input, select, textarea {
+  background: none;
+  border: 1px dotted $dark-blue;
+  border-radius: $input-border-radius;
+  box-sizing: border-box;
+  color: $blue;
+  display: block;
+  font-size: 1.5em;
+  padding: .5em;
+  margin: .5rem 0 1.5rem;
+  width: 100%;
+
+  &[disabled][type=text] {
+    border: 1px solid $dark-gray;
   }
-  &-blue {
+}
+
+select {
+  height: 3.5rem;
+  text-indent: .5rem;
+}
+
+.button {
+  color: $white;
+  padding: .4rem 1rem;
+  font-size: .75rem;
+  border-radius: $element-border-radius;
+  background-color: $dark-gray;
+  border: 1px solid $gray;
+  box-shadow: 2px 2px $black;
+  cursor: pointer;
+
+  &:hover {
     background-color: $blue;
   }
-  &-orange {
-    background-color: $orange;
-    border-color: $orange-border;
-  }
-  &-red {
-    background-color: $red;
-    border-color: $red-border;
-  }
-  &-yellow {
-    background-color: $yellow;
-    border-color: $yellow-border;
-  }
-  &-gray {
-    background-color: $gray;
-    border-color: $gray-border;
+
+  &:active {
+    box-shadow: none;
   }
 }
 
-.reliability--status {
-  &-green {
-    color: $green;
-  }
-  &-blue {
-    color: $blue;
-  }
-  &-yellow {
-    color: $yellow;
-  }
-  &-orange {
-    color: $orange;
-  }
-  &-red {
-    color: $red;
-  }
-  &-gray {
-    color: $gray;
-  }
-}
+.momentable {
+  opacity: 0;
+  transition: .25s opacity ease-in;
 
-.credit--status {
-  position: relative;
-  z-index: 1;
-
-  &::before {
-    @include gradient-shadow;
-  }
-
-  &-green {
-    // background: linear-gradient(to left, $gray-blue -15%, $green);
-    background: $green;
-  }
-  &-blue {
-    // background: linear-gradient(to left, $gray-blue -15%, $blue);
-    background: $blue;
-  }
-  &-yellow {
-    // background: linear-gradient(to left, $gray-yellow -15%, $yellow);
-    background: $yellow;
-  }
-  &-orange {
-    // background: linear-gradient(to left, $gray-blue -15%, $orange);
-    background: $orange;
-  }
-  &-red {
-    // background: linear-gradient(to left, $gray-blue -15%, $red);
-    background: $red;
-  }
-  &-gray {
-    // background: linear-gradient(to left, $gray-blue -15%, $gray);
-    background: $gray;
+  &--visible {
+    opacity: 1;
   }
 }

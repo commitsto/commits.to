@@ -2,9 +2,9 @@ import _ from 'lodash';
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import Card from 'src/components/card';
 import { IPromise } from 'src/components/card/index';
 import LoadableContainer from 'src/components/loading/loadable';
+import PromiseCard from 'src/components/promise/card';
 
 // FIXME method on Promise model
 const parseId = ({ id = '' }) => {
@@ -43,7 +43,7 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
     const { promise: { user, ...promise } } = this.state;
     return (
       <LoadableContainer isLoaded={!_.isEmpty(promise)}>
-        <Card key={promise.id} promise={promise} user={user} />
+        <PromiseCard withHeader key={promise.id} promise={promise} user={user} />
       </LoadableContainer>
     );
   }

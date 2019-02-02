@@ -11,15 +11,17 @@ const contentPath = path.resolve(__dirname, '../build/client')
 const tsconfigPath = path.resolve(__dirname, '../client/tsconfig.json')
 const tslintPath = path.resolve(__dirname, '../tslint.json')
 
+const { PORT, CLIENT_PORT } = require('../lib/config');
+
 module.exports = {
   devServer: {
     contentBase: contentPath,
     hot: true,
-    port: 8080,
+    port: CLIENT_PORT,
     disableHostCheck: true, // use aliased host/domain names,
     historyApiFallback: true, // for react-router-dom
     proxy: {
-      '/api/v1': 'http://localhost:8020',
+      '/api/v1': `http://localhost:${PORT}`,
     }
   },
   devtool: 'cheap-module-eval-source-map',

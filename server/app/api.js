@@ -1,7 +1,6 @@
 import { Router } from 'express';
 
 import log from '../../lib/logger'
-import { ALLOW_ADMIN_ACTIONS, ENVIRONMENT } from '../../lib/config'
 import { Promises } from '../models/'
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
@@ -23,25 +22,23 @@ api.get('/cache', (req, resp) => {
   resp.redirect('/')
 })
 
-if (ENVIRONMENT !== 'production' || ALLOW_ADMIN_ACTIONS) {
-  // insert promises.json into db
-  api.get('/import', (req, resp) => {
-    importJson()
-    resp.redirect('/')
-  })
+// insert promises.json into db
+api.post('/import', (req, resp) => {
+  importJson()
+  resp.redirect('/')
+})
 
-  // drop db and repopulate
-  api.get('/reset', (req, resp) => {
-    seed()
-    resp.redirect('/')
-  })
+// drop db and repopulate
+api.post('/reset', (req, resp) => {
+  seed()
+  resp.redirect('/')
+})
 
-  // removes all entries from the promises table
-  api.get('/empty', (req, resp) => {
-    Promises.destroy({ where: {} })
-    resp.redirect('/')
-  })
-}
+// removes all entries from the promises table
+api.post('/empty', (req, resp) => {
+  Promises.destroy({ where: {} })
+  resp.redirect('/')
+})
 
 // // catch-all
 api.get('*', (req, res) => {

@@ -2,15 +2,15 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": "./",
-    "sourceMap": true,
     "outDir": "./build",
     "paths": {
       "lib/*": ["lib/*"],
       "server/*": ["server/*"]
-    }
+    },
+    "sourceMap": true,
   },
   "include": [
     "./lib/**/*",
     "./server/**/*"
-  ],
+  ]
 }

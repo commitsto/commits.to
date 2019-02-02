@@ -135,6 +135,39 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
 
 // TODO
 
+api.post('/complete', (req, resp) => {
+  Promises.findOne({
+    where: {
+      id: req.body.id
+    },
+    include: [userQuery(req.params.user)],
+  }).then(function (promise) {
+    const tfin = moment().toDate()
+    promise.update({
+      tfin,
+      cred: parseCredit({ dueDate: promise.tdue, finishDate: tfin })
+    })
+    log.info('promise completed', req.body, promise.id)
+    resp.send(200)
+  })
+})
+
+api.post('/remove', (req, resp) => {
+  Promises.destroy({
+    where: {
+      id: req.body.id
+    },
+  }).then(function (deletedRows) {
+    log.info('promise removed', req.body, deletedRows)
+    actionNotifier({
+      resource: 'promise',
+      action: 'deleted',
+      identifier: req.body.id,
+    })
+    resp.send(200)
+  })
+})
+
 // api.post('/edit', (req, res) => {
 //   // invalid dates/empty string values should unset db fields
 //   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
@@ -173,39 +206,6 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
 //         res.redirect('/')
 //       }
 //     })
-//   })
-// })
-
-// api.post('/complete', (req, resp) => {
-//   Promises.findOne({
-//     where: {
-//       id: req.body.id
-//     },
-//     include: [userQuery(req.params.user)],
-//   }).then(function (promise) {
-//     const tfin = moment().toDate()
-//     promise.update({
-//       tfin,
-//       cred: parseCredit({ dueDate: promise.tdue, finishDate: tfin })
-//     })
-//     log.info('promise completed', req.body, promise.id)
-//     resp.send(200)
-//   })
-// })
-
-// api.post('/remove', (req, resp) => {
-//   Promises.destroy({
-//     where: {
-//       id: req.body.id
-//     },
-//   }).then(function (deletedRows) {
-//     log.info('promise removed', req.body, deletedRows)
-//     actionNotifier({
-//       resource: 'promise',
-//       action: 'deleted',
-//       identifier: req.body.id,
-//     })
-//     resp.send(200)
 //   })
 // })
 

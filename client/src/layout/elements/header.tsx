@@ -16,7 +16,7 @@ const DarkHeader = styled.header`
     margin: 0 auto 0 0;
   }
 
-  a.button {
+  .header-link {
     float: right;
     margin-left: 1.5rem;
   }
@@ -38,19 +38,19 @@ const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
     {showNav &&
       <nav>
         <a
-          className='button'
+          className='header-link'
           target='_blank'
           href='http://blog.beeminder.com/will'>
           blog post
         </a>
         <a
-          className='button'
+          className='header-link'
           target='_blank'
           href='https://github.com/beeminder/iwill'>
           github repo
         </a>
         <a
-          className='button'
+          className='header-link'
           target='_blank'
           href='https://github.com/beeminder/iwill/wiki'>
           spec

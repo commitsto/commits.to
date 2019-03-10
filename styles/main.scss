@@ -1,108 +1,10 @@
-$input-border-radius: .25rem;
-$element-border-radius: 3px;
-
-@import 'base';
 @import 'progress';
-@import 'create';
-
-.card-footer {
-  color: $light-gray;
-}
-
-.card-footer, .edit-wrapper {
-  margin-top: 2rem;
-}
-
-.delete-promise {
-  margin-top: 2rem;
-  &-button {
-    font-size: 12px;
-
-    &:hover {
-      color: $red;
-    }
-  }
-}
 
 .auto-captcha {
   margin: 5%;
 }
 .progress-bar-wrapper {
   margin: 3rem 0;
-}
-
-.error--active {
-  color: $red;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: helvetica, arial, sans-serif;
-  padding: 0;
-  margin: 0;
-  background-color: $black;
-}
-
-h1, .bold {
-  font-weight: bold;
-}
-
-h1, h2, h3, h4, h5, p {
-  color: white;
-}
-
-a {
-  color: $blue;
-  text-decoration: none;
-}
-
-fieldset {
-  border: 0;
-  padding: 0;
-}
-
-input, select, textarea {
-  background: none;
-  border: 1px dotted $dark-blue;
-  border-radius: $input-border-radius;
-  box-sizing: border-box;
-  color: $blue;
-  display: block;
-  font-size: 1.5em;
-  padding: .5em;
-  margin: .5rem 0 1.5rem;
-  width: 100%;
-
-  &[disabled][type=text] {
-    border: 1px solid $dark-gray;
-  }
-}
-
-select {
-  height: 3.5rem;
-  text-indent: .5rem;
-}
-
-.button {
-  color: $white;
-  padding: .4rem 1rem;
-  font-size: .75rem;
-  border-radius: $element-border-radius;
-  background-color: $dark-gray;
-  border: 1px solid $gray;
-  box-shadow: 2px 2px $black;
-  cursor: pointer;
-
-  &:hover {
-    background-color: $blue;
-  }
-
-  &:active {
-    box-shadow: none;
-  }
 }
 
 .momentable {

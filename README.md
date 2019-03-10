@@ -79,9 +79,13 @@ DATABASE_URL=postgres://iwill:iwill@localhost:5432/commitsto
 
 ### Run The Application
 
-- If you are running the app for the first time, or have recently pulled changes, you should run
+If you are running the app for the first time, or have recently pulled changes, you should run
 `npm install`
-- Start the development server with `npm run start:dev`
+
+#### Start each process in a separate terminal pane
+- Build server code in watch mode: `npm run dev:build:server`
+- Start server: `npm run dev:server`
+- Build client (and start [webpack-dev-server](https://github.com/webpack/webpack-dev-server)): `npm run dev:client`
 
 
 ### Try The App

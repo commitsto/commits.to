@@ -1,12 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import _ from 'lodash';
-import { darken } from 'polished';
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { blue, darkBlue, white } from 'lib/theme/colors';
+import { blue, darkBlue } from 'lib/theme/colors';
+import PromiseDeleteButton from 'src/components/button/delete';
+import PromiseSubmitButton from 'src/components/button/submit';
 import { IPromise } from 'src/components/card/index';
+import DatePicker from 'src/components/form/picker/date';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
 
@@ -45,40 +47,6 @@ const PromiseForm = styled.div`
 
   label {
     color: ${blue};
-  }
-`;
-
-const PromiseSubmitButton = styled.button`
-  color: ${white};
-  cursor: pointer;
-  background-color: ${blue};
-  position: absolute;
-  bottom: 0;
-  display: block;
-  font-size: 2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 1rem;
-  text-align: center;
-  transition: all .25s ease-in-out;
-  margin: 0;
-  outline: 0;
-  border: 0;
-  border-radius: 0;
-  width: 100%;
-  left: 0;
-
-  &:hover {
-    background-color: ${darken(.2, blue)};
-  }
-`;
-
-const PromiseDeleteButton = styled.a`
-  font-size: 12px;
-  margin-left: .5rem; // FIXME
-
-  &:hover {
-    color: $red;
   }
 `;
 
@@ -170,6 +138,24 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
                     <label htmlFor="void">Voided?</label>
                     <ErrorMessage name="void" component="div" />
                   </div>
+
+                  <div>
+                    <label htmlFor='tini'>Created Date</label>
+                    <Field component={DatePicker} name="tini" />
+                    <ErrorMessage name="tini" component="div" />
+                  </div>
+
+                  {/* <div>
+                    <label htmlFor='tdue'>Due Date</label>
+                    <Field component={TimePicker} name="tdue" />
+                    <ErrorMessage name="tdue" component="div" />
+                  </div>
+
+                  <div>
+                    <label htmlFor='tfin'>Finish Date</label>
+                    <Field component={TimePicker} name="tfin" />
+                    <ErrorMessage name="tfin" component="div" />
+                  </div> */}
 
                   <PromiseSubmitButton type="submit" disabled={isSubmitting}>
                     Submit

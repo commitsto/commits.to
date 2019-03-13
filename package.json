@@ -59,6 +59,7 @@
     "react-ga": "^2.5.6",
     "react-hot-loader": "^4.3.12",
     "react-router-dom": "^4.3.1",
+    "react-timekeeper": "^1.1.0",
     "sequelize": "^4.37.6",
     "sherlockjs": "^1.4.0",
     "styled-components": "^4.1.2",

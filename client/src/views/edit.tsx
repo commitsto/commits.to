@@ -107,6 +107,8 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     //   errors.email = 'Invalid email address';
     // }
 
+    // console.log('validate', values, errors);
+
     return errors;
   }
 

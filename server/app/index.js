@@ -1,6 +1,7 @@
 import express from 'express'
 import useragent from 'express-useragent'
 import path from 'path';
+import fs from 'fs';
 
 import { PORT } from '../../lib/config'
 import log from '../../lib/logger'
@@ -23,6 +24,9 @@ app.use(express.static(path.join(__dirname, clientBuildDir)))
 
 app.listen(PORT, () => {
   log.info(`The commits.to app is running on port ${PORT}`)
+  
+  // Notify NGINX to start serving
+  fs.openSync('/tmp/app-initialized', 'w');
 })
 
 app.use('/api/v1', apiRouter);

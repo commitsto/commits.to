@@ -2,6 +2,8 @@ import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import DomainParser from 'lib/parse/domain';
+
 import MainLayout from 'src/layout/main';
 
 import Edit from 'src/views/edit';
@@ -13,10 +15,13 @@ const App = () => (
   <BrowserRouter>
     <MainLayout>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/edit/:user/:id' component={Edit} />
-        <Route path='/:user/:id' component={View} />
-        <Route path='/:user' component={User} />
+        { DomainParser.hasSubdomain(window.location.host) ?
+          <Route exact path='/' component={User} />
+          :
+          <Route exact path='/' component={Home} />
+        }
+        <Route path='/edit/:id' component={Edit} />
+        <Route path='/:id' component={View} />
       </Switch>
     </MainLayout>
   </BrowserRouter>

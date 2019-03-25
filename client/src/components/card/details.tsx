@@ -23,7 +23,7 @@ const DetailDue = styled.div`
   max-width: 25%;
 `;
 
-const DetailLink = styled(Link)`
+const DetailLink = styled('a')`
   color: ${white};
   display: block;
   padding: 1rem;
@@ -62,7 +62,7 @@ const DetailWrapper = styled.div`
 const CardDetails = ({ what, note, tdue, username, urtext }) => (
   <DetailWrapper>
     <DetailInfo>
-      <DetailLink to={promisePath({ username, urtext })}>
+      <DetailLink href={promisePath({ username, urtext })}>
         <DetailText>
           { what }
         </DetailText>

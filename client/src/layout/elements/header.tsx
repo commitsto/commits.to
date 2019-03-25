@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import DomainParser from 'lib/parse/domain';
 import { headerBg, headerBorder } from 'lib/theme/colors';
 
 const DarkHeader = styled.header`
@@ -31,9 +32,9 @@ interface IHeaderProps {
 const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
   <DarkHeader>
     <h1>
-      <Link to={link}>
+      <a href={link}>
         {title}
-      </Link>
+      </a>
     </h1>
     {showNav &&
       <nav>
@@ -61,7 +62,7 @@ const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
 );
 
 Header.defaultProps = {
-  link: '//www.commits.to',
+  link: `//${DomainParser.getRoot(window.location.host)}`,
   showNav: true,
 };
 

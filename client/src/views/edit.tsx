@@ -4,7 +4,9 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
+import DomainParser from 'lib/parse/domain';
 import { blue, darkBlue } from 'lib/theme/colors';
+
 import PromiseDeleteButton from 'src/components/button/delete';
 import PromiseSubmitButton from 'src/components/button/submit';
 import { IPromise } from 'src/components/card/index';
@@ -50,12 +52,6 @@ const PromiseForm = styled.div`
   }
 `;
 
-// FIXME method on Promise model
-const parseId = ({ id = '' }) => {
-  const [ , username, ...urtext ] = id.toLowerCase().split('/');
-  return { username, urtext: urtext.join('/') };
-};
-
 interface IPromiseEditProps {
   location: { pathname?: string };
 }
@@ -71,10 +67,10 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
 
   public componentDidMount() {
     const { location = {} } = this.props;
-    const { pathname } = location;
-    const { username, urtext } = parseId({ id: pathname.substring(5) }); // remove /edit
+    const { pathname: urtext } = location;
+    const username = DomainParser.getUsername(window.location.hostname);
 
-    fetch(`/api/v1/promise/?username=${username}&urtext=${urtext}`)
+    fetch(`/api/v1/promise/?username=${username}&urtext=${urtext.substr(6).toLowerCase()}`)
       .then((response) => {
         response.json()
           .then(({ promise = {} }) => {

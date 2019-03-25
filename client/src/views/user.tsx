@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { creditColor } from 'lib/helpers/colors';
 import { prettyPercent } from 'lib/helpers/format';
+import DomainParser from 'lib/parse/domain';
 import { blue, white } from 'lib/theme/colors';
 
 import LoadableContainer from 'src/components/loading/loadable';
@@ -70,7 +71,9 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
   };
 
   public componentDidMount() {
-    const { match: { params: { user: username = '' } = {} } = {} } = this.props;
+    // const { match: { params: { user: username = '' } = {} } = {} } = this.props;
+    // TODO: replace with DomainParser
+    const username = DomainParser.getUsername(window.location.hostname);
 
     fetch(`/api/v1/user/promises?username=${username}`)
       .then((response) => {
@@ -84,7 +87,9 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
 
   public render() {
     const { promises, stats: { counted = 0, pending = 0, reliability = 0 } = {} } = this.state;
-    const { match: { params: { user: username = '' } = {} } = {} } = this.props;
+    // const { match: { params: { user: username = '' } = {} } = {} } = this.props;
+    // TODO: replace with DomainParser
+    const username = DomainParser.getUsername(window.location.hostname);
 
     return (
       <UserPromisesWrapper>

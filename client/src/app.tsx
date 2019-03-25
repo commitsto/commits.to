@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import DomainParser from 'lib/parse/domain';
 
@@ -12,19 +12,17 @@ import View from 'src/views/promise';
 import User from 'src/views/user';
 
 const App = () => (
-  <BrowserRouter>
-    <MainLayout>
-      <Switch>
-        { DomainParser.hasSubdomain(window.location.host) ?
-          <Route exact path='/' component={User} />
-          :
-          <Route exact path='/' component={Home} />
-        }
-        <Route path='/edit/:id' component={Edit} />
-        <Route path='/:id' component={View} />
-      </Switch>
-    </MainLayout>
-  </BrowserRouter>
+  <MainLayout>
+    <Switch>
+      { DomainParser.hasSubdomain(window.location.host) ?
+        <Route exact path='/' component={User} />
+        :
+        <Route exact path='/' component={Home} />
+      }
+      <Route path='/edit/:id' component={Edit} />
+      <Route path='/:id' component={View} />
+    </Switch>
+  </MainLayout>
 );
 
 export default hot(module)(App);

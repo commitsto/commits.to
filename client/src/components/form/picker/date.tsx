@@ -6,6 +6,7 @@ import TimePicker from 'src/components/form/picker/time';
 
 const PickerRow = styled.div`
   display: flex;
+  margin: .5rem 0 1.5rem;
 `;
 
 interface IDatePickerProps {

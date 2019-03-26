@@ -1,11 +1,24 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as moment from 'moment';
 import * as React from 'react';
 import TimeKeeper from 'react-timekeeper';
 import styled from 'styled-components';
 
+import { blue } from 'lib/theme/colors';
+
 const TimePickerWrapper = styled.div`
+  align-items: center;
+  display: flex;
   flex: 1;
   margin-left: 2rem;
+
+  input {
+    margin-right: 1rem;
+  }
+
+  svg {
+    color: ${blue}
+  }
 `;
 
 interface ITimePickerProps {
@@ -28,6 +41,7 @@ const TimePicker: React.SFC<ITimePickerProps> = ({ field, showPicker }) => {
       { showPicker &&
         <TimeKeeper time={time} />
       }
+      <FontAwesomeIcon icon='clock' size='2x' />
     </TimePickerWrapper>
   );
 };

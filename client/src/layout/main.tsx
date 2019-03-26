@@ -1,3 +1,5 @@
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import * as React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
@@ -33,6 +35,8 @@ const DarkBackground = createGlobalStyle`
 const MainContainer = styled.main`
   padding: 2rem;
 `;
+
+library.add(faCalendarAlt, faClock);
 
 const MainLayout = ({ children }) => (
   <div>

@@ -1,11 +1,23 @@
 // import * as moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as React from 'react';
-
 import styled from 'styled-components';
 
+import { blue } from 'lib/theme/colors';
+
 const DayPickerWrapper = styled.div`
+  align-items: center;
+  display: flex;
   flex: 2;
   margin-right: 2rem;
+
+  input {
+    margin-right: 1rem;
+  }
+
+  svg {
+    color: ${blue}
+  }
 `;
 
 interface IDayPickerProps {
@@ -22,6 +34,7 @@ const DayPicker: React.SFC<IDayPickerProps> = ({ field, showPicker }) => {
       {showPicker &&
         <div />
       }
+      <FontAwesomeIcon icon='calendar-alt' size='2x' />
     </DayPickerWrapper>
   );
 };

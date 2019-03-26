@@ -29,7 +29,7 @@ const PromiseForm = styled.div`
     display: block;
     font-size: 1.5rem;
     padding: .5em;
-    margin: .5rem 0 1.5rem;
+    /* margin: .5rem 0 1.5rem; */
     width: 100%;
 
     &[type=checkbox] {

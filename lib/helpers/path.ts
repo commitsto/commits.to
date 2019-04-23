@@ -42,11 +42,11 @@ export const editPromisePath = ({ user: { username }, urtext }) =>
 
 // const fetchById = ({ action, id, username }) => fetch(
 //   apiPath({ action, username }),
-//   {
-//     method: 'POST',
-//     headers: {
-//       'content-type': 'application/json',
-//     },
-//     body: JSON.stringify({ id }),
-//   }
+  // {
+  //   method: 'POST',
+  //   headers: {
+  //     'content-type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ id }),
+  // }
 // )

@@ -4,7 +4,7 @@ import * as React from 'react';
 import TimeKeeper from 'react-timekeeper';
 import styled from 'styled-components';
 
-import { blue } from 'lib/theme/colors';
+import { gray } from 'lib/theme/colors';
 
 const TimePickerWrapper = styled.div`
   align-items: center;
@@ -17,31 +17,30 @@ const TimePickerWrapper = styled.div`
   }
 
   svg {
-    color: ${blue}
+    color: ${gray}
   }
 `;
 
 interface ITimePickerProps {
-  field: { value?: any }; // FIXME: formik types
+  onChange: ({}) => void;
+  raw: moment.Moment;
   showPicker?: boolean;
+  toggleClick?: () => void;
+  value: string;
 }
 
-const TimePicker: React.SFC<ITimePickerProps> = ({ field, showPicker }) => {
-  const date = new Date(field.value);
-  const time = {
-    hour: date.getHours(),
-    minute: date.getMinutes(),
-  };
-
-  const prettyTime = moment(date).format('hh:mm A');
-
+const TimePicker: React.SFC<ITimePickerProps> = ({
+  onChange, raw, showPicker, toggleClick, value
+}) => {
   return (
     <TimePickerWrapper>
-      <input type='text' {...field} value={prettyTime} />
+      <input type='text' onChange={onChange} value={value} />
       { showPicker &&
-        <TimeKeeper time={time} />
+        <TimeKeeper time={raw} />
       }
-      <FontAwesomeIcon icon='clock' size='2x' />
+      <div onClick={toggleClick}>
+        <FontAwesomeIcon icon='clock' size='2x' />
+      </div>
     </TimePickerWrapper>
   );
 };

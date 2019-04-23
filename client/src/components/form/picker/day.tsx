@@ -1,9 +1,9 @@
-// import * as moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as moment from 'moment';
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { blue } from 'lib/theme/colors';
+import { gray } from 'lib/theme/colors';
 
 const DayPickerWrapper = styled.div`
   align-items: center;
@@ -16,25 +16,33 @@ const DayPickerWrapper = styled.div`
   }
 
   svg {
-    color: ${blue}
+    color: ${gray}
   }
 `;
 
 interface IDayPickerProps {
-  field: { value?: any }; // FIXME: formik types
+  onChange: ({}) => void;
+  raw: moment.Moment;
   showPicker?: boolean;
+  toggleClick?: () => void;
+  value: string;
 }
 
-const DayPicker: React.SFC<IDayPickerProps> = ({ field, showPicker }) => {
-  const date = new Date(field.value);
-
+const DayPicker: React.SFC<IDayPickerProps> = ({
+  onChange, raw, showPicker, toggleClick, value
+}) => {
   return (
     <DayPickerWrapper>
-      <input type='text' {...field} />
-      {showPicker &&
-        <div />
+      <input type='text' onChange={onChange} value={value} />
+      { showPicker &&
+        <div>
+          {/* FIXME */}
+          { raw }
+        </div>
       }
-      <FontAwesomeIcon icon='calendar-alt' size='2x' />
+      <div onClick={toggleClick}>
+        <FontAwesomeIcon icon='calendar-alt' size='2x' />
+      </div>
     </DayPickerWrapper>
   );
 };

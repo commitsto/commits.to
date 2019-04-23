@@ -168,46 +168,46 @@ api.post('/remove', (req, resp) => {
   })
 })
 
-// api.post('/edit', (req, res) => {
-//   // invalid dates/empty string values should unset db fields
-//   const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
-//   const data = _.mapValues(req.body, (val) => valOrNull(val))
-//   log.info('edit promise form data', data)
+api.post('/edit', (req, res) => {
+  // invalid dates/empty string values should unset db fields
+  const valOrNull = (val) => _.includes(['Invalid date', ''], val) ? null : val
+  const data = _.mapValues(req.body, (val) => valOrNull(val))
+  log.info('edit promise form data', req.body)
 
-//   Promises.find({
-//     where: {
-//       id: req.body.id
-//     },
-//     include: [userQuery(req.params.user)],
-//   }).then(function (promise) {
-//     const oldPromise = deSequelize(promise)
-//     log.info('promise to be updated', oldPromise)
+  Promises.find({
+    where: {
+      id: req.body.id
+    },
+    include: [{ model: Users }],
+  }).then(function (promise) {
+    const oldPromise = deSequelize(promise)
+    log.info('promise to be updated', oldPromise)
 
-//     promise.update({
-//       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
-//       ...data
-//     }).then(function (prom) {
-//       const difference = diffPromises(oldPromise, deSequelize(prom))
+    promise.update({
+      cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
+      ...data
+    }).then(function (prom) {
+      const difference = diffPromises(oldPromise, deSequelize(prom))
 
-//       if (!_.isEmpty(difference)) {
-//         log.info('promise updated', difference)
+      if (!_.isEmpty(difference)) {
+        log.info('promise updated', difference)
 
-//         actionNotifier({
-//           resource: 'promise',
-//           action: 'edited',
-//           identifier: req.body.id,
-//           meta: difference,
-//         })
-//       }
+        actionNotifier({
+          resource: 'promise',
+          action: 'edited',
+          identifier: req.body.id,
+          meta: difference,
+        })
+      }
 
-//       if (promise) {
-//         res.redirect(`/${prom.urtext}`)
-//       } else {
-//         res.redirect('/')
-//       }
-//     })
-//   })
-// })
+      if (promise) {
+        res.redirect(`/${prom.urtext}`)
+      } else {
+        res.redirect('/')
+      }
+    })
+  })
+})
 
 // // captcha
 // api.post('/validate', ({ body: { id } = {} }, resp) => {

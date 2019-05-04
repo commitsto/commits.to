@@ -1,3 +1,5 @@
+const host = () => typeof window !== 'undefined' && window.location.host;
+
 class DomainParser {
   public static parse(hostString) {
     const [first, second, ...third] = hostString.split('.');
@@ -15,7 +17,7 @@ class DomainParser {
     };
   }
 
-  public static getRoot(input) {
+  public static getRoot(input = host()) {
     if (!input) { return; }
 
     return this.parse(input).root;

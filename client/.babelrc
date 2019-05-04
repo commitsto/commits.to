@@ -10,6 +10,15 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "lib": "./lib",
+          "src": "./client/src",
+        }
+      }
+    ],
     "babel-plugin-styled-components",
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     "react-hot-loader/babel"

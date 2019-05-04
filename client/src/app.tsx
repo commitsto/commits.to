@@ -11,10 +11,12 @@ import Home from 'src/views/home';
 import View from 'src/views/promise';
 import User from 'src/views/user';
 
+const host = typeof window !== 'undefined' && window.location.host;
+
 const App = () => (
   <MainLayout>
     <Switch>
-      { DomainParser.hasSubdomain(window.location.host) ?
+      { DomainParser.hasSubdomain(host) ?
         <Route exact path='/' component={User} />
         :
         <Route exact path='/' component={Home} />

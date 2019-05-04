@@ -10,7 +10,7 @@ const DarkFooter = styled.footer`
   border-top: 1px solid ${gray};
 `;
 
-const Footer: React.SFC<any> = ({ }) => (
+const Footer: React.SFC<any> = ({}) => (
   <DarkFooter>
     <small>
       Brought to you by the&nbsp;

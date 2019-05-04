@@ -1,14 +1,17 @@
 {
   "presets": [
     "@babel/env",
+    "@babel/preset-react",
     "@babel/typescript"
   ],
   "plugins": [
     "@babel/proposal-class-properties",
+    "babel-plugin-styled-components",
     [
       "module-resolver",
       {
         "alias": {
+          "client": "./client",
           "lib": "./lib",
           "server": "./server"
         }

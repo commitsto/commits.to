@@ -2,14 +2,17 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": "./",
+    "jsx": "react",
     "outDir": "./build",
     "paths": {
+      "client/*": ["client/*"],
       "lib/*": ["lib/*"],
       "server/*": ["server/*"]
     },
     "sourceMap": true,
   },
   "include": [
+    "./client/**/*",
     "./lib/**/*",
     "./server/**/*"
   ]

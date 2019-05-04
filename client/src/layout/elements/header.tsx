@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import DomainParser from 'lib/parse/domain';
@@ -24,19 +24,19 @@ const DarkHeader = styled.header`
 `;
 
 interface IHeaderProps {
-  link?: string;
   title: string;
   showNav?: boolean;
+  staticContext: any; // FIXME
 }
 
-const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
+const Header: React.SFC<IHeaderProps> = ({ title, showNav, staticContext: { host } = {} }) => (
   <DarkHeader>
     <h1>
-      <a href={link}>
+      <a href={`//${DomainParser.getRoot(host)}`}>
         {title}
       </a>
     </h1>
-    {showNav &&
+    { showNav &&
       <nav>
         <a
           className='header-link'
@@ -62,8 +62,7 @@ const Header: React.SFC<IHeaderProps> = ({ link, title, showNav }) => (
 );
 
 Header.defaultProps = {
-  link: `//${DomainParser.getRoot(window.location.host)}`,
   showNav: true,
 };
 
-export default Header;
+export default withRouter(Header);

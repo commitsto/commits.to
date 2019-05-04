@@ -1,29 +1,17 @@
-const path = require('path')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
-const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin')
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
-// const templatePath = path.resolve(__dirname, '../src/templates/index.html')
 const rootPath = path.resolve(__dirname, '../');
-const contentPath = path.resolve(__dirname, '../build/client')
-const tsconfigPath = path.resolve(__dirname, '../client/tsconfig.json')
-const tslintPath = path.resolve(__dirname, '../tslint.json')
-
-const { PORT, CLIENT_PORT } = require('../lib/config');
+const contentPath = path.resolve(__dirname, '../build/client');
+const templatePath = path.resolve(__dirname, '../client/app.html');
+const tsconfigPath = path.resolve(__dirname, '../client/tsconfig.json');
+const tslintPath = path.resolve(__dirname, '../tslint.json');
 
 module.exports = {
-  devServer: {
-    contentBase: contentPath,
-    hot: true,
-    port: CLIENT_PORT,
-    disableHostCheck: true, // use aliased host/domain names,
-    historyApiFallback: true, // for react-router-dom
-    proxy: {
-      '/api/v1': `http://localhost:${PORT}`,
-    }
-  },
   devtool: 'cheap-module-eval-source-map',
   entry: {
     vendor: [
@@ -45,13 +33,6 @@ module.exports = {
       },
     ],
   },
-    // TODO: dev only
-    // optimization: {
-    //   splitChunks: {
-    //     chunks: 'all',
-    //   },
-    //   runtimeChunk: true,
-    // },
   output: {
     filename: '[name].bundle.js',
     path: contentPath,
@@ -59,7 +40,13 @@ module.exports = {
     publicPath: '/', // sets base url
   },
   plugins: [
-    new CleanWebpackPlugin(['build/client'], { root: rootPath }), // TODO dev only
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        '*.bundle.js',
+        '*.hot-update.json'
+      ],
+      verbose: true,
+    }),
     new ForkTsCheckerPlugin({
       checkSyntacticErrors: true,
       tsconfig: tsconfigPath,
@@ -69,8 +56,8 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
-      // template: templatePath,
-      filename: './index.html',
+      template: templatePath,
+      filename: './app.html',
       title: 'commits.to | the i-will system',
     }),
   ],

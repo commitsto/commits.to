@@ -74,6 +74,7 @@ http {
 
     location @backend {
       proxy_pass http://app_server;
+      proxy_set_header Host commitstew.com;
     }
   }
 }

@@ -5,14 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from 'src/app';
 
-const root = document.createElement('div');
-document.body.appendChild(root);
-
 hydrate(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
-  root
+  document.getElementById('root')
 );
 
 ReactGA.initialize('UA-121792102-1');

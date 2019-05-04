@@ -71,8 +71,6 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
   };
 
   public componentDidMount() {
-    // const { match: { params: { user: username = '' } = {} } = {} } = this.props;
-    // TODO: replace with DomainParser
     const username = DomainParser.getUsername(window.location.hostname);
 
     fetch(`/api/v1/user/promises?username=${username}`)
@@ -87,8 +85,6 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
 
   public render() {
     const { promises, stats: { counted = 0, pending = 0, reliability = 0 } = {} } = this.state;
-    // const { match: { params: { user: username = '' } = {} } = {} } = this.props;
-    // TODO: replace with DomainParser
     const username = DomainParser.getUsername(window.location.hostname);
 
     return (

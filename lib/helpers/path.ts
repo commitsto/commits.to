@@ -10,7 +10,8 @@ interface IPromisePathArgs {
 }
 
 export const userPath = ({ username }: IUserPathArgs) => {
-  const root = DomainParser.getRoot(window.location.host);
+  const host = typeof window !== 'undefined' && window.location.host;
+  const root = DomainParser.getRoot(host);
 
   return `//${username}.${root}`;
 };

@@ -8,7 +8,7 @@ const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const rootPath = path.resolve(__dirname, '../');
 const contentPath = path.resolve(__dirname, '../build/client');
 const templatePath = path.resolve(__dirname, '../client/app.html');
-const tsconfigPath = path.resolve(__dirname, '../client/tsconfig.json');
+const tsconfigPath = path.resolve(__dirname, '../tsconfig.json');
 const tslintPath = path.resolve(__dirname, '../tslint.json');
 
 module.exports = {

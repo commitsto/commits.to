@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "baseUrl": "./",
     "jsx": "react",
     "outDir": "./build",
     "paths": {
-      "client/*": ["client/*"],
       "lib/*": ["lib/*"],
-      "server/*": ["server/*"]
+      "server/*": ["server/*"],
+      "src/*": ["client/src/*"]
     },
+    "target": "es6",
+    "module": "commonjs",
     "sourceMap": true,
+    "skipLibCheck": true,
   },
   "include": [
     "./client/**/*",

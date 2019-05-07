@@ -5,12 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from 'src/app';
 
-hydrate(
+hydrate((
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+  </BrowserRouter>
+), document.getElementById('root'));
 
 ReactGA.initialize('UA-121792102-1');
 ReactGA.pageview(window.location.pathname + window.location.search);

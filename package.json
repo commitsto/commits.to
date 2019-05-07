@@ -14,7 +14,7 @@
     "heroku-postbuild": "npm run build",
     "start": "node ./build/server/app",
     "dev:build:server": "npm run build:server -- --watch",
-    "dev:client": "webpack --config .webpack/config.js --watch --mode-development",
+    "dev:build:client": "webpack --config .webpack/config.js --mode=development --watch",
     "dev:server": "NODE_ENV=development nodemon ./build/server/app",
     "storybook": "start-storybook -p 9001",
     "storybook:deploy": "storybook-to-ghpages",

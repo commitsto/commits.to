@@ -71,8 +71,7 @@ Create a `.env` file in the root of the project directory with the following con
 replacing `<yourname>` with your name:
 
 ```sh
-APP_PORT=5001
-CLIENT_PORT=5000
+APP_PORT=5000
 
 DATABASE_URL=postgres://iwill:iwill@localhost:5432/commitsto
 ```
@@ -83,9 +82,9 @@ If you are running the app for the first time, or have recently pulled changes, 
 `npm install`
 
 #### Start each process in a separate terminal pane
-- Build server code in watch mode: `npm run dev:build:server`
+- Build server in watch mode: `npm run dev:build:server`
+- Build client in watch mode: `npm run dev:build:client`
 - Start server: `npm run dev:server`
-- Build client (and start [webpack-dev-server](https://github.com/webpack/webpack-dev-server)): `npm run dev:client`
 
 
 ### Try The App

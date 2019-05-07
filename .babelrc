@@ -11,9 +11,9 @@
       "module-resolver",
       {
         "alias": {
-          "client": "./client",
           "lib": "./lib",
-          "server": "./server"
+          "server": "./server",
+          "src": "./client/src"
         }
       }
     ]

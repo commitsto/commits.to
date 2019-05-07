@@ -11,7 +11,7 @@ import PromiseCard from 'src/components/promise/card';
 
 interface IPromiseViewProps {
   location: { pathname?: string };
-  staticContext: {};
+  staticContext: { promise: any; }; // FIXME Pledge: { id: string; user: {}; };
 }
 
 interface IPromiseViewState {
@@ -31,7 +31,7 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
       .then((response) => {
         response.json()
           .then(({ promise }) => {
-            console.log('mount', username, promise)
+            // console.log('mount', username, promise)
             this.setState({ promise });
           });
       });
@@ -43,7 +43,7 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
 
     const promise = statePromise || propsPromise;
 
-    console.log('PROMISE!', promise, propsPromise)
+    // console.log('PROMISE!', promise, propsPromise)
 
     return (
       <LoadableContainer isLoaded={!_.isEmpty(promise)}>

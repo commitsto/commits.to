@@ -8,11 +8,11 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
 
-import App from 'client/src/app';
+import App from 'src/app';
 
-import { PORT } from '../../lib/config';
-import log from '../../lib/logger';
-import apiRouter from './api';
+import { PORT } from 'lib/config';
+import log from 'lib/logger';
+import apiRouter from 'server/app/api';
 
 const clientBuildDir = '../../client';
 
@@ -60,7 +60,7 @@ app.get('*', (req, res) => {
 
   readFile(indexFile, 'utf8', (err, page) => {
     if (err) {
-      console.error('Something went wrong:', err);
+      log.error('Error loading index file', err);
       return res.status(500).send('500');
     }
 

@@ -66,6 +66,7 @@ module.exports = {
     alias: {
       src: `${rootPath}/client/src`,
       lib: `${rootPath}/lib`,
+      models: `${rootPath}/models`,
     }
   },
 }

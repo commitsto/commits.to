@@ -12,6 +12,7 @@
       {
         "alias": {
           "lib": "./lib",
+          "models": "./models",
           "server": "./server",
           "src": "./client/src"
         }

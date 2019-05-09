@@ -5,6 +5,7 @@
     "outDir": "./build",
     "paths": {
       "lib/*": ["lib/*"],
+      "models/*": ["models/*"],
       "server/*": ["server/*"],
       "src/*": ["client/src/*"]
     },
@@ -16,6 +17,7 @@
   "include": [
     "./client/**/*",
     "./lib/**/*",
+    "./models/**/*",
     "./server/**/*"
   ]
 }

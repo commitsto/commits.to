@@ -42,28 +42,8 @@ const CardWrapper = styled.div`
 
 // <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
-export interface IUser {
-  counted?: number;
-  pending?: number;
-  score?: number;
-  username?: string;
-}
-
-export interface IPromise {
-  id?: string;
-  clix?: number;
-  credit?: number;
-  what?: string;
-  note?: string;
-  tdue?: Date;
-  tfin?: Date;
-  username?: string;
-  urtext?: string;
-  user?: {};
-}
-
 interface ICardProps {
-  promise: IPromise;
+  promise: IPledge;
   user: IUser;
   withHeader?: boolean;
 }

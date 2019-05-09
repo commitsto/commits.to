@@ -1,8 +1,10 @@
 import { Users } from 'models/db';
 
 class User {
+  public static _dbModel = Users; // tslint:disable-line variable-name
+
   public static includeModelFor = ({ username }) => ({
-    model: Users,
+    model: User._dbModel,
     where: { username }
   })
 

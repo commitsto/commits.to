@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import log from '../../lib/logger'
-import { Promises } from '../models/'
+import log from 'lib/logger'
+import { Promises } from 'models/db/'
 import { seed, importJson } from '../db/seed'
 import cache from '../db/cache'
 

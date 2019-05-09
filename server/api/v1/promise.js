@@ -2,8 +2,10 @@ import { Router } from 'express'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
-import { Sequelize } from '../../db/sequelize'
-import { Promises, Users } from '../../models'
+import Pledge from 'models/pledge';
+import User from 'models/user';
+
+import { Promises, Users } from 'models/db'
 import log, { deSequelize } from '../../../lib/logger'
 import { parsePromise, parsePromiseWithIp } from '../../../lib/parse/promise'
 import actionNotifier from '../../../lib/notify'
@@ -18,42 +20,18 @@ const userQuery = (user) => ({
 });
 
 const api = Router()
-
 addIdParser(api);
 
-// TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
-
-// show promise
 api.get('/', (req, res) => {
   log.info('GET promise', req.query);
-  const { username, urtext } = req.query;
-  Promises.find({
-    where: { id: `${username}/${urtext}` }, // FIXME method on promise model
-    include: [userQuery(username)],
-  }).then(function(promise) {
+  Pledge.find(req.query).then((promise) => {
     res.json({ promise })
     log.debug('show promise', deSequelize(promise))
   });
 })
 
-// incomplete promises
 api.get(['/incomplete'], (req, res) => {
-  Promises.findAll({
-    where: {
-      tfin: null,
-      void: {
-        [Sequelize.Op.not]: true
-      },
-      urtext: {
-        [Sequelize.Op.not]: null
-      },
-    },
-    // limit: 30
-    include: [{
-      model: Users
-    }],
-    order: Sequelize.literal('tini DESC'),
-  }).then(function(promises) {
+  Pledge.findIncomplete().then((promises) => {
     res.json({ promises })
     log.debug('incomplete promises', promises.length)
   })
@@ -133,15 +111,9 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
   })
 })
 
-// TODO
-
+// TODO: make this work
 api.post('/complete', (req, resp) => {
-  Promises.findOne({
-    where: {
-      id: req.body.id
-    },
-    include: [userQuery(req.params.user)],
-  }).then(function (promise) {
+  Pledge.find({ id: req.body.id }).then((promise) => {
     const tfin = moment().toDate()
     promise.update({
       tfin,

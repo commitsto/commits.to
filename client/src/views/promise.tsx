@@ -5,17 +5,16 @@ import { withRouter } from 'react-router-dom';
 import DomainParser from 'lib/parse/domain';
 
 import EditButton from 'src/components/button/edit';
-import { IPromise } from 'src/components/card/index';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
 
 interface IPromiseViewProps {
   location: { pathname?: string };
-  staticContext: { promise: any; }; // FIXME Pledge: { id: string; user: {}; };
+  staticContext: { promise: IPledge; };
 }
 
 interface IPromiseViewState {
-  promise?: IPromise;
+  promise?: IPledge;
 }
 
 class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> {

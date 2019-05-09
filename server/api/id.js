@@ -1,5 +1,5 @@
 import log, { deSequelize } from '../../lib/logger'
-import { Promises } from '../models'
+import { Promises } from 'models/db'
 
 export default (app) =>
   app.param('id', function (req, res, next, param) {

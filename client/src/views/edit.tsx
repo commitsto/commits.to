@@ -9,7 +9,6 @@ import { blue, darkBlue } from 'lib/theme/colors';
 
 import PromiseDeleteButton from 'src/components/button/delete';
 import PromiseSubmitButton from 'src/components/button/submit';
-import { IPromise } from 'src/components/card/index';
 import DatePicker from 'src/components/form/picker/date';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
@@ -61,7 +60,7 @@ interface IPromiseEditProps {
 }
 
 interface IPromiseEditState {
-  promise?: IPromise;
+  promise?: IPledge;
 }
 
 class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> {

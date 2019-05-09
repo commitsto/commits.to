@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { Users } from 'server/models'
+import { Users } from 'models/db'
 import log from 'lib/logger'
 import { calculateReliability } from 'lib/parse/credit'
 import promiseGallerySort from 'lib/sort'

@@ -1,6 +1,6 @@
 import log from '../../lib/logger'
 
-import { Promises, Users } from '../models'
+import { Promises, Users } from 'models/db'
 import { parsePromise } from '../../lib/parse/promise'
 
 const USERS = [

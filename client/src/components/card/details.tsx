@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import withParsedDomain from 'src/containers/with_parsed_domain';
+
 import { prettyDate, relativeDate } from 'lib/helpers/format';
 import { promisePath } from 'lib/helpers/path';
 
@@ -59,10 +61,10 @@ const DetailWrapper = styled.div`
   display: flex;
 `;
 
-const CardDetails = ({ what, note, tdue, username, urtext }) => (
+const CardDetails = ({ domain: { root: host = '' } = {}, what, note, tdue, username, urtext }) => (
   <DetailWrapper>
     <DetailInfo>
-      <DetailLink href={promisePath({ username, urtext })}>
+      <DetailLink href={promisePath({ host, username, urtext })}>
         <DetailText>
           { what }
         </DetailText>
@@ -89,4 +91,4 @@ const CardDetails = ({ what, note, tdue, username, urtext }) => (
   </DetailWrapper>
 );
 
-export default CardDetails;
+export default withParsedDomain(CardDetails);

@@ -3,11 +3,21 @@ import * as React from 'react';
 
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
-class Promise extends React.Component {
+class Pledges extends React.Component {
   public state = {
     promises: [],
   };
+
+  public constructor(props) {
+    super(props);
+
+    const { data } = props;
+    this.state = {
+      promises: data,
+    };
+  }
 
   public componentDidMount() {
     fetch('/api/v1/promise/incomplete')
@@ -33,4 +43,4 @@ class Promise extends React.Component {
   }
 }
 
-export default Promise;
+export default withParsedDomain(Pledges);

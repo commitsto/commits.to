@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import withParsedDomain from 'src/containers/with_parsed_domain';
+
 import { completeCredit, prettyCredit } from 'lib/helpers/format';
 import { promisePath } from 'lib/helpers/path';
 import { black, grayBlue, headerBorder, lightGray, white } from 'lib/theme/colors';
@@ -47,6 +49,7 @@ const PromiseSlug = styled.div`
 interface ICardFooterProps {
   completePromise?: ({ }) => void;
   credit?: number;
+  domain: { root?: string };
   id: string;
   tfin?: Date;
   urtext: string;
@@ -54,7 +57,7 @@ interface ICardFooterProps {
 }
 
 const CardFooter: React.SFC<ICardFooterProps> = ({
-  completePromise, credit, id, tfin, urtext, username,
+  completePromise, credit, domain: { root: host = '' } = {}, id, tfin, urtext, username,
 }) => (
   <FooterWrapper>
     <FooterPromiseBar>
@@ -69,7 +72,7 @@ const CardFooter: React.SFC<ICardFooterProps> = ({
       </CreditBar>
     </FooterPromiseBar>
     <PromiseSlug>
-      <FooterLink to={promisePath({ username, urtext })}>
+      <FooterLink to={promisePath({ host, username, urtext })}>
         { urtext }
       </FooterLink>
     </PromiseSlug>
@@ -80,4 +83,4 @@ CardFooter.defaultProps = {
   completePromise: () => ({}),
 };
 
-export default CardFooter;
+export default withParsedDomain(CardFooter);

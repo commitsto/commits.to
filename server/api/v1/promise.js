@@ -3,7 +3,6 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import Pledge from 'models/pledge';
-import User from 'models/user';
 
 import { Promises, Users } from 'models/db'
 import log, { deSequelize } from '../../../lib/logger'
@@ -12,15 +11,7 @@ import actionNotifier from '../../../lib/notify'
 import parseCredit from '../../../lib/parse/credit'
 import { diffPromises } from '../../../lib/parse/promise'
 
-import addIdParser from '../id';
-
-const userQuery = (user) => ({
-  model: Users,
-  where: { username: user }
-});
-
 const api = Router()
-addIdParser(api);
 
 api.get('/', (req, res) => {
   log.info('GET promise', req.query);

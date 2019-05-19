@@ -12,6 +12,7 @@ import PromiseSubmitButton from 'src/components/button/submit';
 import DatePicker from 'src/components/form/picker/date';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
 const PromiseForm = styled.div`
   border: 1px solid ${blue};
@@ -56,6 +57,7 @@ const FormGroup = styled.div`
 `;
 
 interface IPromiseEditProps {
+  domain: { subdomain?: string };
   location: { pathname?: string };
 }
 
@@ -69,9 +71,10 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
   };
 
   public componentDidMount() {
-    const { location = {} } = this.props;
-    const { pathname: urtext } = location;
-    const username = DomainParser.getUsername(window.location.hostname);
+    const {
+      domain: { subdomain: username = '' } = {},
+      location: { pathname: urtext = '' } = {}
+    } = this.props;
 
     fetch(`/api/v1/promise/?username=${username}&urtext=${urtext.substr(6).toLowerCase()}`)
       .then((response) => {
@@ -188,4 +191,4 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
   }
 }
 
-export default withRouter(PromiseEdit);
+export default withParsedDomain(PromiseEdit);

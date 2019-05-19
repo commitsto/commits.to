@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import DomainParser from 'lib/parse/domain';
 import { headerBg, headerBorder } from 'lib/theme/colors';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
 const DarkHeader = styled.header`
   background-color: ${headerBg};
@@ -24,45 +23,48 @@ const DarkHeader = styled.header`
 `;
 
 interface IHeaderProps {
+  domain: { root?: string }; // FIXME
   title: string;
   showNav?: boolean;
-  staticContext: any; // FIXME
 }
 
-const Header: React.SFC<IHeaderProps> = ({ title, showNav, staticContext: { host } = {} }) => (
-  <DarkHeader>
-    <h1>
-      <a href={`//${DomainParser.getRoot(host)}`}>
-        {title}
-      </a>
-    </h1>
-    { showNav &&
-      <nav>
-        <a
-          className='header-link'
-          target='_blank'
-          href='http://blog.beeminder.com/will'>
-          blog post
+const Header: React.SFC<IHeaderProps> = ({ title, showNav, domain: { root = '' } = {} }) => {
+
+  return (
+    <DarkHeader>
+      <h1>
+        <a href={`//${root}`}>
+          {title}
         </a>
-        <a
-          className='header-link'
-          target='_blank'
-          href='https://github.com/beeminder/iwill'>
-          github repo
-        </a>
-        <a
-          className='header-link'
-          target='_blank'
-          href='https://github.com/beeminder/iwill/wiki'>
-          spec
-        </a>
-      </nav>
-    }
-  </DarkHeader>
-);
+      </h1>
+      { showNav &&
+        <nav>
+          <a
+            className='header-link'
+            target='_blank'
+            href='http://blog.beeminder.com/will'>
+            blog post
+          </a>
+          <a
+            className='header-link'
+            target='_blank'
+            href='https://github.com/beeminder/iwill'>
+            github repo
+          </a>
+          <a
+            className='header-link'
+            target='_blank'
+            href='https://github.com/beeminder/iwill/wiki'>
+            spec
+          </a>
+        </nav>
+      }
+    </DarkHeader>
+  );
+};
 
 Header.defaultProps = {
   showNav: true,
 };
 
-export default withRouter(Header);
+export default withParsedDomain(Header);

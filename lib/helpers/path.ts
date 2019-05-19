@@ -1,23 +1,26 @@
 import DomainParser from 'lib/parse/domain';
 
 interface IUserPathArgs {
+  host?: string;
   username: string;
 }
 
 interface IPromisePathArgs {
+  host?: string;
   urtext: string;
   username: string;
 }
 
-export const userPath = ({ username }: IUserPathArgs) => {
-  const host = typeof window !== 'undefined' && window.location.host;
+export const userPath = ({ host, username }: IUserPathArgs) => {
   const root = DomainParser.getRoot(host);
+
+  // console.log('USER', host, username, root)
 
   return `//${username}.${root}`;
 };
 
-export const promisePath = ({ username, urtext }: IPromisePathArgs) =>
-  `${userPath({ username })}/${urtext}`;
+export const promisePath = ({ host, username, urtext }: IPromisePathArgs) =>
+  `${userPath({ host, username })}/${urtext}`;
 
 export const editPromisePath = ({ user: { username }, urtext }) =>
   `${promisePath({ username, urtext })}#edit`;

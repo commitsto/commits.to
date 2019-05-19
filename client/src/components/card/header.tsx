@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import StyledLink from 'src/components/styled/link';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
 import { scoreColor } from 'lib/helpers/colors';
 import { prettyPercent } from 'lib/helpers/format';
@@ -42,10 +43,10 @@ const UserPending = styled.span`
   vertical-align: text-top;
 `;
 
-const CardHeader = ({ username, score, counted, pending }) => (
+const CardHeader = ({ domain: { root: host = '' } = {}, username, score, counted, pending }) => (
   <HeaderWrapper>
     <UserHeading>
-      <a href={userPath({ username })}>
+      <a href={userPath({ host, username })}>
         { username }
       </a>
     </UserHeading>
@@ -61,4 +62,4 @@ const CardHeader = ({ username, score, counted, pending }) => (
   </HeaderWrapper>
 );
 
-export default CardHeader;
+export default withParsedDomain(CardHeader);

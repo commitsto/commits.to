@@ -1,16 +1,14 @@
 import _ from 'lodash';
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
-
-import DomainParser from 'lib/parse/domain';
 
 import EditButton from 'src/components/button/edit';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
 interface IPromiseViewProps {
+  domain: { subdomain: string; };
   location: { pathname?: string };
-  staticContext: { promise: IPledge; };
 }
 
 interface IPromiseViewState {
@@ -22,31 +20,45 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
     promise: undefined,
   };
 
+  public constructor(props) {
+    super(props);
+
+    const { data } = props;
+    this.state = {
+      promise: data
+    };
+  }
+
   public componentDidMount() {
-    const { location: { pathname: urtext = '' } = {} } = this.props;
-    const username = DomainParser.getUsername(window.location.hostname);
+    // console.log('DID MOUNT')
+    if (this.state.promise) {
+      return;
+    }
+
+    const {
+      domain: { subdomain: username = '' } = {},
+      location: { pathname: urtext = '' } = {}
+    } = this.props;
 
     fetch(`/api/v1/promise/?username=${username}&urtext=${urtext.substr(1).toLowerCase()}`)
       .then((response) => {
         response.json()
           .then(({ promise }) => {
-            // console.log('mount', username, promise)
-            this.setState({ promise });
+            console.log('fetch', username, promise); // tslint:disable-line
+            if (promise != null) {
+              this.setState({ promise });
+            }
           });
       });
   }
 
   public render() {
-    const { location: { pathname = '' } = {}, staticContext: { promise: propsPromise = {} } = {} } = this.props;
-    const { promise: statePromise } = this.state;
-
-    const promise = statePromise || propsPromise;
-
-    // console.log('PROMISE!', promise, propsPromise)
+    const { location: { pathname = '' } = {} } = this.props;
+    const { promise: { user = {} } = {}, promise = {} } = this.state;
 
     return (
       <LoadableContainer isLoaded={!_.isEmpty(promise)}>
-        <PromiseCard withHeader key={promise.id} promise={promise} user={promise.user} />
+        <PromiseCard withHeader promise={promise} user={user} />
         <EditButton href={`/edit${pathname}`}>
           EDIT
         </EditButton>
@@ -55,4 +67,4 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
   }
 }
 
-export default withRouter(PromiseView);
+export default withParsedDomain(PromiseView);

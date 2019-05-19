@@ -8,11 +8,13 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
 
-import App from 'src/app';
-
 import { PORT } from 'lib/config';
 import log from 'lib/logger';
+import Pledge from 'models/pledge';
 import apiRouter from 'server/app/api';
+import dataPreloader from 'server/middleware/data';
+import subdomainParser from 'server/middleware/subdomain';
+import App from 'src/app';
 
 const clientBuildDir = '../../client';
 
@@ -37,24 +39,28 @@ app.listen(PORT, () => {
 });
 
 app.use('/api/v1', apiRouter);
+app.use(subdomainParser);
+app.use(dataPreloader);
 
 // catch-all
 app.get('*', (req, res) => {
-  log.info('*** render front-end', req.originalUrl);
+  const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 
   const context = {
+    data: JSON.parse(req.data),
     host: req.headers.host,
-    // promise: {} // TODO
   };
 
-  const sheet = new ServerStyleSheet();
+  // console.log('SERVER RENDERING', context)
 
   const reactApp = renderToString(
     sheet.collectStyles(
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
+      <div id="root">
+        <StaticRouter location={req.url} context={context}>
+          <App />
+        </StaticRouter>
+      </div>
     )
   );
 
@@ -65,8 +71,10 @@ app.get('*', (req, res) => {
     }
 
     const styleTags = sheet.getStyleTags();
+    const staticContext = JSON.stringify(context);
 
-    page = page.replace('%{root}', `<div id="root">${reactApp}</div>`);
+    page = page.replace('%{data}', staticContext);
+    page = page.replace('%{root}', reactApp);
     page = page.replace('%{styles}', styleTags);
 
     return res.send(page);

@@ -10,12 +10,15 @@ class Pledge {
 
   public static generateId = ({ username, urtext }) => `${username}/${urtext}`;
 
-  public static find = ({ id, username, urtext }) => {
-    const promiseId = id || Pledge.generateId({ username, urtext });
+  public static find = ({ id, username, urtext }: IPledge = {}) => {
+    // fixme set username/urtext if not passed
+    const pledgeId = id || Pledge.generateId({ username, urtext });
+
+    // console.log('find PLEDGE', pledgeId);
 
     return Promises.find({
       include: [User.includeModelFor({ username })],
-      where: { id: promiseId },
+      where: { id: pledgeId },
     });
   }
 

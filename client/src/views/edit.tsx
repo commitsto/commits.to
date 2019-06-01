@@ -11,7 +11,7 @@ import PromiseDeleteButton from 'src/components/button/delete';
 import PromiseSubmitButton from 'src/components/button/submit';
 import DatePicker from 'src/components/form/picker/date';
 import LoadableContainer from 'src/components/loading/loadable';
-import DeleteModal from 'src/components/modal/delete';
+import ConfirmModal from 'src/components/modal/confirm';
 import PromiseCard from 'src/components/promise/card';
 import withParsedDomain from 'src/containers/with_parsed_domain';
 
@@ -90,7 +90,7 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     evt.preventDefault();
 
     const { promise: { id = '' } = {} } = this.state;
-    DeleteModal().then((result) => {
+    ConfirmModal('Delete this?', 'warning').then((result) => {
       if (result.value) {
         // FIXME abstract these out
         fetch('/api/v1/promise/delete', {

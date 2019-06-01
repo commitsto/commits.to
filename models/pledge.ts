@@ -11,13 +11,11 @@ class Pledge {
   public static generateId = ({ username, urtext }) => `${username}/${urtext}`;
 
   public static find = ({ id, username, urtext }: IPledge = {}) => {
-    // fixme set username/urtext if not passed
     const pledgeId = id || Pledge.generateId({ username, urtext });
-
-    // console.log('find PLEDGE', pledgeId);
+    const pledgeUsername = username || pledgeId.split('/')[0];
 
     return Promises.find({
-      include: [User.includeModelFor({ username })],
+      include: [User.includeModelFor({ username: pledgeUsername })],
       where: { id: pledgeId.toLowerCase() },
     });
   }
@@ -37,6 +35,14 @@ class Pledge {
         void: {
           [Sequelize.Op.not]: true
         },
+      },
+    });
+  }
+
+  public static destroy = ({ id }) => {
+    return Promises.destroy({
+      where: {
+        id
       },
     });
   }

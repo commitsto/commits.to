@@ -13,7 +13,7 @@ if (DATABASE_URL) {
     protocol: 'postgres',
     port: match[4],
     host: match[3],
-    logging: false,
+    logging: true,
   })
 
   if (process.env.NODE_ENV !== 'test') { // will hang on mocha exiting

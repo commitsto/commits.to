@@ -17,7 +17,7 @@ const FooterWrapper = styled.div`
   flex-basis: 100%;
 `;
 
-const BarLink = styled(Link)`
+const BarLink = styled.a`
   color: ${white};
   text-decoration: none;
   text-transform: uppercase;
@@ -65,7 +65,7 @@ const CardFooter: React.SFC<ICardFooterProps> = ({
         { tfin ?
             <span>{ prettyCredit(credit) }</span>
           :
-          <BarLink to={completePromise({ username, id })}>
+          <BarLink href='#' onClick={completePromise({ username, id })}>
             <span>Mark {completeCredit(credit)} Complete</span>
           </BarLink>
         }

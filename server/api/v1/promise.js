@@ -102,28 +102,26 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
   })
 })
 
-// TODO: make this work
 api.post('/complete', (req, resp) => {
-  Pledge.find({ id: req.body.id }).then((promise) => {
+  Pledge.find(req.body).then((pledge) => {
     const tfin = moment().toDate()
-    promise.update({
-      tfin,
-      cred: parseCredit({ dueDate: promise.tdue, finishDate: tfin })
-    })
-    log.info('promise completed', req.body, promise.id)
-    resp.send(200)
+    if (pledge) {
+      pledge.update({
+        tfin,
+        cred: parseCredit({ dueDate: pledge.tdue, finishDate: tfin })
+      })
+      log.info('pledge completed', req.body, pledge.id)
+      return resp.send(200)
+    }
+    return resp.send(400)
   })
 })
 
 api.post('/delete', (req, resp) => {
-  Promises.destroy({
-    where: {
-      id: req.body.id
-    },
-  }).then(function (deletedRows) {
-    log.info('promise deleted', req.body, deletedRows)
+  Pledge.destroy(req.body).then(function (deletedRows) {
+    log.info('pledge deleted', req.body, deletedRows)
     actionNotifier({
-      resource: 'promise',
+      resource: 'pledge',
       action: 'deleted',
       identifier: req.body.id,
     })
@@ -156,7 +154,7 @@ api.post('/edit', (req, res) => {
         log.info('promise updated', difference)
 
         actionNotifier({
-          resource: 'promise',
+          resource: 'pledge',
           action: 'edited',
           identifier: req.body.id,
           meta: difference,
@@ -172,17 +170,18 @@ api.post('/edit', (req, res) => {
   })
 })
 
-// // captcha
-// api.post('/validate', ({ body: { id } = {} }, resp) => {
-//   if (!id) {
-//     resp.send(404)
-//   } else {
-//     Promises.upsert({ id: id.toLowerCase() })
-//       .then(function (promise) {
-//         log.info('promise validated', id, promise)
-//         resp.send(200)
-//       })
-//   }
-// })
+// FIXME: captcha
+
+api.post('/validate', ({ body: { id } = {} }, resp) => {
+  if (!id) {
+    resp.send(404)
+  } else {
+    Promises.upsert({ id: id.toLowerCase() })
+      .then(function (promise) {
+        log.info('promise validated', id, promise)
+        resp.send(200)
+      })
+  }
+})
 
 export default api

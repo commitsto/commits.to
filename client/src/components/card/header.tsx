@@ -46,9 +46,9 @@ const UserPending = styled.span`
 const CardHeader = ({ domain: { root: host = '' } = {}, username, score, counted, pending }) => (
   <HeaderWrapper>
     <UserHeading>
-      <a href={userPath({ host, username })}>
+      <StyledLink href={userPath({ host, username })}>
         { username }
-      </a>
+      </StyledLink>
     </UserHeading>
     <UserScore score={score}>
       <span>{ prettyPercent(score, 2) }</span>

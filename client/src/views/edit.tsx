@@ -11,6 +11,7 @@ import PromiseDeleteButton from 'src/components/button/delete';
 import PromiseSubmitButton from 'src/components/button/submit';
 import DatePicker from 'src/components/form/picker/date';
 import LoadableContainer from 'src/components/loading/loadable';
+import DeleteModal from 'src/components/modal/delete';
 import PromiseCard from 'src/components/promise/card';
 import withParsedDomain from 'src/containers/with_parsed_domain';
 
@@ -85,28 +86,48 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
       });
   }
 
-  public handleDelete(evt) {
+  public handleDelete = (evt) => {
     evt.preventDefault();
 
-    alert('delete'); // TODO
+    const { promise: { id = '' } = {} } = this.state;
+    DeleteModal().then((result) => {
+      if (result.value) {
+        // FIXME abstract these out
+        fetch('/api/v1/promise/delete', {
+          body: JSON.stringify({ id }),
+          headers: {
+            'content-type': 'application/json',
+          },
+          method: 'POST',
+        }).then(({ status }) => {
+          if (status === 200) {
+            window.location.replace(`//${window.location.host}`);
+          }
+        });
+      }
+    });
   }
 
   public handleSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      fetch('/api/v1/promise/edit', {
-        body: JSON.stringify(values),
-        headers: {
-          'content-type': 'application/json',
-        },
-        method: 'POST',
-      });
-      this.setState(({ promise }) => ({ promise: { ...promise, ...values } }));
-      setSubmitting(false);
-    }, 400);
+    // FIXME abstract these out
+    fetch('/api/v1/promise/edit', {
+      body: JSON.stringify(values),
+      headers: {
+        'content-type': 'application/json',
+      },
+      method: 'POST',
+    }).then(({ status }) => {
+      if (status === 200) {
+        this.setState(({ promise }) => ({ promise: { ...promise, ...values } }));
+        setSubmitting(false);
+      }
+    });
   }
 
   public validateFields(values) {
     const errors = {};
+
+    // TODO
 
     // if (!values.email) {
     //   errors.email = 'Required';
@@ -175,7 +196,7 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
                   </FormGroup>
 
                   <PromiseSubmitButton type="submit" disabled={isSubmitting}>
-                    Submit
+                    Save
                   </PromiseSubmitButton>
                 </Form>
               )}

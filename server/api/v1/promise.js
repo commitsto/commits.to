@@ -115,13 +115,13 @@ api.post('/complete', (req, resp) => {
   })
 })
 
-api.post('/remove', (req, resp) => {
+api.post('/delete', (req, resp) => {
   Promises.destroy({
     where: {
       id: req.body.id
     },
   }).then(function (deletedRows) {
-    log.info('promise removed', req.body, deletedRows)
+    log.info('promise deleted', req.body, deletedRows)
     actionNotifier({
       resource: 'promise',
       action: 'deleted',

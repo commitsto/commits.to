@@ -57,7 +57,7 @@
     "sequelize": "^4.37.6",
     "sherlockjs": "^1.4.0",
     "styled-components": "^4.2.0",
-    "sweetalert2": "^8.10.0",
+    "sweetalert2": "^8.11.7",
     "ts-loader": "^5.4.5",
     "tslint": "^5.16.0",
     "tslint-react": "^4.0.0",

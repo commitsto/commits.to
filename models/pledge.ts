@@ -18,7 +18,7 @@ class Pledge {
 
     return Promises.find({
       include: [User.includeModelFor({ username })],
-      where: { id: pledgeId },
+      where: { id: pledgeId.toLowerCase() },
     });
   }
 

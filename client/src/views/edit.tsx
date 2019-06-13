@@ -90,7 +90,7 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     evt.preventDefault();
 
     const { promise: { id = '' } = {} } = this.state;
-    ConfirmModal('Delete this?', 'warning').then((result) => {
+    ConfirmModal('Delete', 'warning').then((result) => {
       if (result.value) {
         // FIXME abstract these out
         fetch('/api/v1/promise/delete', {

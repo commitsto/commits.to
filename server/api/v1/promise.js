@@ -174,7 +174,7 @@ api.post('/edit', (req, res) => {
 
 api.post('/validate', ({ body: { id } = {} }, resp) => {
   if (!id) {
-    resp.send(404)
+    resp.send(400)
   } else {
     Promises.upsert({ id: id.toLowerCase() })
       .then(function (promise) {

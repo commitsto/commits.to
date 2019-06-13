@@ -7,9 +7,9 @@ const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '../');
 const contentPath = path.resolve(__dirname, '../build/client');
-const templatePath = path.resolve(__dirname, '../client/app.html');
-const tsconfigPath = path.resolve(__dirname, '../tsconfig.json');
-const tslintPath = path.resolve(__dirname, '../tslint.json');
+const htmlTemplate = path.resolve(__dirname, '../client/app.html');
+const tsconfig = path.resolve(__dirname, '../tsconfig.json');
+const tslint = path.resolve(__dirname, '../tslint.json');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -49,14 +49,14 @@ module.exports = {
     }),
     new ForkTsCheckerPlugin({
       checkSyntacticErrors: true,
-      tsconfig: tsconfigPath,
-      tslint: tslintPath,
+      tsconfig,
+      tslint,
       excludeWarnings: true,
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
-      template: templatePath,
+      template: htmlTemplate,
       filename: './app.html',
       title: 'commits.to | the i-will system',
     }),

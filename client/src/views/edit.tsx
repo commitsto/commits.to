@@ -68,7 +68,7 @@ interface IPromiseEditState {
 
 class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> {
   public readonly state: Readonly<IPromiseEditState> = {
-    promise: {},
+    promise: undefined,
   };
 
   public componentDidMount() {
@@ -81,7 +81,10 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
       .then((response) => {
         response.json()
           .then(({ promise = {} }) => {
-            this.setState({ promise });
+            // FIXME: null
+            if (promise != null) {
+              this.setState({ promise });
+            }
           });
       });
   }

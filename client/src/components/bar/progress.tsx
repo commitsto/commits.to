@@ -14,21 +14,17 @@ const ProgressBarWrapper = styled.div`
   margin: 3rem 0;
 `;
 
-const ProgressBarStyled = styled.div({ status })`
-  background-color: ${ status === 'started' && yellow || status === 'completed' && green || red};
+const ProgressBarStyled = styled.div`
+  background-color: ${ ({ status }) => status === 'started' && yellow || status === 'completed' && green || red};
   height: 16px;
   border-radius: 4px;
   transition: 0.25s ease-in;
   transition-property: width, background-color;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
-  width: ${ status === 'started' && 80 || status === 'completed' && 100 || 1}%;
+  width: ${ ({ status }) => status === 'started' && 80 || status === 'completed' && 100 || 1}%;
 `;
 
-interface IProgressBarProps {
-  status?: 'started'|'completed';
-}
-
-const ProgressBar: React.SFC<IProgressBarProps> = ({ status }) => (
+const ProgressBar: React.SFC<IProgress> = ({ status }) => (
   <ProgressBarWrapper>
     <ProgressContainer>
       <ProgressBarStyled status={status} />

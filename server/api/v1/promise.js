@@ -170,10 +170,9 @@ api.post('/edit', (req, res) => {
   })
 })
 
-// FIXME: captcha
-
-api.post('/validate', ({ body: { id } = {} }, resp) => {
-  if (!id) {
+api.post('/validate', ({ body: { id = '' } = {} }, resp) => {
+  // FIXME
+  if (!id || id.length < 2) {
     resp.send(400)
   } else {
     Promises.upsert({ id: id.toLowerCase() })

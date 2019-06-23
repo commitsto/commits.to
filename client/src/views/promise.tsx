@@ -2,10 +2,12 @@ import _ from 'lodash';
 import * as React from 'react';
 
 import EditButton from 'src/components/button/edit';
+import Confirm from 'src/components/confirm';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
 import withParsedDomain from 'src/containers/with_parsed_domain';
 
+// FIXME: share
 interface IPromiseViewProps {
   domain: { subdomain: string; };
   location: { pathname?: string };
@@ -45,14 +47,19 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
         response.json()
           .then(({ promise }) => {
             console.log('fetch', username, promise); // tslint:disable-line
-            if (promise != null) {
-              this.setState({ promise });
-            }
+            // FIXME: null
+            // if (promise != null) {
+            this.setState({ promise });
+            // }
           });
       });
   }
 
   public render() {
+    if (this.state.promise === null) {
+      return <Confirm />;
+    }
+
     const { location: { pathname = '' } = {} } = this.props;
     const { promise: { user = {} } = {}, promise = {} } = this.state;
 

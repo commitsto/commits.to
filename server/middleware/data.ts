@@ -16,7 +16,7 @@ export default (req, res, next) => {
   if (typeof getData === 'function') {
     getData(req.pledge)
       .then((pledgeData) => {
-        req.data = JSON.stringify(pledgeData || {});
+        req.data = JSON.stringify(pledgeData);
         next();
       })
       .catch((reason) => console.log('error', reason)); // tslint:disable-line no-console

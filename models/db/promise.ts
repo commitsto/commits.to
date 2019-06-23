@@ -1,4 +1,5 @@
-import * as moment from 'moment';
+// @ts-ignore
+import moment from 'moment';
 
 import parseCredit from 'lib/parse/credit';
 import { sequelize, Sequelize } from 'server/db/sequelize';

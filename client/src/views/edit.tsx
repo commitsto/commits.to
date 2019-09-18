@@ -1,18 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import _ from 'lodash';
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import DomainParser from 'lib/parse/domain';
 import { blue, darkBlue } from 'lib/theme/colors';
 
 import PromiseDeleteButton from 'src/components/button/delete';
 import PromiseSubmitButton from 'src/components/button/submit';
 import DatePicker from 'src/components/form/picker/date';
-import LoadableContainer from 'src/components/loading/loadable';
 import ConfirmModal from 'src/components/modal/confirm';
-import PromiseCard from 'src/components/promise/card';
 import withParsedDomain from 'src/containers/with_parsed_domain';
 
 const PromiseForm = styled.div`
@@ -58,8 +54,8 @@ const FormGroup = styled.div`
 `;
 
 interface IPromiseEditProps {
-  domain: { subdomain?: string };
-  location: { pathname?: string };
+  promise: IPledge;
+  onSubmit?: (promise: IPledge) => ({});
 }
 
 interface IPromiseEditState {
@@ -68,26 +64,8 @@ interface IPromiseEditState {
 
 class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> {
   public readonly state: Readonly<IPromiseEditState> = {
-    promise: undefined,
+    promise: this.props.promise,
   };
-
-  public componentDidMount() {
-    const {
-      domain: { subdomain: username = '' } = {},
-      location: { pathname: urtext = '' } = {}
-    } = this.props;
-
-    fetch(`/api/v1/promise/?username=${username}&urtext=${urtext.substr(6).toLowerCase()}`)
-      .then((response) => {
-        response.json()
-          .then(({ promise = {} }) => {
-            // FIXME: null
-            if (promise != null) {
-              this.setState({ promise });
-            }
-          });
-      });
-  }
 
   public handleDelete = (evt) => {
     evt.preventDefault();
@@ -119,10 +97,15 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
         'content-type': 'application/json',
       },
       method: 'POST',
-    }).then(({ status }) => {
+    })
+    .then((response) => response.json().then(({ promise }) => ({ status: response.status, promise })))
+    .then(({ status, promise: updatedPromise }) => {
       if (status === 200) {
-        this.setState(({ promise }) => ({ promise: { ...promise, ...values } }));
+        this.setState(({ promise }) => ({ promise: { ...promise, ...updatedPromise } }));
         setSubmitting(false);
+
+        const { onSubmit = () => ({}) } = this.props;
+        onSubmit(updatedPromise);
       }
     });
   }
@@ -151,66 +134,60 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     const { promise: { user = {}, ...promise } = {} } = this.state;
 
     return (
-      <div>
-        <LoadableContainer isLoaded={!_.isEmpty(promise)}>
-          <PromiseCard withHeader key={promise.id} promise={promise} user={user} />
+      <PromiseForm>
+        <Formik
+          initialValues={promise}
+          onSubmit={handleSubmit}
+          validate={validateFields}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <FormGroup>
+                <Field type="text" name="what" />
+                <ErrorMessage name="what" component="div" />
+              </FormGroup>
 
-          <PromiseForm>
-            <Formik
-              initialValues={promise}
-              onSubmit={handleSubmit}
-              validate={validateFields}
-            >
-              {({ isSubmitting }) => (
-                <Form>
-                  <FormGroup>
-                    <Field type="text" name="what" />
-                    <ErrorMessage name="what" component="div" />
-                  </FormGroup>
+              <FormGroup>
+                <label htmlFor="note">Description</label>
+                <Field component="textarea" name="note" />
+                <ErrorMessage name="note" component="div" />
+              </FormGroup>
 
-                  <FormGroup>
-                    <label htmlFor="note">Description</label>
-                    <Field component="textarea" name="note" />
-                    <ErrorMessage name="note" component="div" />
-                  </FormGroup>
+              <FormGroup>
+                <Field label='void' type="checkbox" name="void" />
+                <label htmlFor="void">Voided?</label>
+                <ErrorMessage name="void" component="div" />
+              </FormGroup>
 
-                  <FormGroup>
-                    <Field label='void' type="checkbox" name="void" />
-                    <label htmlFor="void">Voided?</label>
-                    <ErrorMessage name="void" component="div" />
-                  </FormGroup>
+              <FormGroup>
+                <label htmlFor='tini'>Created Date</label>
+                <Field component={DatePicker} name="tini" />
+                <ErrorMessage name="tini" component="div" />
+              </FormGroup>
 
-                  <FormGroup>
-                    <label htmlFor='tini'>Created Date</label>
-                    <Field component={DatePicker} name="tini" />
-                    <ErrorMessage name="tini" component="div" />
-                  </FormGroup>
+              <FormGroup>
+                <label htmlFor='tdue'>Due Date</label>
+                <Field component={DatePicker} name="tdue" />
+                <ErrorMessage name="tdue" component="div" />
+              </FormGroup>
 
-                  <FormGroup>
-                    <label htmlFor='tdue'>Due Date</label>
-                    <Field component={DatePicker} name="tdue" />
-                    <ErrorMessage name="tdue" component="div" />
-                  </FormGroup>
+              <FormGroup>
+                <label htmlFor='tfin'>Finish Date</label>
+                <Field component={DatePicker} name="tfin" />
+                <ErrorMessage name="tfin" component="div" />
+              </FormGroup>
 
-                  <FormGroup>
-                    <label htmlFor='tfin'>Finish Date</label>
-                    <Field component={DatePicker} name="tfin" />
-                    <ErrorMessage name="tfin" component="div" />
-                  </FormGroup>
+              <PromiseSubmitButton type="submit" disabled={isSubmitting}>
+                Save
+              </PromiseSubmitButton>
+            </Form>
+          )}
+        </Formik>
 
-                  <PromiseSubmitButton type="submit" disabled={isSubmitting}>
-                    Save
-                  </PromiseSubmitButton>
-                </Form>
-              )}
-            </Formik>
-          </PromiseForm>
-
-          <PromiseDeleteButton href='#' onClick={handleDelete}>
-            DELETE
-          </PromiseDeleteButton>
-        </LoadableContainer>
-      </div>
+        <PromiseDeleteButton href='#' onClick={handleDelete}>
+          DELETE
+        </PromiseDeleteButton>
+      </PromiseForm>
     );
   }
 }

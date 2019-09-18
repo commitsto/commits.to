@@ -6,6 +6,7 @@ import Confirm from 'src/components/confirm';
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
 import withParsedDomain from 'src/containers/with_parsed_domain';
+import PromiseEditForm from 'src/views/edit';
 
 // FIXME: share
 interface IPromiseViewProps {
@@ -14,11 +15,13 @@ interface IPromiseViewProps {
 }
 
 interface IPromiseViewState {
+  isEditing: boolean;
   promise?: IPledge;
 }
 
 class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> {
   public readonly state: Readonly<IPromiseViewState> = {
+    isEditing: false,
     promise: undefined,
   };
 
@@ -27,12 +30,12 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
 
     const { data } = props;
     this.state = {
+      ...this.state,
       promise: data
     };
   }
 
   public componentDidMount() {
-    // console.log('DID MOUNT')
     if (this.state.promise) {
       return;
     }
@@ -55,20 +58,36 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
       });
   }
 
+  public setEditing = (e) => {
+    e.preventDefault();
+    this.setState({ isEditing: true });
+  }
+
+  public clearEditing = (values) => {
+    const promise = { ...this.state.promise, ...values };
+    this.setState({ promise, isEditing: false });
+  }
+
   public render() {
     if (this.state.promise === null) {
       return <Confirm />;
     }
 
+    const { setEditing, clearEditing } = this;
     const { location: { pathname = '' } = {} } = this.props;
-    const { promise: { user = {} } = {}, promise = {} } = this.state;
+    const { isEditing, promise: { user = {} } = {}, promise = {} } = this.state;
 
     return (
       <LoadableContainer isLoaded={!_.isEmpty(promise)}>
         <PromiseCard withHeader promise={promise} user={user} />
-        <EditButton href={`/edit${pathname}`}>
-          EDIT
-        </EditButton>
+        {!isEditing &&
+          <EditButton href='#' onClick={setEditing}>
+            EDIT
+          </EditButton>
+        }
+        {isEditing &&
+          <PromiseEditForm promise={promise} onSubmit={clearEditing} />
+        }
       </LoadableContainer>
     );
   }

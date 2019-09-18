@@ -162,9 +162,9 @@ api.post('/edit', (req, res) => {
       }
 
       if (promise) {
-        res.redirect(`/${prom.urtext}`)
+        res.json({ promise })
       } else {
-        res.redirect('/')
+        res.send(400)
       }
     })
   })

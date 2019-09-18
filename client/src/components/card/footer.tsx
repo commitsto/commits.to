@@ -25,7 +25,7 @@ const BarLink = styled.a`
   white-space: nowrap;
 `;
 
-const FooterLink = styled(Link)`
+const FooterLink = styled('a')`
   color: ${lightGray};
   text-decoration: none;
 `;
@@ -72,7 +72,7 @@ const CardFooter: React.SFC<ICardFooterProps> = ({
       </CreditBar>
     </FooterPromiseBar>
     <PromiseSlug>
-      <FooterLink to={promisePath({ host, username, urtext })}>
+      <FooterLink href={promisePath({ host, username, urtext })}>
         { urtext }
       </FooterLink>
     </PromiseSlug>

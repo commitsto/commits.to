@@ -1,4 +1,4 @@
-import { Users } from '../models'
+import { Users } from 'models/db'
 import log from '../../lib/logger'
 
 import { calculateReliability } from '../../lib/parse/credit'

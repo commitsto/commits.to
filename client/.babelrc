@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      { "targets":
+        { "browsers": "last 2 versions" }
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "lib": "./lib",
+          "models": "./models",
+          "src": "./client/src",
+        }
+      }
+    ],
+    "babel-plugin-styled-components",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "react-hot-loader/babel"
+  ]
+}

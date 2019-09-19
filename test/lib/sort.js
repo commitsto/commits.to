@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import promiseGallerySort from '../../lib/sort'
+import promiseGallerySort from 'lib/sort'
 
 describe('promiseGallerySort', () => {
   def('lastWeek', () => moment().subtract(1, 'weeks'))

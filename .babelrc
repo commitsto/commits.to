@@ -1,0 +1,36 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "node": 10
+        }
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/typescript"
+  ],
+  "plugins": [
+    "@babel/proposal-class-properties",
+    "babel-plugin-styled-components",
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "lib": "./lib",
+          "models": "./models",
+          "server": "./server",
+          "src": "./client/src"
+        }
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "istanbul"
+      ]
+    }
+  }
+}

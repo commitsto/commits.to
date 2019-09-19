@@ -3,12 +3,6 @@
   "description": "Commitment logging and reliability tracking",
   "website": "http://commits.to",
   "repository": "https://github.com/commitsto/commits.to",
-  "env": {
-    "ENV_NAME": "heroku-review",
-    "APP_DOMAIN": "commitsto-dev.review",
-    "ENVIRONMENT": "review",
-    "ALLOW_ADMIN_ACTIONS": "true"
-  },
   "formation": {
     "web": {
       "quantity": 1,
@@ -23,6 +17,9 @@
   "buildpacks": [
     {
       "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nginx"
     }
   ]
 }

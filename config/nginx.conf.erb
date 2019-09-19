@@ -1,0 +1,80 @@
+daemon off;
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+
+events {
+	worker_connections 1024;
+}
+
+http {
+  limit_req_zone $binary_remote_addr zone=mylimit:10m rate=10r/s;
+
+  gzip on;
+  gzip_comp_level 2;
+  gzip_min_length 512;
+
+	server_tokens off;
+
+  # to boost I/O on HDD we can disable access logs
+  access_log off;
+
+  # copies data between one FD and other from within the kernel
+  # faster than read() + write()
+  sendfile on;
+
+  map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+  }
+
+	upstream app_server {
+		server unix:/tmp/nginx.socket fail_timeout=0;
+ 	}
+
+	# server {
+  #   listen <%= ENV["PORT"] %>;
+    
+  #   server_name ~^(.*)\.commitstew\.com$;
+
+  #   location ~\.(js|ico)$ {
+  #     try_files $uri @backend;
+  #   }
+
+  #   location ~^/api {
+  #     try_files $uri @backend;
+  #   }
+
+	# 	location / {
+  #     # rate limiting
+  #     limit_req zone=mylimit;
+
+	# 		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  #     proxy_set_header Host commitstew.com;
+
+  #     proxy_redirect off;
+
+	# 		proxy_pass http://app_server/$1$request_uri;
+
+  #     proxy_http_version 1.1;
+  #     proxy_set_header Upgrade $http_upgrade;
+  #     proxy_set_header Connection $connection_upgrade;
+  #   }
+    
+  #   location @backend {
+  #     proxy_pass http://app_server;
+  #   }
+  # }
+  
+  server {
+    listen <%= ENV["PORT"] %>;
+    server_name ~.*\.?commitstew\.com;
+
+    location / {
+      try_files $uri @backend;
+    }
+
+    location @backend {
+      proxy_pass http://app_server;
+      proxy_set_header Host $host;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import isValidUrl, { isBotFromUserAgent } from '../../../lib/parse/url'
+import isValidUrl, { isBotFromUserAgent } from 'lib/parse/url'
 
 describe('isValidUrl', () => {
   def('url', () => '/go_for_a_run/by/2:30pm')

@@ -65,63 +65,31 @@ sudo -u postgres createdb -O iwill commitsto
 2.1 [Install Node](https://nodejs.org/en/download/) 8.x LTS with the binary
 or installer or by using a [package manager](https://nodejs.org/en/download/package-manager).
 
-
-
-### Set Up Hosts File For Subdomains
-
-Add the following line to `/etc/hosts` with whatever subdomains you want to be available:
-
-```sh
-127.0.0.1	commits-to.js www.commits-to.js alice.commits-to.js bob.commits-to.js
-```
-
-You should also add any subdomain you will to use to create test
-commits to the list `USERS` in the file `db/seed.js` , e.g.:
-
-```js
-const USERS = [
-  /* testing */
-  'alice', 'bob', 'carol', 'deb', 'my_new_username',
-]
-```
-
-Make sure to re-[seed the database](#seed-the-database) if you make changes here.
-
-
 ### Create Environment File
 
 Create a `.env` file in the root of the project directory with the following contents,
 replacing `<yourname>` with your name:
 
 ```sh
-ENV_NAME=<yourname>-dev
-PORT=8080
-APP_DOMAIN=commits-to.js:8080
+APP_PORT=5000
+
 DATABASE_URL=postgres://iwill:iwill@localhost:5432/commitsto
-
-# Optional
-MAILGUN_KEY=
-MAILGUN_DOMAIN=
-MAILGUN_TO=
-MAILGUN_FROM=
 ```
-
 
 ### Run The Application
 
-- If you are running the app for the first time, or have recently pulled changes, you should run
+If you are running the app for the first time, or have recently pulled changes, you should run
 `npm install`
-- Start the development server with `npm run start:dev`
+
+#### Start each process in a separate terminal pane
+- Build server in watch mode: `npm run dev:build:server`
+- Build client in watch mode: `npm run dev:build:client`
+- Start server: `npm run dev:server`
 
 
 ### Try The App
 
-Just navigate to [commits-to.js:8080](http://commits-to.js:8080) (the `ENV_DOMAIN` - must contain the `PORT`)
-
-### Seed The Database
-
-Browse (or send a GET request) to `http://commits-to.js:8080/reset` which drops all tables
-and inserts seed data from the `data/` folder
+Just navigate to [localhost:5000/](http://localhost:5000/)
 
 ### Troubleshooting
 
@@ -161,7 +129,7 @@ Writing code with well-contained classes or functions will be the most straightf
 
 | Environment | Branch       | Domain                  |
 | ----------- | ------------ | ----------------------- |
-| Staging     | `master`     | http://commitsto.review |
+| Staging     | `master`     | http://commitstew.com   |
 | Production  | `production` | http://commits.to       |
 
 ## Issue Tracking

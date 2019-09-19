@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import parseCredit, { calculateReliability } from '../../../lib/parse/credit'
+import parseCredit, { calculateReliability } from 'lib/parse/credit'
 
 describe('calculateReliability', () => {
   subject('reliability', () => calculateReliability($promises))

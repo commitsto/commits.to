@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "jsx": "react",
+    "outDir": "./build",
+    "paths": {
+      "lib/*": ["lib/*"],
+      "models/*": ["models/*"],
+      "server/*": ["server/*"],
+      "src/*": ["client/src/*"]
+    },
+    "target": "es6",
+    "module": "commonjs",
+    "sourceMap": true,
+    "skipLibCheck": true,
+  },
+  "include": [
+    "./client/**/*",
+    "./lib/**/*",
+    "./models/**/*",
+    "./server/**/*"
+  ]
+}

@@ -1,4 +1,3 @@
-import subdomainHandler from 'express-subdomain-handler'
 import _ from 'lodash'
 
 import app from './express'
@@ -20,12 +19,6 @@ const pageWithStatus = ({
 
 const renderErrorPage = (opts) =>
   pageWithStatus({ status: 404, template: '404', ...opts })
-
-app.use(subdomainHandler({
-  baseUrl: APP_DOMAIN,
-  prefix: '_s',
-  logger: true
-}))
 
 // validates all requests with a :user param
 app.param('user', function(req, res, next, param) {

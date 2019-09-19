@@ -38,8 +38,6 @@ plugins:
   fixme:
     enabled: true
 exclude_patterns:
-- "data/"
-- "**/node_modules/"
-- "script/"
-- "**/vendor/"
-- "**/*.d.ts"
+- "build/"
+- "node_modules/"
+- "public/"

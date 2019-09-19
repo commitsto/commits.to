@@ -1,0 +1,20 @@
+{
+  "all": true,
+  "exclude": [
+    "build",
+    "client"
+  ],
+  "extension": [
+    ".ts",
+    ".js"
+  ],
+  "include": [
+    "server",
+    "lib"
+  ],
+  "sourceMap": false,
+  "instrument": false,
+  "require": [
+    "babel-register-ts"
+  ]
+}

@@ -3,14 +3,15 @@ import { hot } from 'react-hot-loader';
 import { Route, Switch } from 'react-router-dom';
 
 import routes from 'lib/routes';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 import MainLayout from 'src/layout/main';
 
-const App = () => (
+const App = withParsedDomain(({ domain: { hasSubdomain = false } = {} }) => (
   <MainLayout>
     <Switch>
-      { routes.map((route, idx) => <Route key={idx} {...route} />) }
+      { routes({ hasSubdomain }).map((route, idx) => <Route key={idx} {...route} />) }
     </Switch>
   </MainLayout>
-);
+));
 
 export default hot(module)(App);

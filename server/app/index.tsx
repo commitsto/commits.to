@@ -1,6 +1,6 @@
 import express from 'express';
 import useragent from 'express-useragent';
-import { openSync, readFile } from 'fs';
+import { readFile } from 'fs';
 import { join } from 'path';
 
 import * as React from 'react';
@@ -33,9 +33,6 @@ app.use(express.static(join(__dirname, clientBuildDir)));
 
 app.listen(PORT, () => {
   log.info(`The commits.to app is running on port ${PORT}`);
-
-  // Notify NGINX to start serving
-  openSync('/tmp/app-initialized', 'w');
 });
 
 app.use('/api/v1', apiRouter);
@@ -51,8 +48,6 @@ app.get('*', (req, res) => {
     data: JSON.parse(req.data),
     host: req.headers.host,
   };
-
-  // console.log('SERVER RENDERING', context)
 
   const reactApp = renderToString(
     sheet.collectStyles(

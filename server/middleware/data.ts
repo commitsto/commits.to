@@ -3,14 +3,17 @@ import { matchPath } from "react-router-dom";
 
 import routes from 'lib/routes';
 import Pledge from 'models/pledge';
+import User from 'models/user';
 
 const endpoints = {
   incomplete: () => Pledge.findIncomplete(),
+  user: ({ username = '' } = {}) => User.pledges({ username }),
   view: ({ username = '', urtext = '' } = {}) => Pledge.find({ username, urtext }),
 };
 
 export default (req, res, next) => {
-  const currentRoute = find(routes, (route) => matchPath(req.path, route));
+  const hasSubdomain = req.pledge && req.pledge.username;
+  const currentRoute = find(routes({ hasSubdomain }), (route) => matchPath(req.path, route));
   const getData = currentRoute.data && endpoints[currentRoute.data];
 
   if (typeof getData === 'function') {

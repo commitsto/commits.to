@@ -6,7 +6,6 @@ const rootRoute = ({ hasSubdomain }) => {
   if (hasSubdomain) {
     return {
       component: User,
-      data: 'user',
       exact : true,
       path: '/',
     };

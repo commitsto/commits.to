@@ -81,7 +81,7 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
   }
 
   public componentDidMount() {
-    if (this.state.promises) {
+    if (this.state.promises.length) {
       return;
     }
     const { domain: { subdomain: username = '' } = {} } = this.props;

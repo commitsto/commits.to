@@ -17,11 +17,13 @@ export default (req, res, next) => {
   const getData = currentRoute.data && endpoints[currentRoute.data];
 
   if (typeof getData === 'function') {
-    getData(req.pledge)
+    return getData(req.pledge)
       .then((pledgeData) => {
         req.data = JSON.stringify(pledgeData);
         next();
       })
       .catch((reason) => console.log('error', reason)); // tslint:disable-line no-console
   }
+
+  next();
 };

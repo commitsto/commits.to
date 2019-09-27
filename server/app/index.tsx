@@ -40,19 +40,19 @@ app.use(subdomainParser);
 app.use(dataPreloader);
 
 // catch-all
-app.get('*', (req, res) => {
+app.get('*', ({ data = '{}', headers = {}, url }, res) => {
   const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 
   const context = {
-    data: JSON.parse(req.data),
-    host: req.headers.host,
+    data: JSON.parse(data),
+    host: headers.host,
   };
 
   const reactApp = renderToString(
     sheet.collectStyles(
       <div id="root">
-        <StaticRouter location={req.url} context={context}>
+        <StaticRouter location={url} context={context}>
           <App />
         </StaticRouter>
       </div>

@@ -6,9 +6,6 @@ const colorFromPercent = (score) => {
   switch (true) {
     case (score == null):
       break;
-    case (score === -1):
-      color = 'whiteGray';
-      break;
     case (score < 0.5):
       color = 'red';
       break;

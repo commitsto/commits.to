@@ -4,8 +4,6 @@ import moment from 'moment';
 import parseCredit from 'lib/parse/credit';
 import { sequelize, Sequelize } from 'server/db/sequelize';
 
-export const isNewPromise = ({ promise }) => promise.clix === 1;
-
 /* eslint-disable max-len */
 export default sequelize.define('promises', {
   bmid: { // the id of the Beeminder datapoint for this promise

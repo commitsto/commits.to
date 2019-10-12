@@ -38,7 +38,8 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState> {
     const { dayValue, rawValue, timeValue } = this.state;
     const { field: { name }, form } = this.props;
 
-    const rawTime = moment(`${dayValue} ${timeValue}`);
+    const rawTime = moment(`${dayValue} ${timeValue}`, 'YYYY-MM-DD hh:mm A');
+
     if (rawTime.isValid() && rawTime.valueOf() !== (rawValue && rawValue.valueOf())) {
       form.setFieldValue(name, rawTime);
       this.setState({ rawValue: rawTime });

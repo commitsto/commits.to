@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 // import { timeDiff } from 'lib/parse/time';
 
-// import { isNewPromise } from 'server/models/promise';
 const isNewPromise = ({ clix }) => clix === 1; // FIXME
 
 // export const dueStatus = (dueDate) => {
@@ -25,6 +24,6 @@ export const cardClassesFor = ({ tfin, clix, voided = false }) => {
     voided,
   };
 
-  // console.log('cardClassesFor', promise, classes);
+  // console.log('cardClassesFor', clix, classes);
   return _(classes).pickBy().keys().value().join(' ');
 };

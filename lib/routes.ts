@@ -1,25 +1,25 @@
-import DomainParser from 'lib/parse/domain';
-
 import Home from 'src/views/home';
 import View from 'src/views/promise';
 import User from 'src/views/user';
 
-const host = typeof window !== 'undefined' && window.location.host;
-
-const rootRoute = DomainParser.hasSubdomain(host) ?
-  {
-    component: User,
-    exact : true,
-    path: '/',
-  } : {
+const rootRoute = ({ hasSubdomain }) => {
+  if (hasSubdomain) {
+    return {
+      component: User,
+      exact : true,
+      path: '/',
+    };
+  }
+  return {
     component: Home,
     data: 'incomplete',
     exact: true,
     path: '/',
   };
+};
 
-const routes = [{
-  ...rootRoute,
+const routes = ({ hasSubdomain = false } = {}) => [{
+  ...rootRoute({ hasSubdomain }),
 }, {
   component: View,
   data: 'view',

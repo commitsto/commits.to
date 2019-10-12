@@ -1,6 +1,6 @@
 import express from 'express';
 import useragent from 'express-useragent';
-import { openSync, readFile } from 'fs';
+import { readFile } from 'fs';
 import { join } from 'path';
 
 import * as React from 'react';
@@ -33,9 +33,6 @@ app.use(express.static(join(__dirname, clientBuildDir)));
 
 app.listen(PORT, () => {
   log.info(`The commits.to app is running on port ${PORT}`);
-
-  // Notify NGINX to start serving
-  openSync('/tmp/app-initialized', 'w');
 });
 
 app.use('/api/v1', apiRouter);
@@ -43,21 +40,19 @@ app.use(subdomainParser);
 app.use(dataPreloader);
 
 // catch-all
-app.get('*', (req, res) => {
+app.get('*', ({ data = '{}', headers = {}, url }, res) => {
   const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 
   const context = {
-    data: JSON.parse(req.data),
-    host: req.headers.host,
+    data: JSON.parse(data),
+    host: headers.host,
   };
-
-  // console.log('SERVER RENDERING', context)
 
   const reactApp = renderToString(
     sheet.collectStyles(
       <div id="root">
-        <StaticRouter location={req.url} context={context}>
+        <StaticRouter location={url} context={context}>
           <App />
         </StaticRouter>
       </div>

@@ -1,15 +1,14 @@
 import _ from 'lodash';
 import * as React from 'react';
-import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { creditColor } from 'lib/helpers/colors';
 import { prettyPercent } from 'lib/helpers/format';
-import DomainParser from 'lib/parse/domain';
 import { blue, white } from 'lib/theme/colors';
 
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';
+import withParsedDomain from 'src/containers/with_parsed_domain';
 
 const UserPromisesWrapper = styled.div`
   border: 1px solid ${blue};
@@ -62,6 +61,7 @@ interface IUserPromisesState {
 
 interface IUserPromisesProps {
   match: { params: { user: string } };
+  domain: { subdomain: string };
 }
 
 class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesState> {
@@ -70,8 +70,21 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
     stats: undefined,
   };
 
+  public constructor(props) {
+    super(props);
+
+    const { data: { counted = 0, pending = 0, promises = [], reliability = 0 } = {} } = props;
+    this.state = {
+      promises,
+      stats: { counted, pending, reliability },
+    };
+  }
+
   public componentDidMount() {
-    const username = DomainParser.getUsername(window.location.hostname);
+    if (this.state.promises.length) {
+      return;
+    }
+    const { domain: { subdomain: username = '' } = {} } = this.props;
 
     fetch(`/api/v1/user/promises?username=${username}`)
       .then((response) => {
@@ -85,7 +98,7 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
 
   public render() {
     const { promises, stats: { counted = 0, pending = 0, reliability = 0 } = {} } = this.state;
-    const username = DomainParser.getUsername(window.location.hostname);
+    const { domain: { subdomain: username = '' } = {} } = this.props;
 
     return (
       <UserPromisesWrapper>
@@ -115,4 +128,4 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
   }
 }
 
-export default withRouter(UserPromises);
+export default withParsedDomain(UserPromises);

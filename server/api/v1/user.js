@@ -1,9 +1,7 @@
 import { Router } from 'express'
 
-import { Users } from 'models/db'
-import log from 'lib/logger'
-import { calculateReliability } from 'lib/parse/credit'
-import promiseGallerySort from 'lib/sort'
+import Users from 'models/user';
+import log from 'lib/logger';
 
 const api = Router()
 
@@ -11,7 +9,7 @@ api.post('/create', (req, res) => {
   const { username } = req.body
 
   if (username) {
-    Users.create({ username })
+    Users._dbModel.create({ username }) // FIXME
       .then(() => {
         log.info('user created', username)
         res.send(200)
@@ -23,36 +21,17 @@ api.post('/create', (req, res) => {
 
 // user promises list
 api.get('/promises', (req, res) => {
-  log.debug('GET user/promises', req.query);
+  log.info('GET user/promises', req.query);
 
   const { username } = req.query;
 
-  Users.findOne({
-    where: {
-      username,
+  Users.pledges({ username }).then((payload) => {
+    if (payload) {
+      log.debug(`${username}'s promises: ${payload.promises.length}`)
+      return res.json(payload);
     }
-  }).then((user) => {
-    if (user) {
-      return user.getValidPromises().then(promises => {
-        const { score, counted } = calculateReliability(promises)
-
-        log.debug(`${username}'s promises:`, score, promises.length)
-
-        user.update({ score, counted, pending: promises.length - counted })
-
-        promises.sort(promiseGallerySort)
-
-        res.send({
-          counted,
-          pending: promises.length - counted,
-          promises,
-          reliability: score,
-          user,
-        })
-      })
-    }
-    return res.send(404)
+    return res.send(400);
   })
 })
 
-export default api
+export default api;

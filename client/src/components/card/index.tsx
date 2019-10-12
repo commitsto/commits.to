@@ -75,7 +75,7 @@ const Card: React.SFC<ICardProps> = ({
   user: { counted = 0, pending = 0, score = 0, username = '' } = {},
   withHeader,
 }) => (
-  <CardWrapper className={cardClassesFor({ tfin, clix })} credit={clix === 1 ? -1 : credit}>
+  <CardWrapper className={cardClassesFor({ tfin, clix })} credit={credit}>
     { withHeader &&
       <CardHeader counted={counted} pending={pending} score={score} username={username} />
     }

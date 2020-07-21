@@ -82,7 +82,7 @@
     "@storybook/storybook-deployer": "^2.8.1",
     "bdd-lazy-var": "^2.5.1",
     "chai": "^4.2.0",
-    "codecov": "^3.3.0",
+    "codecov": "^3.7.1",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-import": "^2.17.2",

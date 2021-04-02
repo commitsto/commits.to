@@ -40,13 +40,13 @@ app.use(subdomainParser);
 app.use(dataPreloader);
 
 // catch-all
-app.get('*', ({ data = '{}', headers = {}, url }, res) => {
+app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) => {
   const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 
   const context = {
     data: JSON.parse(data),
-    host: headers.host,
+    host,
   };
 
   const reactApp = renderToString(

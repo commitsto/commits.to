@@ -80,6 +80,7 @@
     "@storybook/addon-actions": "^5.3.21",
     "@storybook/react": "^5.3.21",
     "@storybook/storybook-deployer": "^2.8.7",
+    "babel-plugin-istanbul": "^6.0.0",
     "bdd-lazy-var": "^2.6.1",
     "chai": "^4.3.4",
     "codecov": "^3.7.1",

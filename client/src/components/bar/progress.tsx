@@ -3,6 +3,18 @@ import styled from 'styled-components';
 
 import { green, red, yellow } from 'lib/theme/colors';
 
+const colorForStatus = ({ status }) => {
+  switch (status) {
+    case 'started':
+      return yellow;
+    case 'completed':
+      return green;
+    case 'failed':
+    default:
+      return red;
+  }
+};
+
 const ProgressContainer = styled.div`
   padding: 10px;
   background: rgba(0, 0, 0, 0.25);
@@ -15,7 +27,7 @@ const ProgressBarWrapper = styled.div`
 `;
 
 const ProgressBarStyled = styled.div`
-  background-color: ${ ({ status }) => status === 'started' && yellow || status === 'completed' && green || red};
+  background-color: ${colorForStatus};
   height: 16px;
   border-radius: 4px;
   transition: 0.25s ease-in;

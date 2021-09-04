@@ -22,7 +22,7 @@ const DarkBackground = createGlobalStyle`
     font-weight: bold;
   }
 
-  h1, h2, h3, h4, h5, p {
+  h1, h2, h3, h4, h5, p, ul {
     color: ${white};
   }
 

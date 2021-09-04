@@ -3,8 +3,9 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import Pledge from 'models/pledge';
-
+import isValidUrl from 'lib/parse/url';
 import { Promises, Users } from 'models/db'
+
 import log, { deSequelize } from '../../../lib/logger'
 import { parsePromiseWithIp } from '../../../lib/parse/promise'
 import actionNotifier from '../../../lib/notify'
@@ -53,12 +54,20 @@ api.post('/create/', (req, res) => {
     timezone,
   } = req.body
 
+  const { valid: isValid, messages: errors } = isValidUrl({ url: urtext });
+
+  
+  if (!isValid) {
+    console.log('CREATE API', isValid, errors)
+    return res.status(400).json({ errors });
+  }
+
   const parsedPromise = Pledge.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
-    res.send(400)
+    return res.send(400)
   } else {
-    Users.findOne({
+    return Users.findOne({
       where: {
         username,
       }

@@ -6,15 +6,15 @@ import Pledge from 'models/pledge';
 
 import { Promises, Users } from 'models/db'
 import log, { deSequelize } from '../../../lib/logger'
-import { parsePromise, parsePromiseWithIp } from '../../../lib/parse/promise'
+import { parsePromiseWithIp } from '../../../lib/parse/promise'
 import actionNotifier from '../../../lib/notify'
 import parseCredit from '../../../lib/parse/credit'
-import { diffPromises } from '../../../lib/parse/promise'
 
 const api = Router()
 
 api.get('/', (req, res) => {
   log.info('GET promise', req.query);
+
   Pledge.find(req.query).then((promise) => {
     res.json({ promise })
     log.debug('show promise', deSequelize(promise))
@@ -36,7 +36,7 @@ api.post('/parse/', (req, res) => {
     timezone,
   } = req.body
 
-  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+  const parsedPromise = Pledge.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
     resp.send(400)
@@ -53,7 +53,7 @@ api.post('/create/', (req, res) => {
     timezone,
   } = req.body
 
-  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+  const parsedPromise = Pledge.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
     res.send(400)
@@ -148,7 +148,7 @@ api.post('/edit', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function (prom) {
-      const difference = diffPromises(oldPromise, deSequelize(prom))
+      const difference = Pledge.diff(oldPromise, deSequelize(prom))
 
       if (!_.isEmpty(difference)) {
         log.info('promise updated', difference)

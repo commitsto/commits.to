@@ -10,10 +10,9 @@ import { ServerStyleSheet } from 'styled-components';
 
 import { PORT } from 'lib/config';
 import log from 'lib/logger';
-import Pledge from 'models/pledge';
 import apiRouter from 'server/app/api';
 import dataPreloader from 'server/middleware/data';
-import subdomainParser from 'server/middleware/subdomain';
+import addMetadata from 'server/middleware/metadata';
 import App from 'src/app';
 
 const clientBuildDir = '../../client';
@@ -36,7 +35,7 @@ app.listen(PORT, () => {
 });
 
 app.use('/api/v1', apiRouter);
-app.use(subdomainParser);
+app.use(addMetadata);
 app.use(dataPreloader);
 
 // catch-all

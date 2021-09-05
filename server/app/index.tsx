@@ -3,7 +3,7 @@ import useragent from 'express-useragent';
 import { readFile } from 'fs';
 import { join } from 'path';
 
-import * as React from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';

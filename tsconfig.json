@@ -13,6 +13,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
   },
   "include": [
     "./client/**/*",

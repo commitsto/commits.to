@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 
 import LoadableContainer from 'src/components/loading/loadable';
 import PromiseCard from 'src/components/promise/card';

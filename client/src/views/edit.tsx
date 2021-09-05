@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { blue, darkBlue } from 'lib/theme/colors';

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 
 import EditButton from 'src/components/button/edit';
 import Confirm from 'src/components/confirm';

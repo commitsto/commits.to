@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 // @ts-ignore
 import moment from 'moment-timezone';
 

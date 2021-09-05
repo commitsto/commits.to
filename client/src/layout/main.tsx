@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
-import * as React from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Footer from 'src/layout/elements/footer';

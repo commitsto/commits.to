@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { creditColor } from 'lib/helpers/colors';

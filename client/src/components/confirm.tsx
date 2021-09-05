@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import ProgressBar from 'src/components/bar/progress';
 import withParsedDomain from 'src/containers/with_parsed_domain';

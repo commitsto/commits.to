@@ -5,9 +5,8 @@ import sinonChai from 'sinon-chai'
 chai.should()
 chai.use(sinonChai)
 
-import sendMail from 'lib/mail'
+import * as sendMail from 'lib/mail'
 import actionNotifier from 'lib/notify'
-
 
 describe('actionNotifier', () => {
   let sendMailSpy

@@ -10,7 +10,7 @@
     "eslint:fix": "eslint ./ --fix",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config .webpack/config.js --mode=production",
-    "build:server": "babel ./ --only client,lib,models,server --extensions '.ts,.tsx,.js,.jsx' --out-dir ./build",
+    "build:server": "babel ./ --only client,lib,models,server,services --extensions '.ts,.tsx,.js,.jsx' --out-dir ./.build",
     "heroku-postbuild": "npm run build",
     "start": "node ./.build/server/app",
     "dev:build:server": "npm run build:server -- --watch",

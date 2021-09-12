@@ -67,6 +67,7 @@ module.exports = {
       src: `${rootPath}/client/src`,
       lib: `${rootPath}/lib`,
       models: `${rootPath}/models`,
+      services: `${rootPath}/services`,
     }
   },
 }

@@ -10,6 +10,8 @@
   ],
   "include": [
     "server",
+    "services",
+    "models",
     "lib"
   ],
   "sourceMap": false,

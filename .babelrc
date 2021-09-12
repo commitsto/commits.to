@@ -21,6 +21,7 @@
           "lib": "./lib",
           "models": "./models",
           "server": "./server",
+          "services": "./services",
           "src": "./client/src"
         }
       }

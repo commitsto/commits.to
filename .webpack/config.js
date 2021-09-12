@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 
 const rootPath = path.resolve(__dirname, '../');
-const contentPath = path.resolve(__dirname, '../build/client');
+const contentPath = path.resolve(__dirname, '../.build/client');
 const htmlTemplate = path.resolve(__dirname, '../client/app.html');
 const tsconfig = path.resolve(__dirname, '../tsconfig.json');
 const tslint = path.resolve(__dirname, '../tslint.json');

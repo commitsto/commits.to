@@ -38,6 +38,6 @@ plugins:
   fixme:
     enabled: true
 exclude_patterns:
-- "build/"
+- ".build/"
 - "node_modules/"
 - "public/"

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "jsx": "react",
-    "outDir": "./build",
+    "outDir": "./.build",
     "paths": {
       "lib/*": ["lib/*"],
       "models/*": ["models/*"],

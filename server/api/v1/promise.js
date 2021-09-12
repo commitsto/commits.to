@@ -3,6 +3,7 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import Pledge from 'models/pledge';
+import PledgeParser from 'services/pledge/parser';
 import isValidUrl from 'lib/parse/url';
 import { Promises, Users } from 'models/db'
 
@@ -37,7 +38,7 @@ api.post('/parse/', (req, res) => {
     timezone,
   } = req.body
 
-  const parsedPromise = Pledge.parse({ pledge: promise, urtext, username, timezone })
+  const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
     resp.send(400)
@@ -54,15 +55,15 @@ api.post('/create/', (req, res) => {
     timezone,
   } = req.body
 
+  // TODO: move this check into PledgeParser?
   const { valid: isValid, messages: errors } = isValidUrl({ url: urtext });
-
   
   if (!isValid) {
     console.log('CREATE API', isValid, errors)
     return res.status(400).json({ errors });
   }
 
-  const parsedPromise = Pledge.parse({ pledge: promise, urtext, username, timezone })
+  const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
     return res.send(400)

@@ -15,7 +15,7 @@
     "start": "node ./.build/server/app",
     "dev:build:server": "npm run build:server -- --watch",
     "dev:build:client": "webpack --config .webpack/config.js --mode=development --watch",
-    "dev:server": "NODE_ENV=development nodemon ./.build/server/app",
+    "dev:server": "NODE_ENV=development nodemon -V ./.build/server/app",
     "storybook": "start-storybook -p 9001",
     "storybook:deploy": "storybook-to-ghpages",
     "test": "MOCHA_FILE=tmp/test-results/mocha/results.xml NODE_ENV=test nyc mocha -u bdd-lazy-var/global -R mocha-multi --reporter-options dot=-,mocha-junit-reporter=- ./test/**/*",

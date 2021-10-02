@@ -14,7 +14,7 @@ const endpoints = {
 export default (req, res, next) => {
   const hasSubdomain = get(req, 'metadata.username');
   const currentRoute = find(routes({ hasSubdomain }), (route) => matchPath(req.path, route));
-  const getData = currentRoute.data && endpoints[currentRoute.data];
+  const getData = currentRoute?.data && endpoints[currentRoute.data];
 
   if (typeof getData === 'function') {
     return getData(req.metadata)

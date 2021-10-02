@@ -41,7 +41,7 @@ api.post('/parse/', (req, res) => {
   const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
-    resp.send(400)
+    resp.sendStatus(400)
   } else {
     res.send(parsedPromise)
   }
@@ -66,7 +66,7 @@ api.post('/create/', (req, res) => {
   const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
-    return res.send(400)
+    return res.sendStatus(400)
   } else {
     return Users.findOne({
       where: {
@@ -108,7 +108,7 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
           .catch((reason) => res.status(400).send(reason))
       }
     }
-    return res.status(400)
+    return res.sendStatus(400)
   })
 })
 
@@ -116,14 +116,17 @@ api.post('/complete', (req, resp) => {
   Pledge.find(req.body).then((pledge) => {
     const tfin = moment().toDate()
     if (pledge) {
-      pledge.update({
+      return pledge.update({
         tfin,
         cred: parseCredit({ dueDate: pledge.tdue, finishDate: tfin })
+      }).then((result) => {
+        log.info('pledge completed', { body: req.body, id: pledge.id, result })
+
+        return resp.status(200).send(result)
       })
-      log.info('pledge completed', req.body, pledge.id)
-      return resp.send(200)
     }
-    return resp.send(400)
+
+    return resp.sendStatus(400)
   })
 })
 
@@ -174,7 +177,7 @@ api.post('/edit', (req, res) => {
       if (promise) {
         res.json({ promise })
       } else {
-        res.send(400)
+        res.sendStatus(400)
       }
     })
   })
@@ -183,7 +186,7 @@ api.post('/edit', (req, res) => {
 api.post('/validate', ({ body: { id = '' } = {} }, resp) => {
   // FIXME
   if (!id || id.length < 2) {
-    resp.send(400)
+    resp.sendStatus(400)
   } else {
     Promises.upsert({ id: id.toLowerCase() })
       .then(function (promise) {

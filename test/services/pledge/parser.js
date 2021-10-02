@@ -1,11 +1,11 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import { parsePromise, diffPromises } from 'lib/parse/promise'
+import PledgeParser from 'services/pledge/parser';
 
-describe('parsePromise', () => {
+describe('PledgeParser#parse', () => {
   subject('parsedPromise', () =>
-    parsePromise({ username: $username, urtext: $urtext }))
+    PledgeParser.parse({ username: $username, urtext: $urtext }))
 
   def('tdue', () =>
     $parsedPromise.tdue && moment($parsedPromise.tdue).toISOString())
@@ -65,14 +65,14 @@ describe('parsePromise', () => {
   context('when the path is just a double-slash (//)', () => {
     def('urtext', () => '//')
 
-    it('rejects the urtext and returns false', () => {
-      expect($parsedPromise).to.be.false
+    it('rejects the urtext and returns undefined', () => {
+      expect($parsedPromise).to.be.undefined
     })
   })
 })
 
-describe('diffPromises', () => {
-  subject('difference', () => diffPromises($promiseOne, $promiseTwo))
+describe('PledgeParser#diff', () => {
+  subject('difference', () => PledgeParser.diff($promiseOne, $promiseTwo))
 
   def('promise', () => ({
     id: 'testuser/a-valid-promise',

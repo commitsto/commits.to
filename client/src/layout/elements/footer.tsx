@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { gray, white } from 'lib/theme/colors';
@@ -22,7 +22,7 @@ const Footer: React.SFC<any> = ({}) => (
         Chris Butler
       </a>.
       <span style={{ float: 'right' }}>
-        &copy; 2017&ndash;2019
+        &copy; 2017&ndash;2021
       </span>
     </small>
   </DarkFooter>

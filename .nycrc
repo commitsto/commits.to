@@ -1,7 +1,7 @@
 {
   "all": true,
   "exclude": [
-    "build",
+    ".build",
     "client"
   ],
   "extension": [
@@ -10,6 +10,8 @@
   ],
   "include": [
     "server",
+    "services",
+    "models",
     "lib"
   ],
   "sourceMap": false,

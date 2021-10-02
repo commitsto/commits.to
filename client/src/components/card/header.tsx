@@ -1,5 +1,5 @@
-import * as _ from 'lodash';
-import * as React from 'react';
+import _ from 'lodash';
+import React from 'react';
 import styled from 'styled-components';
 
 import StyledLink from 'src/components/styled/link';

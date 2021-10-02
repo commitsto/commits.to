@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import * as React from 'react';
+import React from 'react';
 
 import EditButton from 'src/components/button/edit';
 import Confirm from 'src/components/confirm';
@@ -45,15 +45,11 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
       location: { pathname: urtext = '' } = {}
     } = this.props;
 
-    fetch(`/api/v1/promise/?username=${username}&urtext=${urtext.substr(1).toLowerCase()}`)
+    fetch(`/api/v1/promise/?username=${username}&urtext=${urtext}`)
       .then((response) => {
         response.json()
           .then(({ promise }) => {
-            console.log('fetch', username, promise); // tslint:disable-line
-            // FIXME: null
-            // if (promise != null) {
             this.setState({ promise });
-            // }
           });
       });
   }

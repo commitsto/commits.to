@@ -10,6 +10,9 @@ import { parsePromise, parsePromiseWithIp } from '../../lib/parse/promise'
 import isValidUrl, { isBotFromUserAgent } from '../../lib/parse/url'
 import { nextCloseOfBusiness } from '../../lib/parse/time'
 
+// DEPRECATED
+// TODO: remove
+
 const pageWithStatus = ({
   message, reason = {}, res = {}, template, status
 }) => {

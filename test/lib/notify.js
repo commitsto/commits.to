@@ -8,7 +8,6 @@ chai.use(sinonChai)
 import * as sendMail from 'lib/mail'
 import actionNotifier from 'lib/notify'
 
-
 describe('actionNotifier', () => {
   let sendMailSpy
 

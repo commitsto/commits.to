@@ -3,17 +3,16 @@ import useragent from 'express-useragent';
 import { readFile } from 'fs';
 import { join } from 'path';
 
-import * as React from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
 
 import { PORT } from 'lib/config';
 import log from 'lib/logger';
-import Pledge from 'models/pledge';
 import apiRouter from 'server/app/api';
 import dataPreloader from 'server/middleware/data';
-import subdomainParser from 'server/middleware/subdomain';
+import addMetadata from 'server/middleware/metadata';
 import App from 'src/app';
 
 const clientBuildDir = '../../client';
@@ -36,17 +35,17 @@ app.listen(PORT, () => {
 });
 
 app.use('/api/v1', apiRouter);
-app.use(subdomainParser);
+app.use(addMetadata);
 app.use(dataPreloader);
 
 // catch-all
-app.get('*', ({ data = '{}', headers = {}, url }, res) => {
+app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) => {
   const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 
   const context = {
     data: JSON.parse(data),
-    host: headers.host,
+    host,
   };
 
   const reactApp = renderToString(

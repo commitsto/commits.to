@@ -1,4 +1,5 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
+// @ts-ignore
 import moment from 'moment-timezone';
 
 export const prettyPercent = (num: number, digits?: number) => {

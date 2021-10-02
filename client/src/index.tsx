@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { hydrate } from 'react-dom';
-import * as ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 import { BrowserRouter } from 'react-router-dom';
 
 import App from 'src/app';

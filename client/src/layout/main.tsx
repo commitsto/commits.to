@@ -1,6 +1,6 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
-import * as React from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import Footer from 'src/layout/elements/footer';
@@ -22,7 +22,7 @@ const DarkBackground = createGlobalStyle`
     font-weight: bold;
   }
 
-  h1, h2, h3, h4, h5, p {
+  h1, h2, h3, h4, h5, p, ul {
     color: ${white};
   }
 

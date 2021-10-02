@@ -16,15 +16,17 @@ interface IPledgeParse {
 class PledgeParser {
   public static matcher = new RegExp('^\/+|\/+$', 'g');
 
-  public static generateUrtext = (urtextRaw) => urtextRaw.replace(PledgeParser.matcher, '');
+  public static generateUrtext = (urtextRaw) => urtextRaw?.replace(PledgeParser.matcher, '');
 
   public static generateId = ({ username, urtext }) => `${username}/${urtext}`.toLowerCase();
+
+  public static parseId = (id) => ({ username: id?.split('/')[0], urtext: id?.split('/')[1] });
 
   public static generateText = (text) => {
     const CHARS_TO_REPLACE = '[-\/\._]';
 
     const charsToReplace = new RegExp(`${CHARS_TO_REPLACE}+`, 'g');
-    const parsedText = _.upperFirst(text.replace(charsToReplace, ' '));
+    const parsedText = _.upperFirst(text?.replace(charsToReplace, ' '));
 
     log.debug('parsedText', text, parsedText);
 
@@ -45,20 +47,34 @@ class PledgeParser {
 
   public static parse = ({
     pledge = {},
-    id,
-    username,
-    urtext: urtextRaw,
+    id: originalId,
+    username: originalUsername,
+    urtext: originalUrtext,
     timezone = 'etc/UTC',
   }: IPledgeParse) => {
-    log.debug('Pledge.parse() start', username, urtextRaw);
+    log.debug('Pledge.parse() start', { originalId, originalUsername, originalUrtext });
 
-    const urtext = PledgeParser.generateUrtext(urtextRaw);
+    let id;
+    let username;
+    let urtext;
 
-    if (!urtext || !username) {
+    if (originalId) {
+      const { username: parsedUsername, urtext: parsedUrtext } = PledgeParser.parseId(originalId);
+      urtext = PledgeParser.generateUrtext(parsedUrtext);
+      username = parsedUsername;
+      id = originalId;
+    } else if (originalUrtext && originalUsername) {
+      urtext = PledgeParser.generateUrtext(originalUrtext);
+      username = originalUsername;
+      id = PledgeParser.generateId({ urtext, username });
+    } else {
       return undefined;
     }
 
-    const pledgeId = id || PledgeParser.generateId({ urtext, username });
+    if (!urtext) {
+      return undefined;
+    }
+
     const text = PledgeParser.generateText(urtext);
     const { eventTitle, isAllDay, startDate } = parseSherlock({ text, timezone });
 
@@ -72,7 +88,7 @@ class PledgeParser {
     const parsedPlege = {
       ...pledge,
       cred: parseCredit({ dueDate: tdue, finishDate: tfin }),
-      id: pledgeId,
+      id,
       slug: PledgeParser.generateSlug({ what: startDate ? eventTitle : text, urtext }),
       tdue: dateOr({ date: tdue }),
       tfin: dateOr({ date: tfin }),

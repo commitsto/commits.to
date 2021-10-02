@@ -161,7 +161,7 @@ api.post('/edit', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function (prom) {
-      const difference = Pledge.diff(oldPromise, deSequelize(prom))
+      const difference = PledgeParser.diff(oldPromise, deSequelize(prom))
 
       if (!_.isEmpty(difference)) {
         log.info('promise updated', difference)

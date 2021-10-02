@@ -10,12 +10,12 @@
     "eslint:fix": "eslint ./ --fix",
     "build": "npm run build:client && npm run build:server",
     "build:client": "webpack --config .webpack/config.js --mode=production",
-    "build:server": "babel ./ --only client,lib,models,server --extensions '.ts,.tsx,.js,.jsx' --out-dir ./build",
+    "build:server": "babel ./ --only client,lib,models,server,services --extensions '.ts,.tsx,.js,.jsx' --out-dir ./.build",
     "heroku-postbuild": "npm run build",
-    "start": "node ./build/server/app",
+    "start": "node ./.build/server/app",
     "dev:build:server": "npm run build:server -- --watch",
     "dev:build:client": "webpack --config .webpack/config.js --mode=development --watch",
-    "dev:server": "NODE_ENV=development nodemon ./build/server/app",
+    "dev:server": "NODE_ENV=development nodemon -V ./.build/server/app",
     "storybook": "start-storybook -p 9001",
     "storybook:deploy": "storybook-to-ghpages",
     "test": "MOCHA_FILE=tmp/test-results/mocha/results.xml NODE_ENV=test nyc mocha -u bdd-lazy-var/global -R mocha-multi --reporter-options dot=-,mocha-junit-reporter=- ./test/**/*",
@@ -66,8 +66,7 @@
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "winston": "^3.3.3",
-    "winston-console-formatter": "^1.0.0-beta.3",
-    "winston-papertrail": "^1.0.5"
+    "winston-papertrail-transport": "^1.0.9"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",

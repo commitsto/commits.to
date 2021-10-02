@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { cardClassesFor } from 'lib/helpers/calculate';
@@ -49,12 +49,14 @@ interface ICardProps {
   withHeader?: boolean;
 }
 
+// TODO: move this so we can update state when promise is completed
+// NB: Might be time to add a state-management layer like Redux or move entirely to Apollo/GraphQL
 const completePromise = ({ id }) => (evt) => {
   evt.preventDefault();
 
   ConfirmModal('Complete', 'question').then((result) => {
     if (result.value) {
-      // FIXME abstract these out
+      // FIXME abstract these out?
       fetch('/api/v1/promise/complete', {
         body: JSON.stringify({ id }),
         headers: {
@@ -63,7 +65,7 @@ const completePromise = ({ id }) => (evt) => {
         method: 'POST',
       }).then(({ status }) => {
         if (status === 200) {
-          window.location.replace(`//${window.location.host}`);
+          window.location.reload();
         }
       });
     }

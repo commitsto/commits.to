@@ -1,5 +1,5 @@
 import { transparentize } from 'polished';
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import withParsedDomain from 'src/containers/with_parsed_domain';

@@ -3,18 +3,20 @@ import moment from 'moment-timezone'
 import _ from 'lodash'
 
 import Pledge from 'models/pledge';
-
+import PledgeParser from 'services/pledge/parser';
+import isValidUrl from 'lib/parse/url';
 import { Promises, Users } from 'models/db'
+
 import log, { deSequelize } from '../../../lib/logger'
-import { parsePromise, parsePromiseWithIp } from '../../../lib/parse/promise'
+import { parsePromiseWithIp } from '../../../lib/parse/promise'
 import actionNotifier from '../../../lib/notify'
 import parseCredit from '../../../lib/parse/credit'
-import { diffPromises } from '../../../lib/parse/promise'
 
 const api = Router()
 
 api.get('/', (req, res) => {
   log.info('GET promise', req.query);
+
   Pledge.find(req.query).then((promise) => {
     res.json({ promise })
     log.debug('show promise', deSequelize(promise))
@@ -36,10 +38,10 @@ api.post('/parse/', (req, res) => {
     timezone,
   } = req.body
 
-  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+  const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
-    resp.send(400)
+    resp.sendStatus(400)
   } else {
     res.send(parsedPromise)
   }
@@ -53,12 +55,20 @@ api.post('/create/', (req, res) => {
     timezone,
   } = req.body
 
-  const parsedPromise = parsePromise({ promise, urtext, username, timezone })
+  // TODO: move this check into PledgeParser?
+  const { valid: isValid, messages: errors } = isValidUrl({ url: urtext });
+  
+  if (!isValid) {
+    console.log('CREATE API', isValid, errors)
+    return res.status(400).json({ errors });
+  }
+
+  const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
 
   if (!parsedPromise) {
-    res.send(400)
+    return res.sendStatus(400)
   } else {
-    Users.findOne({
+    return Users.findOne({
       where: {
         username,
       }
@@ -98,7 +108,7 @@ api.put('/:username/:urtext', ({ ip, ...req }, res) => {
           .catch((reason) => res.status(400).send(reason))
       }
     }
-    return res.status(400)
+    return res.sendStatus(400)
   })
 })
 
@@ -106,14 +116,17 @@ api.post('/complete', (req, resp) => {
   Pledge.find(req.body).then((pledge) => {
     const tfin = moment().toDate()
     if (pledge) {
-      pledge.update({
+      return pledge.update({
         tfin,
         cred: parseCredit({ dueDate: pledge.tdue, finishDate: tfin })
+      }).then((result) => {
+        log.info('pledge completed', { body: req.body, id: pledge.id, result })
+
+        return resp.status(200).send(result)
       })
-      log.info('pledge completed', req.body, pledge.id)
-      return resp.send(200)
     }
-    return resp.send(400)
+
+    return resp.sendStatus(400)
   })
 })
 
@@ -148,7 +161,7 @@ api.post('/edit', (req, res) => {
       cred: parseCredit({ dueDate: promise.tdue, finishDate: promise.tfin }),
       ...data
     }).then(function (prom) {
-      const difference = diffPromises(oldPromise, deSequelize(prom))
+      const difference = Pledge.diff(oldPromise, deSequelize(prom))
 
       if (!_.isEmpty(difference)) {
         log.info('promise updated', difference)
@@ -164,7 +177,7 @@ api.post('/edit', (req, res) => {
       if (promise) {
         res.json({ promise })
       } else {
-        res.send(400)
+        res.sendStatus(400)
       }
     })
   })
@@ -173,7 +186,7 @@ api.post('/edit', (req, res) => {
 api.post('/validate', ({ body: { id = '' } = {} }, resp) => {
   // FIXME
   if (!id || id.length < 2) {
-    resp.send(400)
+    resp.sendStatus(400)
   } else {
     Promises.upsert({ id: id.toLowerCase() })
       .then(function (promise) {

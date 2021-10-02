@@ -1,4 +1,5 @@
-import * as React from 'react';
+import { map } from 'lodash';
+import React from 'react';
 
 import ProgressBar from 'src/components/bar/progress';
 import withParsedDomain from 'src/containers/with_parsed_domain';
@@ -11,6 +12,7 @@ interface IConfirmProps {
 
 interface IConfirmState {
   status?: IProgress['status'];
+  errors?: string[];
 }
 
 // const username = '{{username}}'
@@ -26,6 +28,7 @@ interface IConfirmState {
 
 class Confirm extends React.Component<IConfirmProps, IConfirmState> {
   public readonly state: Readonly<IConfirmState> = {
+    errors: undefined,
     status: undefined,
   };
 
@@ -35,7 +38,8 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
       location: { pathname: urtext = '' } = {}
     } = this.props;
 
-    setTimeout(() => this.setState({ status: 'started' }), 0); // ensure it's visible
+    // NB: ensure state change is visible when page is loading
+    setTimeout(() => this.setState({ status: 'started' }), 0);
 
     fetch('/api/v1/promise/create', {
       body: JSON.stringify({ username, urtext }),
@@ -43,16 +47,25 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
         'content-type': 'application/json',
       },
       method: 'POST',
-    }).then(({ ok }) => {
-      if (ok) {
-        this.setState({ status: 'completed' });
-        window.location.replace(`//${window.location.host}${urtext}`);
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok) {
+          this.setState({ status: 'completed' });
+          return setTimeout(() => window.location.replace(`//${window.location.host}${urtext}`), 500);
+        } else {
+          return response.json();
+        }
+      })
+      .then(({ errors }) => {
+        return setTimeout(() => this.setState({ status: 'failed', errors }), 500);
+      })
+      .catch((...data) => {
+        console.log('ERROR', data); // tslint:disable-line no-console
+      });
   }
 
   public render() {
-    const { status } = this.state;
+    const { status, errors } = this.state;
 
     return (
       <main>
@@ -64,6 +77,16 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
             Just give us a second to confirm that this is a legitimate request!
           </p>
           <ProgressBar status={status} />
+          {status === 'failed' &&
+            <div>
+              <h4>Sorry, we couldn't create your promise for the following reason(s):</h4>
+              <ul>
+                {map(errors, (error) => (
+                  <li>{error}</li>
+                ))}
+              </ul>
+            </div>
+          }
         </div>
       </main>
     );

@@ -1,6 +1,6 @@
 import { FieldAttributes, FormikActions } from 'formik';
-import * as moment from 'moment';
-import * as React from 'react';
+import moment from 'moment';
+import React from 'react';
 import styled from 'styled-components';
 
 import DayPicker from 'src/components/form/picker/day';

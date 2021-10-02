@@ -1,22 +1,22 @@
-import User from 'models/user';
+import _ from 'lodash';
 
 import { Promises } from 'models/db';
 import { Sequelize } from 'server/db/sequelize';
+
+import User from 'models/user';
+import PledgeParser from 'services/pledge/parser';
 
 // TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
 
 class Pledge {
   public static _dbModel = Promises; // tslint:disable-line variable-name
 
-  public static generateId = ({ username, urtext }) => `${username}/${urtext}`;
-
-  public static find = ({ id, username, urtext }: IPledge = {}) => {
-    const pledgeId = id || Pledge.generateId({ username, urtext });
-    const pledgeUsername = username || pledgeId.split('/')[0];
+  public static find = ({ id: rawId, username: rawUsername, urtext }: IPledge = {}) => {
+    const { id, username } = PledgeParser.parse({ id: rawId, username: rawUsername, urtext });
 
     return Promises.find({
-      include: [User.includeModelFor({ username: pledgeUsername })],
-      where: { id: pledgeId.toLowerCase() },
+      include: [User.includeModelFor({ username })],
+      where: { id },
     });
   }
 

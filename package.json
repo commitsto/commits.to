@@ -3,7 +3,7 @@
   "version": "2.0.1",
   "repository": "commitsto/commits.to",
   "engines": {
-    "node": "10.12.0"
+    "node": "16.15.0"
   },
   "scripts": {
     "eslint": "eslint ./",

@@ -15,7 +15,10 @@ if (DATABASE_URL) {
     port: match[4],
     host: match[3],
     dialectOptions: {
-      ssl: NODE_ENV === 'production',
+      ssl: {
+        require: NODE_ENV === 'production',
+        rejectUnauthorized: false,
+      }
     },
   })
 

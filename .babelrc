@@ -1,18 +1,10 @@
 {
   "presets": [
-    [
-      "@babel/env",
-      {
-        "targets": {
-          "node": 10
-        }
-      }
-    ],
+    "@babel/env",
     "@babel/preset-react",
     "@babel/typescript"
   ],
   "plugins": [
-    "@babel/proposal-class-properties",
     "babel-plugin-styled-components",
     [
       "module-resolver",

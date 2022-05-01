@@ -14,7 +14,6 @@ if (DATABASE_URL) {
     protocol: 'postgres',
     port: match[4],
     host: match[3],
-    logging: true,
     dialectOptions: {
       ssl: NODE_ENV === 'production',
     },

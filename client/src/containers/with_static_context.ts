@@ -6,7 +6,9 @@ const withStaticContext = withProps(({
   staticContext: { data: staticData = {}, host = '' } = {}
 }) => {
   const isClient = () => typeof window !== 'undefined';
-  const data = !isEmpty(staticData) ? staticData : isClient() && (window as any).__staticContext.data;
+  const clientData = isClient ? (window as any).__staticContext?.data : {};
+
+  const data = !isEmpty(staticData) ? staticData : clientData;
 
   return { data, host };
 });

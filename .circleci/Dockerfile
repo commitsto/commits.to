@@ -1,4 +1,4 @@
-FROM circleci/node:8.11.1-browsers
+FROM cimg/node:16.15-browsers
 MAINTAINER commits.to <admin@commits.to>
 
 ENV CIRCLE_ARTIFACTS /tmp/circleci-artifacts

@@ -8,14 +8,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          - v1-dependencies-
+          - v2022-dependencies-{{ checksum "package.json" }}
+          - v2022-dependencies-
       - run: npm install
       - run: npm run build
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v2022-dependencies-{{ checksum "package.json" }}
       - run: npm test
       - run: npm run test:coverage
       - run: npx codecov -f tmp/test-results/coverage.lcov

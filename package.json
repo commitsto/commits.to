@@ -44,7 +44,7 @@
     "mailgun-js": "^0.22.0",
     "moment": "^2.29.1",
     "moment-business-days": "^1.2.0",
-    "moment-timezone": "^0.5.33",
+    "moment-timezone": "^0.5.35",
     "mysql": "^2.18.1",
     "pg": "^8.7.3",
     "polished": "^3.7.1",

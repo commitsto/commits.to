@@ -148,7 +148,7 @@ api.post('/edit', (req, res) => {
   const data = _.mapValues(req.body, (val) => valOrNull(val))
   log.info('edit promise form data', req.body)
 
-  Promises.find({
+  Promises.findOne({
     where: {
       id: req.body.id
     },

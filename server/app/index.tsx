@@ -3,12 +3,12 @@ import useragent from 'express-useragent'
 import { readFile } from 'fs'
 import { join } from 'path'
 
+import * as Sentry from '@sentry/react'
+import { BrowserTracing } from '@sentry/tracing'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { ServerStyleSheet } from 'styled-components'
-import * as Sentry from '@sentry/react'
-import { BrowserTracing } from '@sentry/tracing'
 
 import { PORT } from 'lib/config'
 import log from 'lib/logger'
@@ -72,7 +72,7 @@ app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) =
   )
 
   readFile(indexFile, 'utf8', (err, page) => {
-    if (err) {
+    if (err != null) {
       log.error('Error loading index file', err)
       return res.status(500).send('500')
     }

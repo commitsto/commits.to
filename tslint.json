@@ -16,9 +16,10 @@
       2
     ],
     "max-line-length": false,
+    "space-before-function-paren": ["error", "always"],
     "quotemark": false,
     "semicolon": [
-      true,
+      false,
       "always"
     ],
     "trailing-comma": [

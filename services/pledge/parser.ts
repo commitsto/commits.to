@@ -80,7 +80,7 @@ class PledgeParser {
 
     const { tini, tdue: dueDate, tfin } = pledge
 
-    const tdue = dueDate || (startDate && moment(startDate)
+    const tdue = (dueDate != null) || (startDate && moment(startDate)
       .add(+isAllDay, 'days') // turn boolean into 1 or 0
       .subtract(+isAllDay, 'seconds')
       .tz(timezone, true))

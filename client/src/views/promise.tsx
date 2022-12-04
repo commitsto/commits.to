@@ -36,7 +36,7 @@ class PromiseView extends React.Component<IPromiseViewProps, IPromiseViewState> 
   }
 
   public componentDidMount () {
-    if (this.state.promise) {
+    if (this.state.promise != null) {
       return
     }
 

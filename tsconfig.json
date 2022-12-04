@@ -10,6 +10,7 @@
       "services/*": ["services/*"],
       "src/*": ["client/src/*"]
     },
+    "strictNullChecks": true,
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,

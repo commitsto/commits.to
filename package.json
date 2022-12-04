@@ -23,6 +23,7 @@
     "test:coverage": "nyc report --reporter=text-lcov > tmp/test-results/coverage.lcov"
   },
   "dependencies": {
+    "@babel/runtime": "^7.20.6",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -73,6 +74,7 @@
   "devDependencies": {
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
+    "@babel/plugin-transform-runtime": "^7.19.6",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-react": "^7.16.7",

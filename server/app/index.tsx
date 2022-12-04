@@ -13,10 +13,13 @@ import log from 'lib/logger';
 import apiRouter from 'server/app/api';
 import dataPreloader from 'server/middleware/data';
 import addMetadata from 'server/middleware/metadata';
-import App from 'src/app';
 
-import * as Sentry from "@sentry/browser";
+import React from "react";
+import ReactDOM from "react-dom";
+import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
+
+import App from 'src/app';
 
 const clientBuildDir = '../../client';
 
@@ -45,7 +48,7 @@ app.use(dataPreloader);
 app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) => {
 
   Sentry.init({
-    dsn: "https://afbebbc21b9e4b75a344cf2c7fa3a83a@o4504271213756416.ingest.sentry.io/4504271219392512",
+    dsn: "https://cf18c1e7ce7643618d3f2583cc1e8b72@o4504271213756416.ingest.sentry.io/4504271219326979",
     integrations: [new BrowserTracing()],
 
     // Set tracesSampleRate to 1.0 to capture 100%

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const NotFound = ({ message }) => (
   <main>
@@ -26,6 +26,6 @@ const NotFound = ({ message }) => (
       And there are a couple special characters that will cause things to break horribly.
     </p>
   </main>
-);
+)
 
-export default NotFound;
+export default NotFound

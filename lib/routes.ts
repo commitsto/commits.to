@@ -1,29 +1,29 @@
-import Home from 'src/views/home';
-import View from 'src/views/promise';
-import User from 'src/views/user';
+import Home from 'src/views/home'
+import View from 'src/views/promise'
+import User from 'src/views/user'
 
 const rootRoute = ({ hasSubdomain }) => {
   if (hasSubdomain) {
     return {
       component: User,
-      exact : true,
-      path: '/',
-    };
+      exact: true,
+      path: '/'
+    }
   }
   return {
     component: Home,
     data: 'incomplete',
     exact: true,
-    path: '/',
-  };
-};
+    path: '/'
+  }
+}
 
 const routes = ({ hasSubdomain = false } = {}) => [{
-  ...rootRoute({ hasSubdomain }),
+  ...rootRoute({ hasSubdomain })
 }, {
   component: View,
   data: 'view',
-  path: '/:id',
-}];
+  path: '/:id'
+}]
 
-export default routes;
+export default routes

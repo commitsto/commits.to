@@ -1,18 +1,18 @@
-import { map } from 'lodash';
-import React from 'react';
+import { map } from 'lodash'
+import React from 'react'
 
-import ProgressBar from 'src/components/bar/progress';
-import withParsedDomain from 'src/containers/with_parsed_domain';
+import ProgressBar from 'src/components/bar/progress'
+import withParsedDomain from 'src/containers/with_parsed_domain'
 
 // FIXME: share
 interface IConfirmProps {
-  domain: { subdomain: string; };
-  location: { pathname?: string };
+  domain: { subdomain: string }
+  location: { pathname?: string }
 }
 
 interface IConfirmState {
-  status?: IProgress['status'];
-  errors?: string[];
+  status?: IProgress['status']
+  errors?: string[]
 }
 
 // const username = '{{username}}'
@@ -29,43 +29,43 @@ interface IConfirmState {
 class Confirm extends React.Component<IConfirmProps, IConfirmState> {
   public readonly state: Readonly<IConfirmState> = {
     errors: undefined,
-    status: undefined,
-  };
+    status: undefined
+  }
 
-  public componentDidMount() {
+  public componentDidMount () {
     const {
       domain: { subdomain: username = '' } = {},
       location: { pathname: urtext = '' } = {}
-    } = this.props;
+    } = this.props
 
     // NB: ensure state change is visible when page is loading
-    setTimeout(() => this.setState({ status: 'started' }), 0);
+    setTimeout(() => this.setState({ status: 'started' }), 0)
 
     fetch('/api/v1/promise/create', {
       body: JSON.stringify({ username, urtext }),
       headers: {
-        'content-type': 'application/json',
+        'content-type': 'application/json'
       },
-      method: 'POST',
+      method: 'POST'
     })
       .then((response) => {
         if (response.ok) {
-          this.setState({ status: 'completed' });
-          return setTimeout(() => window.location.replace(`//${window.location.host}${urtext}`), 500);
+          this.setState({ status: 'completed' })
+          return setTimeout(() => window.location.replace(`//${window.location.host}${urtext}`), 500)
         } else {
-          return response.json();
+          return response.json()
         }
       })
       .then(({ errors }) => {
-        return setTimeout(() => this.setState({ status: 'failed', errors }), 500);
+        return setTimeout(() => this.setState({ status: 'failed', errors }), 500)
       })
       .catch((...data) => {
-        console.log('ERROR', data); // tslint:disable-line no-console
-      });
+        console.log('ERROR', data) // tslint:disable-line no-console
+      })
   }
 
-  public render() {
-    const { status, errors } = this.state;
+  public render () {
+    const { status, errors } = this.state
 
     return (
       <main>
@@ -89,8 +89,8 @@ class Confirm extends React.Component<IConfirmProps, IConfirmState> {
           }
         </div>
       </main>
-    );
+    )
   }
 }
 
-export default withParsedDomain(Confirm);
+export default withParsedDomain(Confirm)

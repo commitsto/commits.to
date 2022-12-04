@@ -24,12 +24,12 @@ const renderErrorPage = (opts) =>
   pageWithStatus({ status: 404, template: '404', ...opts })
 
 // validates all requests with a :user param
-app.param('user', function(req, res, next, param) {
+app.param('user', function (req, res, next, param) {
   log.debug('user check', param)
 
   Users.findOne({
     where: {
-      username: req.params.user,
+      username: req.params.user
     }
   }).then(user => {
     if (user) {
@@ -40,7 +40,7 @@ app.param('user', function(req, res, next, param) {
   })
 })
 
-app.param('urtext', function(req, res, next, param) {
+app.param('urtext', function (req, res, next, param) {
   const { originalUrl: url, useragent } = req
   log.debug('url check', param)
   // handle invalid requests with a 404
@@ -54,12 +54,12 @@ app.param('urtext', function(req, res, next, param) {
 })
 
 // promise parsing
-app.param('urtext', function(req, res, next) {
+app.param('urtext', function (req, res, next) {
   const { ip, originalUrl: urtext, user: { username } = {} } = req
   const isBot = isBotFromUserAgent({ req })
 
   let parsedPromise = parsePromise({ username, urtext })
-  let foundPromise = undefined
+  let foundPromise
   let wasPromiseCreated = false
 
   if (!parsedPromise) {
@@ -69,8 +69,8 @@ app.param('urtext', function(req, res, next) {
   return Promises.find({
     where: {
       id: parsedPromise.id
-    },
-  }).then(async(p) => {
+    }
+  }).then(async (p) => {
     foundPromise = p
     let toLog = { level: 'debug', state: 'exists' }
 
@@ -119,8 +119,8 @@ app.param('urtext', function(req, res, next) {
 
     return Promises.findOne({
       where: {
-        id: parsedPromise.id,
-      },
+        id: parsedPromise.id
+      }
     }).then((promise) => {
       // send @dreev an email
       if (wasPromiseCreated) {
@@ -129,7 +129,7 @@ app.param('urtext', function(req, res, next) {
           resource: 'promise',
           action: 'created',
           identifier: promise.id,
-          meta: deSequelize(promise),
+          meta: deSequelize(promise)
         })
       }
 

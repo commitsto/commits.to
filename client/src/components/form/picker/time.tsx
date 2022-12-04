@@ -1,10 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
-import React from 'react';
-import TimeKeeper from 'react-timekeeper';
-import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import moment from 'moment'
+import React from 'react'
+import TimeKeeper from 'react-timekeeper'
+import styled from 'styled-components'
 
-import { gray } from 'lib/theme/colors';
+import { gray } from 'lib/theme/colors'
 
 const TimePickerWrapper = styled.div`
   align-items: center;
@@ -19,14 +19,14 @@ const TimePickerWrapper = styled.div`
   svg {
     color: ${gray}
   }
-`;
+`
 
 interface ITimePickerProps {
-  onChange: ({}) => void;
-  raw: moment.Moment;
-  showPicker?: boolean;
-  toggleClick?: () => void;
-  value: string;
+  onChange: ({}) => void
+  raw: moment.Moment
+  showPicker?: boolean
+  toggleClick?: () => void
+  value: string
 }
 
 const TimePicker: React.SFC<ITimePickerProps> = ({
@@ -42,7 +42,7 @@ const TimePicker: React.SFC<ITimePickerProps> = ({
         <FontAwesomeIcon icon='clock' size='2x' />
       </div>
     </TimePickerWrapper>
-  );
-};
+  )
+}
 
-export default TimePicker;
+export default TimePicker

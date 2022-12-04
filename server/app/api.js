@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
 import log from 'lib/logger'
 import { Promises } from 'models/db/'
@@ -8,7 +8,7 @@ import cache from '../db/cache'
 import PromiseApi from '../api/v1/promise'
 import UserApi from '../api/v1/user'
 
-const api = Router();
+const api = Router()
 
 // REST endpoints
 api.use('/promise', PromiseApi)
@@ -46,4 +46,4 @@ api.get('*', (req, res) => {
   res.send(401)
 })
 
-export default api;
+export default api

@@ -1,13 +1,13 @@
-import { transparentize } from 'polished';
-import React from 'react';
-import styled from 'styled-components';
+import { transparentize } from 'polished'
+import React from 'react'
+import styled from 'styled-components'
 
-import withParsedDomain from 'src/containers/with_parsed_domain';
+import withParsedDomain from 'src/containers/with_parsed_domain'
 
-import { prettyDate, relativeDate } from 'lib/helpers/format';
-import { promisePath } from 'lib/helpers/path';
+import { prettyDate, relativeDate } from 'lib/helpers/format'
+import { promisePath } from 'lib/helpers/path'
 
-import { black, white } from 'lib/theme/colors';
+import { black, white } from 'lib/theme/colors'
 
 const DetailDate = styled.div`
   color: ${white};
@@ -17,35 +17,35 @@ const DetailDate = styled.div`
   padding: 1rem;
   text-align: right;
   text-transform: uppercase;
-`;
+`
 
 const DetailDue = styled.div`
-  background: ${transparentize(.25, black)};
+  background: ${transparentize(0.25, black)};
   max-width: 25%;
-`;
+`
 
 const DetailLink = styled('a')`
   color: ${white};
   display: block;
   padding: 1rem;
   text-decoration: none;
-`;
+`
 
 const DetailInfo = styled.div`
   flex: 3;
-`;
+`
 
 const DetailText = styled.div`
   font-size: 1.1rem;
   letter-spacing: 0.025rem;
   margin-top: .25rem;
-`;
+`
 
 const DetailNote = styled.div`
   font-size: .75rem;
   margin-top: .125rem;
   opacity: .75;
-`;
+`
 
 const DetailRelativeDate = styled.div`
   color: ${white};
@@ -53,12 +53,12 @@ const DetailRelativeDate = styled.div`
   font-weight: 300;
   margin-bottom: .5rem;
   opacity: .7;
-`;
+`
 
 const DetailWrapper = styled.div`
   flex: 1;
   display: flex;
-`;
+`
 
 const CardDetails = ({ domain: { root: host = '' } = {}, what, note, tdue, username, urtext }) => (
   <DetailWrapper>
@@ -88,6 +88,6 @@ const CardDetails = ({ domain: { root: host = '' } = {}, what, note, tdue, usern
       </DetailDue>
     }
   </DetailWrapper>
-);
+)
 
-export default withParsedDomain(CardDetails);
+export default withParsedDomain(CardDetails)

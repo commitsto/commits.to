@@ -1,7 +1,7 @@
-import { darken } from 'polished';
-import styled from 'styled-components';
+import { darken } from 'polished'
+import styled from 'styled-components'
 
-import { blue, white } from 'lib/theme/colors';
+import { blue, white } from 'lib/theme/colors'
 
 const SubmitButton = styled.button`
   color: ${white};
@@ -24,8 +24,8 @@ const SubmitButton = styled.button`
   left: 0;
 
   &:hover {
-    background-color: ${darken(.2, blue)};
+    background-color: ${darken(0.2, blue)};
   }
-`;
+`
 
-export default SubmitButton;
+export default SubmitButton

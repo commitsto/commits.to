@@ -1,15 +1,15 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
-import _ from 'lodash';
-import React from 'react';
-import styled from 'styled-components';
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import _ from 'lodash'
+import React from 'react'
+import styled from 'styled-components'
 
-import { blue, darkBlue } from 'lib/theme/colors';
+import { blue, darkBlue } from 'lib/theme/colors'
 
-import PromiseDeleteButton from 'src/components/button/delete';
-import PromiseSubmitButton from 'src/components/button/submit';
-import DatePicker from 'src/components/form/picker/date';
-import ConfirmModal from 'src/components/modal/confirm';
-import withParsedDomain from 'src/containers/with_parsed_domain';
+import PromiseDeleteButton from 'src/components/button/delete'
+import PromiseSubmitButton from 'src/components/button/submit'
+import DatePicker from 'src/components/form/picker/date'
+import ConfirmModal from 'src/components/modal/confirm'
+import withParsedDomain from 'src/containers/with_parsed_domain'
 
 const PromiseForm = styled.div`
   border: 1px solid ${blue};
@@ -47,46 +47,46 @@ const PromiseForm = styled.div`
   label {
     color: ${blue};
   }
-`;
+`
 
 const FormGroup = styled.div`
   margin: .5rem 0 1.5rem;
-`;
+`
 
 interface IPromiseEditProps {
-  promise: IPledge;
-  onSubmit?: (promise: IPledge) => ({});
+  promise: IPledge
+  onSubmit?: (promise: IPledge) => ({})
 }
 
 interface IPromiseEditState {
-  promise?: IPledge;
+  promise?: IPledge
 }
 
 class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> {
   public readonly state: Readonly<IPromiseEditState> = {
-    promise: this.props.promise,
-  };
+    promise: this.props.promise
+  }
 
   public handleDelete = (evt) => {
-    evt.preventDefault();
+    evt.preventDefault()
 
-    const { promise: { id = '' } = {} } = this.state;
+    const { promise: { id = '' } = {} } = this.state
     ConfirmModal('Delete', 'warning').then((result) => {
       if (result.value) {
         // FIXME abstract these out
         fetch('/api/v1/promise/delete', {
           body: JSON.stringify({ id }),
           headers: {
-            'content-type': 'application/json',
+            'content-type': 'application/json'
           },
-          method: 'POST',
+          method: 'POST'
         }).then(({ status }) => {
           if (status === 200) {
-            window.location.replace(`//${window.location.host}`);
+            window.location.replace(`//${window.location.host}`)
           }
-        });
+        })
       }
-    });
+    })
   }
 
   public handleSubmit = (values, { setSubmitting }) => {
@@ -94,24 +94,24 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     fetch('/api/v1/promise/edit', {
       body: JSON.stringify(values),
       headers: {
-        'content-type': 'application/json',
+        'content-type': 'application/json'
       },
-      method: 'POST',
+      method: 'POST'
     })
-    .then((response) => response.json().then(({ promise }) => ({ status: response.status, promise })))
-    .then(({ status, promise: updatedPromise }) => {
-      if (status === 200) {
-        this.setState(({ promise }) => ({ promise: { ...promise, ...updatedPromise } }));
-        setSubmitting(false);
+      .then(async (response) => await response.json().then(({ promise }) => ({ status: response.status, promise })))
+      .then(({ status, promise: updatedPromise }) => {
+        if (status === 200) {
+          this.setState(({ promise }) => ({ promise: { ...promise, ...updatedPromise } }))
+          setSubmitting(false)
 
-        const { onSubmit = () => ({}) } = this.props;
-        onSubmit(updatedPromise);
-      }
-    });
+          const { onSubmit = () => ({}) } = this.props
+          onSubmit(updatedPromise)
+        }
+      })
   }
 
-  public validateFields(values) {
-    const errors = {};
+  public validateFields (values) {
+    const errors = {}
 
     // TODO
 
@@ -126,12 +126,12 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
     // console.log('validate', values, errors);
     // var timeMatch = /^((0?[1-9]|1[012])(:[0-5]\d){0,2}(\s?[AP]M))$|^([01]\d|2[0-3])(:[0-5]\d){0,2}$/i
 
-    return errors;
+    return errors
   }
 
-  public render() {
-    const { handleDelete, handleSubmit, validateFields } = this;
-    const { promise: { user = {}, ...promise } = {} } = this.state;
+  public render () {
+    const { handleDelete, handleSubmit, validateFields } = this
+    const { promise: { user = {}, ...promise } = {} } = this.state
 
     return (
       <PromiseForm>
@@ -188,8 +188,8 @@ class PromiseEdit extends React.Component<IPromiseEditProps, IPromiseEditState> 
           DELETE
         </PromiseDeleteButton>
       </PromiseForm>
-    );
+    )
   }
 }
 
-export default withParsedDomain(PromiseEdit);
+export default withParsedDomain(PromiseEdit)

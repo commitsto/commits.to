@@ -1,25 +1,25 @@
-import { Sequelize, sequelize } from 'server/db/sequelize';
+import { Sequelize, sequelize } from 'server/db/sequelize'
 
 const Users = sequelize.define('users', {
   counted: {
     defaultValue: null,
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER
   },
   pending: {
     defaultValue: null,
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER
   },
   score: {
     defaultValue: null,
-    type: Sequelize.DOUBLE,
+    type: Sequelize.DOUBLE
   },
   username: {
     type: Sequelize.STRING,
-    unique: true,
-  },
-});
+    unique: true
+  }
+})
 
-Users.prototype.getValidPromises = function({ order = [['tfin', 'DESC']] } = {}) {
+Users.prototype.getValidPromises = function ({ order = [['tfin', 'DESC']] } = {}) {
   return this.getPromises({
     include: [{
       model: Users
@@ -29,8 +29,8 @@ Users.prototype.getValidPromises = function({ order = [['tfin', 'DESC']] } = {})
       void: {
         [Sequelize.Op.not]: true
       }
-    },
-  });
-};
+    }
+  })
+}
 
-export default Users;
+export default Users

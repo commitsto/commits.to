@@ -1,13 +1,13 @@
-import Alert from 'sweetalert2';
+import Alert from 'sweetalert2'
 
-const ConfirmModal = (confirmButtonText, type) => Alert.fire({
+const ConfirmModal = async (confirmButtonText, type) => await Alert.fire({
   cancelButtonText: 'Cancel',
   confirmButtonText,
   reverseButtons: true,
   showCancelButton: true,
   text: "You won't be able to revert this!",
   title: 'Are you sure?',
-  type,
-});
+  type
+})
 
-export default ConfirmModal;
+export default ConfirmModal

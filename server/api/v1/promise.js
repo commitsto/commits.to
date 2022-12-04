@@ -2,9 +2,9 @@ import { Router } from 'express'
 import moment from 'moment-timezone'
 import _ from 'lodash'
 
-import Pledge from 'models/pledge';
-import PledgeParser from 'services/pledge/parser';
-import isValidUrl from 'lib/parse/url';
+import Pledge from 'models/pledge'
+import PledgeParser from 'services/pledge/parser'
+import isValidUrl from 'lib/parse/url'
 import { Promises, Users } from 'models/db'
 
 import log, { deSequelize } from '../../../lib/logger'
@@ -15,12 +15,12 @@ import parseCredit from '../../../lib/parse/credit'
 const api = Router()
 
 api.get('/', (req, res) => {
-  log.info('GET promise', req.query);
+  log.info('GET promise', req.query)
 
   Pledge.find(req.query).then((promise) => {
     res.json({ promise })
     log.debug('show promise', deSequelize(promise))
-  });
+  })
 })
 
 api.get(['/incomplete'], (req, res) => {
@@ -35,7 +35,7 @@ api.post('/parse/', (req, res) => {
     promise = {},
     urtext,
     username,
-    timezone,
+    timezone
   } = req.body
 
   const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
@@ -52,15 +52,15 @@ api.post('/create/', (req, res) => {
     promise = {},
     urtext,
     username,
-    timezone,
+    timezone
   } = req.body
 
   // TODO: move this check into PledgeParser?
-  const { valid: isValid, messages: errors } = isValidUrl({ url: urtext });
-  
+  const { valid: isValid, messages: errors } = isValidUrl({ url: urtext })
+
   if (!isValid) {
     console.log('CREATE API', isValid, errors)
-    return res.status(400).json({ errors });
+    return res.status(400).json({ errors })
   }
 
   const parsedPromise = PledgeParser.parse({ pledge: promise, urtext, username, timezone })
@@ -70,12 +70,12 @@ api.post('/create/', (req, res) => {
   } else {
     return Users.findOne({
       where: {
-        username,
+        username
       }
     }).then(user => {
       if (user) {
         user.createPromise(parsedPromise)
-          .then(function(prom) {
+          .then(function (prom) {
             log.info('promise created via POST', deSequelize(prom), req.body)
             res.status(201).send(prom)
           })
@@ -88,20 +88,20 @@ api.post('/create/', (req, res) => {
 api.put('/:username/:urtext', ({ ip, ...req }, res) => {
   const {
     urtext,
-    username,
+    username
   } = req.params
 
   Users.findOne({
     where: {
-      username,
+      username
     }
-  }).then(async(user) => {
+  }).then(async (user) => {
     if (user) {
       const parsedPromise = await parsePromiseWithIp({ urtext, username, ip })
 
       if (parsedPromise) {
         user.createPromise(parsedPromise)
-          .then(function(prom) {
+          .then(function (prom) {
             log.info('promise created via PUT', deSequelize(prom))
             return res.status(201).send(prom)
           })
@@ -136,7 +136,7 @@ api.post('/delete', (req, resp) => {
     actionNotifier({
       resource: 'pledge',
       action: 'deleted',
-      identifier: req.body.id,
+      identifier: req.body.id
     })
     resp.send(200)
   })
@@ -152,7 +152,7 @@ api.post('/edit', (req, res) => {
     where: {
       id: req.body.id
     },
-    include: [{ model: Users }],
+    include: [{ model: Users }]
   }).then(function (promise) {
     const oldPromise = deSequelize(promise)
     log.info('promise to be updated', oldPromise)
@@ -170,7 +170,7 @@ api.post('/edit', (req, res) => {
           resource: 'pledge',
           action: 'edited',
           identifier: req.body.id,
-          meta: difference,
+          meta: difference
         })
       }
 

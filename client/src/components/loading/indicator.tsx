@@ -1,7 +1,7 @@
-import _ from 'lodash';
-import React from 'react';
+import _ from 'lodash'
+import React from 'react'
 
-import Loader from 'src/components/loading/loader';
+import Loader from 'src/components/loading/loader'
 
 const LoadingIndicator = () => (
   <Loader>
@@ -17,6 +17,6 @@ const LoadingIndicator = () => (
       ))}
     </div>
   </Loader>
-);
+)
 
-export default LoadingIndicator;
+export default LoadingIndicator

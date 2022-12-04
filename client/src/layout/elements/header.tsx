@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { headerBg, headerBorder } from 'lib/theme/colors';
-import withParsedDomain from 'src/containers/with_parsed_domain';
+import { headerBg, headerBorder } from 'lib/theme/colors'
+import withParsedDomain from 'src/containers/with_parsed_domain'
 
 const DarkHeader = styled.header`
   background-color: ${headerBg};
@@ -20,16 +20,15 @@ const DarkHeader = styled.header`
     float: right;
     margin-left: 1.5rem;
   }
-`;
+`
 
 interface IHeaderProps {
-  domain: { root?: string }; // FIXME
-  title: string;
-  showNav?: boolean;
+  domain: { root?: string } // FIXME
+  title: string
+  showNav?: boolean
 }
 
 const Header: React.SFC<IHeaderProps> = ({ title, showNav, domain: { root = '' } = {} }) => {
-
   return (
     <DarkHeader>
       <h1>
@@ -42,29 +41,29 @@ const Header: React.SFC<IHeaderProps> = ({ title, showNav, domain: { root = '' }
           <a
             className='header-link'
             target='_blank'
-            href='http://blog.beeminder.com/will'>
+            href='http://blog.beeminder.com/will' rel="noreferrer">
             blog post
           </a>
           <a
             className='header-link'
             target='_blank'
-            href='https://github.com/beeminder/iwill'>
+            href='https://github.com/beeminder/iwill' rel="noreferrer">
             github repo
           </a>
           <a
             className='header-link'
             target='_blank'
-            href='https://github.com/beeminder/iwill/wiki'>
+            href='https://github.com/beeminder/iwill/wiki' rel="noreferrer">
             spec
           </a>
         </nav>
       }
     </DarkHeader>
-  );
-};
+  )
+}
 
 Header.defaultProps = {
-  showNav: true,
-};
+  showNav: true
+}
 
-export default withParsedDomain(Header);
+export default withParsedDomain(Header)

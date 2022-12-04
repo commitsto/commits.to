@@ -1,30 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { green, red, yellow } from 'lib/theme/colors';
+import { green, red, yellow } from 'lib/theme/colors'
 
 const colorForStatus = ({ status }) => {
   switch (status) {
     case 'started':
-      return yellow;
+      return yellow
     case 'completed':
-      return green;
+      return green
     case 'failed':
     default:
-      return red;
+      return red
   }
-};
+}
 
 const ProgressContainer = styled.div`
   padding: 10px;
   background: rgba(0, 0, 0, 0.25);
   border-radius: 6px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-`;
+`
 
 const ProgressBarWrapper = styled.div`
   margin: 3rem 0;
-`;
+`
 
 const ProgressBarStyled = styled.div`
   background-color: ${colorForStatus};
@@ -33,8 +33,8 @@ const ProgressBarStyled = styled.div`
   transition: 0.25s ease-in;
   transition-property: width, background-color;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
-  width: ${ ({ status }) => status === 'started' && 80 || status === 'completed' && 100 || 1}%;
-`;
+  width: ${({ status }) => status === 'started' && 80 || status === 'completed' && 100 || 1}%;
+`
 
 const ProgressBar: React.SFC<IProgress> = ({ status }) => (
   <ProgressBarWrapper>
@@ -42,6 +42,6 @@ const ProgressBar: React.SFC<IProgress> = ({ status }) => (
       <ProgressBarStyled status={status} />
     </ProgressContainer>
   </ProgressBarWrapper>
-);
+)
 
-export default ProgressBar;
+export default ProgressBar

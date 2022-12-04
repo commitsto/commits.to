@@ -1,3 +1,3 @@
 interface IProgress {
-  status?: 'started' | 'completed' | 'failed';
+  status?: 'started' | 'completed' | 'failed'
 }

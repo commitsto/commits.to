@@ -8,7 +8,7 @@ const postgresRegex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/
 let sequelize = { define: () => {} } // stub
 
 if (DATABASE_URL) {
-  let match = DATABASE_URL.match(postgresRegex)
+  const match = DATABASE_URL.match(postgresRegex)
   sequelize = new Sequelize(match[5], match[1], match[2], {
     dialect: 'postgres',
     dialectOptions: {
@@ -16,15 +16,15 @@ if (DATABASE_URL) {
     },
     protocol: 'postgres',
     port: match[4],
-    host: match[3],
+    host: match[3]
   })
 
   if (NODE_ENV !== 'test') { // will hang on mocha exiting
     sequelize.authenticate()
-      .then(function() {
+      .then(function () {
         log.info('Database connection established')
       })
-      .catch(function(err) {
+      .catch(function (err) {
         log.error('Database connection error: ', err)
       })
   }

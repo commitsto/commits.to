@@ -1,34 +1,34 @@
-import winston from 'winston';
-import { PapertrailTransport } from 'winston-papertrail-transport';
-
-export const deSequelize = (object) => object && object.get({ plain: true, raw: true });
+import winston from 'winston'
+import { PapertrailTransport } from 'winston-papertrail-transport'
 
 import {
   ENV_NAME,
   NODE_ENV,
   PAPERTRAIL_HOST,
   PAPERTRAIL_LEVEL,
-  PAPERTRAIL_PORT,
-} from './config';
+  PAPERTRAIL_PORT
+} from './config'
+
+export const deSequelize = (object) => object && object.get({ plain: true, raw: true })
 
 const winstonConsole = new winston.transports.Console({
   format: winston.format.combine(
     winston.format.prettyPrint({ colorize: true })
-    ),
-  level: 'silly',
-});
+  ),
+  level: 'silly'
+})
 
-const transports = [ winstonConsole ];
+const transports = [winstonConsole]
 
 if (NODE_ENV === 'production') {
   const winstonPapertrail: any = new PapertrailTransport({
     host: PAPERTRAIL_HOST,
     hostname: ENV_NAME,
     level: PAPERTRAIL_LEVEL,
-    port: PAPERTRAIL_PORT,
-  });
+    port: PAPERTRAIL_PORT
+  })
 
-  transports.push(winstonPapertrail);
+  transports.push(winstonPapertrail)
 }
 
-export default winston.createLogger({ transports });
+export default winston.createLogger({ transports })

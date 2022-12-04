@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import Users from 'models/user';
-import log from 'lib/logger';
+import Users from 'models/user'
+import log from 'lib/logger'
 
 const api = Router()
 
@@ -21,17 +21,17 @@ api.post('/create', (req, res) => {
 
 // user promises list
 api.get('/promises', (req, res) => {
-  log.info('GET user/promises', req.query);
+  log.info('GET user/promises', req.query)
 
-  const { username } = req.query;
+  const { username } = req.query
 
   Users.pledges({ username }).then((payload) => {
     if (payload) {
       log.debug(`${username}'s promises: ${payload.promises.length}`)
-      return res.json(payload);
+      return res.json(payload)
     }
-    return res.send(400);
+    return res.send(400)
   })
 })
 
-export default api;
+export default api

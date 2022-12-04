@@ -1,10 +1,10 @@
-import { Users } from 'models/db';
+import { Users } from 'models/db'
 
-import { calculateReliability } from 'lib/parse/credit';
-import promiseGallerySort from 'lib/sort';
+import { calculateReliability } from 'lib/parse/credit'
+import promiseGallerySort from 'lib/sort'
 
 class User {
-  public static _dbModel = Users; // tslint:disable-line variable-name
+  public static _dbModel = Users // tslint:disable-line variable-name
 
   public static includeModelFor = ({ username }) => ({
     model: User._dbModel,
@@ -14,28 +14,27 @@ class User {
   public static pledges = ({ username }) =>
     Users.findOne({
       where: {
-        username,
+        username
       }
     }).then((user) => {
       if (user) {
         return user.getValidPromises().then((promises) => {
-          const { score, counted } = calculateReliability(promises);
+          const { score, counted } = calculateReliability(promises)
 
-          user.update({ score, counted, pending: promises.length - counted });
-          promises.sort(promiseGallerySort);
+          user.update({ score, counted, pending: promises.length - counted })
+          promises.sort(promiseGallerySort)
 
           return {
             counted,
             pending: promises.length - counted,
             promises,
             reliability: score,
-            user,
-          };
-        });
+            user
+          }
+        })
       }
-      return false;
+      return false
     })
-
 }
 
-export default User;
+export default User

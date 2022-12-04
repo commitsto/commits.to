@@ -11,10 +11,10 @@ describe('promiseGallerySort', () => {
 
   def('promises', () => [{
     tini: $lastWeek,
-    tfin: $yesterday,
+    tfin: $yesterday
   }, {
     tini: $lastWeek,
-    tfin: null,
+    tfin: null
   }])
 
   it('sorts completed promises after pending promises', () => {
@@ -25,11 +25,11 @@ describe('promiseGallerySort', () => {
     def('promises', () => [{
       tini: $lastWeek,
       tdue: $tomorrow,
-      tfin: null,
+      tfin: null
     }, {
       tini: $lastWeek,
       tdue: $nextWeek,
-      tfin: null,
+      tfin: null
     }])
 
     it('sorts the promises by due date (tdue) ascending', () => {
@@ -40,10 +40,10 @@ describe('promiseGallerySort', () => {
   context('when both promises are completed', () => {
     def('promises', () => [{
       tini: $lastWeek,
-      tfin: $lastWeek,
+      tfin: $lastWeek
     }, {
       tini: $lastWeek,
-      tfin: $yesterday,
+      tfin: $yesterday
     }])
 
     it('sorts the promises by completion date (tfin) descending', () => {
@@ -54,10 +54,10 @@ describe('promiseGallerySort', () => {
   context('when a promise is pending and tini is null', () => {
     def('promises', () => [{
       tini: null,
-      tfin: null,
+      tfin: null
     }, {
       tini: null,
-      tfin: $yesterday,
+      tfin: $yesterday
     }])
 
     it('sorts the pending promise before the completed promise', () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Captcha = () => (
   <main>
@@ -12,6 +12,6 @@ const Captcha = () => (
       <span className='real-person button'>I'm a real person!</span>
     </div>
   </main>
-);
+)
 
-export default Captcha;
+export default Captcha

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import Intro from 'src/components/intro';
+import Intro from 'src/components/intro'
 
 const SignUp = () => (
   <main>
@@ -17,6 +17,6 @@ const SignUp = () => (
       Read the <a href="https://github.com/commitsto/commits.to/wiki">the spec</a> or the <a href="https://blog.beeminder.com/will">original blog post</a>.
     </p>
   </main>
-);
+)
 
-export default SignUp;
+export default SignUp

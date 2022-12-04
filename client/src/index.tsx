@@ -1,15 +1,15 @@
-import React from 'react';
-import { hydrate } from 'react-dom';
-import ReactGA from 'react-ga';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react'
+import { hydrate } from 'react-dom'
+import ReactGA from 'react-ga'
+import { BrowserRouter } from 'react-router-dom'
 
-import App from 'src/app';
+import App from 'src/app'
 
 hydrate((
   <BrowserRouter>
     <App />
   </BrowserRouter>
-), document.getElementById('root'));
+), document.getElementById('root'))
 
-ReactGA.initialize('UA-121792102-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.initialize('UA-121792102-1')
+ReactGA.pageview(window.location.pathname + window.location.search)

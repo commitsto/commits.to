@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import LoadingIndicator from 'src/components/loading/indicator';
+import LoadingIndicator from 'src/components/loading/indicator'
 
 const LoadableContainer = ({ children, isLoaded }) => {
   if (!isLoaded) {
-    return <LoadingIndicator />;
+    return <LoadingIndicator />
   }
 
-  return children;
-};
+  return children
+}
 
-export default LoadableContainer;
+export default LoadableContainer

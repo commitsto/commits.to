@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import moment from 'moment'
 
-import PledgeParser from 'services/pledge/parser';
+import PledgeParser from 'services/pledge/parser'
 
 describe('PledgeParser#parse', () => {
   subject('parsedPromise', () =>
@@ -17,7 +17,7 @@ describe('PledgeParser#parse', () => {
     slug: 'a-valid-promise',
     timezone: 'etc/UTC',
     what: 'A valid promise',
-    urtext: 'a-valid-promise',
+    urtext: 'a-valid-promise'
   }))
 
   it('parses the promise correctly', () => {
@@ -32,7 +32,7 @@ describe('PledgeParser#parse', () => {
       slug: 'do-the-thing',
       timezone: 'etc/UTC',
       what: 'Do the thing by jan 1 2020',
-      urtext: 'do-the-thing/by/jan-1-2020',
+      urtext: 'do-the-thing/by/jan-1-2020'
     }))
 
     it('correctly parses the deadline from the promise text', () => {
@@ -47,7 +47,7 @@ describe('PledgeParser#parse', () => {
         slug: 'do-the-thing-before-leaving-work',
         timezone: 'etc/UTC',
         what: 'Do the thing before leaving work by 1800',
-        urtext: 'do-the-thing-before-leaving-work-by-1800',
+        urtext: 'do-the-thing-before-leaving-work-by-1800'
       }))
 
       it('correctly parses the deadline from the promise text', () => {
@@ -80,7 +80,7 @@ describe('PledgeParser#diff', () => {
     timezone: 'etc/UTC',
     what: 'A valid promise',
     urtext: 'a-valid-promise',
-    note: 'This is a note',
+    note: 'This is a note'
   }))
 
   def('promiseOne', () => ({ ...$promise }))

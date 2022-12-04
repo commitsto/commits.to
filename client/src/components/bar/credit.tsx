@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { creditColor } from 'lib/helpers/colors';
-import { completeCredit } from 'lib/helpers/format';
+import { creditColor } from 'lib/helpers/colors'
+import { completeCredit } from 'lib/helpers/format'
 
-import { white } from 'lib/theme/colors';
+import { white } from 'lib/theme/colors'
 
 const ColoredBar = styled.div`
   background: ${({ credit }) => creditColor(credit)};
@@ -35,17 +35,17 @@ const ColoredBar = styled.div`
   &:hover {
     background: ${white};
   }
-`;
+`
 
 interface ICreditBarProps {
-  children?: JSX.Element;
-  credit: number;
+  children?: JSX.Element
+  credit: number
 }
 
 const CreditBar: React.SFC<ICreditBarProps> = ({ children, credit }) => (
   <ColoredBar credit={credit}>
     { children }
   </ColoredBar>
-);
+)
 
-export default CreditBar;
+export default CreditBar

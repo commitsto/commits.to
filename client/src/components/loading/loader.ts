@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const Loader = styled.div`
   margin: 10vh auto;
@@ -161,6 +161,6 @@ const Loader = styled.div`
     }
   }
 
-`;
+`
 
-export default Loader;
+export default Loader

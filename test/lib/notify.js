@@ -2,11 +2,11 @@ import chai from 'chai'
 import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 
-chai.should()
-chai.use(sinonChai)
-
 import * as sendMail from 'lib/mail'
 import actionNotifier from 'lib/notify'
+
+chai.should()
+chai.use(sinonChai)
 
 describe('actionNotifier', () => {
   let sendMailSpy
@@ -21,7 +21,7 @@ describe('actionNotifier', () => {
     resource: 'widget',
     action: 'activated',
     identifier: 'widget-123',
-    meta: { info: 'this is some info', detail: 'a detail' },
+    meta: { info: 'this is some info', detail: 'a detail' }
   }))
 
   it('calls sendMail with the correct arguments', () => {
@@ -30,7 +30,7 @@ describe('actionNotifier', () => {
     sendMailSpy.should.have.been.calledWith({
       to: 'dreeves@gmail.com',
       subject: `[commits.to] ${text}`,
-      text: `${text}\n{"info":"this is some info","detail":"a detail"}`,
+      text: `${text}\n{"info":"this is some info","detail":"a detail"}`
     })
   })
 
@@ -38,7 +38,7 @@ describe('actionNotifier', () => {
     def('args', () => ({
       resource: 'widget',
       action: 'deleted',
-      identifier: 'widget-123',
+      identifier: 'widget-123'
     }))
 
     it('calls sendMail with the correct arguments', () => {
@@ -46,7 +46,7 @@ describe('actionNotifier', () => {
       sendMailSpy.should.have.been.calledWith({
         to: 'dreeves@gmail.com',
         subject: '[commits.to] Widget deleted: widget-123',
-        text: 'Widget deleted: widget-123',
+        text: 'Widget deleted: widget-123'
       })
     })
   })

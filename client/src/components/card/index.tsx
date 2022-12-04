@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import { cardClassesFor } from 'lib/helpers/calculate';
-import { creditColor } from 'lib/helpers/colors';
+import { cardClassesFor } from 'lib/helpers/calculate'
+import { creditColor } from 'lib/helpers/colors'
 
-import { blueBorder, lightGray, whiteGray} from 'lib/theme/colors';
-import CardDetails from 'src/components/card/details';
-import CardFooter from 'src/components/card/footer';
-import CardHeader from 'src/components/card/header';
-import ConfirmModal from 'src/components/modal/confirm';
+import { blueBorder, lightGray, whiteGray } from 'lib/theme/colors'
+import CardDetails from 'src/components/card/details'
+import CardFooter from 'src/components/card/footer'
+import CardHeader from 'src/components/card/header'
+import ConfirmModal from 'src/components/modal/confirm'
 
 const CardWrapper = styled.div`
   background: ${({ credit }) => creditColor(credit)};
@@ -39,20 +39,20 @@ const CardWrapper = styled.div`
       display: none;
     }
   }
-`;
+`
 
 // <div className='promise-card {{ promise}} {{dueColor (dueStatus promise.tdue)}}'>
 
 interface ICardProps {
-  promise: IPledge;
-  user: IUser;
-  withHeader?: boolean;
+  promise: IPledge
+  user: IUser
+  withHeader?: boolean
 }
 
 // TODO: move this so we can update state when promise is completed
 // NB: Might be time to add a state-management layer like Redux or move entirely to Apollo/GraphQL
 const completePromise = ({ id }) => (evt) => {
-  evt.preventDefault();
+  evt.preventDefault()
 
   ConfirmModal('Complete', 'question').then((result) => {
     if (result.value) {
@@ -60,22 +60,22 @@ const completePromise = ({ id }) => (evt) => {
       fetch('/api/v1/promise/complete', {
         body: JSON.stringify({ id }),
         headers: {
-          'content-type': 'application/json',
+          'content-type': 'application/json'
         },
-        method: 'POST',
+        method: 'POST'
       }).then(({ status }) => {
         if (status === 200) {
-          window.location.reload();
+          window.location.reload()
         }
-      });
+      })
     }
-  });
-};
+  })
+}
 
 const Card: React.SFC<ICardProps> = ({
   promise: { id, clix, credit, tfin, what, note, tdue, urtext },
   user: { counted = 0, pending = 0, score = 0, username = '' } = {},
-  withHeader,
+  withHeader
 }) => (
   <CardWrapper className={cardClassesFor({ tfin, clix })} credit={credit}>
     { withHeader &&
@@ -84,6 +84,6 @@ const Card: React.SFC<ICardProps> = ({
     <CardDetails what={what} note={note} tdue={tdue} username={username} urtext={urtext} />
     <CardFooter completePromise={completePromise} credit={credit} id={id} tfin={tfin} urtext={urtext} username={username} />
   </CardWrapper>
-);
+)
 
-export default Card;
+export default Card

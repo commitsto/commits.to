@@ -1,14 +1,14 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCalendarAlt, faClock } from '@fortawesome/free-solid-svg-icons'
+import React from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
 
-import Footer from 'src/layout/elements/footer';
-import Header from 'src/layout/elements/header';
+import Footer from 'src/layout/elements/footer'
+import Header from 'src/layout/elements/header'
 
-import ThemeColors from 'lib/theme/colors';
+import ThemeColors from 'lib/theme/colors'
 
-const { black, white, blue } = ThemeColors;
+const { black, white, blue } = ThemeColors
 
 const DarkBackground = createGlobalStyle`
   body {
@@ -30,13 +30,13 @@ const DarkBackground = createGlobalStyle`
     color: ${blue};
     text-decoration: none;
   }
-`;
+`
 
 const MainContainer = styled.main`
   padding: 2rem;
-`;
+`
 
-library.add(faCalendarAlt, faClock);
+library.add(faCalendarAlt, faClock)
 
 const MainLayout = ({ children }) => (
   <div>
@@ -47,6 +47,6 @@ const MainLayout = ({ children }) => (
     </MainContainer>
     <Footer />
   </div>
-);
+)
 
-export default MainLayout;
+export default MainLayout

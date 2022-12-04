@@ -1,14 +1,14 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
-import Intro from 'src/components/intro';
-import Promises from 'src/views/promises';
+import Intro from 'src/components/intro'
+import Promises from 'src/views/promises'
 
 const PromisesPreview = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 2rem -.5rem 0;
-`;
+`
 
 const Home = () => (
   <section className='home'>
@@ -17,6 +17,6 @@ const Home = () => (
       <Promises />
     </PromisesPreview>
   </section>
-);
+)
 
-export default Home;
+export default Home

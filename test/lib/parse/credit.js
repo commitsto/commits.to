@@ -10,10 +10,10 @@ describe('calculateReliability', () => {
     id: 'nocredit'
   }, {
     id: 'one',
-    credit: 1,
+    credit: 1
   }, {
     id: 'half',
-    credit: 0.5,
+    credit: 0.5
   }])
 
   it('only counts promises that have a credit value', () => {
@@ -30,7 +30,7 @@ describe('parseCredit', () => {
 
   def('promise', () => ({
     dueDate: moment(),
-    finishDate: moment().subtract(1, 'day'),
+    finishDate: moment().subtract(1, 'day')
   }))
 
   it('gives full credit for an on-time promise', () => {
@@ -39,7 +39,7 @@ describe('parseCredit', () => {
 
   context('when the promise is incomplete', () => {
     def('promise', () => ({
-      dueDate: moment().add(1, 'week'),
+      dueDate: moment().add(1, 'week')
     }))
 
     it('returns null', () => {
@@ -50,7 +50,7 @@ describe('parseCredit', () => {
   context('when the promise has no due date', () => {
     context('and the promise is complete', () => {
       def('promise', () => ({
-        finishDate: moment().subtract(1, 'day'),
+        finishDate: moment().subtract(1, 'day')
       }))
 
       it('returns the value as 1, or 100%', () => {
@@ -60,7 +60,7 @@ describe('parseCredit', () => {
 
     context('and the promise is incomplete', () => {
       def('promise', () => ({
-        id: 'nothing',
+        id: 'nothing'
       }))
 
       it('returns null', () => {

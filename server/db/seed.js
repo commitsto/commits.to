@@ -16,12 +16,12 @@ const USERS = [
   /* contributors */
   'chris', 'stephen', 'temujin9', 'jordan',
   /* invitees */
-  'pierre', 'chelsea', 'forrest', 'mike',
+  'pierre', 'chelsea', 'forrest', 'mike'
 ]
 
 // utility to populate table with hardcoded promises below
-export const importJson = function(data) {
-  return Promises.sync().then(function() {
+export const importJson = function (data) {
+  return Promises.sync().then(function () {
     Object.keys(data).forEach((key) => {
       const { user: username, ...promise } = data[key]
       const parsedPromise = parsePromise({ promise, username, urtext: key })
@@ -43,9 +43,9 @@ export const importJson = function(data) {
 }
 
 // drop db, create seed users, import test data
-export const seed = function() {
+export const seed = function () {
   return Users.sync({ force: true }) // drops the table if it exists
-    .then(function() {
+    .then(function () {
       USERS.forEach((key) => {
         log.debug('create user', key)
         Users.create({ username: key })

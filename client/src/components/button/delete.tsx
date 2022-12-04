@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import { red } from 'lib/theme/colors';
+import { red } from 'lib/theme/colors'
 
 const DeleteButton = styled.a`
   font-size: 12px;
@@ -9,6 +9,6 @@ const DeleteButton = styled.a`
   &:hover {
     color: ${red};
   }
-`;
+`
 
-export default DeleteButton;
+export default DeleteButton

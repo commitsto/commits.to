@@ -7,17 +7,14 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 
 import { PORT } from 'lib/config';
 import log from 'lib/logger';
 import apiRouter from 'server/app/api';
 import dataPreloader from 'server/middleware/data';
 import addMetadata from 'server/middleware/metadata';
-
-import React from "react";
-import ReactDOM from "react-dom";
-import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
 
 import App from 'src/app';
 

@@ -1,5 +1,4 @@
 import _ from 'lodash'
-// @ts-expect-error
 import moment from 'moment-timezone'
 
 export const prettyPercent = (num: number, digits?: number) => {

@@ -8,11 +8,17 @@ import PledgeParser from 'services/pledge/parser'
 
 // TODO: https://github.com/Vincit/objection.js/tree/master/examples/express-ts
 
+// eslint-disable-next-line @typescript-eslint/no-extraneous-class
 class Pledge {
   public static _dbModel = Promises // tslint:disable-line variable-name
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public static find = ({ id: rawId, username: rawUsername, urtext }: IPledge = {}) => {
-    const { id, username } = PledgeParser.parse({ id: rawId, username: rawUsername, urtext })
+    const pledge = PledgeParser.parse({ id: rawId, username: rawUsername, urtext });
+    if (pledge == null) {
+      throw Error('Unable to find pledge')
+    }
+    const { id, username } = pledge
 
     return Promises.find({
       include: [User.includeModelFor({ username })],
@@ -20,6 +26,7 @@ class Pledge {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public static findIncomplete = ({ limit = null } = {}) => {
     return Promises.findAll({
       include: [{
@@ -39,6 +46,7 @@ class Pledge {
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public static destroy = ({ id }) => {
     return Promises.destroy({
       where: {

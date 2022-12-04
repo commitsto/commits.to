@@ -1,4 +1,3 @@
-// @ts-expect-error
 import moment from 'moment'
 
 import parseCredit from 'lib/parse/credit'

@@ -1,5 +1,5 @@
 .babel.json
-.env
+.env*
 .viminfo
 
 .nyc_output/

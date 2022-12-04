@@ -15,6 +15,9 @@ import dataPreloader from 'server/middleware/data';
 import addMetadata from 'server/middleware/metadata';
 import App from 'src/app';
 
+import * as Sentry from "@sentry/browser";
+import { BrowserTracing } from "@sentry/tracing";
+
 const clientBuildDir = '../../client';
 
 const app = express();
@@ -40,6 +43,17 @@ app.use(dataPreloader);
 
 // catch-all
 app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) => {
+
+  Sentry.init({
+    dsn: "https://afbebbc21b9e4b75a344cf2c7fa3a83a@o4504271213756416.ingest.sentry.io/4504271219392512",
+    integrations: [new BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });
+
   const sheet = new ServerStyleSheet();
   const indexFile = join(__dirname, clientBuildDir, 'app.html');
 

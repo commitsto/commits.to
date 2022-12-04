@@ -16,7 +16,7 @@ class Pledge {
   public static find = ({ id: rawId, username: rawUsername, urtext }: IPledge = {}) => {
     const pledge = PledgeParser.parse({ id: rawId, username: rawUsername, urtext })
     if (pledge == null) {
-      throw Error('Unable to find pledge')
+      throw Error(`Unable to find pledge #${rawId} for user '${rawUsername}' with urtext '${urtext}'`)
     }
     const { id, username } = pledge
 

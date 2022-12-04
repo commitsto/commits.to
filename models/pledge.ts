@@ -14,7 +14,7 @@ class Pledge {
 
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public static find = ({ id: rawId, username: rawUsername, urtext }: IPledge = {}) => {
-    const pledge = PledgeParser.parse({ id: rawId, username: rawUsername, urtext });
+    const pledge = PledgeParser.parse({ id: rawId, username: rawUsername, urtext })
     if (pledge == null) {
       throw Error('Unable to find pledge')
     }

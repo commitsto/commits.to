@@ -50,13 +50,15 @@ const UserReliability = styled.span`
   margin-left: auto;
 `
 
+interface IUserStats {
+  counted?: number
+  pending?: number
+  reliability?: number
+}
+
 interface IUserPromisesState {
   promises?: any[]
-  stats?: {
-    counted?: number
-    pending?: number
-    reliability?: number
-  }
+  stats?: IUserStats
 }
 
 interface IUserPromisesProps {
@@ -67,12 +69,13 @@ interface IUserPromisesProps {
 class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesState> {
   public state = {
     promises: [],
-    stats: undefined
+    stats: { counted: 0, pending: 0, reliability: 0 }
   }
 
   public constructor (props) {
     super(props)
 
+    // eslint-disable-next-line react/prop-types
     const { data: { counted = 0, pending = 0, promises = [], reliability = 0 } = {} } = props
     this.state = {
       promises,
@@ -80,14 +83,17 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public componentDidMount () {
     if (this.state.promises.length > 0) {
       return
     }
     const { domain: { subdomain: username = '' } = {} } = this.props
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetch(`/api/v1/user/promises?username=${username}`)
       .then((response) => {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         response.json()
           .then(({ promises, counted, pending, reliability }) => {
             // console.log('data', promises);
@@ -96,6 +102,7 @@ class UserPromises extends React.Component<IUserPromisesProps, IUserPromisesStat
       })
   }
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   public render () {
     const { promises, stats: { counted = 0, pending = 0, reliability = 0 } = {} } = this.state
     const { domain: { subdomain: username = '' } = {} } = this.props

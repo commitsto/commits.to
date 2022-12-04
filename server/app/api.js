@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import * as Sentry from '@sentry/browser'
+import { BrowserTracing } from '@sentry/tracing'
 
 import log from 'lib/logger'
 import { Promises } from 'models/db/'
@@ -18,6 +20,16 @@ api.use('/user', UserApi)
 
 // calculate and store reliability for each user
 api.get('/cache', (req, resp) => {
+  Sentry.init({
+    dsn: 'https://afbebbc21b9e4b75a344cf2c7fa3a83a@o4504271213756416.ingest.sentry.io/4504271219392512',
+    integrations: [new BrowserTracing()],
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0
+  })
+
   cache()
   resp.redirect('/')
 })

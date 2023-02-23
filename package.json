@@ -55,7 +55,7 @@
     "react-router-dom": "^5.2.0",
     "react-timekeeper": "^1.1.0",
     "recompose": "^0.30.0",
-    "sequelize": "^6.19.0",
+    "sequelize": "^6.28.2",
     "sherlockjs": "^1.4.2",
     "styled-components": "^4.4.1",
     "sweetalert2": "^8.19.0",

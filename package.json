@@ -42,7 +42,7 @@
     "ipapi.co": "^0.3.0",
     "lodash": "^4.17.19",
     "mailgun-js": "^0.22.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "moment-business-days": "^1.2.0",
     "moment-timezone": "^0.5.33",
     "mysql": "^2.18.1",

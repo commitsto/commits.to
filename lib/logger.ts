@@ -21,14 +21,14 @@ const winstonConsole = new winston.transports.Console({
 const transports = [ winstonConsole ];
 
 if (NODE_ENV === 'production') {
-  const winstonPapertrail: any = new PapertrailTransport({
-    host: PAPERTRAIL_HOST,
-    hostname: ENV_NAME,
-    level: PAPERTRAIL_LEVEL,
-    port: PAPERTRAIL_PORT,
-  });
+  // const winstonPapertrail: any = new PapertrailTransport({
+  //   host: PAPERTRAIL_HOST,
+  //   hostname: ENV_NAME,
+  //   level: PAPERTRAIL_LEVEL,
+  //   port: PAPERTRAIL_PORT,
+  // });
 
-  transports.push(winstonPapertrail);
+  // transports.push(winstonPapertrail);
 }
 
 export default winston.createLogger({ transports });

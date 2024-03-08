@@ -11,24 +11,24 @@ import {
   PAPERTRAIL_PORT,
 } from './config';
 
-const winstonConsole = new winston.transports.Console({
-  format: winston.format.combine(
-    winston.format.prettyPrint({ colorize: true })
-    ),
-  level: 'silly',
-});
-
-const transports = [ winstonConsole ];
-
-if (NODE_ENV === 'production') {
-  const winstonPapertrail: any = new PapertrailTransport({
-    host: PAPERTRAIL_HOST,
-    hostname: ENV_NAME,
-    level: PAPERTRAIL_LEVEL,
-    port: PAPERTRAIL_PORT,
-  });
-
-  transports.push(winstonPapertrail);
-}
-
-export default winston.createLogger({ transports });
+// const winstonConsole = new winston.transports.Console({
+//   format: winston.format.combine(
+//     winston.format.prettyPrint({ colorize: true })
+//     ),
+//   level: 'silly',
+// });
+//
+// const transports = [ winstonConsole ];
+//
+// if (NODE_ENV === 'production') {
+//   const winstonPapertrail: any = new PapertrailTransport({
+//     host: PAPERTRAIL_HOST,
+//     hostname: ENV_NAME,
+//     level: PAPERTRAIL_LEVEL,
+//     port: PAPERTRAIL_PORT,
+//   });
+//
+//   transports.push(winstonPapertrail);
+// }
+//
+// export default winston.createLogger({ transports });

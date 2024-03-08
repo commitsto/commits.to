@@ -3,7 +3,8 @@
   "version": "2.0.1",
   "repository": "commitsto/commits.to",
   "engines": {
-    "node": "16.15.0"
+    "node": "21.x",
+    "npm": "10.5"
   },
   "scripts": {
     "eslint": "eslint ./",
@@ -76,9 +77,8 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/register": "^7.17.7",
-    "@storybook/addon-actions": "^6.4.22",
-    "@storybook/react": "^6.4.22",
-    "@storybook/storybook-deployer": "^2.8.11",
+    "@storybook/addon-actions": "^7.6.17",
+    "@storybook/storybook-deployer": "^2.8.16",
     "bdd-lazy-var": "^2.6.1",
     "chai": "^4.3.6",
     "codecov": "^3.8.3",
@@ -88,15 +88,14 @@
     "eslint-plugin-node": "^9.0.1",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-standard": "^4.1.0",
-    "mocha": "^10.0.0",
-    "mocha-junit-reporter": "^2.0.2",
-    "mocha-multi": "^1.1.0",
+    "mocha": "^10.3.0",
+    "mocha-junit-reporter": "^2.2.1",
+    "mocha-multi": "^1.1.7",
     "nodemon": "^1.19.4",
     "nyc": "^15.1.0",
     "sinon": "^13.0.2",
     "sinon-chai": "^3.7.0",
-    "storybook-host": "^5.2.0",
-    "storybook-react-router": "^1.0.8"
+    "storybook-host": "^5.2.0"
   },
   "storybook-deployer": {
     "gitUsername": "chrisbutler",

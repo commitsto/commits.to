@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 
-import log from 'lib/logger';
+// import log from 'lib/logger';
 import parseCredit from 'lib/parse/credit';
 import { dateOr, parseSherlock } from 'lib/parse/time';
 
@@ -28,7 +28,7 @@ class PledgeParser {
     const charsToReplace = new RegExp(`${CHARS_TO_REPLACE}+`, 'g');
     const parsedText = _.upperFirst(text?.replace(charsToReplace, ' '));
 
-    log.debug('parsedText', text, parsedText);
+    // log.debug('parsedText', text, parsedText);
 
     return parsedText;
   }
@@ -40,7 +40,7 @@ class PledgeParser {
 
     const slug = urtext.substr(0, endOfText);
 
-    log.debug('parsedSlug', what, urtext, slug);
+    // log.debug('parsedSlug', what, urtext, slug);
 
     return slug;
   }
@@ -52,7 +52,7 @@ class PledgeParser {
     urtext: originalUrtext,
     timezone = 'etc/UTC',
   }: IPledgeParse) => {
-    log.debug('Pledge.parse() start', { originalId, originalUsername, originalUrtext });
+    // log.debug('Pledge.parse() start', { originalId, originalUsername, originalUrtext });
 
     let id;
     let username;
@@ -99,7 +99,7 @@ class PledgeParser {
       what: text,
     };
 
-    log.debug('Pledge.parse() finish', parsedPlege);
+    // log.debug('Pledge.parse() finish', parsedPlege);
 
     return parsedPlege;
   }

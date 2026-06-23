@@ -14,7 +14,7 @@ class Pledge {
   public static find = ({ id: rawId, username: rawUsername, urtext }: IPledge = {}) => {
     const { id, username } = PledgeParser.parse({ id: rawId, username: rawUsername, urtext });
 
-    return Promises.find({
+    return Promises.findOne({
       include: [User.includeModelFor({ username })],
       where: { id },
     });

@@ -9,7 +9,7 @@ import { StaticRouter } from 'react-router-dom';
 import { ServerStyleSheet } from 'styled-components';
 
 import { PORT } from 'lib/config';
-import log from 'lib/logger';
+// import log from 'lib/logger';
 import apiRouter from 'server/app/api';
 import dataPreloader from 'server/middleware/data';
 import addMetadata from 'server/middleware/metadata';
@@ -31,7 +31,7 @@ app.use(express.urlencoded({
 app.use(express.static(join(__dirname, clientBuildDir)));
 
 app.listen(PORT, () => {
-  log.info(`The commits.to app is running on port ${PORT}`);
+  // log.info(`The commits.to app is running on port ${PORT}`);
 });
 
 app.use('/api/v1', apiRouter);
@@ -60,7 +60,7 @@ app.get('*', ({ data = '{}', headers: { host = 'localhost' } = {}, url }, res) =
 
   readFile(indexFile, 'utf8', (err, page) => {
     if (err) {
-      log.error('Error loading index file', err);
+      // log.error('Error loading index file', err);
       return res.status(500).send('500');
     }
 

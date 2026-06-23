@@ -66,7 +66,7 @@ app.param('urtext', function(req, res, next) {
     return renderErrorPage({ message: 'unparseable promise', res })
   }
 
-  return Promises.find({
+  return Promises.findOne({
     where: {
       id: parsedPromise.id
     },

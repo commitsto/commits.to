@@ -11,12 +11,12 @@ if (DATABASE_URL) {
   let match = DATABASE_URL.match(postgresRegex)
   sequelize = new Sequelize(match[5], match[1], match[2], {
     dialect: 'postgres',
+    dialectOptions: {
+      ssl: true
+    },
     protocol: 'postgres',
     port: match[4],
     host: match[3],
-    dialectOptions: {
-      ssl: NODE_ENV === 'production',
-    },
   })
 
   if (NODE_ENV !== 'test') { // will hang on mocha exiting
